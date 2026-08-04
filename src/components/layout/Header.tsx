@@ -1,22 +1,30 @@
+import Image from "next/image";
 import Link from "next/link";
 import { NAV_LINKS, SITE_CONFIG } from "@/constants/site";
 import { MobileMenu } from "./MobileMenu";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-ink text-paper">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link href="/" className="font-display text-xl tracking-tight">
-          AKKAŞ <span className="text-bronze">GROUP</span>
+    <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/80 backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="Akkaş Group"
+            width={180}
+            height={64}
+            priority
+            className="h-11 w-auto"
+          />
         </Link>
 
         <nav className="hidden md:block">
-          <ul className="flex items-center gap-8">
+          <ul className="flex items-center gap-7">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="font-mono-tag text-xs uppercase text-paper/80 transition-colors hover:text-bronze"
+                  className="text-sm font-medium text-slate-600 transition-colors hover:text-teal-600"
                 >
                   {link.label}
                 </Link>
@@ -24,10 +32,9 @@ export function Header() {
             ))}
           </ul>
         </nav>
-
         <a
           href={`tel:${SITE_CONFIG.phone}`}
-          className="hidden md:inline-block rounded-full bg-bronze px-5 py-2 font-mono-tag text-xs text-ink hover:brightness-110"
+          className="hidden rounded-full bg-gradient-to-r from-teal-500 to-teal-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-teal-500/20 transition-transform hover:scale-[1.03] md:inline-block"
         >
           {SITE_CONFIG.phone}
         </a>

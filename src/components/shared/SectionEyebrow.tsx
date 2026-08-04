@@ -1,16 +1,12 @@
 interface SectionEyebrowProps {
-  fileNumber: string;
   label: string;
 }
 
-export function SectionEyebrow({ fileNumber, label }: SectionEyebrowProps) {
+export function SectionEyebrow({ label }: SectionEyebrowProps) {
   return (
-    <div className="flex items-center gap-3 mb-4">
-      <span className="font-mono-tag text-xs text-bronze border border-bronze/40 rounded-full px-3 py-1">
-        DOSYA {fileNumber}
-      </span>
-      <span className="h-px flex-1 max-w-16 bg-ink/20" />
-      <span className="font-mono-tag text-xs text-ink-70 uppercase">
+    <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-teal-50 px-4 py-1.5">
+      <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
+      <span className="text-xs font-semibold uppercase tracking-wide text-teal-700">
         {label}
       </span>
     </div>
