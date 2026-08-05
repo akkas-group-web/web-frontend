@@ -74,9 +74,9 @@ export function HeroSection() {
   }, [activeIndex]);
 
   return (
-    <section className="relative bg-[#f4f6f8] pt-16">
+    <section className="relative -mt-[73px]">
       {/* Yükseklik dengelendi (Ekranı kaplamayacak şekilde h-[62vh] yapıldı) */}
-      <div className="relative h-[90vh] min-h-[460px] max-h-[600px] w-full overflow-hidden">
+      <div className="relative h-screen min-h-[600px] w-full overflow-hidden">
         {/* Slayt Görselleri */}
         <AnimatePresence mode="sync">
           <motion.div
@@ -100,7 +100,7 @@ export function HeroSection() {
 
         {/* Hero İçerik Metinleri - Yükseklik dengelendi (pb-24 -> pb-32 yapıldı) */}
         {/* Hero İçerik Metinleri - Yukarı çekildi */}
-        <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-start px-8 pt-26 md:px-12 md:pt-30">
+        <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-8 pb-20 pt-16 md:px-12">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeSlide.id}
