@@ -9,7 +9,7 @@ export function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
         <Link href="/" className="flex items-center">
           <Image
-            src="/logo.png"
+            src="/akkasgrouplogo.png"
             alt="Akkaş Group"
             width={180}
             height={64}
