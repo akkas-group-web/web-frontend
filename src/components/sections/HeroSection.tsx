@@ -29,13 +29,13 @@ const HERO_SLIDES: HeroSlide[] = [
   },
   {
     id: "tesvik",
-    eyebrow: "Teşvik ve Hibe Danışmanlığı",
-    title: "Devlet desteklerinden tam kapasite yararlanın",
-    shortTitle: "Teşvik & Hibe",
+    eyebrow: "OSGB Hizmetleri",
+    title: "İş sağlığı ve güvenliğinde profesyonel çözümler",
+    shortTitle: "OSGB",
     description:
       "KOSGEB, TÜBİTAK ve Kalkınma Ajansları destekleriyle işletmenizi ileri taşıyoruz.",
-    image: "/hero/tesvik.jpg",
-    href: "/hizmetlerimiz/tesvik-ve-hibe-danismanligi",
+    image: "/hero/osgb.png",
+    href: "/hizmetlerimiz/osgb",
   },
   {
     id: "kvkk",
