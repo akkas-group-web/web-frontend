@@ -10,7 +10,7 @@ export function SectorsSection({ sectors }: SectorsSectionProps) {
   return (
     <section className="mx-auto max-w-7xl px-6 py-20">
       <SectionEyebrow label="Sektör Çözümleri" />
-      <h2 className="font-heading max-w-xl text-3xl font-semibold text-slate-900 md:text-4xl">
+      <h2 className="font-heading max-w-xl text-3xl font-semibold text-[#0d4d5c] md:text-4xl">
         Hangi sektörde olursanız olun, çözümümüz var
       </h2>
 
@@ -19,7 +19,7 @@ export function SectorsSection({ sectors }: SectorsSectionProps) {
           <Link
             key={sector.id}
             href={sector.href}
-            className="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm text-slate-600 hover:border-teal-400 hover:text-teal-700"
+            className="card-surface rounded-full px-5 py-2.5 text-sm text-[#333333]/80 shadow-sm hover:border-[#1a7d8f]/40 hover:text-[#1a7d8f]"
           >
             {sector.title}
           </Link>

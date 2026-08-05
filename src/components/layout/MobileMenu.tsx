@@ -14,20 +14,20 @@ export function MobileMenu() {
         onClick={() => setIsOpen((prev) => !prev)}
         aria-label={isOpen ? "Menüyü kapat" : "Menüyü aç"}
         aria-expanded={isOpen}
-        className="p-2 text-slate-700"
+        className="p-2 text-[#0d4d5c]"
       >
         {isOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
       {isOpen && (
-        <nav className="absolute left-0 right-0 top-full border-b border-slate-100 bg-white px-6 py-6 shadow-lg">
+        <nav className="navbar-glass absolute left-0 right-0 top-full border-b border-[#0d4d5c]/8 px-6 py-6 shadow-lg">
           <ul className="flex flex-col gap-4">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-sm font-medium text-slate-700 hover:text-teal-600"
+                  className="text-sm font-medium text-[#0d4d5c] hover:text-[#1a7d8f]"
                 >
                   {link.label}
                 </Link>

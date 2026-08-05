@@ -47,87 +47,51 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* --- Akkaş Group marka token'ları (logo bazlı) --- */
-  --color-teal-50: #eefbfc;
-  --color-teal-100: #d3f3f6;
-  --color-teal-400: #4dc4d4;
-  --color-teal-500: #17a3b5;
-  --color-teal-600: #0e7f8f;
-  --color-teal-700: #0b6472;
-  --color-teal-900: #0a2e34;
-  --color-brand-gray: #8b9095;
-  --color-slate-900: #10191d;
-  --color-slate-600: #4b5559;
+  /* --- Akkaş Group resmi marka paleti --- */
+  --color-brand-primary: #1a7d8f;
+  --color-brand-light: #7fc7d4;
+  --color-brand-soft: #e6f2f4;
+  --color-brand-dark: #0d4d5c;
+  --color-brand-beige: #e9e3d7;
+  --color-brand-beige-light: #f5f2ec;
+  --color-brand-gray-light: #f4f6f8;
+  --color-brand-gray-dark: #333333;
   --font-heading: "Space Grotesk", sans-serif;
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --background: #f4f6f8;
+  --foreground: #333333;
+  --card: #ffffff;
+  --card-foreground: #333333;
+  --popover: #ffffff;
+  --popover-foreground: #333333;
+  --primary: #1a7d8f;
+  --primary-foreground: #ffffff;
+  --secondary: #e6f2f4;
+  --secondary-foreground: #0d4d5c;
+  --muted: #f5f2ec;
+  --muted-foreground: #6b7280;
+  --accent: #e6f2f4;
+  --accent-foreground: #0d4d5c;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: rgba(13, 77, 92, 0.1);
+  --input: rgba(13, 77, 92, 0.12);
+  --ring: #1a7d8f;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --radius: 0.75rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #333333;
+  --sidebar-primary: #1a7d8f;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e6f2f4;
+  --sidebar-accent-foreground: #0d4d5c;
+  --sidebar-border: rgba(13, 77, 92, 0.1);
+  --sidebar-ring: #1a7d8f;
 }
 
 @layer base {
@@ -135,7 +99,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-white text-slate-900;
+    @apply bg-background text-foreground;
   }
   html {
     @apply font-sans;
@@ -146,38 +110,32 @@
   font-family: var(--font-heading);
 }
 
-.text-gradient-teal {
+.text-gradient-brand {
   background: linear-gradient(
     120deg,
-    var(--color-teal-500),
-    var(--color-teal-700)
+    var(--color-brand-primary),
+    var(--color-brand-dark)
   );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.bg-mesh {
-  background-image:
-    radial-gradient(
-      circle at 15% 20%,
-      color-mix(in oklab, var(--color-teal-400) 35%, transparent) 0%,
-      transparent 45%
-    ),
-    radial-gradient(
-      circle at 85% 10%,
-      color-mix(in oklab, var(--color-teal-500) 25%, transparent) 0%,
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at 50% 100%,
-      color-mix(in oklab, var(--color-brand-gray) 20%, transparent) 0%,
-      transparent 50%
-    );
+/* Bell Flight tarzı yarı saydam navbar */
+/* Navbar Glassmorphism Fix */
+/* Hero görsellerinin rengini geçiren dinamik glassmorphism */
+/* Açık Tonlu Buzlu Cam (Light Glassmorphism) */
+.navbar-glass {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.65
+  ) !important; /* Açık renk zemin, resim renklerini geçirir */
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
 }
-
-.glass-card {
-  background: color-mix(in oklab, white 70%, transparent);
-  backdrop-filter: blur(16px);
-  border: 1px solid color-mix(in oklab, white 40%, var(--color-teal-100));
+.card-surface {
+  background: #ffffff;
+  border: 1px solid rgba(13, 77, 92, 0.08);
 }

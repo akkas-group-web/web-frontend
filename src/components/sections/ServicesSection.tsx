@@ -11,7 +11,7 @@ export function ServicesSection({ services }: ServicesSectionProps) {
     <section className="mx-auto max-w-7xl px-6 py-20">
       <div className="text-center">
         <SectionEyebrow label="Hizmetlerimiz" />
-        <h2 className="font-heading mx-auto max-w-xl text-3xl font-semibold text-slate-900 md:text-4xl">
+        <h2 className="font-heading mx-auto max-w-xl text-3xl font-semibold text-[#0d4d5c] md:text-4xl">
           A&apos;dan Z&apos;ye kurumsal danışmanlık çözümleri
         </h2>
       </div>
@@ -21,18 +21,18 @@ export function ServicesSection({ services }: ServicesSectionProps) {
           <Link
             key={service.id}
             href={service.href}
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-teal-900/5"
+            className="card-surface group relative flex flex-col justify-between overflow-hidden rounded-2xl p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
           >
-            <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gradient-to-br from-teal-400/20 to-teal-600/10 transition-transform group-hover:scale-125" />
+            <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#7fc7d4]/20 blur-xl transition-transform group-hover:scale-125" />
             <div className="relative">
-              <h3 className="font-heading text-lg font-semibold text-slate-900">
+              <h3 className="font-heading text-lg font-semibold text-[#0d4d5c]">
                 {service.title}
               </h3>
-              <p className="mt-2 text-sm text-slate-500">
+              <p className="mt-2 text-sm text-[#333333]/70">
                 {service.description}
               </p>
             </div>
-            <span className="relative mt-6 text-xs font-semibold text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
+            <span className="relative mt-6 text-xs font-semibold text-[#1a7d8f] opacity-0 transition-opacity group-hover:opacity-100">
               Detay →
             </span>
           </Link>
