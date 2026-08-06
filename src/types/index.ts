@@ -43,11 +43,13 @@ export interface StatItem {
 export interface AnnouncementItem {
   id: string;
   title: string;
+  excerpt: string;
   date: string;
   href: string;
   category: string;
+  image: string;
+  imageRatio?: "landscape" | "square"; // belirtilmezse landscape (4/3) kabul edilir
 }
-
 export interface HomeContent {
   services: ServiceItem[];
   brands: BrandItem[];

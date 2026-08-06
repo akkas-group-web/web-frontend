@@ -162,32 +162,71 @@ const MOCK_HOME_CONTENT: HomeContent = {
   ],
   announcements: [
     {
+      id: "milli-teknoloji-atolyesi",
+      title: "Konya'da İki Yeni Milli Teknoloji Atölyesi Faaliyete Girdi",
+      excerpt:
+        "Sanayi ve Teknoloji Bakanımız Mehmet Fatih Kacır'ın teşrifleriyle Selçuk Üniversitesi ve Necmettin Erbakan Üniversitesi Milli Teknoloji Atölyelerinin açılışı gerçekleştirildi.",
+      date: "2026-07-31",
+      href: "/blog/milli-teknoloji-atolyesi-konya",
+      category: "Teşvikler & Hibeler",
+      image: "/announcements/milli-teknoloji-atolyesi.jpeg",
+      imageRatio: "landscape",
+    },
+    {
+      id: "tubitak-arge-merkezi",
+      title:
+        "Çanakkale'de TÜBİTAK Desteğiyle Seramik Teknolojileri Öncül Ar-Ge Merkezi Açıldı",
+      excerpt:
+        "TÜBİTAK 1515 Öncül Ar-Ge Laboratuvarları Destekleme Programı kapsamında destek verdiğimiz Seramik Teknolojileri Öncül Ar-Ge Merkezi'nin açılışı, TÜBİTAK Başkanımız Prof. Dr. Orhan Aydın'ın katılımıyla gerçekleşti.",
+      date: "2026-07-28",
+      href: "/blog/tubitak-seramik-arge-merkezi",
+      category: "Teşvikler & Hibeler",
+      image: "/announcements/tubitak-arge-merkezi.jpeg",
+      imageRatio: "landscape",
+    },
+    {
       id: "cbam",
       title: "CBAM 2. Çeyrek Fiyatı Yayımlandı",
+      excerpt:
+        "Sınırda Karbon Düzenleme Mekanizması (SKDM) kapsamında 2026 yılı 2. çeyrek referans fiyatları açıklandı. Firmaların raporlama süreçlerini bu doğrultuda güncellemesi gerekiyor.",
       date: "2026-07-20",
       href: "/blog/cbam-2-ceyrek-fiyati-yayimlandi",
       category: "Akkaş Karbon",
+      image: "/announcements/cbam.jpeg",
+      imageRatio: "square",
     },
     {
       id: "yz-kredi",
       title: "Yapay Zeka Kredi Programı",
+      excerpt:
+        "KOBİ'lerin yapay zeka dönüşümünü desteklemek amacıyla uygun faizli yeni bir kredi programı yürürlüğe girdi. Başvuru koşulları ve destek üst limitleri açıklandı.",
       date: "2026-07-20",
       href: "/blog/yapay-zeka-kredi-programi",
       category: "Teşvikler & Hibeler",
+      image: "/announcements/yz-kredi.jpeg",
+      imageRatio: "landscape",
     },
     {
       id: "kapasite",
       title: "Kapasite Geliştirme Destek Programı — 2. Başvuru Dönemi Başladı",
+      excerpt:
+        "Sanayi işletmelerinin üretim kapasitesini artırmasına yönelik destek programının ikinci başvuru dönemi resmen açıldı. Son başvuru tarihi yakında duyurulacak.",
       date: "2026-06-08",
       href: "/blog/kapasite-gelistirme-destek-programi-2-basvuru-donemi-basladi",
       category: "Teşvikler & Hibeler",
+      image: "/announcements/kapasite-gelistirme.jpeg",
+      imageRatio: "square",
     },
     {
       id: "verbis",
       title: "VERBİS Kayıt Süresi Uzadı",
+      excerpt:
+        "Veri Sorumluları Sicili'ne (VERBİS) kayıt yükümlülüğü olan firmalar için son başvuru süresi Kişisel Verileri Koruma Kurulu kararıyla ertelendi.",
       date: "2026-06-01",
       href: "/blog/verbis-kayit-suresi-uzadi",
       category: "KVKK & Mevzuat",
+      image: "/announcements/verbis.jpeg",
+      imageRatio: "landscape",
     },
   ],
 };
