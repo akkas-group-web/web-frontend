@@ -18,8 +18,8 @@ export default async function HomePage() {
       <ServicesSection services={content.services} />
       <BrandsStrip brands={content.brands} />
       <SectorsSection sectors={content.sectors} />
-      <AnnouncementsSection announcements={content.announcements} />
       <ReferencesSection />
+      <AnnouncementsSection announcements={content.announcements} />
       <ContactCTA />
     </>
   );

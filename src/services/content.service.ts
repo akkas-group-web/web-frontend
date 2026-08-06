@@ -72,29 +72,33 @@ const MOCK_HOME_CONTENT: HomeContent = {
   brands: [
     {
       id: "aker-patent",
-      name: "Aker Patent",
-      description: "Marka & Patent Vekillik Hizmetleri",
+      name: "Marka & Patent Vekillik Hizmetleri",
+      description:
+        "Şirketlerin 21.yy daki ihtiyaçları doğrultusunda kurulmuş sınai mülkiyet alanında hizmet veren bir vekillik şirketidir. Şirketin çalışma alanlarında başta markalar, patentler, endüstriyel tasarımlar olmak üzere coğrafi işaretler, ve entegre devrelerin topografyaları da bulunmaktadır.",
       href: "/markalarimiz/aker-patent",
       logo: "/brands/akerpatent.png",
     },
     {
       id: "akkas-osgb",
-      name: "Akkaş OSGB",
-      description: "İş Sağlığı ve Güvenliği Hizmetleri",
+      name: "İş Sağlığı ve Güvenliği Hizmetleri",
+      description:
+        "İş Sağlığı ve Güvenliği konusuna verilen önemin giderek arttığı ülkemizde en son 2013 yılında yürürlüğe giren 6331 sayılı İş Kanunu ile bu konu daha büyük önem arz etmiş durumdadır. Bizlerde bu noktada AKKAŞ ORTAK SAĞLIK GÜVENLİK BİRİMİ olarak Türkiye'de yeni oluşmaya...",
       href: "/markalarimiz/akkas-osgb",
       logo: "/brands/akkasosgb.png",
     },
     {
       id: "aya",
-      name: "Avrupa Yatırım Ajansı",
-      description: "Teşvik ve Proje Danışmanlığı",
+      name: "Teşvik ve Proje Danışmanlığı",
+      description:
+        "Devlet desteklerinden yararlanabilmek için ilk adımı beraber atalım. Ve beraber koşalım. Kosgeb, Tübitak, Kalkınma Ajansları, Ticaret Bakanlığı, Hazine Müsteşarlığı, Sanayi ve Teknoloji Bakanlığı, Hamle, Kırsal Kalkınma, IPARD, Avrupa Birliği Fonları, Teknoloji Odaklı Hamle Programı, Dünya Bankası Destekleri ile sektörünüzün lideri olun.",
       href: "/markalarimiz/avrupa-yatirim-ajansi",
       logo: "/brands/aya.png",
     },
     {
       id: "erkan-akkas",
-      name: "Erkan Akkaş Danışmanlık",
-      description: "Kurumsal Danışmanlık Hizmetleri",
+      name: "Eğitim ve Danışmanlık",
+      description:
+        "ISO 9001 - 10002 - 14001 - 18001 - 27001 - TSE HYB (Hizmet Yeterlilik Belgesi) belgelerine sahip firmamız global ekonomik gelişmeler ışığında kaliteli hizmet sunmayı amaçlar. 'Kalite asla bir tesadüf değil, daima akıllı bir gayretin sonucudur.' sözünü Erkan Akkaş Danışmanlık ve Eğitim olarak ilke edinmiş bulunmaktayız.",
       href: "/markalarimiz/erkan-akkas-danismanlik",
       logo: "/brands/erkanakkas.png",
     },

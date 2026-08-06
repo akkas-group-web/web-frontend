@@ -116,10 +116,34 @@ export const STATS = [
 
 export const SITE_CONFIG = {
   name: "Akkaş Group",
-  url: "https://akkasgroup.com", // gerçek domain neyse onu yaz
+  url: "https://akkasgroup.com",
   description:
     "A'dan Z'ye danışmanlık: yatırım, teşvik, KVKK ve kalite belgelendirme hizmetleri.",
-  phone: "+902620000000", // gerçek telefon numaranız neyse onu koruyun
+  phone: "+90 216 450 60 07 (Pbx)",
   email: "info@akkasgroup.com",
-  address: "Kadıköy",
+  address: "Uzunçayır Cad. Akkaş Plaza No:51 Hasanpaşa-Kadıköy-İSTANBUL",
 };
+export interface SocialLink {
+  label: string;
+  href: string;
+  icon: "facebook" | "instagram" | "linkedin" | "twitter" | "youtube";
+}
+
+export const SOCIAL_LINKS: SocialLink[] = [
+  {
+    label: "Facebook",
+    href: "https://facebook.com/akkasgroup",
+    icon: "facebook",
+  },
+  {
+    label: "Instagram",
+    href: "https://instagram.com/akkasgroup",
+    icon: "instagram",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://linkedin.com/company/akkasgroup",
+    icon: "linkedin",
+  },
+  { label: "Twitter", href: "https://twitter.com/akkasgroup", icon: "twitter" },
+];

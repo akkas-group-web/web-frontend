@@ -24,7 +24,8 @@ export function BrandsStrip({ brands }: BrandsStripProps) {
           </h2>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7">
+        {/* Kartlar Arası Taşma Alanı (Badge için) */}
+        <div className="mt-12 flex flex-wrap justify-center gap-x-5 gap-y-10">
           {brands.map((brand, i) => (
             <motion.div
               key={brand.id}
@@ -36,27 +37,44 @@ export function BrandsStrip({ brands }: BrandsStripProps) {
                 ease: [0.22, 1, 0.36, 1],
                 delay: i * 0.06,
               }}
+              className="w-[calc(50%-10px)] sm:w-[calc(33.333%-14px)] lg:w-[calc(25%-15px)]"
             >
               <Link
                 href={brand.href}
-                title={brand.description}
-                className="group relative flex aspect-square flex-col items-center justify-center gap-3 rounded-2xl border border-[#0d4d5c]/8 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#1a7d8f]/25 hover:shadow-lg"
+                className="group relative flex aspect-[4/3] flex-col rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-xl"
               >
-                {/* Hover'da beliren yumuşak parlama */}
-                <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-[#e6f2f4] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-                <div className="relative h-12 w-full">
+                {/* Logo Konteynırı */}
+                {/* Logo Konteynırı */}
+                <div className="relative flex-1 p-6 pb-10">
                   <Image
                     src={brand.logo}
                     alt={brand.name}
                     fill
-                    className="object-contain transition-transform duration-300 group-hover:scale-110"
+                    className="object-contain p-6 transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
 
-                <span className="relative text-center text-[11px] font-semibold leading-tight text-[#333333]/55 transition-colors duration-300 group-hover:text-[#0d4d5c]">
-                  {brand.name}
-                </span>
+                {/* Varsayılan Durum: Uzun Metinlerde Aşağıya Doğru Taşan Beyaz Badge */}
+                {/* Varsayılan Durum: Aşağı Doğru Genişleyen ve Logoyu Kapatmayan Badge */}
+                <div className="absolute bottom-0 right-4 z-10 max-w-[85%] translate-y-1/2 rounded-xl bg-white px-4 py-2.5 shadow-md transition-opacity duration-300 group-hover:opacity-0">
+                  <span className="block text-xs font-bold leading-snug text-[#0d4d5c] md:text-sm">
+                    {brand.name}
+                  </span>
+                </div>
+
+                {/* Hover Durumu: Zengin Lacivert/Mavi Overlay ve Metin Sonu Ok İşareti */}
+                <div className="absolute inset-0 z-20 flex flex-col justify-end overflow-hidden rounded-2xl bg-gradient-to-t from-[#0b2b38]/95 via-[#0d4d5c]/90 to-[#0d4d5c]/75 p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <span className="text-sm font-bold leading-tight text-white md:text-base">
+                    {brand.name}
+                  </span>
+
+                  <p className="mt-2 text-xs leading-relaxed text-white/90 line-clamp-4">
+                    {brand.description}
+                    <span className="ml-1 inline-block text-white transition-transform duration-300 group-hover:translate-x-1">
+                      &rarr;
+                    </span>
+                  </p>
+                </div>
               </Link>
             </motion.div>
           ))}

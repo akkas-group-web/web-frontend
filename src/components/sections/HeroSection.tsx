@@ -24,7 +24,7 @@ const HERO_SLIDES: HeroSlide[] = [
     shortTitle: "Yatırım Danışmanlığı",
     description:
       "Teşvik belgesi, fizibilite ve gümrük muafiyeti süreçlerinde uçtan uca yanınızdayız.",
-    image: "/hero/yatirim.jpg",
+    image: "/hero/yatirim.png",
     href: "/hizmetlerimiz/yatirim-danismanligi",
   },
   {
