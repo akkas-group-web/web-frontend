@@ -7,6 +7,7 @@ import { StatsSection } from "@/components/sections/StatsSection";
 import { AnnouncementsSection } from "@/components/sections/AnnouncementsSection";
 import { ReferencesSection } from "@/components/sections/ReferencesSection";
 import { ContactCTA } from "@/components/sections/ContactCTA";
+import { ArticlesSection } from "@/components/sections/Articlessection";
 
 export default async function HomePage() {
   const content = await getHomeContent();
@@ -19,6 +20,7 @@ export default async function HomePage() {
       <BrandsStrip brands={content.brands} />
       <SectorsSection sectors={content.sectors} />
       <ReferencesSection />
+      <ArticlesSection articles={content.articles} />
       <AnnouncementsSection announcements={content.announcements} />
       <ContactCTA />
     </>

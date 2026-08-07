@@ -1,3 +1,5 @@
+import { ArticleItem } from "./article";
+
 export interface ServiceItem {
   id: string;
   title: string;
@@ -56,4 +58,5 @@ export interface HomeContent {
   sectors: SectorItem[];
   stats: StatItem[];
   announcements: AnnouncementItem[];
+  articles: ArticleItem[];
 }
