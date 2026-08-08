@@ -60,21 +60,30 @@ function AnimatedNumber({ value, duration = 1.6 }: AnimatedNumberProps) {
 /** Fotoğrafın üzerine binen ince dalga çizgileri — referanstaki desenin teal versiyonu */
 function WaveOverlay() {
   return (
-    <svg
-      className="pointer-events-none absolute inset-0 h-full w-full opacity-25 mix-blend-overlay"
-      viewBox="0 0 400 500"
-      fill="none"
-      aria-hidden="true"
+    <motion.svg
+      viewBox="0 0 450 500"
+      preserveAspectRatio="none"
+      className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.18]"
     >
-      {Array.from({ length: 6 }).map((_, idx) => (
-        <path
+      {Array.from({ length: 7 }).map((_, idx) => (
+        <motion.path
           key={idx}
-          d={`M -50 ${80 + idx * 60} C 100 ${20 + idx * 60}, 250 ${140 + idx * 60}, 450 ${60 + idx * 60}`}
+          d={`M -50 ${80 + idx * 60} C 100 ${20 + idx * 60}, 250 ${
+            140 + idx * 60
+          }, 500 ${60 + idx * 60}`}
+          fill="none"
           stroke="white"
           strokeWidth="1"
+          strokeLinecap="round"
+          animate={{ x: [-12, 12, -12] }}
+          transition={{
+            duration: 8 + idx,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         />
       ))}
-    </svg>
+    </motion.svg>
   );
 }
 
@@ -119,16 +128,18 @@ export function StatsSection({
           </Link>
 
           {/* Mobilde: fotoğraf gizli, statlar sade grid halinde metnin altında */}
-          <div className="relative mt-10 flex items-end gap-4">
+          <div className="relative mt-12 flex items-end gap-4">
             {primaryStat && (
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.03, y: -4 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="w-2/5 rounded-2xl bg-white p-6 shadow-xl"
+                className="group relative w-[35%] overflow-hidden rounded-3xl bg-white p-10 shadow-[0_20px_60px_rgba(13,77,92,0.15)] ring-1 ring-[#0d4d5c]/5 transition-shadow duration-500 hover:shadow-[0_25px_70px_rgba(13,77,92,0.22)]"
               >
                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#333333]/50">
+                  <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#1a7d8f]/10 blur-2xl transition-transform duration-700 group-hover:scale-150" />
                   {primaryStat.sub ?? "Öne Çıkan"}
                 </span>
                 <div className="font-heading mt-1 text-4xl font-bold text-[#1a7d8f]">
@@ -146,9 +157,9 @@ export function StatsSection({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={{ duration: 0.5, delay: 0.35 }}
-                className="relative z-10 -mt-16 w-3/5 rounded-2xl bg-[#0d4d5c] p-6 text-white shadow-xl md:-mr-20"
+                className="group relative z-40 -mt-66 w-[54%] translate-x-12 overflow-hidden rounded-3xl bg-[#0d4d5c] p-6 text-white shadow-[0_25px_60px_rgba(13,77,92,0.25)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_75px_rgba(13,77,92,0.32)] md:translate-x-1 md:-mr-20"
               >
-                <ul className="space-y-5">
+                <ul className="space-y-4">
                   {restStats.slice(0, 3).map((stat) => (
                     <li key={stat.id}>
                       <div className="font-heading text-2xl font-bold text-white">
@@ -174,22 +185,38 @@ export function StatsSection({
           transition={{ duration: 0.7 }}
           className="relative mx-auto hidden w-full max-w-sm md:block"
         >
-          <div className="relative aspect-[4/4.6] overflow-hidden rounded-[2rem]">
+          <motion.div
+            whileHover={{ scale: 1.015 }}
+            transition={{ duration: 0.5 }}
+            className="relative overflow-hidden rounded-[2.5rem] shadow-2xl shadow-[#0d4d5c]/15"
+          >
             <Image
               src={imageSrc}
               alt="Akkaş Group ofis ve danışmanlık ekibi"
-              fill
+              width={900}
+              height={1035}
               sizes="(min-width: 768px) 45vw, 100vw"
-              className="object-cover"
+              className="h-auto w-full"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0d4d5c]/55 via-[#0d4d5c]/0 to-transparent" />
-            <WaveOverlay />
-          </div>
 
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0d4d5c]/55 via-[#0d4d5c]/0 to-transparent" />
+
+            <WaveOverlay />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 10 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.7, duration: 0.5 }}
+              className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur-md"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-[#58c4d4]" />
+              25+ Yıllık Deneyim
+            </motion.div>
+          </motion.div>
           {/* Fotoğrafın alt kenarına oturan kart grubu */}
           <div className="absolute inset-x-4 -bottom-8 flex items-end gap-3">
             {/* Kart 1: kısa, sol — tek büyük rakam vurgusu */}
-            {primaryStat && (
+            {/* {primaryStat && (
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -207,10 +234,10 @@ export function StatsSection({
                   {primaryStat.label}
                 </div>
               </motion.div>
-            )}
+            )} */}
 
             {/* Kart 2: uzun, sağ — fotoğrafın içine daha çok taşıyor */}
-            {restStats.length > 0 && (
+            {/* {restStats.length > 0 && (
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -231,7 +258,7 @@ export function StatsSection({
                   ))}
                 </ul>
               </motion.div>
-            )}
+            )} */}
           </div>
         </motion.div>
       </div>
