@@ -32,7 +32,8 @@ export interface SectorItem {
   title: string;
   href: string;
   description?: string; // Sektörün kısa açıklaması
-  iconName?: string; // Dinamik ikon ismi
+  // iconName?: string; // Dinamik ikon ismi
+  image?: string;
 }
 
 export interface StatItem {
