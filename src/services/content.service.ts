@@ -15,7 +15,7 @@ const articles: ArticleItem[] = [
     author: {
       name: "Erkan Akkaş",
       role: "Yönetim Kurulu Başkanı",
-      photo: "/images/authors/erkan-akkas.jpg",
+      photo: "/authors/erkan-akkas.jpg",
     },
   },
   {
@@ -29,7 +29,7 @@ const articles: ArticleItem[] = [
     author: {
       name: "Ayşe Yılmaz",
       role: "KVKK Danışmanı",
-      photo: "/images/authors/ayse-yilmaz.jpg",
+      photo: "/authors/ayse-yilmaz.png",
     },
   },
   {
