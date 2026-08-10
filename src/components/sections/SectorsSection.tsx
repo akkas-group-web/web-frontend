@@ -84,14 +84,16 @@ export function SectorsSection({ sectors }: SectorsSectionProps) {
               key={sector.id}
               href={sector.href}
               onMouseEnter={() => setActiveId(sector.id)}
-              className="
-    group relative block h-full
-    min-w-[50%]
-    md:min-w-[25%]
-    lg:min-w-[12.5%]
-    flex-none
-    overflow-hidden
-  "
+              className={`
+  group relative block h-full
+  min-w-[50%]
+  md:min-w-[25%]
+  lg:min-w-[12.5%]
+  flex-none
+  overflow-hidden
+  transition-[width,min-width] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
+  ${isActive ? "lg:min-w-[20%]" : ""}
+`}
             >
               {/* Görsel — sector.image doldurulunca otomatik devreye girer */}
               {sector.image ? (

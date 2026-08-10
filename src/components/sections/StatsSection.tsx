@@ -209,8 +209,8 @@ export function StatsSection({
               transition={{ delay: 0.7, duration: 0.5 }}
               className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur-md"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-[#58c4d4]" />
-              25+ Yıllık Deneyim
+              {/* <span className="h-1.5 w-1.5 rounded-full bg-[#58c4d4]" />
+              25+ Yıllık Deneyim */}
             </motion.div>
           </motion.div>
           {/* Fotoğrafın alt kenarına oturan kart grubu */}
