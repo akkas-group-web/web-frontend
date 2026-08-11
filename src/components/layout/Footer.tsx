@@ -33,7 +33,7 @@ export function Footer() {
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-14 md:grid-cols-2 md:items-center md:px-12">
           <div>
             <h3 className="font-heading text-2xl font-semibold text-white">
-              Haberdarolun
+              Haberdar Olun
             </h3>
             <p className="mt-2 max-w-md text-sm text-white/55">
               E-bülten üye listemize kaydolun, en güncel haberler mailinize

@@ -11,7 +11,7 @@ const articles: ArticleItem[] = [
       "Yeni teşvik paketiyle birlikte hangi sektörler öne çıkıyor, detayları derledik.",
     date: "2025-03-14T00:00:00.000Z",
     href: "/blog/2025-yatirim-tesvikleri",
-    image: "/images/articles/tesvik-2025.jpg",
+    image: "/articles/tesvik.png",
     author: {
       name: "Erkan Akkaş",
       role: "Yönetim Kurulu Başkanı",
@@ -25,7 +25,7 @@ const articles: ArticleItem[] = [
       "Denetimlerde en çok karşılaştığımız eksiklikleri ve nasıl önlem alınacağını anlatıyoruz.",
     date: "2025-02-27T00:00:00.000Z",
     href: "/blog/kvkk-sik-hatalar",
-    image: "/images/articles/kvkk-hatalar.jpg",
+    image: "/articles/kvkk-hatalar.jpg",
     author: {
       name: "Ayşe Yılmaz",
       role: "KVKK Danışmanı",
@@ -39,7 +39,7 @@ const articles: ArticleItem[] = [
       "Başvurudan sertifikaya kadar adım adım süreç ve firmaların dikkat etmesi gerekenler.",
     date: "2025-02-10T00:00:00.000Z",
     href: "/blog/iso-9001-sureci",
-    image: "/images/articles/iso-9001.jpg",
+    image: "/articles/iso-9001.png",
     author: {
       name: "Mehmet Kaya",
       role: "Kalite Sistemleri Uzmanı",
@@ -53,11 +53,11 @@ const articles: ArticleItem[] = [
       "2025 yılında yürürlüğe giren teşviklerden hangi sektörlerin yararlanabileceğini inceledik.",
     date: "2025-01-22T00:00:00.000Z",
     href: "/blog/dis-ticaret-tesvikleri-2025",
-    image: "/images/articles/dis-ticaret.jpg",
+    image: "/articles/dis-ticaret.png",
     author: {
       name: "Erkan Akkaş",
       role: "Yönetim Kurulu Başkanı",
-      photo: "/images/authors/erkan-akkas.jpg",
+      photo: "/authors/erkan-akkas.jpg",
     },
   },
 ];
