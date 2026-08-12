@@ -326,7 +326,7 @@ const MOCK_ABOUT_CONTENT: AboutContent = {
     titleRest: "Kimiz?",
     description:
       "1999'dan bu yana yatırım, teşvik, marka-patent ve KVKK danışmanlığı alanlarında; kobilerden holdinglere kadar geniş bir yelpazede kurumsal işletmelerin ihtiyaçlarına yönelik uçtan uca danışmanlık çözümleri sunuyoruz.",
-    imageSrc: "/office/AkkaşPlaza.png",
+    imageSrc: "/office/akkasgroup.png",
   },
   story: {
     eyebrow: "Kurumsal Hikayemiz",

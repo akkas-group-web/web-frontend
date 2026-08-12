@@ -14,13 +14,13 @@ export function AboutHero({ content }: AboutHeroProps) {
   return (
     <section className="bg-[#f4f6f8] pb-20 pt-28 md:pb-28 md:pt-36">
       <div className="mx-auto max-w-7xl px-8 md:px-12">
-        <nav className="mb-8 flex items-center gap-1.5 text-sm text-[#333333]/50 md:mb-10">
+        {/* <nav className="mb-8 flex items-center gap-1.5 text-sm text-[#333333]/50 md:mb-10">
           <Link href="/" className="hover:text-[#0d4d5c]">
             Anasayfa
           </Link>
           <ChevronRight className="h-3.5 w-3.5" />
           <span className="font-semibold text-[#0d4d5c]">Hakkımızda</span>
-        </nav>
+        </nav> */}
 
         <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
           <motion.div
