@@ -322,11 +322,11 @@ const MOCK_HOME_CONTENT: HomeContent = {
 
 const MOCK_ABOUT_CONTENT: AboutContent = {
   hero: {
-    eyebrow: "1999'dan Bugüne",
-    title: "A'dan Z'ye danışmanlıkta öncü bir grup",
+    titleHighlight: "Biz",
+    titleRest: "Kimiz?",
     description:
-      "Marka & Patent Vekili Erkan Akkaş tarafından İstanbul'da kurulan Akkaş Group, bugün 7 grup şirketi ve 200 kişilik uzman kadrosuyla 18.000'den fazla firmaya hizmet veriyor.",
-    imageSrc: "/about/hero-office.jpg",
+      "1999'dan bu yana yatırım, teşvik, marka-patent ve KVKK danışmanlığı alanlarında; kobilerden holdinglere kadar geniş bir yelpazede kurumsal işletmelerin ihtiyaçlarına yönelik uçtan uca danışmanlık çözümleri sunuyoruz.",
+    imageSrc: "/office/AkkaşPlaza.png",
   },
   story: {
     eyebrow: "Kurumsal Hikayemiz",
@@ -339,7 +339,7 @@ const MOCK_ABOUT_CONTENT: AboutContent = {
     highlightQuote:
       "Firma paydaşı anlayışıyla, müşterilerimizin haberi olmayan her yeniliği önce biz duyuruyoruz.",
     highlightAuthor: "Erkan Akkaş, Kurucu",
-    imageSrc: "/about/erkan-akkas.jpg",
+    imageSrc: "/authors/erkan-akkas.jpg",
   },
   timeline: [
     {

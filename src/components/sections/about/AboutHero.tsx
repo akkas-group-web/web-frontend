@@ -12,58 +12,53 @@ interface AboutHeroProps {
 
 export function AboutHero({ content }: AboutHeroProps) {
   return (
-    <section className="relative flex min-h-[78vh] items-end overflow-hidden bg-[#0d4d5c]">
-      <Image
-        src={content.imageSrc}
-        alt="Akkaş Group ofis"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0d4d5c] via-[#0d4d5c]/70 to-[#0d4d5c]/30" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0d4d5c]/60 via-transparent to-transparent" />
-
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-8 pb-16 md:px-12 md:pb-20">
-        <motion.nav
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-6 flex items-center gap-1.5 text-xs font-medium text-white/60"
-        >
-          <Link href="/" className="hover:text-white">
+    <section className="bg-[#f4f6f8] pb-20 pt-28 md:pb-28 md:pt-36">
+      <div className="mx-auto max-w-7xl px-8 md:px-12">
+        <nav className="mb-8 flex items-center gap-1.5 text-sm text-[#333333]/50 md:mb-10">
+          <Link href="/" className="hover:text-[#0d4d5c]">
             Anasayfa
           </Link>
-          <ChevronRight className="h-3 w-3" />
-          <span className="text-white">Hakkımızda</span>
-        </motion.nav>
+          <ChevronRight className="h-3.5 w-3.5" />
+          <span className="font-semibold text-[#0d4d5c]">Hakkımızda</span>
+        </nav>
 
-        <motion.span
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-xs font-bold uppercase tracking-widest text-[#7fc7d4]"
-        >
-          {content.eyebrow}
-        </motion.span>
+        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7 }}
+            className="relative overflow-hidden rounded-2xl"
+          >
+            <Image
+              src={content.imageSrc}
+              alt="Akkaş Group ofis"
+              width={900}
+              height={620}
+              priority
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="h-[320px] w-full object-cover md:h-[460px]"
+            />
+          </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="font-heading mt-3 max-w-3xl text-4xl font-bold leading-[1.1] text-white md:text-6xl"
-        >
-          {content.title}
-        </motion.h1>
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+          >
+            <h1 className="font-heading text-4xl font-bold leading-tight text-[#0d4d5c] md:text-5xl">
+              <span className="mr-2 inline-block rounded-md bg-[#0d4d5c] px-3 py-1 text-white">
+                {content.titleHighlight}
+              </span>
+              {content.titleRest}
+            </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="mt-5 max-w-xl text-sm leading-relaxed text-white/75 md:text-base"
-        >
-          {content.description}
-        </motion.p>
+            <p className="mt-6 max-w-lg text-base leading-relaxed text-[#333333]/70 md:text-lg">
+              {content.description}
+            </p>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

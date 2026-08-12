@@ -12,8 +12,8 @@ export interface ValueItem {
 }
 
 export interface AboutHeroContent {
-  eyebrow: string;
-  title: string;
+  titleHighlight: string; // "Biz" — renkli kutu içinde vurgulanan kelime
+  titleRest: string; // "Kimiz?" — düz metin devamı
   description: string;
   imageSrc: string;
 }

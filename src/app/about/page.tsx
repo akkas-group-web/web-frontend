@@ -11,7 +11,7 @@ export default async function AboutPage() {
 
   return (
     <>
-      {/* <AboutHero content={content.hero} /> */}
+      <AboutHero content={content.hero} />
       <AboutStorySection content={content.story} />
       <TimelineSection milestones={content.timeline} />
       <VisionMissionSection content={content.visionMission} />
