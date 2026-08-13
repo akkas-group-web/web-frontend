@@ -1,11 +1,22 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 
-import { CONTACT_OFFICES } from "@/constants/contact";
-import { SITE_CONFIG } from "@/constants/site";
+import type { ContactOffice } from "@/types";
 import { ContactForm } from "./ContactForm";
 
-export function ContactSection() {
-  const otherOffices = CONTACT_OFFICES.slice(1);
+interface ContactSectionProps {
+  offices: ContactOffice[];
+  services: string[];
+}
+
+export function ContactSection({
+  offices,
+  services,
+}: ContactSectionProps) {
+  const [mainOffice, ...otherOffices] = offices;
+
+  if (!mainOffice) {
+    return null;
+  }
 
   return (
     <section className="bg-white py-8 md:py-10">
@@ -26,17 +37,17 @@ export function ContactSection() {
               geçsin.
             </p>
 
-            <ContactForm />
+            <ContactForm services={services} />
           </div>
 
           {/* RIGHT - CONTACT INFO */}
           <div className="lg:border-l lg:border-brand-dark/10 lg:pl-12">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-primary">
-              Merkez Ofis
+              {mainOffice.title}
             </p>
 
             <h3 className="mt-3 font-heading text-2xl font-semibold text-brand-dark">
-              İstanbul Asya
+              {mainOffice.city}
             </h3>
 
             <p className="mt-1 text-sm text-muted-foreground">
@@ -45,53 +56,59 @@ export function ContactSection() {
 
             {/* Contact Details */}
             <div className="mt-5 divide-y divide-brand-dark/10 border-y border-brand-dark/10">
-              <div className="flex gap-3 py-3">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
+              {mainOffice.address && (
+                <div className="flex gap-3 py-3">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
 
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                    Adres
-                  </p>
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                      Adres
+                    </p>
 
-                  <p className="mt-1.5 max-w-sm text-sm leading-6 text-brand-dark">
-                    {SITE_CONFIG.address}
-                  </p>
+                    <p className="mt-1.5 max-w-sm text-sm leading-6 text-brand-dark">
+                      {mainOffice.address}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )}
 
-              <a
-                href={`tel:${SITE_CONFIG.phone.replace(/\D/g, "")}`}
-                className="group flex gap-3 py-4"
-              >
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
+              {mainOffice.phone && (
+                <a
+                  href={`tel:${mainOffice.phone.replace(/\D/g, "")}`}
+                  className="group flex gap-3 py-4"
+                >
+                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
 
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                    Telefon
-                  </p>
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                      Telefon
+                    </p>
 
-                  <p className="mt-1.5 text-sm font-medium text-brand-dark transition-colors group-hover:text-brand-primary">
-                    {SITE_CONFIG.phone}
-                  </p>
-                </div>
-              </a>
+                    <p className="mt-1.5 text-sm font-medium text-brand-dark transition-colors group-hover:text-brand-primary">
+                      {mainOffice.phone}
+                    </p>
+                  </div>
+                </a>
+              )}
 
-              <a
-                href={`mailto:${SITE_CONFIG.email}`}
-                className="group flex gap-3 py-4"
-              >
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
+              {mainOffice.email && (
+                <a
+                  href={`mailto:${mainOffice.email}`}
+                  className="group flex gap-3 py-4"
+                >
+                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
 
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                    E-posta
-                  </p>
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                      E-posta
+                    </p>
 
-                  <p className="mt-1.5 text-sm font-medium text-brand-dark transition-colors group-hover:text-brand-primary">
-                    {SITE_CONFIG.email}
-                  </p>
-                </div>
-              </a>
+                    <p className="mt-1.5 text-sm font-medium text-brand-dark transition-colors group-hover:text-brand-primary">
+                      {mainOffice.email}
+                    </p>
+                  </div>
+                </a>
+              )}
             </div>
 
             {/* Other Locations */}
@@ -100,7 +117,7 @@ export function ContactSection() {
                 Diğer Hizmet Noktalarımız
               </p>
 
-              <div className="mt-3 grid grid-cols-2 gap-x-7">
+              <div className="mt-3 grid grid-cols-1 gap-x-7 sm:grid-cols-2">
                 {otherOffices.map((office) => (
                   <div
                     key={office.id}
