@@ -1,8 +1,9 @@
 import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
 import type { HomeContent } from "@/types";
+import { AboutContent } from "@/types/about";
 import { ArticleItem } from "@/types/article";
-
+import { ClientReference } from "@/types/reference";
 const articles: ArticleItem[] = [
   {
     id: "1",
@@ -11,7 +12,7 @@ const articles: ArticleItem[] = [
       "Yeni teşvik paketiyle birlikte hangi sektörler öne çıkıyor, detayları derledik.",
     date: "2025-03-14T00:00:00.000Z",
     href: "/blog/2025-yatirim-tesvikleri",
-    image: "/articles/tesvik.png",
+    image: "/articles/tesvik.jpg",
     author: {
       name: "Erkan Akkaş",
       role: "Yönetim Kurulu Başkanı",
@@ -319,6 +320,119 @@ const MOCK_HOME_CONTENT: HomeContent = {
   ],
 };
 
+const MOCK_ABOUT_CONTENT: AboutContent = {
+  hero: {
+    titleHighlight: "Biz",
+    titleRest: "Kimiz?",
+    description:
+      "1999'dan bu yana yatırım, teşvik, marka-patent ve KVKK danışmanlığı alanlarında; kobilerden holdinglere kadar geniş bir yelpazede kurumsal işletmelerin ihtiyaçlarına yönelik uçtan uca danışmanlık çözümleri sunuyoruz.",
+    imageSrc: "/office/akkasgroup.png",
+  },
+  story: {
+    eyebrow: "Kurumsal Hikayemiz",
+    title: "Kobilerin can simidi olmak için yola çıktık",
+    paragraphs: [
+      "Akkaş Group, Marka & Patent Vekili ve Başdenetçi Erkan Akkaş tarafından 1999 yılında İstanbul'da ticari hayatına başladı. 2004 yılında, şirketlerin 21. yüzyıl ihtiyaçları doğrultusunda yatırım ve teşvik danışmanlığı alanına girerek hizmet sektöründeki yerini genişletti.",
+      "Türkiye'de ilk kez entegre danışmanlık modelini kobilere taşıyarak, küreselleşen dünyada rekabet edebilmeleri için uçtan uca destek sunduk. Bugün Aker Patent, Akkaş OSGB, Avrupa Yatırım Ajansı, Akkaş STS, Akkaş KVK, Akkaş Karbon ve Akkaş Teknoloji markalarımızla entegre hizmet veren bir şirketler grubuyuz.",
+      "Merkezi İstanbul Kadıköy'de bulunan Akkaş Group, 200 kişilik uzman danışman kadrosuyla; kobilerden holdinglere, bankalardan sanayi tesislerine kadar geniş bir yelpazede 18.000'den fazla firmaya hizmet vermeye devam ediyor.",
+    ],
+    highlightQuote:
+      "Firma paydaşı anlayışıyla, müşterilerimizin haberi olmayan her yeniliği önce biz duyuruyoruz.",
+    highlightAuthor: "Erkan Akkaş, Kurucu",
+    imageSrc: "/authors/erkan-akkas.jpg",
+  },
+  timeline: [
+    {
+      id: "1999",
+      year: "1999",
+      title: "Kuruluş",
+      description:
+        "Erkan Akkaş tarafından İstanbul'da Marka & Patent vekilliği ile ticari hayata başlangıç.",
+    },
+    {
+      id: "2004",
+      year: "2004",
+      title: "Yatırım & Teşvik Danışmanlığı",
+      description:
+        "21. yüzyıl ihtiyaçlarına yönelik yatırım ve teşvik danışmanlığı alanına giriş.",
+    },
+    {
+      id: "today",
+      year: "Bugün",
+      title: "7 Grup Şirketi, 1 Vizyon",
+      description:
+        "Kadıköy merkezli, 200 danışman ve 18.000'den fazla firmaya entegre hizmet veren Türkiye'nin en büyük danışmanlık gruplarından biri.",
+    },
+  ],
+  visionMission: {
+    vision:
+      "Uzman ekibimizle yatırım danışmanlığı konusunda şirketlere doğrudan bilgi vererek; büyüme süreçlerinde ve işletme hayatlarında onların yol göstericileri ve yol arkadaşları olmak.",
+    mission:
+      "Küreselleşen dünyada şirketlerin, kurum ve kuruluşların, şahısların, genç girişimcilerin ve büyüme hedefli şirketlerin yanında olmak; bu hedeflerinde yol göstericileri olmak.",
+  },
+  values: [
+    {
+      id: "guvenilirlik",
+      title: "Güvenilirlik",
+      description:
+        "Ticari ahlak ilkelerine uygun çalışır, müşterilerimizi her zaman doğru bilgiyle yönlendiririz.",
+    },
+    {
+      id: "dogrudan-bilgililik",
+      title: "Doğrudan Bilgililik",
+      description:
+        "Müşterilerimizin haberi olmayan her türlü yenilik ve duyurudan önce bizler haberdar oluruz.",
+    },
+    {
+      id: "cozum-odaklilik",
+      title: "Çözüm Odaklılık",
+      description:
+        "Her sektörün kendine özgü ihtiyaçlarına yönelik özel ve uygulanabilir çözümler geliştiririz.",
+    },
+    {
+      id: "hizlilik",
+      title: "Hızlılık",
+      description:
+        "Devlet destekleri ve mevzuat değişikliklerini takip ederek hızlı aksiyon alma imkanı sunarız.",
+    },
+  ],
+  stats: [
+    { id: "kurulus", value: "1999", label: "Kuruluş Yılı" },
+    { id: "danisman", value: "200+", label: "Uzman Danışman" },
+    { id: "firma", value: "18.000+", label: "Hizmet Verilen Firma" },
+    { id: "marka", value: "7", label: "Grup Şirketi" },
+  ],
+};
+
+const MOCK_CLIENT_REFERENCES: ClientReference[] = [
+  { id: "1", name: "Solana", logo: "/references/solana.png" },
+  { id: "2", name: "Samsung", logo: "/references/samsung.png" },
+  { id: "3", name: "Discord", logo: "/references/discord.png" },
+  { id: "4", name: "Adobe", logo: "/references/adobe.png" },
+  { id: "5", name: "GoodRx", logo: "/references/goodrx.png" },
+  { id: "6", name: "Okta", logo: "/references/okta.png" },
+  { id: "7", name: "Blizzard", logo: "/references/blizzard.png" },
+  { id: "8", name: "Stellar", logo: "/references/stellar.png" },
+  { id: "9", name: "Treecard", logo: "/references/treecard.png" },
+  { id: "10", name: "PayJunction", logo: "/references/payjunction.png" },
+  { id: "11", name: "Chapter", logo: "/references/chapter.png" },
+  { id: "12", name: "Berkshire Hathaway", logo: "/references/berkshire.png" },
+];
+
+export async function getClientReferences(): Promise<ClientReference[]> {
+  try {
+    // İleride: await wpClient.query(REFERENCES_QUERY) burada olacak.
+    return MOCK_CLIENT_REFERENCES;
+  } catch (error) {
+    logger.error("Referanslar içeriği alınamadı", { error });
+    throw new AppError(
+      "Referanslar içeriği yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error,
+    );
+  }
+}
+
 export async function getHomeContent(): Promise<HomeContent> {
   try {
     // İleride: await wpClient.query(HOME_QUERY) burada olacak.
@@ -327,6 +441,19 @@ export async function getHomeContent(): Promise<HomeContent> {
     logger.error("Ana sayfa içeriği alınamadı", { error });
     throw new AppError(
       "Ana sayfa içeriği yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error,
+    );
+  }
+}
+export async function getAboutContent(): Promise<AboutContent> {
+  try {
+    // İleride: await wpClient.query(ABOUT_QUERY) burada olacak.
+    return MOCK_ABOUT_CONTENT;
+  } catch (error) {
+    logger.error("Hakkımızda içeriği alınamadı", { error });
+    throw new AppError(
+      "Hakkımızda içeriği yüklenemedi",
       "CONTENT_FETCH_FAILED",
       error,
     );
