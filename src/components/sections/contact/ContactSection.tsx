@@ -8,9 +8,9 @@ export function ContactSection() {
   const otherOffices = CONTACT_OFFICES.slice(1);
 
   return (
-    <section className="bg-white py-10 md:py-14">
+    <section className="bg-white py-8 md:py-10">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
-        <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           {/* LEFT - FORM */}
           <div className="max-w-xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-primary">
@@ -45,7 +45,7 @@ export function ContactSection() {
 
             {/* Contact Details */}
             <div className="mt-5 divide-y divide-brand-dark/10 border-y border-brand-dark/10">
-              <div className="flex gap-3 py-4">
+              <div className="flex gap-3 py-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
 
                 <div>
