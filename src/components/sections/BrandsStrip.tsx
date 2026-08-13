@@ -20,7 +20,7 @@ export function BrandsStrip({ brands }: BrandsStripProps) {
         <div className="text-center">
           <SectionEyebrow label="Akkaş Group Çatısı Altında" />
           <h2 className="font-heading mx-auto max-w-xl text-2xl font-semibold text-[#0d4d5c] md:text-3xl">
-            Markalarımız
+            Şirketler Grubumuz
           </h2>
         </div>
 
