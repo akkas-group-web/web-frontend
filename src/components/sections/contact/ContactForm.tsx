@@ -2,9 +2,13 @@
 
 import { ArrowRight } from "lucide-react";
 
-import { CONTACT_SERVICES } from "@/constants/contact";
 
-export function ContactForm() {
+
+interface ContactFormProps {
+  services: string[];
+}
+
+export function ContactForm({ services }: ContactFormProps) {
   return (
     <form className="space-y-3.5">
       {/* Ad Soyad / Firma */}
@@ -104,7 +108,7 @@ export function ContactForm() {
             Hizmet seçiniz
           </option>
 
-          {CONTACT_SERVICES.map((service) => (
+          {services.map((service) => (
             <option key={service} value={service}>
               {service}
             </option>
