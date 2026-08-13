@@ -99,7 +99,7 @@ export const SERVICES: NavChild[] = [
 ];
 
 export const NAV_LINKS: NavItem[] = [
-  { label: "Hakkımızda", href: "/hakkimizda" },
+  { label: "Hakkımızda", href: "/about" },
   { label: "Markalarımız", href: "/markalarimiz", children: BRAND_COMPANIES },
   { label: "Referanslar", href: "/referanslar" },
   { label: "Blog", href: "/sektorler" },
