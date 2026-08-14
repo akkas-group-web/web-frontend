@@ -71,14 +71,14 @@
    *  - 900 : Koyu gradyan / kart zemin rengi
    *  - 950 : Açık zemin üstünde kullanılan en koyu metin rengi (beyaz buton yazısı vb.)
    */
-  --color-brand-turquoise-50: #eafbfc;
-  --color-brand-turquoise-100: #cdeef2;
-  --color-brand-turquoise-300: #7fdce6;
-  --color-brand-turquoise-400: #4bb9ce;
-  --color-brand-turquoise-500: #2f97ab;
-  --color-brand-turquoise-700: #1a7d8f;
-  --color-brand-turquoise-900: #063b46;
-  --color-brand-turquoise-950: #07505c;
+  --color-brand-turquoise-50: #eaf5f6;
+  --color-brand-turquoise-100: #cfe6e9;
+  --color-brand-turquoise-300: #8ec1c9;
+  --color-brand-turquoise-400: #5a9ea9;
+  --color-brand-turquoise-500: #367e8b;
+  --color-brand-turquoise-700: #1f5f6b;
+  --color-brand-turquoise-900: #123840;
+  --color-brand-turquoise-950: #0a2226;
 
   /* Marka dışı, anlamsal (semantic) renkler */
   --color-status-live: #38d68a;

@@ -161,7 +161,7 @@ export function HeroSection() {
                     {index > 0 && (
                       <span className="hidden h-9 w-px bg-white/15 sm:block" />
                     )}
-                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-[8px] border border-white/15 bg-white/[0.08] text-brand-turquoise-300">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-[8px] border border-white/15 bg-white/[0.08] text-brand-turquoise-100">
                       <Icon className="h-3.5 w-3.5" />
                     </span>
                     <div className="flex flex-col items-start gap-1">
@@ -188,10 +188,10 @@ export function HeroSection() {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="rounded-[22px] border border-white/[0.17] bg-white/[0.09] p-2.5 shadow-[0_30px_75px_rgba(0,50,60,0.28)] backdrop-blur-md"
+              className="rounded-[22px] border border-black/[0.06] bg-white p-2.5 shadow-[0_30px_75px_rgba(0,50,60,0.28)]"
             >
-              <div className="flex h-[39px] items-center justify-between px-2 text-[10px] text-white/65">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.08] px-2.5 py-1.5">
+              <div className="flex h-[39px] items-center justify-between px-2 text-[10px] text-brand-turquoise-900/70">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-turquoise-50 px-2.5 py-1.5 text-brand-turquoise-700">
                   <span className="h-1.5 w-1.5 rounded-full bg-status-live" />
                   {activeSlide.eyebrow}
                 </span>
@@ -208,8 +208,8 @@ export function HeroSection() {
             </motion.div>
           </AnimatePresence>
 
-          <div className="absolute -left-4 bottom-4 flex min-w-[165px] items-center gap-2 rounded-[10px] border border-white/15 bg-brand-turquoise-900/95 p-2.5 shadow-[0_14px_30px_rgba(0,50,60,0.24)] backdrop-blur-md">
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[10px] bg-brand-turquoise-300 text-brand-turquoise-950">
+          <div className="absolute -left-4 bottom-4 flex min-w-[165px] items-center gap-2 rounded-[10px] border border-white/15 bg-brand-turquoise-700/95 p-2.5 shadow-[0_14px_30px_rgba(0,50,60,0.24)] backdrop-blur-md">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[10px] bg-white text-brand-turquoise-700">
               <Award className="h-5 w-5" />
             </span>
             <div className="flex flex-col gap-1">
