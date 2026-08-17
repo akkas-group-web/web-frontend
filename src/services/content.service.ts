@@ -62,6 +62,20 @@ const articles: ArticleItem[] = [
       photo: "/authors/erkan-akkas.jpg",
     },
   },
+  {
+    id: "5",
+    title: "2025 Yatırım Teşviklerinde Yeni Dönem",
+    excerpt:
+      "Yeni teşvik paketiyle birlikte hangi sektörler öne çıkıyor, detayları derledik.",
+    date: "2025-03-14T00:00:00.000Z",
+    href: "/blog/2025-yatirim-tesvikleri",
+    image: "/articles/tesvik.jpg",
+    author: {
+      name: "Erkan Akkaş",
+      role: "Yönetim Kurulu Başkanı",
+      photo: "/authors/erkan-akkas.jpg",
+    },
+  },
 ];
 
 const MOCK_HOME_CONTENT: HomeContent = {
@@ -138,7 +152,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
       id: "aker-patent",
       name: "Marka & Patent Vekillik Hizmetleri",
       description:
-        "Şirketlerin 21.yy daki ihtiyaçları doğrultusunda kurulmuş sınai mülkiyet alanında hizmet veren bir vekillik şirketidir. Şirketin çalışma alanlarında başta markalar, patentler, endüstriyel tasarımlar olmak üzere coğrafi işaretler, ve entegre devrelerin topografyaları da bulunmaktadır.",
+        "Şirketlerin sınai mülkiyet alanındaki ihtiyaçlarına yönelik profesyonel vekillik hizmetleri sunmaktadır. Çalışma alanları arasında markalar, patentler ve endüstriyel tasarımlar bulunmaktadır.",
       href: "/markalarimiz/aker-patent",
       logo: "/brands/akerpatent.png",
     },
@@ -146,7 +160,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
       id: "akkas-osgb",
       name: "İş Sağlığı ve Güvenliği Hizmetleri",
       description:
-        "İş Sağlığı ve Güvenliği konusuna verilen önemin giderek arttığı ülkemizde en son 2013 yılında yürürlüğe giren 6331 sayılı İş Kanunu ile bu konu daha büyük önem arz etmiş durumdadır. Bizlerde bu noktada AKKAŞ ORTAK SAĞLIK GÜVENLİK BİRİMİ olarak Türkiye'de yeni oluşmaya...",
+        "İş sağlığı ve güvenliği alanında işletmelerin ihtiyaçlarına yönelik profesyonel hizmetler sunmaktadır. 6331 sayılı İş Sağlığı ve Güvenliği Kanunu kapsamında işverenlerin yasal yükümlülüklerini yerine getirmelerine destek olmaktadır.",
       href: "/markalarimiz/akkas-osgb",
       logo: "/brands/akkasosgb.png",
     },
@@ -154,7 +168,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
       id: "aya",
       name: "Teşvik ve Proje Danışmanlığı",
       description:
-        "Devlet desteklerinden yararlanabilmek için ilk adımı beraber atalım. Ve beraber koşalım. Kosgeb, Tübitak, Kalkınma Ajansları, Ticaret Bakanlığı, Hazine Müsteşarlığı, Sanayi ve Teknoloji Bakanlığı, Hamle, Kırsal Kalkınma, IPARD, Avrupa Birliği Fonları, Teknoloji Odaklı Hamle Programı, Dünya Bankası Destekleri ile sektörünüzün lideri olun.",
+        "Firmaların devlet desteklerinden ve teşviklerden etkin şekilde yararlanmasına yönelik danışmanlık hizmetleri sunmaktadır. KOSGEB, TÜBİTAK, Kalkınma Ajansları ve Ticaret Bakanlığı destekleri başta olmak üzere birçok program kapsamında hizmet vermektedir. ",
       href: "/markalarimiz/avrupa-yatirim-ajansi",
       logo: "/brands/aya.png",
     },
@@ -162,28 +176,31 @@ const MOCK_HOME_CONTENT: HomeContent = {
       id: "erkan-akkas",
       name: "Eğitim ve Danışmanlık",
       description:
-        "ISO 9001 - 10002 - 14001 - 18001 - 27001 - TSE HYB (Hizmet Yeterlilik Belgesi) belgelerine sahip firmamız global ekonomik gelişmeler ışığında kaliteli hizmet sunmayı amaçlar. 'Kalite asla bir tesadüf değil, daima akıllı bir gayretin sonucudur.' sözünü Erkan Akkaş Danışmanlık ve Eğitim olarak ilke edinmiş bulunmaktayız.",
+        "Kalite, yönetim sistemleri ve danışmanlık alanlarında profesyonel hizmetler sunmaktadır. ISO 9001, ISO 10002, ISO 14001, ISO 18001 ve ISO 27001 gibi yönetim sistemi standartlarında danışmanlık sağlamaktadır.",
       href: "/markalarimiz/erkan-akkas-danismanlik",
       logo: "/brands/erkanakkas.png",
     },
     {
       id: "akkas-kvk",
       name: "Akkaş KVK",
-      description: "Kişisel Verilerin Korunması",
+      description:
+        "Kişisel verilerin korunması alanında danışmanlık hizmetleri sunmaktadır. Kurumların kişisel veri işleme süreçlerini mevzuata uygun şekilde yönetmelerine destek olmaktadır. KVKK kapsamında uyum süreçlerinin oluşturulmasına ve geliştirilmesine katkı sağlamaktadır.",
       href: "/markalarimiz/akkas-kvk",
       logo: "/brands/akkaskvk.png",
     },
     {
       id: "akkas-stst",
       name: "Akkaş STST",
-      description: "Sigorta Teşvik Sistemleri",
+      description:
+        "Sigorta teşvik sistemleri alanında işletmelere danışmanlık hizmetleri sunmaktadır. İşletmelerin yararlanabileceği sigorta teşviklerinin belirlenmesine destek olmaktadır. Teşvik süreçlerinin doğru ve etkin şekilde yönetilmesine katkı sağlamaktadır.",
       href: "/markalarimiz/akkas-stst",
       logo: "/brands/akkassts.jpg",
     },
     {
       id: "akkas-akademi",
       name: "Akkaş Akademi",
-      description: "Eğitim ve Akademi Hizmetleri",
+      description:
+        "Eğitim ve akademi alanında kurumların gelişim ihtiyaçlarına yönelik hizmetler sunmaktadır. Mesleki gelişim, kurumsal eğitim ve uzmanlık alanlarında eğitim çözümleri geliştirmektedir. Katılımcıların bilgi ve yetkinliklerini geliştirmeye yönelik programlar hazırlamaktadır.",
       href: "/markalarimiz/akkas-akademi",
       logo: "/brands/akerakademi.png",
     },

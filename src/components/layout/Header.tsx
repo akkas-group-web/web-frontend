@@ -60,7 +60,7 @@ export function Header() {
 
         <a
           href={`tel:${SITE_CONFIG.phone}`}
-          className="group hidden items-center gap-2.5 rounded-full bg-[#0d4d5c] px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white shadow-md transition-all duration-300 hover:bg-[#1a7d8f] hover:shadow-lg md:inline-flex"
+          className="group hidden items-center gap-2.5 rounded-full bg-brand-teal px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white shadow-md transition-all duration-300 hover:bg-brand-navy hover:shadow-lg md:inline-flex"
         >
           <Phone className="h-3.5 w-3.5 transition-transform group-hover:scale-110" />
           <span>İletişime Geç</span>
