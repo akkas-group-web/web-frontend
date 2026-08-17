@@ -62,6 +62,20 @@ const articles: ArticleItem[] = [
       photo: "/authors/erkan-akkas.jpg",
     },
   },
+  {
+    id: "5",
+    title: "2025 Yatırım Teşviklerinde Yeni Dönem",
+    excerpt:
+      "Yeni teşvik paketiyle birlikte hangi sektörler öne çıkıyor, detayları derledik.",
+    date: "2025-03-14T00:00:00.000Z",
+    href: "/blog/2025-yatirim-tesvikleri",
+    image: "/articles/tesvik.jpg",
+    author: {
+      name: "Erkan Akkaş",
+      role: "Yönetim Kurulu Başkanı",
+      photo: "/authors/erkan-akkas.jpg",
+    },
+  },
 ];
 
 const MOCK_HOME_CONTENT: HomeContent = {

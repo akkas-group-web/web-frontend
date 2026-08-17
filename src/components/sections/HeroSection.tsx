@@ -188,15 +188,15 @@ export function HeroSection() {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="rounded-[22px] border border-black/[0.06] bg-white p-2.5 shadow-[0_30px_75px_rgba(0,50,60,0.28)]"
+              className="rounded-[22px] border border-black/[0.06] bg-brand-turquoise-50 p-2.5 shadow-[0_30px_75px_rgba(0,50,60,0.28)]"
             >
               <div className="flex h-[39px] items-center justify-between px-2 text-[10px] text-brand-turquoise-900/70">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-turquoise-50 px-2.5 py-1.5 text-brand-turquoise-700">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1.5 text-brand-turquoise-700">
                   <span className="h-1.5 w-1.5 rounded-full bg-status-live" />
                   {activeSlide.eyebrow}
                 </span>
               </div>
-              <div className="relative h-[300px] overflow-hidden rounded-[15px] bg-white">
+              <div className="relative h-[300px] overflow-hidden rounded-[15px] bg-brand-turquoise-50">
                 <Image
                   src={activeSlide.image}
                   alt={activeSlide.title}

@@ -111,29 +111,29 @@ export function Footer() {
 
         {/* Yazılar */}
 
-        <div className="mx-auto max-w-7xl px-6 py md:px-12">
+        <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-[#7fc7d4]">
             Yazılar
           </p>
 
-          <div className="mt-4 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2">
+          <div className="mt-4 flex flex-col gap-2 text-sm">
             <Link
               href="https://akkasgroup.com/cerezlere-iliskin-aydinlatma-metni"
-              className="text-white/45 transition-colors hover:text-white"
+              className="break-words text-white/45 transition-colors hover:text-white"
             >
               Çerezlere İlişkin Aydınlatma Metni
             </Link>
 
             <Link
               href="https://akkasgroup.com/kisisel-verilerik-koruma-kanunu"
-              className="text-white/45 transition-colors hover:text-white"
+              className="break-words text-white/45 transition-colors hover:text-white"
             >
               Kişisel Verileri Koruma Kanunu
             </Link>
 
             <Link
               href="https://akkasgroup.com/6111-sayili-tesvikten-nasil-fayda-saglanir"
-              className="text-white/45 transition-colors hover:text-white"
+              className="break-words text-white/45 transition-colors hover:text-white"
             >
               6111 Sayılı Teşvikten Nasıl Fayda Sağlanır?
             </Link>
