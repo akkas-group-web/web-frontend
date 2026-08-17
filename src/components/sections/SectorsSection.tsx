@@ -45,7 +45,7 @@ export function SectorsSection({ sectors }: SectorsSectionProps) {
       {/* Kart şeridi — sabit boyutlu kartlar, sadece drag ile kayar */}
       <div
         ref={scrollRef}
-        className={`mx-auto mt-10 flex max-w-7xl gap-5 overflow-x-hidden overflow-y-hidden px-6 select-none ${
+        className={`mx-auto mt-10 flex max-w-7xl snap-x snap-mandatory gap-5 overflow-x-auto overflow-y-hidden scroll-smooth px-6 pb-2 select-none [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${
           isDragging ? "cursor-grabbing" : "cursor-grab"
         }`}
         onMouseDown={(e) => {
@@ -74,7 +74,7 @@ export function SectorsSection({ sectors }: SectorsSectionProps) {
           <div
             key={sector.id}
             draggable={false}
-            className="group block w-[260px] flex-none md:w-[300px]"
+            className="group block w-[260px] flex-none snap-center md:w-[300px]"
           >
             {/* Görsel */}
             <div className="relative h-[220px] w-full overflow-hidden rounded-2xl md:h-[260px]">
