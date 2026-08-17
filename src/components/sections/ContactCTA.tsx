@@ -16,7 +16,7 @@ export function ContactCTA() {
         </div>
         <Link
           href="/iletisim"
-          className="whitespace-nowrap rounded-full bg-[#0d4d5c] px-8 py-4 text-sm font-semibold text-white shadow-lg transition-all hover:scale-[1.03] hover:bg-[#1a7d8f]"
+          className="whitespace-nowrap rounded-full bg-brand-teal px-8 py-4 text-sm font-semibold text-white shadow-lg transition-all hover:scale-[1.03] hover:bg-brand-navy"
         >
           Ücretsiz Analiz Talep Et
         </Link>

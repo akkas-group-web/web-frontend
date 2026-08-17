@@ -47,7 +47,7 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* --- Akkaş Group resmi marka paleti --- */
+  /* --- Akkaş Group resmi marka paleti (kurumsal kimlik dokümanı) --- */
   --color-brand-primary: #1a7d8f;
   --color-brand-light: #7fc7d4;
   --color-brand-soft: #e6f2f4;
@@ -56,6 +56,42 @@
   --color-brand-beige-light: #f5f2ec;
   --color-brand-gray-light: #f4f6f8;
   --color-brand-gray-dark: #333333;
+
+  /*
+   * --- Turkuaz skalası (logo dosyasından piksel örneklemesiyle çıkarıldı) ---
+   * Logodaki "A" harfinin gradyanı bu skalanın 900 -> 400 aralığıyla birebir
+   * örtüşüyor. Koyudan açığa 50 (en açık tint) -> 950 (en koyu) sıralı.
+   * Yeni bir turkuaz ton eklemeniz gerekirse buraya, tek dosyaya ekleyin;
+   * component'lerin içine ham hex kod GÖMMEYİN.
+   *
+   * Kullanım alanları:
+   *  - 400 : Ana "açık turkuaz" vurgu rengi (progress bar, aktif nokta, eyebrow çizgisi)
+   *  - 300 : İkincil ikon/vurgu rengi
+   *  - 100 : Koyu zeminde okunan açık metin (eyebrow yazısı)
+   *  - 900 : Koyu gradyan / kart zemin rengi
+   *  - 950 : Açık zemin üstünde kullanılan en koyu metin rengi (beyaz buton yazısı vb.)
+   */
+  --color-brand-turquoise-50: #eaf5f6;
+  --color-brand-turquoise-100: #cfe9ec;
+  --color-brand-turquoise-300: #7fd0d6;
+  --color-brand-turquoise-400: #55c4cc;
+  --color-brand-turquoise-500: #118b99;
+  --color-brand-turquoise-700: #0d727c;
+  --color-brand-turquoise-900: #163b40;
+  --color-brand-turquoise-950: #0f2a2e;
+
+  /* --- Stats/section bazlı semantic renkler (mevcut StatsSection paletinin token karşılığı) --- */
+  --color-brand-teal: #118b99; /* eyebrow, buton, vurgu rakamlar */
+  --color-brand-teal-dark: #0d727c; /* gradient bitiş, hover */
+  --color-brand-navy: #163b40; /* başlıklar, koyu overlay */
+  --color-brand-sky: #55c4cc; /* açık mavi blob/vurgu */
+  --color-brand-surface-start: #eef9fa;
+  --color-brand-surface-mid: #f8fcfc;
+  --color-brand-surface-end: #e9f7f8;
+
+  /* Marka dışı, anlamsal (semantic) renkler */
+  --color-status-live: #38d68a;
+
   --font-heading: "Space Grotesk", sans-serif;
 }
 
