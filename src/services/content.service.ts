@@ -12,7 +12,7 @@ const articles: ArticleItem[] = [
       "Yeni teşvik paketiyle birlikte hangi sektörler öne çıkıyor, detayları derledik.",
     date: "2025-03-14T00:00:00.000Z",
     href: "/blog/2025-yatirim-tesvikleri",
-    image: "/articles/tesvik.jpg",
+    image: "/articles/tesvik.png",
     author: {
       name: "Erkan Akkaş",
       role: "Yönetim Kurulu Başkanı",
@@ -256,7 +256,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
       excerpt:
         "Sanayi ve Teknoloji Bakanımız Mehmet Fatih Kacır'ın teşrifleriyle Selçuk Üniversitesi ve Necmettin Erbakan Üniversitesi Milli Teknoloji Atölyelerinin açılışı gerçekleştirildi.",
       date: "2026-07-31",
-      href: "/blog/milli-teknoloji-atolyesi-konya",
+      href: "/haberler/milli-teknoloji-atolyesi-konya",
       category: "Teşvikler & Hibeler",
       image: "/announcements/milli-teknoloji-atolyesi.jpeg",
       imageRatio: "landscape",
@@ -268,7 +268,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
       excerpt:
         "TÜBİTAK 1515 Öncül Ar-Ge Laboratuvarları Destekleme Programı kapsamında destek verdiğimiz Seramik Teknolojileri Öncül Ar-Ge Merkezi'nin açılışı, TÜBİTAK Başkanımız Prof. Dr. Orhan Aydın'ın katılımıyla gerçekleşti.",
       date: "2026-07-28",
-      href: "/blog/tubitak-seramik-arge-merkezi",
+      href: "/haberler/tubitak-seramik-arge-merkezi",
       category: "Teşvikler & Hibeler",
       image: "/announcements/tubitak-arge-merkezi.jpeg",
       imageRatio: "landscape",
@@ -279,7 +279,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
       excerpt:
         "Sınırda Karbon Düzenleme Mekanizması (SKDM) kapsamında 2026 yılı 2. çeyrek referans fiyatları açıklandı. Firmaların raporlama süreçlerini bu doğrultuda güncellemesi gerekiyor.",
       date: "2026-07-20",
-      href: "/blog/cbam-2-ceyrek-fiyati-yayimlandi",
+      href: "/haberler/cbam-2-ceyrek-fiyati-yayimlandi",
       category: "Akkaş Karbon",
       image: "/announcements/cbam.jpeg",
       imageRatio: "square",
@@ -290,7 +290,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
       excerpt:
         "KOBİ'lerin yapay zeka dönüşümünü desteklemek amacıyla uygun faizli yeni bir kredi programı yürürlüğe girdi. Başvuru koşulları ve destek üst limitleri açıklandı.",
       date: "2026-07-20",
-      href: "/blog/yapay-zeka-kredi-programi",
+      href: "/haberler/yapay-zeka-kredi-programi",
       category: "Teşvikler & Hibeler",
       image: "/announcements/yz-kredi.jpeg",
       imageRatio: "landscape",
@@ -301,7 +301,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
       excerpt:
         "Sanayi işletmelerinin üretim kapasitesini artırmasına yönelik destek programının ikinci başvuru dönemi resmen açıldı. Son başvuru tarihi yakında duyurulacak.",
       date: "2026-06-08",
-      href: "/blog/kapasite-gelistirme-destek-programi-2-basvuru-donemi-basladi",
+      href: "/haberler/kapasite-gelistirme-destek-programi-2-basvuru-donemi-basladi",
       category: "Teşvikler & Hibeler",
       image: "/announcements/kapasite-gelistirme.jpeg",
       imageRatio: "square",
@@ -312,7 +312,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
       excerpt:
         "Veri Sorumluları Sicili'ne (VERBİS) kayıt yükümlülüğü olan firmalar için son başvuru süresi Kişisel Verileri Koruma Kurulu kararıyla ertelendi.",
       date: "2026-06-01",
-      href: "/blog/verbis-kayit-suresi-uzadi",
+      href: "/haberler/verbis-kayit-suresi-uzadi",
       category: "KVKK & Mevzuat",
       image: "/announcements/verbis.jpeg",
       imageRatio: "landscape",
@@ -454,6 +454,76 @@ export async function getAboutContent(): Promise<AboutContent> {
     logger.error("Hakkımızda içeriği alınamadı", { error });
     throw new AppError(
       "Hakkımızda içeriği yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error,
+    );
+  }
+}
+
+
+export async function getBlogPosts(): Promise<ArticleItem[]> {
+  try {
+    // İleride: await wpClient.query(BLOG_QUERY) burada olacak.
+    return articles;
+  } catch (error) {
+    logger.error("Blog içerikleri alınamadı", { error });
+
+    throw new AppError(
+      "Blog içerikleri yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error,
+    );
+  }
+}
+export async function getBlogPostBySlug(
+  slug: string
+): Promise<ArticleItem | null> {
+  try {
+    const article = articles.find(
+      (item) => item.href === `/blog/${slug}`
+    );
+
+    return article ?? null;
+  } catch (error) {
+    logger.error("Blog yazısı alınamadı", { error, slug });
+
+    throw new AppError(
+      "Blog yazısı yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error
+    );
+  }
+}
+
+export async function getNews() {
+  try {
+    return MOCK_HOME_CONTENT.announcements;
+  } catch (error) {
+    logger.error("Haberler alınamadı", { error });
+
+    throw new AppError(
+      "Haberler yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error,
+    );
+  }
+}
+
+export async function getNewsBySlug(slug: string) {
+  try {
+    const newsItem = MOCK_HOME_CONTENT.announcements.find(
+      (item) => item.href === `/haberler/${slug}`,
+    );
+
+    return newsItem ?? null;
+  } catch (error) {
+    logger.error("Haber detayı alınamadı", {
+      error,
+      slug,
+    });
+
+    throw new AppError(
+      "Haber detayı yüklenemedi",
       "CONTENT_FETCH_FAILED",
       error,
     );
