@@ -103,7 +103,7 @@ export const NAV_LINKS: NavItem[] = [
   { label: "Hakkımızda", href: "/about" },
   { label: "Markalarımız", href: "/markalarimiz", children: BRAND_COMPANIES },
   { label: "Referanslar", href: "/references" },
-  { label: "Blog", href: "/blog" },
+  { label: "Makaleler", href: "/blog" },
   { label: "Hizmetlerimiz", href: "/hizmetlerimiz", children: SERVICES },{ label: "Haberler", href: "/haberler" },
   { label: "İletişim", href: "/iletisim" },
 ];

@@ -59,9 +59,9 @@ export function NewsGrid({ news }: NewsGridProps) {
                     key={item.id}
                     className="group grid gap-5 py-8 first:pt-0 sm:grid-cols-[62px_210px_1fr] sm:gap-6"
                   >
-                    {/* Tarih */}
+                    {/* TARİH */}
                     <div className="hidden sm:block">
-                      <div className="sticky top-28 text-center">
+                      <div className="text-center">
                         <p className="text-2xl font-semibold tracking-[-0.04em] text-[#173D43]">
                           {day}
                         </p>
@@ -76,7 +76,7 @@ export function NewsGrid({ news }: NewsGridProps) {
                       </div>
                     </div>
 
-                    {/* Görsel */}
+                    {/* GÖRSEL */}
                     <Link
                       href={item.href}
                       className="relative block aspect-[16/10] overflow-hidden rounded-[16px] bg-[#EAF6F7]"
@@ -90,7 +90,7 @@ export function NewsGrid({ news }: NewsGridProps) {
                       />
                     </Link>
 
-                    {/* İçerik */}
+                    {/* İÇERİK */}
                     <div className="flex flex-col justify-center">
                       <div className="mb-3 flex flex-wrap items-center gap-3">
                         {item.category && (
@@ -99,6 +99,7 @@ export function NewsGrid({ news }: NewsGridProps) {
                           </span>
                         )}
 
+                        {/* MOBİL TARİH */}
                         <span className="flex items-center gap-1.5 text-[11px] text-[#819699] sm:hidden">
                           <CalendarDays className="h-3.5 w-3.5 text-[#118B99]" />
 
@@ -136,7 +137,7 @@ export function NewsGrid({ news }: NewsGridProps) {
 
           {/* SAĞ - HIZLI GÜNDEM */}
           <aside className="hidden lg:block">
-            <div className="sticky top-28">
+            <div>
               <div className="mb-5 flex items-center gap-2">
                 <Newspaper className="h-4 w-4 text-[#118B99]" />
 
