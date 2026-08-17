@@ -1,5 +1,6 @@
-import { ArticleItem } from "./article";
 
+import type { ArticleItem } from "./article";
+export * from "./contact";
 export interface ServiceItem {
   id: string;
   title: string;
