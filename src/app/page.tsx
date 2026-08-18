@@ -28,7 +28,6 @@ export default async function HomePage() {
       <ReferencesSection />
       <ArticlesSection articles={content.articles} />
       <AnnouncementsSection announcements={content.announcements} />
-      <ContactCTA />
     </>
   );
 }

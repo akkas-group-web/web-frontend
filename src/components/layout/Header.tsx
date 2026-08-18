@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Phone } from "lucide-react";
-
 import { NAV_LINKS, SITE_CONFIG } from "@/constants/site";
 import { MobileMenu } from "./MobileMenu";
 
@@ -43,19 +41,6 @@ export function Header() {
           </ul>
         </nav>
 
-        {/* CONTACT */}
-        <a
-          href={`tel:${SITE_CONFIG.phone.replace(/\D/g, "")}`}
-          className="group hidden items-center gap-2.5 rounded-full bg-brand-teal px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white shadow-md transition-all duration-300 hover:bg-brand-navy hover:shadow-lg md:inline-flex"
-        >
-          <Phone className="h-3.5 w-3.5" />
-
-          <span>İletişime Geç</span>
-
-          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-        </a>
-
-        {/* MOBILE */}
         <MobileMenu />
       </div>
     </header>
