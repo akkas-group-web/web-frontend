@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { SectionEyebrow } from "@/components/shared/SectionEyebrow";
 import type { ServiceItem } from "@/types";
+import { ArrowUpRight } from "lucide-react";
 
 interface ServicesSectionProps {
   services: ServiceItem[];
@@ -40,20 +41,38 @@ export function ServicesSection({ services }: ServicesSectionProps) {
           >
             <Link
               href={service.href}
-              className="card-surface group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+              className="group relative flex min-h-[320px] h-full flex-col overflow-hidden rounded-[22px] border border-brand-dark/8 bg-white p-6 shadow-[0_12px_35px_-25px_rgba(13,77,92,0.35)] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-teal/20 hover:shadow-[0_22px_45px_-25px_rgba(17,139,153,0.3)]"
             >
-              <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#7fc7d4]/20 blur-xl transition-transform group-hover:scale-125" />
-              <div className="relative">
-                <h3 className="font-heading text-lg font-semibold text-[#0d4d5c]">
-                  {service.title}
-                </h3>
-                <p className="mt-2 text-sm text-[#333333]/70">
-                  {service.description}
-                </p>
+              {/* Hover dekorasyonu */}
+              <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-brand-teal/5 transition-transform duration-500 group-hover:scale-150" />
+
+              <div className="relative flex h-full flex-col">
+                {/* Üst alan */}
+                <div className="flex items-start justify-between">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-teal/60">
+                    0{i + 1}
+                  </span>
+
+                  <ArrowUpRight className="h-5 w-5 text-brand-dark/25 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand-teal" />
+                </div>
+
+                {/* İçerik */}
+                <div className="mt-7">
+                  <h3 className="font-heading text-[20px] font-semibold leading-[1.25] tracking-[-0.02em] text-brand-navy">
+                    {service.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                    {service.description}
+                  </p>
+                </div>
+
+                {/* Alt link */}
+                <div className="mt-auto pt-6 flex items-center gap-2 text-sm font-semibold text-brand-teal">
+                  Detayları İncele
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </div>
               </div>
-              <span className="relative mt-6 text-xs font-semibold text-[#1a7d8f] opacity-0 transition-opacity group-hover:opacity-100">
-                Detay →
-              </span>
             </Link>
           </motion.div>
         ))}
