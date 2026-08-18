@@ -45,8 +45,13 @@ export function Header() {
 
         {/* CONTACT */}
         <a
+<<<<<<< HEAD
           href={`tel:${SITE_CONFIG.phone.replace(/\D/g, "")}`}
           className="group hidden items-center gap-2.5 rounded-full bg-[#0d4d5c] px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white shadow-md transition-all hover:bg-[#1a7d8f] hover:shadow-lg md:inline-flex"
+=======
+          href={`tel:${SITE_CONFIG.phone}`}
+          className="group hidden items-center gap-2.5 rounded-full bg-brand-teal px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white shadow-md transition-all duration-300 hover:bg-brand-navy hover:shadow-lg md:inline-flex"
+>>>>>>> develop
         >
           <Phone className="h-3.5 w-3.5" />
 

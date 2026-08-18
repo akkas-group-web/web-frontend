@@ -4,6 +4,8 @@ import type { ContactOffice, HomeContent } from "@/types";
 import { AboutContent } from "@/types/about";
 import { ArticleItem } from "@/types/article";
 import { ClientReference } from "@/types/reference";
+import type { NewsItem } from "@/types/news";
+
 
 /* =========================================================
    HİZMET DETAY TİPİ
@@ -97,6 +99,9 @@ const MOCK_SERVICE_DETAILS: ServiceDetail[] = [
    BLOG / MAKALELER
 ========================================================= */
 
+
+import type { SectorContent } from "@/types/sector";
+
 const articles: ArticleItem[] = [
   {
     id: "1",
@@ -105,7 +110,7 @@ const articles: ArticleItem[] = [
       "Yeni teşvik paketiyle birlikte hangi sektörler öne çıkıyor, detayları derledik.",
     date: "2025-03-14T00:00:00.000Z",
     href: "/blog/2025-yatirim-tesvikleri",
-    image: "/articles/tesvik.jpg",
+    image: "/articles/tesvik.png",
     author: {
       name: "Erkan Akkaş",
       role: "Yönetim Kurulu Başkanı",
@@ -153,6 +158,120 @@ const articles: ArticleItem[] = [
       role: "Yönetim Kurulu Başkanı",
       photo: "/authors/erkan-akkas.jpg",
     },
+  },
+  {
+    id: "5",
+    title: "2025 Yatırım Teşviklerinde Yeni Dönem",
+    excerpt:
+      "Yeni teşvik paketiyle birlikte hangi sektörler öne çıkıyor, detayları derledik.",
+    date: "2025-03-14T00:00:00.000Z",
+    href: "/blog/2025-yatirim-tesvikleri",
+    image: "/articles/tesvik.jpg",
+    author: {
+      name: "Erkan Akkaş",
+      role: "Yönetim Kurulu Başkanı",
+      photo: "/authors/erkan-akkas.jpg",
+    },
+  },
+];
+const news: NewsItem[] = [
+  {
+    id: "milli-teknoloji-atolyesi",
+    title: "Konya'da İki Yeni Milli Teknoloji Atölyesi Faaliyete Girdi",
+    excerpt:
+      "Sanayi ve Teknoloji Bakanımız Mehmet Fatih Kacır'ın teşrifleriyle Selçuk Üniversitesi ve Necmettin Erbakan Üniversitesi Milli Teknoloji Atölyelerinin açılışı gerçekleştirildi.",
+    date: "2026-07-31",
+    href: "/haberler/milli-teknoloji-atolyesi-konya",
+    category: "Teşvikler & Hibeler",
+    image: "/announcements/milli-teknoloji-atolyesi.jpeg",
+    imageRatio: "landscape",
+    content: [
+      "Konya'da teknoloji ve yenilik ekosistemini güçlendirecek iki yeni Milli Teknoloji Atölyesi faaliyete geçti.",
+      "Selçuk Üniversitesi ve Necmettin Erbakan Üniversitesi bünyesinde hayata geçirilen atölyelerin, öğrencilerin teknoloji geliştirme ve proje üretme süreçlerine katkı sağlaması hedefleniyor.",
+      "Yeni merkezlerin gençlerin yenilikçi teknolojilerle buluşmasına ve üniversite-sanayi iş birliklerinin geliştirilmesine katkı sağlaması bekleniyor.",
+    ],
+  },
+  {
+    id: "tubitak-arge-merkezi",
+    title:
+      "Çanakkale'de TÜBİTAK Desteğiyle Seramik Teknolojileri Öncül Ar-Ge Merkezi Açıldı",
+    excerpt:
+      "TÜBİTAK 1515 Öncül Ar-Ge Laboratuvarları Destekleme Programı kapsamında destek verdiğimiz Seramik Teknolojileri Öncül Ar-Ge Merkezi'nin açılışı gerçekleştirildi.",
+    date: "2026-07-28",
+    href: "/haberler/tubitak-seramik-arge-merkezi",
+    category: "Teşvikler & Hibeler",
+    image: "/announcements/tubitak-arge-merkezi.jpeg",
+    imageRatio: "landscape",
+    content: [
+      "TÜBİTAK 1515 Öncül Ar-Ge Laboratuvarları Destekleme Programı kapsamında desteklenen Seramik Teknolojileri Öncül Ar-Ge Merkezi Çanakkale'de faaliyete başladı.",
+      "Merkezde seramik teknolojileri alanında yenilikçi ürünlerin ve üretim yöntemlerinin geliştirilmesine yönelik araştırma ve geliştirme çalışmalarının yürütülmesi planlanıyor.",
+      "Program kapsamında özel sektör, üniversiteler ve araştırma kuruluşları arasındaki Ar-Ge iş birliklerinin geliştirilmesi hedefleniyor.",
+    ],
+  },
+  {
+    id: "cbam",
+    title: "CBAM 2. Çeyrek Fiyatı Yayımlandı",
+    excerpt:
+      "Sınırda Karbon Düzenleme Mekanizması (SKDM) kapsamında 2026 yılı 2. çeyrek referans fiyatları açıklandı. Firmaların raporlama süreçlerini bu doğrultuda güncellemesi gerekiyor.",
+    date: "2026-07-20",
+    href: "/haberler/cbam-2-ceyrek-fiyati-yayimlandi",
+    category: "Akkaş Karbon",
+    image: "/announcements/cbam.jpeg",
+    imageRatio: "square",
+    content: [
+      "Sınırda Karbon Düzenleme Mekanizması kapsamında 2026 yılının ikinci çeyreğine ilişkin referans fiyatları yayımlandı.",
+      "Yeni fiyatların özellikle Avrupa Birliği'ne ihracat gerçekleştiren ve CBAM kapsamındaki ürün gruplarında faaliyet gösteren firmaların raporlama süreçlerinde dikkate alınması gerekiyor.",
+      "Firmaların emisyon verilerini, raporlama yükümlülüklerini ve maliyet hesaplamalarını güncel referans değerleri doğrultusunda değerlendirmeleri önem taşıyor.",
+    ],
+  },
+  {
+    id: "yz-kredi",
+    title: "Yapay Zeka Kredi Programı",
+    excerpt:
+      "KOBİ'lerin yapay zeka dönüşümünü desteklemek amacıyla uygun faizli yeni bir kredi programı yürürlüğe girdi. Başvuru koşulları ve destek üst limitleri açıklandı.",
+    date: "2026-07-20",
+    href: "/haberler/yapay-zeka-kredi-programi",
+    category: "Teşvikler & Hibeler",
+    image: "/announcements/yz-kredi.jpeg",
+    imageRatio: "landscape",
+    content: [
+      "KOBİ'lerin dijital dönüşümünü ve yapay zeka teknolojilerinden yararlanmasını desteklemek amacıyla yeni bir kredi programı devreye alındı.",
+      "Program kapsamında işletmelerin yapay zeka tabanlı yazılım, otomasyon, veri analitiği ve dijital dönüşüm yatırımlarının finansmanına yönelik imkanlar sunulması hedefleniyor.",
+      "Programa başvurmayı planlayan firmaların başvuru şartlarını, kredi limitlerini ve uygun yatırım harcamalarını dikkatle incelemesi gerekiyor.",
+    ],
+  },
+  {
+    id: "kapasite",
+    title:
+      "Kapasite Geliştirme Destek Programı — 2. Başvuru Dönemi Başladı",
+    excerpt:
+      "Sanayi işletmelerinin üretim kapasitesini artırmasına yönelik destek programının ikinci başvuru dönemi resmen açıldı. Son başvuru tarihi yakında duyurulacak.",
+    date: "2026-06-08",
+    href: "/haberler/kapasite-gelistirme-destek-programi-2-basvuru-donemi-basladi",
+    category: "Teşvikler & Hibeler",
+    image: "/announcements/kapasite-gelistirme.jpeg",
+    imageRatio: "square",
+    content: [
+      "Kapasite Geliştirme Destek Programı'nın ikinci başvuru dönemi başladı.",
+      "Program ile işletmelerin üretim kapasitesinin artırılması, verimliliğin geliştirilmesi ve büyüme yatırımlarının desteklenmesi amaçlanıyor.",
+      "Destekten yararlanmak isteyen firmaların program kriterlerini ve başvuru için talep edilen belgeleri başvuru süresi içerisinde hazırlaması gerekiyor.",
+    ],
+  },
+  {
+    id: "verbis",
+    title: "VERBİS Kayıt Süresi Uzadı",
+    excerpt:
+      "Veri Sorumluları Sicili'ne (VERBİS) kayıt yükümlülüğü olan firmalar için son başvuru süresi Kişisel Verileri Koruma Kurulu kararıyla ertelendi.",
+    date: "2026-06-01",
+    href: "/haberler/verbis-kayit-suresi-uzadi",
+    category: "KVKK & Mevzuat",
+    image: "/announcements/verbis.jpeg",
+    imageRatio: "landscape",
+    content: [
+      "VERBİS kayıt yükümlülüğü bulunan veri sorumluları için kayıt süresine ilişkin yeni bir düzenleme duyuruldu.",
+      "Kayıt yükümlülüğü kapsamında bulunan işletmelerin mevcut durumlarını kontrol ederek gerekli bildirim ve kayıt işlemlerini yeni süre içerisinde tamamlamaları gerekiyor.",
+      "Firmaların yalnızca VERBİS kaydını değil, kişisel veri işleme envanteri, aydınlatma yükümlülükleri ve diğer KVKK uyum süreçlerini de birlikte değerlendirmesi önem taşıyor.",
+    ],
   },
 ];
 
@@ -235,7 +354,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
       id: "aker-patent",
       name: "Marka & Patent Vekillik Hizmetleri",
       description:
-        "Şirketlerin 21.yy daki ihtiyaçları doğrultusunda kurulmuş sınai mülkiyet alanında hizmet veren bir vekillik şirketidir. Şirketin çalışma alanlarında başta markalar, patentler, endüstriyel tasarımlar olmak üzere coğrafi işaretler, ve entegre devrelerin topografyaları da bulunmaktadır.",
+        "Şirketlerin sınai mülkiyet alanındaki ihtiyaçlarına yönelik profesyonel vekillik hizmetleri sunmaktadır. Çalışma alanları arasında markalar, patentler ve endüstriyel tasarımlar bulunmaktadır.",
       href: "/markalarimiz/aker-patent",
       logo: "/brands/akerpatent.png",
     },
@@ -243,7 +362,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
       id: "akkas-osgb",
       name: "İş Sağlığı ve Güvenliği Hizmetleri",
       description:
-        "İş Sağlığı ve Güvenliği konusuna verilen önemin giderek arttığı ülkemizde en son 2013 yılında yürürlüğe giren 6331 sayılı İş Kanunu ile bu konu daha büyük önem arz etmiş durumdadır. Bizlerde bu noktada AKKAŞ ORTAK SAĞLIK GÜVENLİK BİRİMİ olarak Türkiye'de yeni oluşmaya...",
+        "İş sağlığı ve güvenliği alanında işletmelerin ihtiyaçlarına yönelik profesyonel hizmetler sunmaktadır. 6331 sayılı İş Sağlığı ve Güvenliği Kanunu kapsamında işverenlerin yasal yükümlülüklerini yerine getirmelerine destek olmaktadır.",
       href: "/markalarimiz/akkas-osgb",
       logo: "/brands/akkasosgb.png",
     },
@@ -251,7 +370,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
       id: "aya",
       name: "Teşvik ve Proje Danışmanlığı",
       description:
-        "Devlet desteklerinden yararlanabilmek için ilk adımı beraber atalım. Ve beraber koşalım. Kosgeb, Tübitak, Kalkınma Ajansları, Ticaret Bakanlığı, Hazine Müsteşarlığı, Sanayi ve Teknoloji Bakanlığı, Hamle, Kırsal Kalkınma, IPARD, Avrupa Birliği Fonları, Teknoloji Odaklı Hamle Programı, Dünya Bankası Destekleri ile sektörünüzün lideri olun.",
+        "Firmaların devlet desteklerinden ve teşviklerden etkin şekilde yararlanmasına yönelik danışmanlık hizmetleri sunmaktadır. KOSGEB, TÜBİTAK, Kalkınma Ajansları ve Ticaret Bakanlığı destekleri başta olmak üzere birçok program kapsamında hizmet vermektedir. ",
       href: "/markalarimiz/avrupa-yatirim-ajansi",
       logo: "/brands/aya.png",
     },
@@ -259,28 +378,31 @@ const MOCK_HOME_CONTENT: HomeContent = {
       id: "erkan-akkas",
       name: "Eğitim ve Danışmanlık",
       description:
-        "ISO 9001 - 10002 - 14001 - 18001 - 27001 - TSE HYB (Hizmet Yeterlilik Belgesi) belgelerine sahip firmamız global ekonomik gelişmeler ışığında kaliteli hizmet sunmayı amaçlar.",
+        "Kalite, yönetim sistemleri ve danışmanlık alanlarında profesyonel hizmetler sunmaktadır. ISO 9001, ISO 10002, ISO 14001, ISO 18001 ve ISO 27001 gibi yönetim sistemi standartlarında danışmanlık sağlamaktadır.",
       href: "/markalarimiz/erkan-akkas-danismanlik",
       logo: "/brands/erkanakkas.png",
     },
     {
       id: "akkas-kvk",
       name: "Akkaş KVK",
-      description: "Kişisel Verilerin Korunması",
+      description:
+        "Kişisel verilerin korunması alanında danışmanlık hizmetleri sunmaktadır. Kurumların kişisel veri işleme süreçlerini mevzuata uygun şekilde yönetmelerine destek olmaktadır. KVKK kapsamında uyum süreçlerinin oluşturulmasına ve geliştirilmesine katkı sağlamaktadır.",
       href: "/markalarimiz/akkas-kvk",
       logo: "/brands/akkaskvk.png",
     },
     {
       id: "akkas-stst",
       name: "Akkaş STST",
-      description: "Sigorta Teşvik Sistemleri",
+      description:
+        "Sigorta teşvik sistemleri alanında işletmelere danışmanlık hizmetleri sunmaktadır. İşletmelerin yararlanabileceği sigorta teşviklerinin belirlenmesine destek olmaktadır. Teşvik süreçlerinin doğru ve etkin şekilde yönetilmesine katkı sağlamaktadır.",
       href: "/markalarimiz/akkas-stst",
       logo: "/brands/akkassts.jpg",
     },
     {
       id: "akkas-akademi",
       name: "Akkaş Akademi",
-      description: "Eğitim ve Akademi Hizmetleri",
+      description:
+        "Eğitim ve akademi alanında kurumların gelişim ihtiyaçlarına yönelik hizmetler sunmaktadır. Mesleki gelişim, kurumsal eğitim ve uzmanlık alanlarında eğitim çözümleri geliştirmektedir. Katılımcıların bilgi ve yetkinliklerini geliştirmeye yönelik programlar hazırlamaktadır.",
       href: "/markalarimiz/akkas-akademi",
       logo: "/brands/akerakademi.png",
     },
@@ -366,75 +488,8 @@ const MOCK_HOME_CONTENT: HomeContent = {
     },
   ],
 
-  announcements: [
-    {
-      id: "milli-teknoloji-atolyesi",
-      title: "Konya'da İki Yeni Milli Teknoloji Atölyesi Faaliyete Girdi",
-      excerpt:
-        "Sanayi ve Teknoloji Bakanımız Mehmet Fatih Kacır'ın teşrifleriyle Selçuk Üniversitesi ve Necmettin Erbakan Üniversitesi Milli Teknoloji Atölyelerinin açılışı gerçekleştirildi.",
-      date: "2026-07-31",
-      href: "/blog/milli-teknoloji-atolyesi-konya",
-      category: "Teşvikler & Hibeler",
-      image: "/announcements/milli-teknoloji-atolyesi.jpeg",
-      imageRatio: "landscape",
-    },
-    {
-      id: "tubitak-arge-merkezi",
-      title:
-        "Çanakkale'de TÜBİTAK Desteğiyle Seramik Teknolojileri Öncül Ar-Ge Merkezi Açıldı",
-      excerpt:
-        "TÜBİTAK 1515 Öncül Ar-Ge Laboratuvarları Destekleme Programı kapsamında destek verdiğimiz Seramik Teknolojileri Öncül Ar-Ge Merkezi'nin açılışı gerçekleştirildi.",
-      date: "2026-07-28",
-      href: "/blog/tubitak-seramik-arge-merkezi",
-      category: "Teşvikler & Hibeler",
-      image: "/announcements/tubitak-arge-merkezi.jpeg",
-      imageRatio: "landscape",
-    },
-    {
-      id: "cbam",
-      title: "CBAM 2. Çeyrek Fiyatı Yayımlandı",
-      excerpt:
-        "Sınırda Karbon Düzenleme Mekanizması kapsamında 2026 yılı 2. çeyrek referans fiyatları açıklandı.",
-      date: "2026-07-20",
-      href: "/blog/cbam-2-ceyrek-fiyati-yayimlandi",
-      category: "Akkaş Karbon",
-      image: "/announcements/cbam.jpeg",
-      imageRatio: "square",
-    },
-    {
-      id: "yz-kredi",
-      title: "Yapay Zeka Kredi Programı",
-      excerpt:
-        "KOBİ'lerin yapay zeka dönüşümünü desteklemek amacıyla uygun faizli yeni bir kredi programı yürürlüğe girdi.",
-      date: "2026-07-20",
-      href: "/blog/yapay-zeka-kredi-programi",
-      category: "Teşvikler & Hibeler",
-      image: "/announcements/yz-kredi.jpeg",
-      imageRatio: "landscape",
-    },
-    {
-      id: "kapasite",
-      title: "Kapasite Geliştirme Destek Programı — 2. Başvuru Dönemi Başladı",
-      excerpt:
-        "Sanayi işletmelerinin üretim kapasitesini artırmasına yönelik destek programının ikinci başvuru dönemi resmen açıldı.",
-      date: "2026-06-08",
-      href: "/blog/kapasite-gelistirme-destek-programi-2-basvuru-donemi-basladi",
-      category: "Teşvikler & Hibeler",
-      image: "/announcements/kapasite-gelistirme.jpeg",
-      imageRatio: "square",
-    },
-    {
-      id: "verbis",
-      title: "VERBİS Kayıt Süresi Uzadı",
-      excerpt:
-        "Veri Sorumluları Sicili'ne kayıt yükümlülüğü olan firmalar için son başvuru süresi ertelendi.",
-      date: "2026-06-01",
-      href: "/blog/verbis-kayit-suresi-uzadi",
-      category: "KVKK & Mevzuat",
-      image: "/announcements/verbis.jpeg",
-      imageRatio: "landscape",
-    },
-  ],
+  announcements: news,
+
 };
 
 /* =========================================================
@@ -639,6 +694,7 @@ const MOCK_CONTACT_OFFICES: ContactOffice[] = [
   },
 ];
 
+
 /* =========================================================
    HİZMET SERVİSLERİ
 ========================================================= */
@@ -708,6 +764,79 @@ export async function getClientReferences(): Promise<ClientReference[]> {
    ANA SAYFA SERVİSİ
 ========================================================= */
 
+const MOCK_SECTOR_CONTENT: SectorContent[] = [
+  {
+    id: "saglik-hastane-klinik",
+    title: "Sağlık, Hastane ve Klinik",
+    shortTitle: "Sağlık",
+    description:
+      "Hastane, klinik, tıp merkezi ve sağlık kuruluşlarının operasyonel, mevzuatsal ve kurumsal ihtiyaçlarına yönelik danışmanlık çözümleri.",
+    heroDescription:
+      "Sağlık kuruluşlarının iş sağlığı ve güvenliği, kişisel verilerin korunması, kalite yönetimi ve mevzuata uyum süreçlerini birlikte ele alıyor; kurumların sürdürülebilir ve güvenli bir yapıyla faaliyet göstermelerine destek oluyoruz.",
+    image: "/sectors/saglik.png",
+
+    services: [
+      {
+        id: "osgb",
+        title: "OSGB & İş Sağlığı ve Güvenliği",
+        description:
+          "Sağlık kuruluşlarının iş sağlığı ve güvenliği yükümlülüklerini mevzuata uygun şekilde yönetmelerine yönelik profesyonel OSGB hizmetleri.",
+        href: "/hizmetlerimiz/osgb-is-sagligi-guvenligi",
+        icon: "osgb",
+      },
+      {
+        id: "kvkk",
+        title: "KVKK Danışmanlığı",
+        description:
+          "Hasta, çalışan ve ziyaretçi verilerinin korunmasına yönelik KVKK uyum süreçlerinin oluşturulması ve geliştirilmesi.",
+        href: "/hizmetlerimiz/kvkk-danismanligi",
+        icon: "kvkk",
+      },
+      {
+        id: "kalite",
+        title: "Kalite Sistemleri",
+        description:
+          "Sağlık kuruluşlarında kalite yönetim sistemlerinin kurulması, geliştirilmesi ve belgelendirme süreçlerine yönelik danışmanlık.",
+        href: "/hizmetlerimiz/kalite-sistemleri",
+        icon: "quality",
+      },
+      {
+        id: "mevzuat-uyum",
+        title: "Mevzuat ve Uyum Danışmanlığı",
+        description:
+          "Sağlık sektöründeki güncel mevzuat ve kurumsal yükümlülüklerin takip edilmesi ve süreçlerin uyumlu şekilde yönetilmesi.",
+        href: "/hizmetlerimiz/mevzuat-uyum-danismanligi",
+        icon: "compliance",
+      },
+    ],
+
+    benefits: [
+      "İş sağlığı ve güvenliği süreçlerinin mevzuata uygun şekilde yönetilmesi",
+      "Hasta ve çalışan verilerinin korunmasına yönelik KVKK süreçlerinin oluşturulması",
+      "Kalite yönetim sistemlerinin geliştirilmesi",
+      "Mevzuat değişikliklerinin takip edilmesi",
+      "Kurumsal risklerin ve uyum ihtiyaçlarının belirlenmesi",
+      "Sağlık kuruluşlarının sürdürülebilir bir yönetim yapısına kavuşması",
+    ],
+
+    stats: [
+      {
+        value: "25+",
+        label: "Yıllık danışmanlık tecrübesi",
+      },
+      {
+        value: "200+",
+        label: "Uzman danışman",
+      },
+      {
+        value: "18.000+",
+        label: "Hizmet verilen firma",
+      },
+    ],
+  },
+];
+
+
 export async function getHomeContent(): Promise<HomeContent> {
   try {
     return MOCK_HOME_CONTENT;
@@ -744,6 +873,24 @@ export async function getAboutContent(): Promise<AboutContent> {
    İLETİŞİM SERVİSİ
 ========================================================= */
 
+
+
+export async function getBlogPosts(): Promise<ArticleItem[]> {
+  try {
+    // İleride: await wpClient.query(BLOG_QUERY) burada olacak.
+    return articles;
+  } catch (error) {
+    logger.error("Blog içerikleri alınamadı", { error });
+
+    throw new AppError(
+      "Blog içerikleri yüklenemedi",
+         "CONTENT_FETCH_FAILED",
+      error,
+    );
+  }
+}
+
+
 export async function getContactContent() {
   try {
     return {
@@ -755,6 +902,98 @@ export async function getContactContent() {
 
     throw new AppError(
       "İletişim içeriği yüklenemedi",
+         "CONTENT_FETCH_FAILED",
+      error,
+    );
+  }
+}
+
+   
+
+export async function getBlogPostBySlug(
+  slug: string
+): Promise<ArticleItem | null> {
+  try {
+    const article = articles.find(
+      (item) => item.href === `/blog/${slug}`
+    );
+
+    return article ?? null;
+  } catch (error) {
+    logger.error("Blog yazısı alınamadı", { error, slug });
+
+    throw new AppError(
+      "Blog yazısı yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error
+    );
+  }
+}
+
+export async function getNews(): Promise<NewsItem[]> {
+  try {
+    return news;
+  } catch (error) {
+    logger.error("Haberler alınamadı", { error });
+
+    throw new AppError(
+      "Haberler yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error,
+    );
+  }
+}
+
+export async function getNewsBySlug(
+  slug: string,
+): Promise<NewsItem | null> {
+  try {
+    const newsItem = news.find(
+      (item) => item.href === `/haberler/${slug}`,
+    );
+
+    return newsItem ?? null;
+  } catch (error) {
+    logger.error("Haber detayı alınamadı", {
+      error,
+      slug,
+    });
+
+    throw new AppError(
+      "Haber detayı yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error,
+    );
+  }
+}
+export async function getSectorBySlug(
+  slug: string,
+): Promise<SectorContent | null> {
+  try {
+    const sector = MOCK_SECTOR_CONTENT.find((item) => item.id === slug);
+
+    return sector ?? null;
+  } catch (error) {
+    logger.error("Sektör içeriği alınamadı", {
+      error,
+      slug,
+    });
+
+    throw new AppError(
+      "Sektör içeriği yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error,
+    );
+  }
+}
+export async function getSectors(): Promise<SectorContent[]> {
+  try {
+    return MOCK_SECTOR_CONTENT;
+  } catch (error) {
+    logger.error("Sektör içerikleri alınamadı", { error });
+
+    throw new AppError(
+      "Sektör içerikleri yüklenemedi",
       "CONTENT_FETCH_FAILED",
       error,
     );
