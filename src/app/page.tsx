@@ -6,7 +6,6 @@ import { SectorsSection } from "@/components/sections/SectorsSection";
 import { StatsSection } from "@/components/sections/StatsSection";
 import { AnnouncementsSection } from "@/components/sections/AnnouncementsSection";
 import { ReferencesSection } from "@/components/sections/ReferencesSection";
-import { ContactCTA } from "@/components/sections/ContactCTA";
 import { ArticlesSection } from "@/components/sections/Articlessection";
 import { AboutHero } from "@/components/sections/about/AboutHero";
 import { AboutStorySection } from "@/components/sections/about/AboutStorySection";
