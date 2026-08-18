@@ -65,14 +65,9 @@ export function SectorsSection({ sectors }: SectorsSectionProps) {
         }}
       >
         {sectors.map((sector, idx) => (
-          // <Link
-          //   key={sector.id}
-          //   href={sector.href}
-          //   draggable={false}
-          //   className="group block w-[260px] flex-none md:w-[300px]"
-          // >
-          <div
+          <Link
             key={sector.id}
+            href={sector.href}
             draggable={false}
             className="group block w-[260px] flex-none snap-center md:w-[300px]"
           >
@@ -97,19 +92,19 @@ export function SectorsSection({ sectors }: SectorsSectionProps) {
               )}
             </div>
 
-            {/* Metin bloğu — görselin altında, sabit */}
+            {/* Metin */}
             <div className="mt-4">
               <h3 className="font-heading text-lg font-semibold text-[#0d4d5c]">
                 {sector.title}
               </h3>
+
               {sector.description && (
                 <p className="mt-1.5 text-sm leading-relaxed text-[#333333]/70">
                   {sector.description}
                 </p>
               )}
             </div>
-          </div>
-          //   </Link>
+          </Link>
         ))}
       </div>
     </section>
