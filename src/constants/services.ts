@@ -356,49 +356,45 @@ export const SERVICES: NavChild[] = [
     },
   ],
 },
-  {
+{
   label: "Kişisel Verileri Koruma Danışmanlığı",
   href: "/hizmetlerimiz/kvkk-danismanligi",
   children: [
     {
-      label: "KVKK Uyum Danışmanlığı",
-      href: "/hizmetlerimiz/kvkk-danismanligi/kvkk-uyum-danismanligi",
+      label: "GDPR",
+      href: "/hizmetlerimiz/kvkk-danismanligi/gdpr",
     },
     {
-      label: "GDPR Danışmanlığı",
-      href: "/hizmetlerimiz/kvkk-danismanligi/gdpr-danismanligi",
+      label: "VERBİS Sistemine Kayıt Yapılması",
+      href: "/hizmetlerimiz/kvkk-danismanligi/verbis-sistemine-kayit-yapilmasi",
     },
     {
-      label: "VERBİS Kayıt Danışmanlığı",
-      href: "/hizmetlerimiz/kvkk-danismanligi/verbis-kayit-danismanligi",
+      label: "Veri Envanteri Hazırlanması",
+      href: "/hizmetlerimiz/kvkk-danismanligi/veri-envanteri-hazirlanmasi",
     },
     {
-      label: "Kişisel Veri İşleme Envanteri",
-      href: "/hizmetlerimiz/kvkk-danismanligi/kisisel-veri-isleme-envanteri",
-    },
-    {
-      label: "KVKK Farkındalık Eğitimleri",
-      href: "/hizmetlerimiz/kvkk-danismanligi/kvkk-farkindalik-egitimleri",
+      label: "Farkındalık Eğitimlerinin Yapılması",
+      href: "/hizmetlerimiz/kvkk-danismanligi/farkindalik-egitimlerinin-yapilmasi",
     },
     {
       label: "Aydınlatma Metinlerinin Hazırlanması",
-      href: "/hizmetlerimiz/kvkk-danismanligi/aydinlatma-metinleri",
+      href: "/hizmetlerimiz/kvkk-danismanligi/aydinlatma-metinlerinin-hazirlanmasi",
     },
     {
-      label: "Açık Rıza Metinlerinin Hazırlanması",
-      href: "/hizmetlerimiz/kvkk-danismanligi/acik-riza-metinleri",
+      label: "Açık Rızaların Hazırlanması",
+      href: "/hizmetlerimiz/kvkk-danismanligi/acik-rizalarin-hazirlanmasi",
     },
     {
-      label: "Kişisel Veri Güvenliği Tedbirleri",
-      href: "/hizmetlerimiz/kvkk-danismanligi/veri-guvenligi-tedbirleri",
+      label: "Güvenlik Önlemlerinin Belirlenmesi",
+      href: "/hizmetlerimiz/kvkk-danismanligi/guvenlik-onlemlerinin-belirlenmesi",
     },
     {
-      label: "KVKK Politika ve Prosedürleri",
-      href: "/hizmetlerimiz/kvkk-danismanligi/politika-ve-prosedurler",
+      label: "Politikaların Hazırlanması",
+      href: "/hizmetlerimiz/kvkk-danismanligi/politikalarin-hazirlanmasi",
     },
     {
-      label: "KVKK Uyum Denetimleri",
-      href: "/hizmetlerimiz/kvkk-danismanligi/uyum-denetimleri",
+      label: "Denetimlerin Yapılması",
+      href: "/hizmetlerimiz/kvkk-danismanligi/denetimlerin-yapilmasi",
     },
   ],
 },
