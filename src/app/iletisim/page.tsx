@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ContactHero } from "@/components/sections/contact/ContactHero";
 import { LocationsSection } from "@/components/sections/contact/LocationsSection";
 import { ContactSection } from "@/components/sections/contact/ContactSection";
-import { getContactContent } from "@/services/content.service";
+import { getContactContent } from "@/services/contact.service";
 
 export const metadata: Metadata = {
   title: "İletişim",
@@ -19,10 +19,7 @@ export default async function ContactPage() {
       <ContactHero />
       <LocationsSection />
 
-      <ContactSection
-        offices={content.offices}
-        services={content.services}
-      />
+      <ContactSection offices={content.offices} services={content.services} />
     </>
   );
 }

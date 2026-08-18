@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getSectorBySlug } from "@/services/content.service";
-
 import { SectorHero } from "@/components/sections/sectors/SectorHero";
 import { SectorServices } from "@/components/sections/sectors/SectorServices";
 import { SectorStats } from "@/components/sections/sectors/SectorStats";
 import { SectorBenefits } from "@/components/sections/sectors/SectorBenefits";
 import { SectorCTA } from "@/components/sections/sectors/SectorCTA";
+import { getSectorBySlug } from "@/services/sector.service";
 
 interface SectorPageProps {
   params: Promise<{
