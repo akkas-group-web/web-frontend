@@ -6,7 +6,7 @@ import {
 } from "@/components/sections/services/ServiceContent";
 import { ServiceDetailLayout } from "@/components/sections/services/ServiceDetailLayout";
 
-import type { ServiceDetail as ServiceDetailType } from "@/services/content.service";
+import type { ServiceDetail as ServiceDetailType } from "@/types/service";
 
 interface ServiceDetailProps {
   service: ServiceDetailType;
