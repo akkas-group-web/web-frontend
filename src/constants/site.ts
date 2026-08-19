@@ -60,8 +60,8 @@ export const SECTORS: NavChild[] = [
 
 
 export const NAV_LINKS: NavItem[] = [
-  { label: "Hakkımızda", href: "/about" },
-  { label: "Referanslar", href: "/references" },
+  { label: "Hakkımızda", href: "/hakkimizda" },
+  { label: "Referanslar", href: "/referanslar" },
   { label: "Makaleler", href: "/blog" },
   { label: "Hizmetlerimiz", href: "/hizmetlerimiz", children: SERVICES },
   { label: "Haberler", href: "/haberler" },
