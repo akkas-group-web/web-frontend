@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { NewsDetail } from "@/components/sections/news/NewsDetail";
-import { getNewsBySlug } from "@/services/news.service";
+import { getNewsBySlug } from "@/services";
 
 interface NewsDetailPageProps {
   params: Promise<{

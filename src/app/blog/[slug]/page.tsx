@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { BlogDetail } from "@/components/sections/blog/BlogDetail";
-import { getBlogPostBySlug } from "@/services/blog.service";
+import { getBlogPostBySlug } from "@/services";
 
 interface BlogDetailPageProps {
   params: Promise<{

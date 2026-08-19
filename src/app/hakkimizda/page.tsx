@@ -4,7 +4,7 @@ import { TimelineSection } from "@/components/sections/about/TimelineSection";
 import { VisionMissionSection } from "@/components/sections/about/VisionMissionSeciton";
 import { ValuesSection } from "@/components/sections/about/ValueSection";
 import { AboutStatsStrip } from "@/components/sections/about/AboutStatsStrip";
-import { getAboutContent } from "@/services/about.service";
+import { getAboutContent } from "@/services";
 
 export default async function AboutPage() {
   const content = await getAboutContent();

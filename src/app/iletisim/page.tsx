@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ContactHero } from "@/components/sections/contact/ContactHero";
 import { LocationsSection } from "@/components/sections/contact/LocationsSection";
 import { ContactSection } from "@/components/sections/contact/ContactSection";
-import { getContactContent } from "@/services/contact.service";
+import { getContactContent } from "@/services";
 
 export const metadata: Metadata = {
   title: "İletişim",

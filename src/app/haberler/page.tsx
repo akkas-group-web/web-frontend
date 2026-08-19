@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { NewsHero } from "@/components/sections/news/NewsHero";
 import { NewsGrid } from "@/components/sections/news/NewsGrid";
-import { getNews } from "@/services/news.service";
+import { getNews } from "@/services";
 
 export const metadata: Metadata = {
   title: "Haberler | Akkaş Group",

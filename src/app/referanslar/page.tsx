@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ReferencesHero } from "@/components/sections/references/ReferencesHero";
 import { ReferencesLogoGrid } from "@/components/sections/references/ReferencesLogoGrid";
 import { ReferencesCTASection } from "@/components/sections/references/ReferencesCTASection";
-import { getClientReferences } from "@/services/reference.service";
+import { getClientReferences } from "@/services";
 
 export const metadata: Metadata = {
   title: "Referanslarımız | Akkaş Group",
