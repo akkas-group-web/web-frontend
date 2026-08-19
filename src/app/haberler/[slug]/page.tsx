@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { NewsDetail } from "@/components/sections/news/NewsDetail";
-import { getNewsBySlug } from "@/services/content.service";
+import { getNewsBySlug } from "@/services";
 
 interface NewsDetailPageProps {
   params: Promise<{
@@ -29,9 +29,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function NewsDetailPage({
-  params,
-}: NewsDetailPageProps) {
+export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
   const { slug } = await params;
 
   const news = await getNewsBySlug(slug);

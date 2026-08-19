@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-
-import { getBlogPosts } from "@/services/content.service";
 import { BlogHero } from "@/components/sections/blog/BlogHero";
 import { BlogGrid } from "@/components/sections/blog/BlogGrid";
+import { getBlogPosts } from "@/services";
 
 export const metadata: Metadata = {
   title: "Blog | Akkaş Group",

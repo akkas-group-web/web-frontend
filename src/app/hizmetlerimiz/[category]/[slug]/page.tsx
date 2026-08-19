@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { ServiceDetail } from "@/components/sections/services/ServiceDetail";
-import { getServiceByCategoryAndSlug } from "@/services/content.service";
+import { getServiceByCategoryAndSlug } from "@/services";
 
 interface ServicePageProps {
   params: Promise<{
@@ -30,9 +30,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function ServiceDetailPage({
-  params,
-}: ServicePageProps) {
+export default async function ServiceDetailPage({ params }: ServicePageProps) {
   const { category, slug } = await params;
 
   const service = await getServiceByCategoryAndSlug(category, slug);
