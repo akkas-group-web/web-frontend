@@ -5,22 +5,9 @@ import { AboutContent } from "@/types/about";
 import { ArticleItem } from "@/types/article";
 import { ClientReference } from "@/types/reference";
 import type { NewsItem } from "@/types/news";
+import type { ServiceDetail } from "@/types/service";
 
 
-/* =========================================================
-   HİZMET DETAY TİPİ
-========================================================= */
-
-export interface ServiceDetail {
-  id: string;
-  category: string;
-  categoryTitle: string;
-  slug: string;
-  title: string;
-  description: string;
-  image?: string;
-  content: string[];
-}
 
 /* =========================================================
    HİZMET DETAYLARI
