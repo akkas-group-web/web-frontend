@@ -6,7 +6,102 @@ import { ArticleItem } from "@/types/article";
 import { ClientReference } from "@/types/reference";
 import type { NewsItem } from "@/types/news";
 
+
+/* =========================================================
+   HİZMET DETAY TİPİ
+========================================================= */
+
+export interface ServiceDetail {
+  id: string;
+  category: string;
+  categoryTitle: string;
+  slug: string;
+  title: string;
+  description: string;
+  image?: string;
+  content: string[];
+}
+
+/* =========================================================
+   HİZMET DETAYLARI
+   ŞİMDİLİK MOCK
+   DAHA SONRA CMS'TEN GELECEK
+========================================================= */
+
+const MOCK_SERVICE_DETAILS: ServiceDetail[] = [
+  {
+    id: "dahilde-isleme-izin-belgesi",
+    category: "yatirim-danismanligi",
+    categoryTitle: "Yatırım Danışmanlığı",
+    slug: "dahilde-isleme-izin-belgesi",
+    title: "Dahilde İşleme İzin Belgesi",
+    description:
+      "Dahilde İşleme Rejimi kapsamında firmaların başvuru ve takip süreçlerine yönelik danışmanlık hizmetleri.",
+    content: [
+      "Dahilde İşleme İzin Belgesi süreçlerinde firmaların başvuru hazırlıkları ve gerekli dokümantasyon çalışmalarına destek sağlıyoruz.",
+      "Başvuru, takip ve belge sürecinin yürütülmesinde firmalara danışmanlık sunuyoruz.",
+    ],
+  },
+  
+  {
+  id: "kalite-yonetim-sistemi-egitimleri",
+  category: "egitimler",
+  categoryTitle: "Eğitimler",
+  slug: "kalite-yonetim-sistemi-egitimleri",
+  title: "Kalite Yönetim Sistemi Eğitimleri",
+  description:
+    "Kalite yönetim sistemleri, iç denetim, ISO 9001, ISO 45001 ve kurumsal gelişim eğitimlerine yönelik kapsamlı eğitim hizmetleri.",
+  content: [
+    "Kalite Sistemi, kuruluşların insan ve maddi kaynaklarını kullanarak amaçlarını etkili ve verimli şekilde gerçekleştirmelerini sağlamaktadır. ISO, kuruluşların kendilerine uygun bir kalite güvence sistemine sahip olmaları için bir model sunmaktadır. Bu modele uygunluk birçok ülke tarafından kabul edilmekte ve sistemin entegrasyonu ile kurumsal işleyişin kalite tabanlı olarak yapılandırılması hedeflenmektedir.",
+
+    "Kalite Yönetim Sisteminin amacı; tüm ürün kategorileri, sektörler ve farklı büyüklükteki kuruluşlara uygulanabilen TS EN ISO 9001 Kalite Yönetim Sistemi Standardı'nın temel kavramlarını, prensiplerini ve standart maddelerini kuruluşların faaliyet alanları doğrultusunda yorumlayarak etkin şekilde aktarabilmektir.",
+
+    "ISO 9001 Kalite Yönetim Sistemi İç Denetçi Eğitimi kapsamında; tetkik kavramları, kalite yönetim sistemi tetkikine genel bakış, iç tetkikçi kişisel özellikleri ve davranış kültürü, tetkikçilerin görev ve sorumlulukları, tetkik iletişimi, soru teknikleri, ISO 19011 standardının yapısı, ISO 9001 şartlarının incelenmesi, tetkik kapsamının belirlenmesi ve soru listelerinin hazırlanması gibi konular ele alınmaktadır.",
+
+    "İç Denetçi Eğitimi ayrıca tetkik planlaması, açılış toplantısı, saha araştırma ve gözlem çalışmaları, uygunsuzlukların tespit edilmesi, kapanış toplantısı, kök neden analizi, bulguların raporlanması, takip denetimi, iç tetkik prosedürünün oluşturulması, tetkik verilerinin yönetimin gözden geçirmesine taşınması ve örnek denetim senaryolarının incelenmesini kapsamaktadır.",
+
+    "ISO 9001 Kalite Yönetim Sistemi Eğitimi kapsamında; kalite kavramına giriş, PUKO döngüsü, müşteri ve müşteri memnuniyeti kavramları, kalite yönetim sisteminin faydaları, ISO 9001'in temel ilkeleri, tarafların ihtiyaç ve beklentileri, liderlik ve taahhüt, kalite yönetim sistemi planlaması, destek prosesleri, operasyonel planlama ve kontrol, izleme, ölçme, analiz ve değerlendirme ile sürekli iyileştirme konuları ele alınmaktadır.",
+
+    "ISO 45001 İş Sağlığı ve Güvenliği Yönetim Sistemi Eğitimi kapsamında; iş güvenliği kavramına giriş, İSG PUKO döngüsü, iş sağlığı ve güvenliği yönetim sistemi tanımları, çalışanların ve ilgili tarafların ihtiyaç ve beklentileri, liderlik ve çalışan katılımı, İSG planlaması, destek prosesleri, operasyonel planlama ve kontrol, izleme, ölçme, analiz, değerlendirme ve sürekli iyileştirme konuları işlenmektedir.",
+
+    "Satış Becerileri Geliştirme Eğitimi kapsamında; satış kavramı, müşteri tanımı, satın alma kararının oluşması, reklamların analizi, satış yöneticisinin görevleri, müşteri ihtiyaç ve beklenti analizleri, satış sürecinin oluşturulması, müşteri memnuniyet anketleri, müşteri şikayet yönetimi ve müşteri memnuniyet analizi gibi konular ele alınmaktadır.",
+
+    "Takım Çalışması Eğitimi; takım olmanın faydaları, takım ruhu, takım liderinin özellikleri, takım üyelerinin davranışları, takım organizasyon yapısı, takım vizyonu ve hedefleri, takım performansı, takım içinde iletişim, güven, sinerji oluşturma ve motivasyon konularını kapsamaktadır.",
+
+    "Yöneticilik ve Liderlik Eğitimi kapsamında; yönetmek kavramı, iş proseslerinin kontrolü, yöneticinin liderlik göstermesi, şirket kültürü temsil sorumluluğu, kurumsal vizyonla uyumlu bölüm hedeflerinin oluşturulması, proje yönetimi, hesap verilebilirlik, proses performans yönetimi, ekip yönetimi, motivasyon, yetki ve sorumluluk devri ile toplantı yönetimi konuları ele alınmaktadır.",
+
+    "Kurumsal İletişim Eğitimi kapsamında; iletişimin temel ilkeleri, iletişim mesajının oluşturulması ve yönetilmesi, iletişim kanalının analizi, mesajın doğru aktarılması, telefon ile iletişim, toplantı yönetimi, Zoom ve Teams gibi görüntülü internet platformları üzerinden iletişim ve müşteri ile iletişim konuları işlenmektedir.",
+
+    "Kişisel Verilerin Korunması Eğitimi kapsamında; kişisel veri, özel nitelikli kişisel veriler, aydınlatma metinleri, açık rıza, gizlilik sözleşmeleri, KVK genel ilkeleri, KVKK yasal uyumluluğu ve Kurul kararları ele alınmaktadır.",
+
+    "Eğitimler Zoom ve Webinar platformları üzerinden tam gün olarak gerçekleştirilmektedir. Eğitim türüne göre katılım veya başarı sertifikası verilmektedir.",
+
+    "Eğitimlerden; İnsan Kaynakları, Üretim, Kalite, Müşteri İlişkileri, Satış Pazarlama, Planlama, Ar-Ge, İş Geliştirme, İş Sağlığı Güvenliği, Çevre Sorumluları ve üst yönetim yoğun şekilde faydalanabilir.",
+  ],
+},
+
+{
+  id: "verbis-sistemine-kayit-yapilmasi",
+  category: "kvkk-danismanligi",
+  categoryTitle: "KVKK Danışmanlığı",
+  slug: "verbis-sistemine-kayit-yapilmasi",
+  title: "VERBİS Sistemine Kayıt Yapılması",
+  description:
+    "VERBİS kayıt süreci ve veri sorumlularının kayıt yükümlülüklerine yönelik danışmanlık hizmetleri.",
+  content: [
+    "VERBİS, Veri Sorumluları Sicil Bilgi Sistemi'nin kısaltmasıdır.",
+    "Veri sorumlularının kişisel veri işleme faaliyetlerinin analiz edilmesi, gerekli bildirimlerin hazırlanması ve kayıt süreçlerinin yürütülmesi konusunda danışmanlık sağlıyoruz.",
+    "Akkaş Group olarak VERBİS kayıt ve KVKK uyum süreçlerinin takibinde firmalara destek sunuyoruz.",
+  ],
+},
+];
+/* =========================================================
+   BLOG / MAKALELER
+========================================================= */
+
+
 import type { SectorContent } from "@/types/sector";
+
 const articles: ArticleItem[] = [
   {
     id: "1",
@@ -180,6 +275,10 @@ const news: NewsItem[] = [
   },
 ];
 
+/* =========================================================
+   ANA SAYFA
+========================================================= */
+
 const MOCK_HOME_CONTENT: HomeContent = {
   services: [
     {
@@ -249,6 +348,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
   ],
 
   articles,
+
   brands: [
     {
       id: "aker-patent",
@@ -307,6 +407,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
       logo: "/brands/akerakademi.png",
     },
   ],
+
   sectors: [
     {
       id: "kobiler",
@@ -363,14 +464,37 @@ const MOCK_HOME_CONTENT: HomeContent = {
       image: "/sectors/turizm.png",
     },
   ],
+
   stats: [
-    { id: "years", value: "25+", label: "Yıllık tecrübe (1999'dan beri)" },
-    { id: "consultants", value: "200+", label: "Uzman danışman kadrosu" },
-    { id: "companies", value: "18.000+", label: "Hizmet verilen firma" },
-    { id: "brands", value: "7", label: "Grup şirketi" },
+    {
+      id: "years",
+      value: "25+",
+      label: "Yıllık tecrübe (1999'dan beri)",
+    },
+    {
+      id: "consultants",
+      value: "200+",
+      label: "Uzman danışman kadrosu",
+    },
+    {
+      id: "companies",
+      value: "18.000+",
+      label: "Hizmet verilen firma",
+    },
+    {
+      id: "brands",
+      value: "7",
+      label: "Grup şirketi",
+    },
   ],
+
   announcements: news,
+
 };
+
+/* =========================================================
+   HAKKIMIZDA
+========================================================= */
 
 const MOCK_ABOUT_CONTENT: AboutContent = {
   hero: {
@@ -380,19 +504,21 @@ const MOCK_ABOUT_CONTENT: AboutContent = {
       "1999'dan bu yana yatırım, teşvik, marka-patent ve KVKK danışmanlığı alanlarında; kobilerden holdinglere kadar geniş bir yelpazede kurumsal işletmelerin ihtiyaçlarına yönelik uçtan uca danışmanlık çözümleri sunuyoruz.",
     imageSrc: "/office/akkasgroup.png",
   },
+
   story: {
     eyebrow: "Kurumsal Hikayemiz",
     title: "Kobilerin can simidi olmak için yola çıktık",
     paragraphs: [
-      "Akkaş Group, Marka & Patent Vekili ve Başdenetçi Erkan Akkaş tarafından 1999 yılında İstanbul'da ticari hayatına başladı. 2004 yılında, şirketlerin 21. yüzyıl ihtiyaçları doğrultusunda yatırım ve teşvik danışmanlığı alanına girerek hizmet sektöründeki yerini genişletti.",
-      "Türkiye'de ilk kez entegre danışmanlık modelini kobilere taşıyarak, küreselleşen dünyada rekabet edebilmeleri için uçtan uca destek sunduk. Bugün Aker Patent, Akkaş OSGB, Avrupa Yatırım Ajansı, Akkaş STS, Akkaş KVK, Akkaş Karbon ve Akkaş Teknoloji markalarımızla entegre hizmet veren bir şirketler grubuyuz.",
-      "Merkezi İstanbul Kadıköy'de bulunan Akkaş Group, 200 kişilik uzman danışman kadrosuyla; kobilerden holdinglere, bankalardan sanayi tesislerine kadar geniş bir yelpazede 18.000'den fazla firmaya hizmet vermeye devam ediyor.",
+      "Akkaş Group, Marka & Patent Vekili ve Başdenetçi Erkan Akkaş tarafından 1999 yılında İstanbul'da ticari hayatına başladı.",
+      "Türkiye'de ilk kez entegre danışmanlık modelini kobilere taşıyarak, küreselleşen dünyada rekabet edebilmeleri için uçtan uca destek sunduk.",
+      "Merkezi İstanbul Kadıköy'de bulunan Akkaş Group, 200 kişilik uzman danışman kadrosuyla 18.000'den fazla firmaya hizmet vermeye devam ediyor.",
     ],
     highlightQuote:
       "Firma paydaşı anlayışıyla, müşterilerimizin haberi olmayan her yeniliği önce biz duyuruyoruz.",
     highlightAuthor: "Erkan Akkaş, Kurucu",
     imageSrc: "/authors/erkan-akkas.jpg",
   },
+
   timeline: [
     {
       id: "1999",
@@ -413,15 +539,17 @@ const MOCK_ABOUT_CONTENT: AboutContent = {
       year: "Bugün",
       title: "7 Grup Şirketi, 1 Vizyon",
       description:
-        "Kadıköy merkezli, 200 danışman ve 18.000'den fazla firmaya entegre hizmet veren Türkiye'nin en büyük danışmanlık gruplarından biri.",
+        "Kadıköy merkezli, 200 danışman ve 18.000'den fazla firmaya entegre hizmet veren danışmanlık grubu.",
     },
   ],
+
   visionMission: {
     vision:
-      "Uzman ekibimizle yatırım danışmanlığı konusunda şirketlere doğrudan bilgi vererek; büyüme süreçlerinde ve işletme hayatlarında onların yol göstericileri ve yol arkadaşları olmak.",
+      "Uzman ekibimizle yatırım danışmanlığı konusunda şirketlere doğrudan bilgi vererek büyüme süreçlerinde yol gösterici olmak.",
     mission:
-      "Küreselleşen dünyada şirketlerin, kurum ve kuruluşların, şahısların, genç girişimcilerin ve büyüme hedefli şirketlerin yanında olmak; bu hedeflerinde yol göstericileri olmak.",
+      "Küreselleşen dünyada şirketlerin, kurumların ve girişimcilerin yanında olmak ve hedeflerinde yol göstermek.",
   },
+
   values: [
     {
       id: "guvenilirlik",
@@ -448,13 +576,34 @@ const MOCK_ABOUT_CONTENT: AboutContent = {
         "Devlet destekleri ve mevzuat değişikliklerini takip ederek hızlı aksiyon alma imkanı sunarız.",
     },
   ],
+
   stats: [
-    { id: "kurulus", value: "1999", label: "Kuruluş Yılı" },
-    { id: "danisman", value: "200+", label: "Uzman Danışman" },
-    { id: "firma", value: "18.000+", label: "Hizmet Verilen Firma" },
-    { id: "marka", value: "7", label: "Grup Şirketi" },
+    {
+      id: "kurulus",
+      value: "1999",
+      label: "Kuruluş Yılı",
+    },
+    {
+      id: "danisman",
+      value: "200+",
+      label: "Uzman Danışman",
+    },
+    {
+      id: "firma",
+      value: "18.000+",
+      label: "Hizmet Verilen Firma",
+    },
+    {
+      id: "marka",
+      value: "7",
+      label: "Grup Şirketi",
+    },
   ],
 };
+
+/* =========================================================
+   REFERANSLAR
+========================================================= */
 
 const MOCK_CLIENT_REFERENCES: ClientReference[] = [
   { id: "1", name: "Solana", logo: "/references/solana.png" },
@@ -468,22 +617,16 @@ const MOCK_CLIENT_REFERENCES: ClientReference[] = [
   { id: "9", name: "Treecard", logo: "/references/treecard.png" },
   { id: "10", name: "PayJunction", logo: "/references/payjunction.png" },
   { id: "11", name: "Chapter", logo: "/references/chapter.png" },
-  { id: "12", name: "Berkshire Hathaway", logo: "/references/berkshire.png" },
+  {
+    id: "12",
+    name: "Berkshire Hathaway",
+    logo: "/references/berkshire.png",
+  },
 ];
 
-export async function getClientReferences(): Promise<ClientReference[]> {
-  try {
-    // İleride: await wpClient.query(REFERENCES_QUERY) burada olacak.
-    return MOCK_CLIENT_REFERENCES;
-  } catch (error) {
-    logger.error("Referanslar içeriği alınamadı", { error });
-    throw new AppError(
-      "Referanslar içeriği yüklenemedi",
-      "CONTENT_FETCH_FAILED",
-      error,
-    );
-  }
-}
+/* =========================================================
+   İLETİŞİM
+========================================================= */
 
 const MOCK_CONTACT_SERVICES = [
   "Kalite Belgelendirme",
@@ -504,7 +647,8 @@ const MOCK_CONTACT_OFFICES: ContactOffice[] = [
     id: "istanbul-anadolu",
     city: "İstanbul Asya",
     title: "Merkez Ofis",
-    address: "Uzunçayır Cad. Akkaş Plaza No:51 Hasanpaşa-Kadıköy-İSTANBUL",
+    address:
+      "Uzunçayır Cad. Akkaş Plaza No:51 Hasanpaşa-Kadıköy-İSTANBUL",
     phone: "+90 216 450 60 07 (Pbx)",
     email: "info@akkasgroup.com",
   },
@@ -549,6 +693,76 @@ const MOCK_CONTACT_OFFICES: ContactOffice[] = [
     title: "Gaziantep",
   },
 ];
+
+
+/* =========================================================
+   HİZMET SERVİSLERİ
+========================================================= */
+
+export async function getServices(): Promise<ServiceDetail[]> {
+  try {
+    // CMS bağlandığında burada API çağrısı olacak.
+    return MOCK_SERVICE_DETAILS;
+  } catch (error) {
+    logger.error("Hizmetler içeriği alınamadı", { error });
+
+    throw new AppError(
+      "Hizmetler içeriği yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error,
+    );
+  }
+}
+
+export async function getServiceByCategoryAndSlug(
+  category: string,
+  slug: string,
+): Promise<ServiceDetail | null> {
+  try {
+    // CMS bağlandığında kategori + slug ile API sorgusu burada yapılacak.
+    return (
+      MOCK_SERVICE_DETAILS.find(
+        (service) =>
+          service.category === category &&
+          service.slug === slug,
+      ) ?? null
+    );
+  } catch (error) {
+    logger.error("Hizmet detayı alınamadı", {
+      error,
+      category,
+      slug,
+    });
+
+    throw new AppError(
+      "Hizmet detayı yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error,
+    );
+  }
+}
+
+/* =========================================================
+   REFERANS SERVİSİ
+========================================================= */
+
+export async function getClientReferences(): Promise<ClientReference[]> {
+  try {
+    return MOCK_CLIENT_REFERENCES;
+  } catch (error) {
+    logger.error("Referanslar içeriği alınamadı", { error });
+
+    throw new AppError(
+      "Referanslar içeriği yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error,
+    );
+  }
+}
+
+/* =========================================================
+   ANA SAYFA SERVİSİ
+========================================================= */
 
 const MOCK_SECTOR_CONTENT: SectorContent[] = [
   {
@@ -622,12 +836,13 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
   },
 ];
 
+
 export async function getHomeContent(): Promise<HomeContent> {
   try {
-    // İleride: await wpClient.query(HOME_QUERY) burada olacak.
     return MOCK_HOME_CONTENT;
   } catch (error) {
     logger.error("Ana sayfa içeriği alınamadı", { error });
+
     throw new AppError(
       "Ana sayfa içeriği yüklenemedi",
       "CONTENT_FETCH_FAILED",
@@ -635,12 +850,17 @@ export async function getHomeContent(): Promise<HomeContent> {
     );
   }
 }
+
+/* =========================================================
+   HAKKIMIZDA SERVİSİ
+========================================================= */
+
 export async function getAboutContent(): Promise<AboutContent> {
   try {
-    // İleride: await wpClient.query(ABOUT_QUERY) burada olacak.
     return MOCK_ABOUT_CONTENT;
   } catch (error) {
     logger.error("Hakkımızda içeriği alınamadı", { error });
+
     throw new AppError(
       "Hakkımızda içeriği yüklenemedi",
       "CONTENT_FETCH_FAILED",
@@ -648,6 +868,10 @@ export async function getAboutContent(): Promise<AboutContent> {
     );
   }
 }
+
+/* =========================================================
+   İLETİŞİM SERVİSİ
+========================================================= */
 
 
 
@@ -666,9 +890,9 @@ export async function getBlogPosts(): Promise<ArticleItem[]> {
   }
 }
 
+
 export async function getContactContent() {
   try {
-    // İleride: await wpClient.query(CONTACT_QUERY) burada olacak.
     return {
       services: MOCK_CONTACT_SERVICES,
       offices: MOCK_CONTACT_OFFICES,
