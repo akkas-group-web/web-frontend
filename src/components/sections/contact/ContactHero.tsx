@@ -1,8 +1,9 @@
 export function ContactHero() {
   return (
     <section className="relative overflow-hidden border-b border-brand-dark/10 bg-white pt-16 md:pt-20">
-      {/* Hafif arka plan geçişi */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-[38%] bg-gradient-to-l from-brand-soft/40 to-transparent" />
+      {/* Güçlendirilmiş arka plan geçişi */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-[48%] bg-gradient-to-l from-brand-soft/70 via-brand-soft/25 to-transparent" />
+      <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-primary/[0.06] blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4 pb-6 pt-4 sm:px-6 md:px-12 md:pb-8 md:pt-5">
         <div className="max-w-3xl">

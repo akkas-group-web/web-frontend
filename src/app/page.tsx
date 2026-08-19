@@ -5,7 +5,6 @@ import { SectorsSection } from "@/components/sections/SectorsSection";
 import { StatsSection } from "@/components/sections/StatsSection";
 import { AnnouncementsSection } from "@/components/sections/AnnouncementsSection";
 import { ReferencesSection } from "@/components/sections/ReferencesSection";
-
 import { ArticlesSection } from "@/components/sections/Articlessection";
 import { getHomeContent } from "@/services/home.service";
 
