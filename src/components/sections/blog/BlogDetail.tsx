@@ -79,23 +79,15 @@ export function BlogDetail({ article }: BlogDetailProps) {
             {article.author && (
               <>
                 <span className="hidden h-4 w-px bg-[#118B99]/20 sm:block" />
-
-                <div className="flex items-center gap-2">
-                  {article.author.photo && (
-                    <div className="relative h-8 w-8 overflow-hidden rounded-full ring-2 ring-[#DCF1F2]">
-                      <Image
-                        src={article.author.photo}
-                        alt={article.author.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  )}
-
-                  <span className="text-sm font-semibold text-[#45666B]">
-                    {article.author.name}
-                  </span>
-                </div>
+<div className="relative h-8 w-8 overflow-hidden rounded-full ring-2 ring-[#DCF1F2]">
+  <Image
+    src={article.author.photo.url}
+    alt={article.author.photo.alt}
+    fill
+    sizes="32px"
+    className="object-cover"
+  />
+</div>
               </>
             )}
           </div>
@@ -104,16 +96,14 @@ export function BlogDetail({ article }: BlogDetailProps) {
 
       {/* KAPAK */}
       <section className="mx-auto max-w-5xl px-6 lg:px-8">
-        <div className="relative aspect-[16/7] overflow-hidden rounded-[22px] bg-[#EAF6F7] shadow-[0_20px_50px_-40px_rgba(17,139,153,0.45)]">
-          <Image
-            src={article.image}
-            alt={article.title}
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 960px"
-            className="object-cover"
-          />
-        </div>
+<Image
+  src={article.image.url}
+  alt={article.image.alt}
+  fill
+  priority
+  sizes="(max-width: 1024px) 100vw, 960px"
+  className="object-cover"
+/>
       </section>
 
       {/* MAKALE */}
@@ -130,14 +120,15 @@ export function BlogDetail({ article }: BlogDetailProps) {
                 {article.author && (
                   <>
                     {article.author.photo && (
-                      <div className="relative mt-5 h-14 w-14 overflow-hidden rounded-full bg-[#EAF6F7] ring-4 ring-[#F1FAFA]">
-                        <Image
-                          src={article.author.photo}
-                          alt={article.author.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
+<div className="relative mt-5 h-14 w-14 overflow-hidden rounded-full bg-[#EAF6F7] ring-4 ring-[#F1FAFA]">
+  <Image
+    src={article.author.photo.url}
+    alt={article.author.photo.alt}
+    fill
+    sizes="56px"
+    className="object-cover"
+  />
+</div>
                     )}
 
                     <p className="mt-4 text-sm font-semibold leading-5 text-[#294F55]">
