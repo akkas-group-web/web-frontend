@@ -1,4 +1,4 @@
-import { MediaImage } from "./media";
+import type { MediaImage } from "./media";
 
 export interface NewsItem {
   id: string;

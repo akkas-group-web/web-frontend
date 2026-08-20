@@ -4,8 +4,9 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import type { BrandItem } from "@/types";
+
 import { SectionEyebrow } from "@/components/shared/SectionEyebrow";
+import type { BrandItem } from "@/types";
 
 interface BrandsStripProps {
   brands: BrandItem[];
@@ -15,25 +16,21 @@ export function BrandsStrip({ brands }: BrandsStripProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   const handleCardClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
+    event: React.MouseEvent<HTMLAnchorElement>,
     brandId: string,
   ) => {
-    // Desktop: hiçbir şey yapma.
-    // Link normal şekilde çalışsın.
+    // Masaüstünde link normal şekilde çalışır.
     if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
       return;
     }
 
-    // Mobil:
-    // İlk dokunuşta sadece overlay aç.
+    // Mobilde ilk dokunuşta açıklama alanını açar.
     if (activeId !== brandId) {
-      e.preventDefault();
+      event.preventDefault();
       setActiveId(brandId);
-      return;
     }
 
-    // İkinci dokunuşta activeId zaten aynı.
-    // preventDefault yapmıyoruz → Link çalışacak.
+    // İkinci dokunuşta preventDefault çalışmaz ve bağlantı açılır.
   };
 
   return (
@@ -52,7 +49,7 @@ export function BrandsStrip({ brands }: BrandsStripProps) {
         </div>
 
         <div className="mt-12 flex flex-wrap justify-center gap-x-5 gap-y-10">
-          {brands.map((brand, i) => (
+          {brands.map((brand, index) => (
             <motion.div
               key={brand.id}
               initial={{ opacity: 0, y: 24 }}
@@ -61,28 +58,27 @@ export function BrandsStrip({ brands }: BrandsStripProps) {
               transition={{
                 duration: 0.5,
                 ease: [0.22, 1, 0.36, 1],
-                delay: i * 0.06,
+                delay: index * 0.06,
               }}
               className="w-full sm:w-[calc(50%-10px)] lg:w-[calc(25%-15px)]"
             >
               <Link
                 href={brand.href}
-                onClick={(e) => handleCardClick(e, brand.id)}
+                onClick={(event) => handleCardClick(event, brand.id)}
                 className="group relative flex min-h-[280px] flex-col rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-xl [@media(hover:hover)_and_(pointer:fine)]:aspect-[4/3] [@media(hover:hover)_and_(pointer:fine)]:min-h-0"
               >
-                {/* Logo */}
                 {/* Logo alanı */}
                 <div className="relative h-48 p-6 pb-10 [@media(hover:hover)_and_(pointer:fine)]:h-auto [@media(hover:hover)_and_(pointer:fine)]:flex-1">
                   <Image
-                    src={brand.logo}
-                    alt={brand.name}
+                    src={brand.logo.url}
+                    alt={brand.logo.alt}
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="pointer-events-none object-contain p-6 transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
 
-                {/* Normal badge */}
-                {/* Normal badge — sadece gerçek hover cihazlarında */}
+                {/* Normal başlık */}
                 <div
                   className={`pointer-events-none absolute bottom-0 right-4 z-10 max-w-[85%] translate-y-1/2 rounded-xl bg-white px-4 py-2.5 shadow-md transition-opacity duration-300 ${
                     activeId === brand.id
@@ -95,8 +91,7 @@ export function BrandsStrip({ brands }: BrandsStripProps) {
                   </span>
                 </div>
 
-                {/* Mavi overlay */}
-                {/* Hover overlay — sadece gerçek hover cihazlarında */}
+                {/* Açıklama alanı */}
                 <div
                   className={`pointer-events-none absolute inset-0 z-20 flex flex-col justify-end overflow-hidden rounded-2xl bg-gradient-to-t from-[#0b2b38]/95 via-[#0d4d5c]/90 to-[#0d4d5c]/75 p-5 transition-opacity duration-300 ${
                     activeId === brand.id
@@ -110,6 +105,7 @@ export function BrandsStrip({ brands }: BrandsStripProps) {
 
                   <p className="mt-2 text-xs leading-relaxed text-white/90">
                     {brand.description}
+
                     <span className="ml-1 inline-block text-white transition-transform duration-300 group-hover:translate-x-1">
                       &rarr;
                     </span>
