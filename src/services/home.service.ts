@@ -16,7 +16,10 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
       description:
         "Şirketlerin sınai mülkiyet alanındaki ihtiyaçlarına yönelik profesyonel vekillik hizmetleri sunmaktadır. Çalışma alanları arasında markalar, patentler ve endüstriyel tasarımlar bulunmaktadır.",
       href: "/markalarimiz/aker-patent",
-      logo: "/brands/akerpatent.png",
+      logo: {
+        url: "/brands/akerpatent.png",
+        alt: "Aker Patent logosu",
+      },
     },
     {
       id: "akkas-osgb",
@@ -24,15 +27,21 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
       description:
         "İş sağlığı ve güvenliği alanında işletmelerin ihtiyaçlarına yönelik profesyonel hizmetler sunmaktadır. 6331 sayılı İş Sağlığı ve Güvenliği Kanunu kapsamında işverenlerin yasal yükümlülüklerini yerine getirmelerine destek olmaktadır.",
       href: "http://www.akkasosgb.com/",
-      logo: "/brands/akkasosgb.png",
+      logo: {
+        url: "/brands/akkasosgb.png",
+        alt: "Akkaş OSGB logosu",
+      },
     },
     {
       id: "aya",
       name: "Teşvik ve Proje Danışmanlığı",
       description:
-        "Firmaların devlet desteklerinden ve teşviklerden etkin şekilde yararlanmasına yönelik danışmanlık hizmetleri sunmaktadır. KOSGEB, TÜBİTAK, Kalkınma Ajansları ve Ticaret Bakanlığı destekleri başta olmak üzere birçok program kapsamında hizmet vermektedir. ",
+        "Firmaların devlet desteklerinden ve teşviklerden etkin şekilde yararlanmasına yönelik danışmanlık hizmetleri sunmaktadır. KOSGEB, TÜBİTAK, Kalkınma Ajansları ve Ticaret Bakanlığı destekleri başta olmak üzere birçok program kapsamında hizmet vermektedir.",
       href: "/markalarimiz/avrupa-yatirim-ajansi",
-      logo: "/brands/aya.png",
+      logo: {
+        url: "/brands/aya.png",
+        alt: "Avrupa Yatırım Ajansı logosu",
+      },
     },
     {
       id: "erkan-akkas",
@@ -40,7 +49,10 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
       description:
         "Kalite, yönetim sistemleri ve danışmanlık alanlarında profesyonel hizmetler sunmaktadır. ISO 9001, ISO 10002, ISO 14001, ISO 18001 ve ISO 27001 gibi yönetim sistemi standartlarında danışmanlık sağlamaktadır.",
       href: "/markalarimiz/erkan-akkas-danismanlik",
-      logo: "/brands/erkanakkas.png",
+      logo: {
+        url: "/brands/erkanakkas.png",
+        alt: "Erkan Akkaş Eğitim ve Danışmanlık logosu",
+      },
     },
     {
       id: "akkas-kvk",
@@ -48,7 +60,10 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
       description:
         "Kişisel verilerin korunması alanında danışmanlık hizmetleri sunmaktadır. Kurumların kişisel veri işleme süreçlerini mevzuata uygun şekilde yönetmelerine destek olmaktadır. KVKK kapsamında uyum süreçlerinin oluşturulmasına ve geliştirilmesine katkı sağlamaktadır.",
       href: "/markalarimiz/akkas-kvk",
-      logo: "/brands/akkaskvk.png",
+      logo: {
+        url: "/brands/akkaskvk.png",
+        alt: "Akkaş KVK logosu",
+      },
     },
     {
       id: "akkas-stst",
@@ -56,7 +71,10 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
       description:
         "Sigorta teşvik sistemleri alanında işletmelere danışmanlık hizmetleri sunmaktadır. İşletmelerin yararlanabileceği sigorta teşviklerinin belirlenmesine destek olmaktadır. Teşvik süreçlerinin doğru ve etkin şekilde yönetilmesine katkı sağlamaktadır.",
       href: "/markalarimiz/akkas-stst",
-      logo: "/brands/akkassts.jpg",
+      logo: {
+        url: "/brands/akkassts.jpg",
+        alt: "Akkaş STS logosu",
+      },
     },
     {
       id: "akkas-akademi",
@@ -64,7 +82,10 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
       description:
         "Eğitim ve akademi alanında kurumların gelişim ihtiyaçlarına yönelik hizmetler sunmaktadır. Mesleki gelişim, kurumsal eğitim ve uzmanlık alanlarında eğitim çözümleri geliştirmektedir. Katılımcıların bilgi ve yetkinliklerini geliştirmeye yönelik programlar hazırlamaktadır.",
       href: "/markalarimiz/akkas-akademi",
-      logo: "/brands/akerakademi.png",
+      logo: {
+        url: "/brands/akerakademi.png",
+        alt: "Akkaş Akademi logosu",
+      },
     },
   ],
 
@@ -73,66 +94,109 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
       id: "kobiler",
       title: "KOBİ'ler",
       href: "/sektorler/kobiler",
-      image: "/sectors/kobi.png",
+      image: {
+        url: "/sectors/kobi.png",
+        alt: "KOBİ işletmeleri",
+      },
     },
     {
       id: "holdingler",
       title: "Holdingler",
       href: "/sektorler/holdingler",
-      image: "/sectors/holding.png",
+      image: {
+        url: "/sectors/holding.png",
+        alt: "Holdingler",
+      },
     },
     {
       id: "bankalar",
       title: "Bankalar",
       href: "/sektorler/bankalar",
-      image: "/sectors/bank.png",
+      image: {
+        url: "/sectors/bank.png",
+        alt: "Bankacılık sektörü",
+      },
     },
     {
       id: "insaat-enerji",
       title: "İnşaat ve Enerji",
       href: "/sektorler/insaat-ve-enerji",
-      image: "/sectors/insaat.png",
+      image: {
+        url: "/sectors/insaat.png",
+        alt: "İnşaat ve enerji sektörü",
+      },
     },
     {
       id: "avm-perakende",
       title: "AVM ve Perakende",
       href: "/sektorler/avm-ve-perakende",
-      image: "/sectors/perakende.jpg",
+      image: {
+        url: "/sectors/perakende.jpg",
+        alt: "AVM ve perakende sektörü",
+      },
     },
     {
       id: "sanayi",
       title: "Sanayi Tesisleri",
       href: "/sektorler/sanayi-tesisleri",
-      image: "/sectors/justin.png",
+      image: {
+        url: "/sectors/justin.png",
+        alt: "Sanayi tesisleri",
+      },
     },
     {
       id: "Gıda",
       title: "Gıda",
       href: "/sektorler/Gıda-sektoru",
-      image: "/sectors/gida.png",
+      image: {
+        url: "/sectors/gida.png",
+        alt: "Gıda sektörü",
+      },
     },
     {
       id: "saglik",
       title: "Sağlık, Hastane ve Klinik",
       href: "/sektorler/saglik-hastane-klinik",
-      image: "/sectors/saglik.png",
+      image: {
+        url: "/sectors/saglik.png",
+        alt: "Sağlık, hastane ve klinik sektörü",
+      },
     },
     {
       id: "turizm",
       title: "Turizm",
       href: "/sektorler/turizm",
-      image: "/sectors/turizm.png",
+      image: {
+        url: "/sectors/turizm.png",
+        alt: "Turizm sektörü",
+      },
     },
   ],
 
   stats: [
-    { id: "years", value: "25+", label: "Yıllık tecrübe (1999'dan beri)" },
-    { id: "consultants", value: "200+", label: "Uzman danışman kadrosu" },
-    { id: "companies", value: "18.000+", label: "Hizmet verilen firma" },
-    { id: "brands", value: "7", label: "Grup şirketi" },
+    {
+      id: "years",
+      value: "25+",
+      label: "Yıllık tecrübe (1999'dan beri)",
+    },
+    {
+      id: "consultants",
+      value: "200+",
+      label: "Uzman danışman kadrosu",
+    },
+    {
+      id: "companies",
+      value: "18.000+",
+      label: "Hizmet verilen firma",
+    },
+    {
+      id: "brands",
+      value: "7",
+      label: "Grup şirketi",
+    },
   ],
 
-  announcements: news, // Adım 3'te news.service.ts oluşunca buraya import edilecek
+  announcements: news,
 };
 
 export async function getHomeContent(): Promise<HomeContent> {
@@ -157,6 +221,7 @@ export async function getHomeContent(): Promise<HomeContent> {
     };
   } catch (error) {
     logger.error("Ana sayfa içeriği alınamadı", { error });
+
     throw new AppError(
       "Ana sayfa içeriği yüklenemedi",
       "CONTENT_FETCH_FAILED",
