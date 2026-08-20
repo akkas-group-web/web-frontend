@@ -1,11 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import {
-  ArrowUpRight,
-  CalendarDays,
-  Newspaper,
-} from "lucide-react";
+import { ArrowUpRight, CalendarDays, Newspaper } from "lucide-react";
 
 import type { HomeContent } from "@/types";
 
@@ -82,7 +78,7 @@ export function NewsGrid({ news }: NewsGridProps) {
                       className="relative block aspect-[16/10] overflow-hidden rounded-[16px] bg-[#EAF6F7]"
                     >
                       <Image
-                        src={item.image}
+                        src={item.image.url}
                         alt={item.title}
                         fill
                         sizes="210px"
