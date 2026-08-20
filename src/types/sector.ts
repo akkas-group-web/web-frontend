@@ -1,11 +1,11 @@
-import type { LucideIcon } from "lucide-react";
+import type { MediaImage } from "./media";
 
 export interface SectorService {
   id: string;
   title: string;
   description: string;
   href: string;
-  icon: string;
+  icon: MediaImage;
 }
 
 export interface SectorContent {
@@ -14,7 +14,7 @@ export interface SectorContent {
   shortTitle?: string;
   description: string;
   heroDescription: string;
-  image: string;
+  image: MediaImage;
   services: SectorService[];
   benefits: string[];
   stats?: {
