@@ -87,7 +87,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
       name: "İş Sağlığı ve Güvenliği Hizmetleri",
       description:
         "İş sağlığı ve güvenliği alanında işletmelerin ihtiyaçlarına yönelik profesyonel hizmetler sunmaktadır. 6331 sayılı İş Sağlığı ve Güvenliği Kanunu kapsamında işverenlerin yasal yükümlülüklerini yerine getirmelerine destek olmaktadır.",
-      href: "/markalarimiz/akkas-osgb",
+      href: "http://www.akkasosgb.com/",
       logo: "/brands/akkasosgb.png",
     },
     {
