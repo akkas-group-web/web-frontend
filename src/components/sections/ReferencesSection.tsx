@@ -33,8 +33,8 @@ function MarqueeRow({
           >
             {client.logo ? (
               <Image
-                src={client.logo}
-                alt={client.name}
+                src={client.logo.url}
+                alt={client.logo.alt}
                 width={100}
                 height={32}
                 className="h-8 w-auto object-contain"

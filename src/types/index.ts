@@ -23,6 +23,7 @@ export type ServiceIconKey =
   | "carbon"
   | "education"
   | "prokvk"
+  | "compliance"
   | "other";
 export interface BrandItem {
   id: string;

@@ -1,3 +1,4 @@
+import { ServiceIconKey } from ".";
 import type { MediaImage } from "./media";
 
 export interface SectorService {
@@ -5,7 +6,7 @@ export interface SectorService {
   title: string;
   description: string;
   href: string;
-  icon: MediaImage;
+  icon: ServiceIconKey;
 }
 
 export interface SectorContent {

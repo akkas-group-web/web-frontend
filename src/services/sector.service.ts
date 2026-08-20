@@ -22,10 +22,7 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
         description:
           "Sağlık kuruluşlarının iş sağlığı ve güvenliği yükümlülüklerini mevzuata uygun şekilde yönetmelerine yönelik profesyonel OSGB hizmetleri.",
         href: "/hizmetlerimiz/osgb-is-sagligi-guvenligi",
-        icon: {
-          url: "/icons/osgb.svg",
-          alt: "İş sağlığı ve güvenliği",
-        },
+        icon: "osgb",
       },
       {
         id: "kvkk",
@@ -33,10 +30,7 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
         description:
           "Hasta, çalışan ve ziyaretçi verilerinin korunmasına yönelik KVKK uyum süreçlerinin oluşturulması ve geliştirilmesi.",
         href: "/hizmetlerimiz/kvkk-danismanligi",
-        icon: {
-          url: "/icons/kvkk.svg",
-          alt: "KVKK danışmanlığı",
-        },
+        icon: "kvkk",
       },
       {
         id: "kalite",
@@ -44,10 +38,7 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
         description:
           "Sağlık kuruluşlarında kalite yönetim sistemlerinin kurulması, geliştirilmesi ve belgelendirme süreçlerine yönelik danışmanlık.",
         href: "/hizmetlerimiz/kalite-sistemleri",
-        icon: {
-          url: "/icons/quality.svg",
-          alt: "Kalite yönetim sistemleri",
-        },
+        icon: "quality",
       },
       {
         id: "mevzuat-uyum",
@@ -55,10 +46,7 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
         description:
           "Sağlık sektöründeki güncel mevzuat ve kurumsal yükümlülüklerin takip edilmesi ve süreçlerin uyumlu şekilde yönetilmesi.",
         href: "/hizmetlerimiz/mevzuat-uyum-danismanligi",
-        icon: {
-          url: "/icons/compliance.svg",
-          alt: "Mevzuat ve uyum danışmanlığı",
-        },
+        icon: "compliance",
       },
     ],
     benefits: [
