@@ -12,9 +12,7 @@ interface ServiceDetailProps {
   service: ServiceDetailType;
 }
 
-export function ServiceDetail({
-  service,
-}: ServiceDetailProps) {
+export function ServiceDetail({ service }: ServiceDetailProps) {
   return (
     <ServiceDetailLayout
       title={service.title}
@@ -32,10 +30,11 @@ export function ServiceDetail({
           {service.image && (
             <div className="overflow-hidden rounded-xl border border-[#0d4d5c]/10 bg-white">
               <Image
-                src={service.image}
-                alt={service.title}
-                width={600}
-                height={400}
+                src={service.image.url}
+                alt={service.image.alt}
+                width={service.image.width ?? 600}
+                height={service.image.height ?? 400}
+                sizes="(max-width: 767px) 100vw, 280px"
                 className="h-auto w-full object-cover"
               />
             </div>
@@ -43,9 +42,7 @@ export function ServiceDetail({
 
           <div className="space-y-5">
             {service.content.map((paragraph, index) => (
-              <ServiceText key={index}>
-                {paragraph}
-              </ServiceText>
+              <ServiceText key={index}>{paragraph}</ServiceText>
             ))}
           </div>
         </div>

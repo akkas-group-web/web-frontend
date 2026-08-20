@@ -1,3 +1,5 @@
+import type { MediaImage } from "./media";
+
 export interface ServiceDetail {
   id: string;
   category: string;
@@ -5,6 +7,6 @@ export interface ServiceDetail {
   slug: string;
   title: string;
   description: string;
-  image?: string;
+  image?: MediaImage;
   content: string[];
 }
