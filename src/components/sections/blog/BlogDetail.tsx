@@ -1,10 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  CalendarDays,
-  Clock3,
-} from "lucide-react";
+import { ArrowLeft, CalendarDays, Clock3 } from "lucide-react";
 
 import type { ArticleItem } from "@/types/article";
 
@@ -30,8 +26,7 @@ export function BlogDetail({ article }: BlogDetailProps) {
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.025]"
           style={{
-            backgroundImage:
-              "radial-gradient(#118B99 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(#118B99 1px, transparent 1px)",
             backgroundSize: "25px 25px",
           }}
         />
@@ -72,22 +67,21 @@ export function BlogDetail({ article }: BlogDetailProps) {
             <span className="hidden h-4 w-px bg-[#118B99]/20 sm:block" />
 
             <div className="flex items-center gap-2 text-sm text-[#789095]">
-              <Clock3 className="h-4 w-4 text-[#118B99]" />
-              4 dk okuma
+              <Clock3 className="h-4 w-4 text-[#118B99]" />4 dk okuma
             </div>
 
             {article.author && (
               <>
                 <span className="hidden h-4 w-px bg-[#118B99]/20 sm:block" />
-<div className="relative h-8 w-8 overflow-hidden rounded-full ring-2 ring-[#DCF1F2]">
-  <Image
-    src={article.author.photo.url}
-    alt={article.author.photo.alt}
-    fill
-    sizes="32px"
-    className="object-cover"
-  />
-</div>
+                <div className="relative h-8 w-8 overflow-hidden rounded-full ring-2 ring-[#DCF1F2]">
+                  <Image
+                    src={article.author.photo.url}
+                    alt={article.author.photo.alt}
+                    fill
+                    sizes="32px"
+                    className="object-cover"
+                  />
+                </div>
               </>
             )}
           </div>
@@ -96,14 +90,16 @@ export function BlogDetail({ article }: BlogDetailProps) {
 
       {/* KAPAK */}
       <section className="mx-auto max-w-5xl px-6 lg:px-8">
-<Image
-  src={article.image.url}
-  alt={article.image.alt}
-  fill
-  priority
-  sizes="(max-width: 1024px) 100vw, 960px"
-  className="object-cover"
-/>
+        <div className="relative aspect-[16/9] overflow-hidden rounded-[24px] bg-[#EAF6F7]">
+          <Image
+            src={article.image.url}
+            alt={article.image.alt}
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 960px"
+            className="object-cover"
+          />
+        </div>
       </section>
 
       {/* MAKALE */}
@@ -120,15 +116,15 @@ export function BlogDetail({ article }: BlogDetailProps) {
                 {article.author && (
                   <>
                     {article.author.photo && (
-<div className="relative mt-5 h-14 w-14 overflow-hidden rounded-full bg-[#EAF6F7] ring-4 ring-[#F1FAFA]">
-  <Image
-    src={article.author.photo.url}
-    alt={article.author.photo.alt}
-    fill
-    sizes="56px"
-    className="object-cover"
-  />
-</div>
+                      <div className="relative mt-5 h-14 w-14 overflow-hidden rounded-full bg-[#EAF6F7] ring-4 ring-[#F1FAFA]">
+                        <Image
+                          src={article.author.photo.url}
+                          alt={article.author.photo.alt}
+                          fill
+                          sizes="56px"
+                          className="object-cover"
+                        />
+                      </div>
                     )}
 
                     <p className="mt-4 text-sm font-semibold leading-5 text-[#294F55]">
@@ -182,8 +178,8 @@ export function BlogDetail({ article }: BlogDetailProps) {
 
               <p className="mt-5">
                 Doğru zamanda yapılan planlama, işletmelerin fırsatları daha
-                etkin değerlendirmesine ve süreçlerini daha sağlıklı
-                yönetmesine katkı sağlar.
+                etkin değerlendirmesine ve süreçlerini daha sağlıklı yönetmesine
+                katkı sağlar.
               </p>
 
               <p className="mt-6">
