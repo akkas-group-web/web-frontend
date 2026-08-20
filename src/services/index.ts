@@ -1,8 +1,15 @@
-export * from "./home.service";
-export * from "./about.service";
-export * from "./blog.service";
-export * from "./news.service";
-export * from "./reference.service";
-export * from "./sector.service";
-export * from "./contact.service";
-export * from "./service.service";
+export { getHomeContent } from "./home.service";
+
+export { getAboutContent } from "./about.service";
+
+export { getBlogPosts, getBlogPostBySlug } from "./blog.service";
+
+export { getNews, getNewsBySlug } from "./news.service";
+
+export { getServices, getServiceByCategoryAndSlug } from "./service.service";
+
+export { getSectors, getSectorBySlug } from "./sector.service";
+
+export { getClientReferences } from "./reference.service";
+
+export { getContactContent } from "./contact.service";
