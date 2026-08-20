@@ -1,12 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import {
-  ArrowLeft,
-  CalendarDays,
-  Clock3,
-  Newspaper,
-} from "lucide-react";
+import { ArrowLeft, CalendarDays, Clock3, Newspaper } from "lucide-react";
 
 import type { NewsItem } from "@/types/news";
 
@@ -31,8 +26,7 @@ export function NewsDetail({ news }: NewsDetailProps) {
           <div
             className="absolute inset-0 opacity-[0.02]"
             style={{
-              backgroundImage:
-                "radial-gradient(#118B99 1px, transparent 1px)",
+              backgroundImage: "radial-gradient(#118B99 1px, transparent 1px)",
               backgroundSize: "24px 24px",
             }}
           />
@@ -83,8 +77,7 @@ export function NewsDetail({ news }: NewsDetailProps) {
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <Clock3 className="h-4 w-4 text-[#118B99]" />
-                    3 dk okuma
+                    <Clock3 className="h-4 w-4 text-[#118B99]" />3 dk okuma
                   </div>
                 </div>
               </div>
@@ -97,7 +90,7 @@ export function NewsDetail({ news }: NewsDetailProps) {
       <section className="mx-auto max-w-5xl px-6 pt-10 lg:px-8">
         <div className="relative aspect-[16/7] overflow-hidden rounded-[24px] bg-[#EAF6F7]">
           <Image
-            src={news.image}
+            src={news.image.url}
             alt={news.title}
             fill
             priority

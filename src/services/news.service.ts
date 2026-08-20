@@ -11,7 +11,10 @@ export const news: NewsItem[] = [
     date: "2026-07-31",
     href: "/haberler/milli-teknoloji-atolyesi-konya",
     category: "Teşvikler & Hibeler",
-    image: "/announcements/milli-teknoloji-atolyesi.jpeg",
+    image: {
+      url: "/announcements/milli-teknoloji-atolyesi.jpeg",
+      alt: "Konya'da açılan Milli Teknoloji Atölyesi",
+    },
     imageRatio: "landscape",
     content: [
       "Konya'da teknoloji ve yenilik ekosistemini güçlendirecek iki yeni Milli Teknoloji Atölyesi faaliyete geçti.",
@@ -28,7 +31,10 @@ export const news: NewsItem[] = [
     date: "2026-07-28",
     href: "/haberler/tubitak-seramik-arge-merkezi",
     category: "Teşvikler & Hibeler",
-    image: "/announcements/tubitak-arge-merkezi.jpeg",
+    image: {
+      url: "/announcements/tubitak-arge-merkezi.jpeg",
+      alt: "TÜBİTAK destekli Seramik Teknolojileri Öncül Ar-Ge Merkezi",
+    },
     imageRatio: "landscape",
     content: [
       "TÜBİTAK 1515 Öncül Ar-Ge Laboratuvarları Destekleme Programı kapsamında desteklenen Seramik Teknolojileri Öncül Ar-Ge Merkezi Çanakkale'de faaliyete başladı.",
@@ -44,7 +50,10 @@ export const news: NewsItem[] = [
     date: "2026-07-20",
     href: "/haberler/cbam-2-ceyrek-fiyati-yayimlandi",
     category: "Akkaş Karbon",
-    image: "/announcements/cbam.jpeg",
+    image: {
+      url: "/announcements/cbam.jpeg",
+      alt: "CBAM 2. çeyrek referans fiyatı görseli",
+    },
     imageRatio: "square",
     content: [
       "Sınırda Karbon Düzenleme Mekanizması kapsamında 2026 yılının ikinci çeyreğine ilişkin referans fiyatları yayımlandı.",
@@ -60,7 +69,10 @@ export const news: NewsItem[] = [
     date: "2026-07-20",
     href: "/haberler/yapay-zeka-kredi-programi",
     category: "Teşvikler & Hibeler",
-    image: "/announcements/yz-kredi.jpeg",
+    image: {
+      url: "/announcements/yz-kredi.jpeg",
+      alt: "Yapay Zeka Kredi Programı görseli",
+    },
     imageRatio: "landscape",
     content: [
       "KOBİ'lerin dijital dönüşümünü ve yapay zeka teknolojilerinden yararlanmasını desteklemek amacıyla yeni bir kredi programı devreye alındı.",
@@ -76,7 +88,10 @@ export const news: NewsItem[] = [
     date: "2026-06-08",
     href: "/haberler/kapasite-gelistirme-destek-programi-2-basvuru-donemi-basladi",
     category: "Teşvikler & Hibeler",
-    image: "/announcements/kapasite-gelistirme.jpeg",
+    image: {
+      url: "/announcements/kapasite-gelistirme.jpeg",
+      alt: "Kapasite Geliştirme Destek Programı görseli",
+    },
     imageRatio: "square",
     content: [
       "Kapasite Geliştirme Destek Programı'nın ikinci başvuru dönemi başladı.",
@@ -92,7 +107,10 @@ export const news: NewsItem[] = [
     date: "2026-06-01",
     href: "/haberler/verbis-kayit-suresi-uzadi",
     category: "KVKK & Mevzuat",
-    image: "/announcements/verbis.jpeg",
+    image: {
+      url: "/announcements/verbis.jpeg",
+      alt: "VERBİS kayıt süresi uzatma duyurusu görseli",
+    },
     imageRatio: "landscape",
     content: [
       "VERBİS kayıt yükümlülüğü bulunan veri sorumluları için kayıt süresine ilişkin yeni bir düzenleme duyuruldu.",

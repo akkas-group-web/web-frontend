@@ -1,5 +1,5 @@
-
 import type { ArticleItem } from "./article";
+import { NewsItem } from "./news";
 export * from "./contact";
 export interface ServiceItem {
   id: string;
@@ -44,21 +44,11 @@ export interface StatItem {
   sub?: string;
 }
 
-export interface AnnouncementItem {
-  id: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  href: string;
-  category: string;
-  image: string;
-  imageRatio?: "landscape" | "square"; // belirtilmezse landscape (4/3) kabul edilir
-}
 export interface HomeContent {
   services: ServiceItem[];
   brands: BrandItem[];
   sectors: SectorItem[];
   stats: StatItem[];
-  announcements: AnnouncementItem[];
+  announcements: NewsItem[];
   articles: ArticleItem[];
 }

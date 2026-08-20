@@ -1,3 +1,5 @@
+import { MediaImage } from "./media";
+
 export interface NewsItem {
   id: string;
   title: string;
@@ -5,8 +7,7 @@ export interface NewsItem {
   date: string;
   href: string;
   category: string;
-  image: string;
+  image: MediaImage;
   imageRatio?: "landscape" | "square";
-
   content: string[];
 }
