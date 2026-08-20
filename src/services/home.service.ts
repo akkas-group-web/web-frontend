@@ -3,74 +3,8 @@ import { logger } from "@/lib/logger/logger";
 import type { HomeContent } from "@/types";
 import { articles } from "./blog.service";
 import { news } from "./news.service";
-const MOCK_HOME_CONTENT: HomeContent = {
-  services: [
-    {
-      id: "yatirim-danismanligi",
-      title: "Yatırım Danışmanlığı",
-      description:
-        "Yatırım teşvik belgesi, fizibilite raporları ve gümrük vergi muafiyetleri süreçlerinde uçtan uca danışmanlık.",
-      href: "/hizmetlerimiz/yatirim-danismanligi",
-      icon: "invest",
-    },
-    {
-      id: "tesvik-hibe",
-      title: "Teşvik ve Hibe Danışmanlığı",
-      description:
-        "KOSGEB, TÜBİTAK, Kalkınma Ajansları ve Ticaret Bakanlığı destekleriyle işletmenizi büyütün.",
-      href: "/hizmetlerimiz/tesvik-ve-hibe-danismanligi",
-      icon: "grant",
-    },
-    {
-      id: "sigorta-tesvik",
-      title: "Sigorta Teşvik Sistemi (STS)",
-      description:
-        "5510 sayılı kanun kapsamındaki SGK prim teşviklerinin tespiti, geriye dönük hesaplama ve cari takip.",
-      href: "/hizmetlerimiz/sigorta-tesvik-danismanligi",
-      icon: "insurance",
-    },
-    {
-      id: "marka-patent",
-      title: "Marka, Patent ve Fikri Mülkiyet",
-      description:
-        "Marka tescili, patent, endüstriyel tasarım ve coğrafi işaret süreçlerinde vekillik hizmeti.",
-      href: "/hizmetlerimiz/marka-patent-fikri-mulkiyet",
-      icon: "ip",
-    },
-    {
-      id: "kalite-belgelendirme",
-      title: "Kalite Belgelendirme",
-      description:
-        "ISO 9001, ISO 14001, ISO 27001 ve CE markalama süreçlerinde uçtan uca danışmanlık.",
-      href: "/hizmetlerimiz/kalite-sistemleri",
-      icon: "quality",
-    },
-    {
-      id: "osgb",
-      title: "OSGB — İş Sağlığı ve Güvenliği",
-      description:
-        "6331 sayılı kanun gereği iş güvenliği uzmanı, işyeri hekimi ve risk değerlendirme hizmetleri.",
-      href: "/hizmetlerimiz/osgb-is-sagligi-guvenligi",
-      icon: "osgb",
-    },
-    {
-      id: "kvkk",
-      title: "KVKK Danışmanlığı",
-      description:
-        "VERBİS kaydı, veri envanteri, aydınlatma metinleri ve uyumluluk denetimleri.",
-      href: "/hizmetlerimiz/kvkk-danismanligi",
-      icon: "kvkk",
-    },
-    {
-      id: "akkas-karbon",
-      title: "Akkaş Karbon",
-      description:
-        "Kurumsal karbon ayak izi hesaplama, SKDM raporlaması ve sürdürülebilirlik danışmanlığı.",
-      href: "/hizmetlerimiz/akkas-karbon",
-      icon: "carbon",
-    },
-  ],
-
+import { getServiceCategories } from "./service.service";
+const MOCK_HOME_CONTENT: Omit<HomeContent, "services"> = {
   articles,
 
   brands: [
@@ -201,8 +135,20 @@ const MOCK_HOME_CONTENT: HomeContent = {
 
 export async function getHomeContent(): Promise<HomeContent> {
   try {
-    // İleride: await wpClient.query(HOME_QUERY) burada olacak.
-    return MOCK_HOME_CONTENT;
+    const categories = await getServiceCategories();
+
+    return {
+      ...MOCK_HOME_CONTENT,
+      services: categories
+        .filter((c) => c.featured)
+        .map((c) => ({
+          id: c.id,
+          title: c.label,
+          description: c.description,
+          href: c.href,
+          icon: c.icon,
+        })),
+    };
   } catch (error) {
     logger.error("Ana sayfa içeriği alınamadı", { error });
     throw new AppError(

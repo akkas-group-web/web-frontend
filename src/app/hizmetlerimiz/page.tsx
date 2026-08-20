@@ -1,19 +1,13 @@
-import type { Metadata } from "next";
-
-import { ServicesHero } from "@/components/sections/services/ServicesHero";
 import { ServicesAccordion } from "@/components/sections/services/ServicesAccordion";
+import { ServicesHero } from "@/components/sections/services/ServicesHero";
+import { getServiceCategories } from "@/services/service.service";
 
-export const metadata: Metadata = {
-  title: "Hizmetlerimiz | Akkaş Group",
-  description:
-    "Akkaş Group kalite belgelendirme, yatırım danışmanlığı, devlet destekleri ve diğer kurumsal danışmanlık hizmetlerini inceleyin.",
-};
-
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const categories = await getServiceCategories();
   return (
-    <main className="pt-16">
+    <>
       <ServicesHero />
-      <ServicesAccordion />
-    </main>
+      <ServicesAccordion categories={categories} />
+    </>
   );
 }
