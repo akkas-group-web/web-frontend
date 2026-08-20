@@ -3,9 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
-import { SectionEyebrow } from "@/components/shared/SectionEyebrow";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+
 import { AuthorAvatar } from "@/components/shared/AuthorAvatar";
+import { SectionEyebrow } from "@/components/shared/SectionEyebrow";
 import { formatDate } from "@/lib/format-date";
 import type { ArticleItem } from "@/types/article";
 import { CardMedia } from "../shared/CardMedia";
@@ -36,6 +37,7 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <SectionEyebrow label="Uzman Görüşleri" />
+
             <h2 className="font-heading text-3xl font-semibold text-[#0d4d5c] md:text-4xl">
               Makaleler
             </h2>
@@ -50,7 +52,7 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
           </Link>
         </div>
 
-        {/* Kart grid'i - kartlar Duyurular'a göre daha uzun/ince: yazar satırı içerdiği için 4 sütun */}
+        {/* Kart grid'i */}
         <div className="relative mt-8 min-h-[420px]">
           <AnimatePresence mode="wait">
             <motion.div
@@ -58,7 +60,10 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
               initial={{ opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -24 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 0.35,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
             >
               {currentItems.map((item) => (
@@ -67,10 +72,10 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
                   href={item.href}
                   className="card-surface group flex flex-col overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                 >
-                  {/* Makale kapak görseli - her zaman dikdörtgen (video oranı), Blur Letterbox korumalı */}
+                  {/* Makale kapak görseli */}
                   <CardMedia
-                    src={item.image}
-                    alt={item.title}
+                    src={item.image.url}
+                    alt={item.image.alt}
                     ratio="video"
                     fit="contain"
                     className="transition-transform duration-500 group-hover:scale-[1.02]"
@@ -80,24 +85,28 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
                     <time className="text-[11px] font-medium text-[#333333]/40">
                       {formatDate(item.date)}
                     </time>
-                    <h3 className="font-heading mt-1.5 text-sm font-semibold leading-snug text-[#0d4d5c] transition-colors group-hover:text-[#1a7d8f] line-clamp-2">
+
+                    <h3 className="font-heading mt-1.5 line-clamp-2 text-sm font-semibold leading-snug text-[#0d4d5c] transition-colors group-hover:text-[#1a7d8f]">
                       {item.title}
                     </h3>
-                    <p className="mt-1.5 flex-1 text-xs leading-relaxed text-[#333333]/60 line-clamp-3">
+
+                    <p className="mt-1.5 line-clamp-3 flex-1 text-xs leading-relaxed text-[#333333]/60">
                       {item.excerpt}
                     </p>
 
-                    {/* Yazar satırı - fotoğraf Blur Letterbox ile korumalı dairesel avatar */}
+                    {/* Yazar bilgileri */}
                     <div className="mt-4 flex items-center gap-2.5 border-t border-[#0d4d5c]/8 pt-3">
                       <AuthorAvatar
-                        src={item.author.photo}
-                        alt={item.author.name}
+                        src={item.author.photo.url}
+                        alt={item.author.photo.alt}
                         size={32}
                       />
+
                       <div className="min-w-0">
                         <p className="truncate text-xs font-semibold text-[#0d4d5c]">
                           {item.author.name}
                         </p>
+
                         {item.author.role && (
                           <p className="truncate text-[10px] text-[#333333]/50">
                             {item.author.role}
@@ -117,10 +126,11 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
           </AnimatePresence>
         </div>
 
-        {/* Alt: ortalanmış sayfalama kontrolleri */}
+        {/* Sayfalama kontrolleri */}
         {totalPages > 1 && (
           <div className="mt-10 flex items-center justify-center gap-4">
             <button
+              type="button"
               onClick={() => goTo(page - 1)}
               aria-label="Önceki makaleler"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-[#0d4d5c]/15 text-[#0d4d5c] transition-all hover:border-[#1a7d8f] hover:bg-[#e6f2f4]"
@@ -129,19 +139,24 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
             </button>
 
             <div className="flex items-center gap-2">
-              {Array.from({ length: totalPages }).map((_, i) => (
+              {Array.from({ length: totalPages }).map((_, index) => (
                 <button
-                  key={i}
-                  onClick={() => goTo(i)}
-                  aria-label={`${i + 1}. sayfa`}
+                  key={index}
+                  type="button"
+                  onClick={() => goTo(index)}
+                  aria-label={`${index + 1}. sayfa`}
+                  aria-current={index === page ? "page" : undefined}
                   className={`h-2 rounded-full transition-all duration-300 ${
-                    i === page ? "w-6 bg-[#1a7d8f]" : "w-2 bg-[#0d4d5c]/20"
+                    index === page
+                      ? "w-6 bg-[#1a7d8f]"
+                      : "w-2 bg-[#0d4d5c]/20"
                   }`}
                 />
               ))}
             </div>
 
             <button
+              type="button"
               onClick={() => goTo(page + 1)}
               aria-label="Sonraki makaleler"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-[#0d4d5c]/15 text-[#0d4d5c] transition-all hover:border-[#1a7d8f] hover:bg-[#e6f2f4]"

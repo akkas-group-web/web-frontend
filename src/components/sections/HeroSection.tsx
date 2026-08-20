@@ -12,14 +12,16 @@ import {
   Users,
   type LucideIcon,
 } from "lucide-react";
+
 import { STATS } from "@/constants/site";
+import type { MediaImage } from "@/types/media";
 
 interface HeroSlide {
   id: string;
   eyebrow: string;
   title: string;
   description: string;
-  image: string;
+  image: MediaImage;
   href: string;
 }
 
@@ -30,7 +32,10 @@ const HERO_SLIDES: HeroSlide[] = [
     title: "Yatırımınızı doğru adımlarla büyütün",
     description:
       "Teşvik belgesi, fizibilite ve gümrük muafiyeti süreçlerinde uçtan uca yanınızdayız.",
-    image: "/hero/yatirim.png",
+    image: {
+      url: "/hero/yatirim.png",
+      alt: "Yatırım danışmanlığı hizmeti",
+    },
     href: "/hizmetlerimiz/yatirim-danismanligi",
   },
   {
@@ -39,7 +44,10 @@ const HERO_SLIDES: HeroSlide[] = [
     title: "İş sağlığı ve güvenliğinde profesyonel çözümler",
     description:
       "KOSGEB, TÜBİTAK ve Kalkınma Ajansları destekleriyle işletmenizi ileri taşıyoruz.",
-    image: "/hero/osgb.png",
+    image: {
+      url: "/hero/osgb.png",
+      alt: "OSGB ve iş sağlığı güvenliği hizmetleri",
+    },
     href: "/hizmetlerimiz/osgb",
   },
   {
@@ -48,7 +56,10 @@ const HERO_SLIDES: HeroSlide[] = [
     title: "Veri uyumluluğunda güvende kalın",
     description:
       "VERBİS kaydından aydınlatma metinlerine, uçtan uca KVKK uyum süreci.",
-    image: "/hero/kvkk.jpg",
+    image: {
+      url: "/hero/kvkk.jpg",
+      alt: "KVKK danışmanlığı ve veri güvenliği",
+    },
     href: "/hizmetlerimiz/kvkk-danismanligi",
   },
   {
@@ -57,19 +68,22 @@ const HERO_SLIDES: HeroSlide[] = [
     title: "ISO belgelendirmede güvenilir çözüm ortağınız",
     description:
       "ISO 9001, ISO 14001, ISO 27001 ve CE markalama süreçlerini birlikte yönetelim.",
-    image: "/hero/kalite.jpg",
+    image: {
+      url: "/hero/kalite.jpg",
+      alt: "ISO kalite belgelendirme hizmetleri",
+    },
     href: "/hizmetlerimiz/kalite-sistemleri",
   },
 ];
 
 const AUTO_ADVANCE_MS = 6000;
 
-// Sol taraftaki bilgi satırında gösterilecek 2 istatistik + ikonları.
+// Sol taraftaki bilgi satırında gösterilecek 2 istatistik ve ikonları.
 // STATS, constants/site.ts içindeki tek doğruluk kaynağından geliyor.
 const INFO_ROW_ICONS: LucideIcon[] = [Award, Users];
 const INFO_ROW_STATS = [STATS[0], STATS[2]];
 
-// Poster çerçevesinin sol altına taşan vurgu kartı için ayrı bir istatistik.
+// Poster çerçevesinin sol altına taşan vurgu kartı için ayrı istatistik.
 const FLOATING_STAT = STATS[1];
 
 export function HeroSection() {
@@ -78,8 +92,11 @@ export function HeroSection() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % HERO_SLIDES.length);
+      setActiveIndex((previousIndex) => {
+        return (previousIndex + 1) % HERO_SLIDES.length;
+      });
     }, AUTO_ADVANCE_MS);
+
     return () => clearInterval(timer);
   }, [activeIndex]);
 
@@ -88,18 +105,22 @@ export function HeroSection() {
   }
 
   function goPrev() {
-    setActiveIndex(
-      (prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length,
-    );
+    setActiveIndex((previousIndex) => {
+      return (
+        (previousIndex - 1 + HERO_SLIDES.length) % HERO_SLIDES.length
+      );
+    });
   }
 
   function goNext() {
-    setActiveIndex((prev) => (prev + 1) % HERO_SLIDES.length);
+    setActiveIndex((previousIndex) => {
+      return (previousIndex + 1) % HERO_SLIDES.length;
+    });
   }
 
   return (
     <section className="relative -mt-[73px] overflow-hidden bg-gradient-to-br from-brand-turquoise-700 via-brand-turquoise-500 to-brand-turquoise-300 text-white">
-      {/* Dekoratif ızgara deseni (nötr beyaz overlay, marka rengi değil) */}
+      {/* Dekoratif ızgara deseni */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.055]"
         style={{
@@ -108,12 +129,13 @@ export function HeroSection() {
           backgroundSize: "90px 90px",
         }}
       />
+
       {/* Glow lekeleri */}
       <div className="pointer-events-none absolute right-[15%] top-20 h-[380px] w-[380px] rounded-full bg-white/25 blur-[100px]" />
       <div className="pointer-events-none absolute -bottom-40 -left-24 h-[390px] w-[390px] rounded-full bg-brand-turquoise-300/30 blur-[100px]" />
 
       <div className="relative z-[2] mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-6 pb-10 pt-28 md:px-12 md:pt-32 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:pt-47">
-        {/* Sol: Metin İçeriği */}
+        {/* Sol: Metin içeriği */}
         <AnimatePresence mode="wait">
           <motion.div
             key={`${activeSlide.id}-copy`}
@@ -144,6 +166,7 @@ export function HeroSection() {
                 İncele
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
+
               <Link
                 href="/iletisim"
                 className="inline-flex min-h-[50px] items-center gap-2.5 rounded-lg border border-white/20 bg-white/[0.08] px-6 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-white/[0.14]"
@@ -156,18 +179,22 @@ export function HeroSection() {
             <div className="mt-9 flex flex-wrap items-center justify-center gap-6 lg:justify-start">
               {INFO_ROW_STATS.map((stat, index) => {
                 const Icon = INFO_ROW_ICONS[index];
+
                 return (
                   <div key={stat.label} className="flex items-center gap-3">
                     {index > 0 && (
                       <span className="hidden h-9 w-px bg-white/15 sm:block" />
                     )}
+
                     <span className="grid h-8 w-8 shrink-0 place-items-center rounded-[8px] border border-white/15 bg-white/[0.08] text-brand-turquoise-100">
                       <Icon className="h-3.5 w-3.5" />
                     </span>
+
                     <div className="flex flex-col items-start gap-1">
                       <strong className="text-sm text-white">
                         {stat.value}
                       </strong>
+
                       <small className="text-[9px] tracking-wide text-white/50">
                         {stat.label}
                       </small>
@@ -179,7 +206,7 @@ export function HeroSection() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Sağ: Poster Çerçevesi + Taşan Bilgi Kartı */}
+        {/* Sağ: Poster çerçevesi ve bilgi kartı */}
         <div className="relative mx-auto w-full max-w-[480px] lg:mx-0 lg:ml-auto">
           <AnimatePresence mode="wait">
             <motion.div
@@ -196,12 +223,14 @@ export function HeroSection() {
                   {activeSlide.eyebrow}
                 </span>
               </div>
+
               <div className="relative h-[300px] overflow-hidden rounded-[15px] bg-brand-turquoise-50">
                 <Image
-                  src={activeSlide.image}
-                  alt={activeSlide.title}
+                  src={activeSlide.image.url}
+                  alt={activeSlide.image.alt}
                   fill
-                  priority
+                  priority={activeIndex === 0}
+                  sizes="(max-width: 1024px) 100vw, 480px"
                   className="object-cover"
                 />
               </div>
@@ -212,10 +241,12 @@ export function HeroSection() {
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[10px] bg-white text-brand-turquoise-700">
               <Award className="h-5 w-5" />
             </span>
+
             <div className="flex flex-col gap-1">
               <small className="text-[10px] text-white/55">
                 {FLOATING_STAT.label}
               </small>
+
               <strong className="text-xs text-white">
                 {FLOATING_STAT.value}
               </strong>
@@ -224,18 +255,21 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* İlerleme Çubuğu */}
+      {/* İlerleme çubuğu */}
       <div className="relative z-[3] h-px w-full bg-white/[0.13]">
         <motion.span
           key={`${activeSlide.id}-progress`}
           initial={{ width: "0%" }}
           animate={{ width: "100%" }}
-          transition={{ duration: AUTO_ADVANCE_MS / 1000, ease: "linear" }}
+          transition={{
+            duration: AUTO_ADVANCE_MS / 1000,
+            ease: "linear",
+          }}
           className="block h-full bg-brand-turquoise-400"
         />
       </div>
 
-      {/* Nokta Navigasyon / Sayaç / Ok Butonları */}
+      {/* Nokta navigasyon, sayaç ve ok butonları */}
       <div className="relative z-[3] mx-auto grid max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-6 py-5 md:px-12">
         <div className="flex gap-2">
           {HERO_SLIDES.map((slide, index) => (
@@ -260,6 +294,7 @@ export function HeroSection() {
         <div className="flex items-center gap-2.5 text-[11px] text-white">
           <span>{String(activeIndex + 1).padStart(2, "0")}</span>
           <span className="h-px w-9 bg-white/25" />
+
           <small className="text-white/45">
             {String(HERO_SLIDES.length).padStart(2, "0")}
           </small>
@@ -274,6 +309,7 @@ export function HeroSection() {
           >
             <ArrowLeft className="h-4 w-4" />
           </button>
+
           <button
             type="button"
             onClick={goNext}

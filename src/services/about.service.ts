@@ -8,7 +8,10 @@ const MOCK_ABOUT_CONTENT: AboutContent = {
     titleRest: "Kimiz?",
     description:
       "1999'dan bu yana yatırım, teşvik, marka-patent ve KVKK danışmanlığı alanlarında; kobilerden holdinglere kadar geniş bir yelpazede kurumsal işletmelerin ihtiyaçlarına yönelik uçtan uca danışmanlık çözümleri sunuyoruz.",
-    imageSrc: "/office/akkasgroup.png",
+    image: {
+      url: "/office/akkasgroup.png",
+      alt: "Akkaş Group ofisi",
+    },
   },
   story: {
     eyebrow: "Kurumsal Hikayemiz",
@@ -21,7 +24,10 @@ const MOCK_ABOUT_CONTENT: AboutContent = {
     highlightQuote:
       "Firma paydaşı anlayışıyla, müşterilerimizin haberi olmayan her yeniliği önce biz duyuruyoruz.",
     highlightAuthor: "Erkan Akkaş, Kurucu",
-    imageSrc: "/authors/erkan-akkas.jpg",
+    image: {
+      url: "/authors/erkan-akkas.jpg",
+      alt: "Akkaş Group kurucusu Erkan Akkaş",
+    },
   },
   timeline: [
     {
@@ -92,6 +98,7 @@ export async function getAboutContent(): Promise<AboutContent> {
     return MOCK_ABOUT_CONTENT;
   } catch (error) {
     logger.error("Hakkımızda içeriği alınamadı", { error });
+
     throw new AppError(
       "Hakkımızda içeriği yüklenemedi",
       "CONTENT_FETCH_FAILED",

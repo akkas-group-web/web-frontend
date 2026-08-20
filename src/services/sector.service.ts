@@ -11,7 +11,10 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
       "Hastane, klinik, tıp merkezi ve sağlık kuruluşlarının operasyonel, mevzuatsal ve kurumsal ihtiyaçlarına yönelik danışmanlık çözümleri.",
     heroDescription:
       "Sağlık kuruluşlarının iş sağlığı ve güvenliği, kişisel verilerin korunması, kalite yönetimi ve mevzuata uyum süreçlerini birlikte ele alıyor; kurumların sürdürülebilir ve güvenli bir yapıyla faaliyet göstermelerine destek oluyoruz.",
-    image: "/sectors/saglik.png",
+    image: {
+      url: "/sectors/saglik.png",
+      alt: "Sağlık, hastane ve klinik sektörü",
+    },
     services: [
       {
         id: "osgb",
@@ -19,7 +22,10 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
         description:
           "Sağlık kuruluşlarının iş sağlığı ve güvenliği yükümlülüklerini mevzuata uygun şekilde yönetmelerine yönelik profesyonel OSGB hizmetleri.",
         href: "/hizmetlerimiz/osgb-is-sagligi-guvenligi",
-        icon: "osgb",
+        icon: {
+          url: "/icons/osgb.svg",
+          alt: "İş sağlığı ve güvenliği",
+        },
       },
       {
         id: "kvkk",
@@ -27,7 +33,10 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
         description:
           "Hasta, çalışan ve ziyaretçi verilerinin korunmasına yönelik KVKK uyum süreçlerinin oluşturulması ve geliştirilmesi.",
         href: "/hizmetlerimiz/kvkk-danismanligi",
-        icon: "kvkk",
+        icon: {
+          url: "/icons/kvkk.svg",
+          alt: "KVKK danışmanlığı",
+        },
       },
       {
         id: "kalite",
@@ -35,7 +44,10 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
         description:
           "Sağlık kuruluşlarında kalite yönetim sistemlerinin kurulması, geliştirilmesi ve belgelendirme süreçlerine yönelik danışmanlık.",
         href: "/hizmetlerimiz/kalite-sistemleri",
-        icon: "quality",
+        icon: {
+          url: "/icons/quality.svg",
+          alt: "Kalite yönetim sistemleri",
+        },
       },
       {
         id: "mevzuat-uyum",
@@ -43,7 +55,10 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
         description:
           "Sağlık sektöründeki güncel mevzuat ve kurumsal yükümlülüklerin takip edilmesi ve süreçlerin uyumlu şekilde yönetilmesi.",
         href: "/hizmetlerimiz/mevzuat-uyum-danismanligi",
-        icon: "compliance",
+        icon: {
+          url: "/icons/compliance.svg",
+          alt: "Mevzuat ve uyum danışmanlığı",
+        },
       },
     ],
     benefits: [
@@ -55,9 +70,18 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
       "Sağlık kuruluşlarının sürdürülebilir bir yönetim yapısına kavuşması",
     ],
     stats: [
-      { value: "25+", label: "Yıllık danışmanlık tecrübesi" },
-      { value: "200+", label: "Uzman danışman" },
-      { value: "18.000+", label: "Hizmet verilen firma" },
+      {
+        value: "25+",
+        label: "Yıllık danışmanlık tecrübesi",
+      },
+      {
+        value: "200+",
+        label: "Uzman danışman",
+      },
+      {
+        value: "18.000+",
+        label: "Hizmet verilen firma",
+      },
     ],
   },
 ];
@@ -68,6 +92,7 @@ export async function getSectors(): Promise<SectorContent[]> {
     return MOCK_SECTOR_CONTENT;
   } catch (error) {
     logger.error("Sektör içerikleri alınamadı", { error });
+
     throw new AppError(
       "Sektör içerikleri yüklenemedi",
       "CONTENT_FETCH_FAILED",
@@ -81,9 +106,11 @@ export async function getSectorBySlug(
 ): Promise<SectorContent | null> {
   try {
     const sector = MOCK_SECTOR_CONTENT.find((item) => item.id === slug);
+
     return sector ?? null;
   } catch (error) {
     logger.error("Sektör içeriği alınamadı", { error, slug });
+
     throw new AppError(
       "Sektör içeriği yüklenemedi",
       "CONTENT_FETCH_FAILED",

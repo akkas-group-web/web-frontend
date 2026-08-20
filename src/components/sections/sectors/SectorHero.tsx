@@ -79,7 +79,7 @@ export function SectorHero({ sector }: SectorHeroProps) {
             <div className="relative overflow-hidden rounded-[28px] border border-white/70 bg-white/60 p-2 shadow-[0_30px_70px_-35px_rgba(13,77,92,0.35)] backdrop-blur-sm">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[22px] bg-brand-soft">
                 <Image
-                  src={sector.image}
+                 src={sector.image.url}
                   alt={sector.title}
                   fill
                   priority

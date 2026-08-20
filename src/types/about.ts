@@ -1,3 +1,5 @@
+import type { MediaImage } from "./media";
+
 export interface TimelineMilestone {
   id: string;
   year: string;
@@ -12,10 +14,10 @@ export interface ValueItem {
 }
 
 export interface AboutHeroContent {
-  titleHighlight: string; // "Biz" — renkli kutu içinde vurgulanan kelime
-  titleRest: string; // "Kimiz?" — düz metin devamı
+  titleHighlight: string;
+  titleRest: string;
   description: string;
-  imageSrc: string;
+  image: MediaImage;
 }
 
 export interface AboutStoryContent {
@@ -24,7 +26,7 @@ export interface AboutStoryContent {
   paragraphs: string[];
   highlightQuote: string;
   highlightAuthor: string;
-  imageSrc: string;
+  image: MediaImage;
 }
 
 export interface VisionMissionContent {

@@ -1,6 +1,10 @@
 import type { ArticleItem } from "./article";
-import { NewsItem } from "./news";
+import type { MediaImage } from "./media";
+import type { NewsItem } from "./news";
+
 export * from "./contact";
+export * from "./media";
+
 export interface ServiceItem {
   id: string;
   title: string;
@@ -24,17 +28,15 @@ export interface BrandItem {
   name: string;
   description: string;
   href: string;
-  // label: string;
-  logo: string;
+  logo: MediaImage;
 }
 
 export interface SectorItem {
   id: string;
   title: string;
   href: string;
-  description?: string; // Sektörün kısa açıklaması
-  // iconName?: string; // Dinamik ikon ismi
-  image?: string;
+  description?: string;
+  image?: MediaImage;
 }
 
 export interface StatItem {
