@@ -4,7 +4,9 @@ import type { HomeContent } from "@/types";
 import { articles } from "./blog.service";
 import { news } from "./news.service";
 import { getServiceCategories } from "./service.service";
-const MOCK_HOME_CONTENT: Omit<HomeContent, "services"> = {
+import { getClientReferences } from "./reference.service";
+
+const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
   articles,
 
   brands: [
@@ -135,10 +137,14 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services"> = {
 
 export async function getHomeContent(): Promise<HomeContent> {
   try {
-    const categories = await getServiceCategories();
+    const [categories, clients] = await Promise.all([
+      getServiceCategories(),
+      getClientReferences(),
+    ]);
 
     return {
       ...MOCK_HOME_CONTENT,
+      clients,
       services: categories
         .filter((c) => c.featured)
         .map((c) => ({

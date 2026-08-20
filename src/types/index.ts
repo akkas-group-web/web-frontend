@@ -1,6 +1,7 @@
 import type { ArticleItem } from "./article";
 import { NewsItem } from "./news";
 export * from "./contact";
+import type { ClientReference } from "@/types/reference";
 export interface ServiceItem {
   id: string;
   title: string;
@@ -53,4 +54,5 @@ export interface HomeContent {
   stats: StatItem[];
   announcements: NewsItem[];
   articles: ArticleItem[];
+  clients: ClientReference[];
 }

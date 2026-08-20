@@ -3,20 +3,6 @@ import { logger } from "@/lib/logger/logger";
 import type { ContactOffice } from "@/types";
 import { getServiceCategories } from "./service.service";
 
-const MOCK_CONTACT_SERVICES = [
-  "Kalite Belgelendirme",
-  "Eğitimler",
-  "Yatırım Danışmanlığı",
-  "Fikri ve Sınai Mülkiyet Hakları",
-  "Ortak Sağlık ve Güvenlik Birimi Hizmetleri",
-  "Devlet Destekleri",
-  "Sigorta Teşvik Danışmanlığı",
-  "Kişisel Verileri Koruma Danışmanlığı",
-  "Akkaş Karbon",
-  "ProKVK",
-  "Diğer Hizmetlerimiz",
-];
-
 const MOCK_CONTACT_OFFICES: ContactOffice[] = [
   {
     id: "istanbul-anadolu",
