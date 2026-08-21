@@ -1,10 +1,9 @@
 import type { ArticleItem } from "./article";
 import type { MediaImage } from "./media";
 import type { NewsItem } from "./news";
-
 export * from "./contact";
+import type { ClientReference } from "@/types/reference";
 export * from "./media";
-
 export interface ServiceItem {
   id: string;
   title: string;
@@ -21,8 +20,11 @@ export type ServiceIconKey =
   | "quality"
   | "osgb"
   | "kvkk"
-  | "carbon";
-
+  | "carbon"
+  | "education"
+  | "prokvk"
+  | "compliance"
+  | "other";
 export interface BrandItem {
   id: string;
   name: string;
@@ -34,7 +36,7 @@ export interface BrandItem {
 export interface SectorItem {
   id: string;
   title: string;
-  href: string;
+  slug: string;
   description?: string;
   image?: MediaImage;
 }
@@ -53,4 +55,5 @@ export interface HomeContent {
   stats: StatItem[];
   announcements: NewsItem[];
   articles: ArticleItem[];
+  clients: ClientReference[];
 }

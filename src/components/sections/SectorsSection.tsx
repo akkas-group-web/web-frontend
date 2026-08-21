@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { SectionEyebrow } from "@/components/shared/SectionEyebrow";
 import type { SectorItem } from "@/types";
+import { routes } from "@/lib/routes";
 
 interface SectorsSectionProps {
   sectors: SectorItem[];
@@ -74,7 +75,7 @@ export function SectorsSection({ sectors }: SectorsSectionProps) {
         {sectors.map((sector, index) => (
           <Link
             key={sector.id}
-            href={sector.href}
+            href={routes.sector(sector.slug)}
             draggable={false}
             className="group block w-[260px] flex-none snap-center md:w-[300px]"
           >

@@ -9,7 +9,7 @@ export const articles: ArticleItem[] = [
     excerpt:
       "Yeni teşvik paketiyle birlikte hangi sektörler öne çıkıyor, detayları derledik.",
     date: "2025-03-14T00:00:00.000Z",
-    href: "/blog/2025-yatirim-tesvikleri",
+    slug: "2025-yatirim-tesvikleri",
     image: {
       url: "/articles/tesvik.png",
       alt: "2025 yatırım teşvikleri",
@@ -29,7 +29,7 @@ export const articles: ArticleItem[] = [
     excerpt:
       "Denetimlerde en çok karşılaştığımız eksiklikleri ve nasıl önlem alınacağını anlatıyoruz.",
     date: "2025-02-27T00:00:00.000Z",
-    href: "/blog/kvkk-sik-hatalar",
+    slug: "kvkk-sik-hatalar",
     image: {
       url: "/articles/kvkk-hatalar.jpg",
       alt: "KVKK uyumunda sık yapılan hatalar",
@@ -49,7 +49,7 @@ export const articles: ArticleItem[] = [
     excerpt:
       "Başvurudan sertifikaya kadar adım adım süreç ve firmaların dikkat etmesi gerekenler.",
     date: "2025-02-10T00:00:00.000Z",
-    href: "/blog/iso-9001-sureci",
+    slug: "iso-9001-sureci",
     image: {
       url: "/articles/iso-9001.png",
       alt: "ISO 9001 belgelendirme süreci",
@@ -69,7 +69,7 @@ export const articles: ArticleItem[] = [
     excerpt:
       "2025 yılında yürürlüğe giren teşviklerden hangi sektörlerin yararlanabileceğini inceledik.",
     date: "2025-01-22T00:00:00.000Z",
-    href: "/blog/dis-ticaret-tesvikleri-2025",
+    slug: "dis-ticaret-tesvikleri-2025",
     image: {
       url: "/articles/dis-ticaret.png",
       alt: "İhracatçılar için dış ticaret teşvikleri",
@@ -89,7 +89,7 @@ export const articles: ArticleItem[] = [
     excerpt:
       "Yeni teşvik paketiyle birlikte hangi sektörler öne çıkıyor, detayları derledik.",
     date: "2025-03-14T00:00:00.000Z",
-    href: "/blog/2025-yatirim-tesvikleri",
+    slug: "2025-yatirim-tesvikleri",
     image: {
       url: "/articles/tesvik.jpg",
       alt: "2025 yatırım teşvikleri hakkında bilgilendirme",
@@ -124,7 +124,7 @@ export async function getBlogPostBySlug(
   slug: string,
 ): Promise<ArticleItem | null> {
   try {
-    const article = articles.find((item) => item.href === `/blog/${slug}`);
+    const article = articles.find((item) => item.slug === slug);
     return article ?? null;
   } catch (error) {
     logger.error("Blog yazısı alınamadı", { error, slug });

@@ -6,7 +6,7 @@ import { StatsSection } from "@/components/sections/StatsSection";
 import { AnnouncementsSection } from "@/components/sections/AnnouncementsSection";
 import { ReferencesSection } from "@/components/sections/ReferencesSection";
 import { ArticlesSection } from "@/components/sections/Articlessection";
-import { getHomeContent } from "@/services/home.service";
+import { getHomeContent } from "@/services";
 
 export default async function HomePage() {
   const content = await getHomeContent();
@@ -18,7 +18,7 @@ export default async function HomePage() {
       <ServicesSection services={content.services} />
       <BrandsStrip brands={content.brands} />
       <SectorsSection sectors={content.sectors} />
-      <ReferencesSection />
+      <ReferencesSection clients={content.clients} />
       <ArticlesSection articles={content.articles} />
       <AnnouncementsSection announcements={content.announcements} />
     </>

@@ -1,20 +1,7 @@
 import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
 import type { ContactOffice } from "@/types";
-
-const MOCK_CONTACT_SERVICES = [
-  "Kalite Belgelendirme",
-  "Eğitimler",
-  "Yatırım Danışmanlığı",
-  "Fikri ve Sınai Mülkiyet Hakları",
-  "Ortak Sağlık ve Güvenlik Birimi Hizmetleri",
-  "Devlet Destekleri",
-  "Sigorta Teşvik Danışmanlığı",
-  "Kişisel Verileri Koruma Danışmanlığı",
-  "Akkaş Karbon",
-  "ProKVK",
-  "Diğer Hizmetlerimiz",
-];
+import { getServiceCategories } from "./service.service";
 
 const MOCK_CONTACT_OFFICES: ContactOffice[] = [
   {
@@ -37,9 +24,9 @@ const MOCK_CONTACT_OFFICES: ContactOffice[] = [
 
 export async function getContactContent() {
   try {
-    // İleride: await wpClient.query(CONTACT_QUERY) burada olacak.
+    const categories = await getServiceCategories();
     return {
-      services: MOCK_CONTACT_SERVICES,
+      services: categories.map((c) => c.label),
       offices: MOCK_CONTACT_OFFICES,
     };
   } catch (error) {

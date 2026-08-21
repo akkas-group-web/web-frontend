@@ -5,6 +5,7 @@ import type { SectorContent } from "@/types/sector";
 const MOCK_SECTOR_CONTENT: SectorContent[] = [
   {
     id: "saglik-hastane-klinik",
+    slug: "saglik-hastane-klinik",
     title: "Sağlık, Hastane ve Klinik",
     shortTitle: "Sağlık",
     description:
@@ -21,44 +22,32 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
         title: "OSGB & İş Sağlığı ve Güvenliği",
         description:
           "Sağlık kuruluşlarının iş sağlığı ve güvenliği yükümlülüklerini mevzuata uygun şekilde yönetmelerine yönelik profesyonel OSGB hizmetleri.",
-        href: "/hizmetlerimiz/osgb-is-sagligi-guvenligi",
-        icon: {
-          url: "/icons/osgb.svg",
-          alt: "İş sağlığı ve güvenliği",
-        },
+        categoryId: "osgb",
+        icon: "osgb",
       },
       {
         id: "kvkk",
         title: "KVKK Danışmanlığı",
         description:
           "Hasta, çalışan ve ziyaretçi verilerinin korunmasına yönelik KVKK uyum süreçlerinin oluşturulması ve geliştirilmesi.",
-        href: "/hizmetlerimiz/kvkk-danismanligi",
-        icon: {
-          url: "/icons/kvkk.svg",
-          alt: "KVKK danışmanlığı",
-        },
+        categoryId: "kvkk-danismanligi",
+        icon: "kvkk",
       },
       {
         id: "kalite",
         title: "Kalite Sistemleri",
         description:
           "Sağlık kuruluşlarında kalite yönetim sistemlerinin kurulması, geliştirilmesi ve belgelendirme süreçlerine yönelik danışmanlık.",
-        href: "/hizmetlerimiz/kalite-sistemleri",
-        icon: {
-          url: "/icons/quality.svg",
-          alt: "Kalite yönetim sistemleri",
-        },
+        categoryId: "kalite-belgelendirme",
+        icon: "quality",
       },
       {
         id: "mevzuat-uyum",
         title: "Mevzuat ve Uyum Danışmanlığı",
         description:
           "Sağlık sektöründeki güncel mevzuat ve kurumsal yükümlülüklerin takip edilmesi ve süreçlerin uyumlu şekilde yönetilmesi.",
-        href: "/hizmetlerimiz/mevzuat-uyum-danismanligi",
-        icon: {
-          url: "/icons/compliance.svg",
-          alt: "Mevzuat ve uyum danışmanlığı",
-        },
+        categoryId: "diger",
+        icon: "compliance",
       },
     ],
     benefits: [
@@ -105,7 +94,7 @@ export async function getSectorBySlug(
   slug: string,
 ): Promise<SectorContent | null> {
   try {
-    const sector = MOCK_SECTOR_CONTENT.find((item) => item.id === slug);
+    const sector = MOCK_SECTOR_CONTENT.find((item) => item.slug === slug);
 
     return sector ?? null;
   } catch (error) {

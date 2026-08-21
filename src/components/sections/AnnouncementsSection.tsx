@@ -8,6 +8,7 @@ import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { SectionEyebrow } from "@/components/shared/SectionEyebrow";
 import type { NewsItem } from "@/types/news";
 import { CardMedia } from "../shared/CardMedia";
+import { routes } from "@/lib/routes";
 
 interface AnnouncementsSectionProps {
   announcements: NewsItem[];
@@ -75,7 +76,7 @@ export function AnnouncementsSection({
                 return (
                   <Link
                     key={item.id}
-                    href={item.href}
+                    href={routes.news(item.slug)}
                     className="card-surface group flex flex-col overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                   >
                     {/* Görsel - dinamik oran: kare veya dikdörtgen */}

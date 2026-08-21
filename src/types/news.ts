@@ -5,7 +5,7 @@ export interface NewsItem {
   title: string;
   excerpt: string;
   date: string;
-  href: string;
+  slug: string;
   category: string;
   image: MediaImage;
   imageRatio?: "landscape" | "square";

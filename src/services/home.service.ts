@@ -1,78 +1,12 @@
 import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
 import type { HomeContent } from "@/types";
-
 import { articles } from "./blog.service";
 import { news } from "./news.service";
+import { getServiceCategories } from "./service.service";
+import { getClientReferences } from "./reference.service";
 
-const MOCK_HOME_CONTENT: HomeContent = {
-  services: [
-    {
-      id: "yatirim-danismanligi",
-      title: "Yatırım Danışmanlığı",
-      description:
-        "Yatırım teşvik belgesi, fizibilite raporları ve gümrük vergi muafiyetleri süreçlerinde uçtan uca danışmanlık.",
-      href: "/hizmetlerimiz/yatirim-danismanligi",
-      icon: "invest",
-    },
-    {
-      id: "tesvik-hibe",
-      title: "Teşvik ve Hibe Danışmanlığı",
-      description:
-        "KOSGEB, TÜBİTAK, Kalkınma Ajansları ve Ticaret Bakanlığı destekleriyle işletmenizi büyütün.",
-      href: "/hizmetlerimiz/tesvik-ve-hibe-danismanligi",
-      icon: "grant",
-    },
-    {
-      id: "sigorta-tesvik",
-      title: "Sigorta Teşvik Sistemi (STS)",
-      description:
-        "5510 sayılı kanun kapsamındaki SGK prim teşviklerinin tespiti, geriye dönük hesaplama ve cari takip.",
-      href: "/hizmetlerimiz/sigorta-tesvik-danismanligi",
-      icon: "insurance",
-    },
-    {
-      id: "marka-patent",
-      title: "Marka, Patent ve Fikri Mülkiyet",
-      description:
-        "Marka tescili, patent, endüstriyel tasarım ve coğrafi işaret süreçlerinde vekillik hizmeti.",
-      href: "/hizmetlerimiz/marka-patent-fikri-mulkiyet",
-      icon: "ip",
-    },
-    {
-      id: "kalite-belgelendirme",
-      title: "Kalite Belgelendirme",
-      description:
-        "ISO 9001, ISO 14001, ISO 27001 ve CE markalama süreçlerinde uçtan uca danışmanlık.",
-      href: "/hizmetlerimiz/kalite-sistemleri",
-      icon: "quality",
-    },
-    {
-      id: "osgb",
-      title: "OSGB — İş Sağlığı ve Güvenliği",
-      description:
-        "6331 sayılı kanun gereği iş güvenliği uzmanı, işyeri hekimi ve risk değerlendirme hizmetleri.",
-      href: "/hizmetlerimiz/osgb-is-sagligi-guvenligi",
-      icon: "osgb",
-    },
-    {
-      id: "kvkk",
-      title: "KVKK Danışmanlığı",
-      description:
-        "VERBİS kaydı, veri envanteri, aydınlatma metinleri ve uyumluluk denetimleri.",
-      href: "/hizmetlerimiz/kvkk-danismanligi",
-      icon: "kvkk",
-    },
-    {
-      id: "akkas-karbon",
-      title: "Akkaş Karbon",
-      description:
-        "Kurumsal karbon ayak izi hesaplama, SKDM raporlaması ve sürdürülebilirlik danışmanlığı.",
-      href: "/hizmetlerimiz/akkas-karbon",
-      icon: "carbon",
-    },
-  ],
-
+const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
   articles,
 
   brands: [
@@ -159,7 +93,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
     {
       id: "kobiler",
       title: "KOBİ'ler",
-      href: "/sektorler/kobiler",
+      slug: "kobiler",
       image: {
         url: "/sectors/kobi.png",
         alt: "KOBİ işletmeleri",
@@ -168,7 +102,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
     {
       id: "holdingler",
       title: "Holdingler",
-      href: "/sektorler/holdingler",
+      slug: "holdingler",
       image: {
         url: "/sectors/holding.png",
         alt: "Holdingler",
@@ -177,7 +111,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
     {
       id: "bankalar",
       title: "Bankalar",
-      href: "/sektorler/bankalar",
+      slug: "bankalar",
       image: {
         url: "/sectors/bank.png",
         alt: "Bankacılık sektörü",
@@ -186,7 +120,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
     {
       id: "insaat-enerji",
       title: "İnşaat ve Enerji",
-      href: "/sektorler/insaat-ve-enerji",
+      slug: "insaat-ve-enerji",
       image: {
         url: "/sectors/insaat.png",
         alt: "İnşaat ve enerji sektörü",
@@ -195,7 +129,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
     {
       id: "avm-perakende",
       title: "AVM ve Perakende",
-      href: "/sektorler/avm-ve-perakende",
+      slug: "avm-ve-perakende",
       image: {
         url: "/sectors/perakende.jpg",
         alt: "AVM ve perakende sektörü",
@@ -204,7 +138,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
     {
       id: "sanayi",
       title: "Sanayi Tesisleri",
-      href: "/sektorler/sanayi-tesisleri",
+      slug: "sanayi-tesisleri",
       image: {
         url: "/sectors/justin.png",
         alt: "Sanayi tesisleri",
@@ -213,7 +147,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
     {
       id: "Gıda",
       title: "Gıda",
-      href: "/sektorler/Gıda-sektoru",
+      slug: "Gıda-sektoru",
       image: {
         url: "/sectors/gida.png",
         alt: "Gıda sektörü",
@@ -222,7 +156,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
     {
       id: "saglik",
       title: "Sağlık, Hastane ve Klinik",
-      href: "/sektorler/saglik-hastane-klinik",
+      slug: "saglik-hastane-klinik",
       image: {
         url: "/sectors/saglik.png",
         alt: "Sağlık, hastane ve klinik sektörü",
@@ -231,7 +165,7 @@ const MOCK_HOME_CONTENT: HomeContent = {
     {
       id: "turizm",
       title: "Turizm",
-      href: "/sektorler/turizm",
+      slug: "turizm",
       image: {
         url: "/sectors/turizm.png",
         alt: "Turizm sektörü",
@@ -267,8 +201,24 @@ const MOCK_HOME_CONTENT: HomeContent = {
 
 export async function getHomeContent(): Promise<HomeContent> {
   try {
-    // İleride: await wpClient.query(HOME_QUERY) burada olacak.
-    return MOCK_HOME_CONTENT;
+    const [categories, clients] = await Promise.all([
+      getServiceCategories(),
+      getClientReferences(),
+    ]);
+
+    return {
+      ...MOCK_HOME_CONTENT,
+      clients,
+      services: categories
+        .filter((c) => c.featured)
+        .map((c) => ({
+          id: c.id,
+          title: c.label,
+          description: c.description,
+          href: c.href,
+          icon: c.icon,
+        })),
+    };
   } catch (error) {
     logger.error("Ana sayfa içeriği alınamadı", { error });
 
@@ -279,4 +229,3 @@ export async function getHomeContent(): Promise<HomeContent> {
     );
   }
 }
-

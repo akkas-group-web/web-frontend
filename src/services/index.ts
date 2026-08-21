@@ -6,7 +6,11 @@ export { getBlogPosts, getBlogPostBySlug } from "./blog.service";
 
 export { getNews, getNewsBySlug } from "./news.service";
 
-export { getServices, getServiceByCategoryAndSlug } from "./service.service";
+export {
+  getServices,
+  getServiceByCategoryAndSlug,
+  getServiceCategories,
+} from "./service.service";
 
 export { getSectors, getSectorBySlug } from "./sector.service";
 
