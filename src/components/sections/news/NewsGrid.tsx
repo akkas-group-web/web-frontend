@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight, CalendarDays, Newspaper } from "lucide-react";
 
 import type { HomeContent } from "@/types";
+import { routes } from "@/lib/routes";
 
 type NewsItem = HomeContent["announcements"][number];
 
@@ -74,7 +75,7 @@ export function NewsGrid({ news }: NewsGridProps) {
 
                     {/* GÖRSEL */}
                     <Link
-                      href={item.href}
+                      href={routes.news(item.slug)}
                       className="relative block aspect-[16/10] overflow-hidden rounded-[16px] bg-[#EAF6F7]"
                     >
                       <Image
@@ -107,7 +108,7 @@ export function NewsGrid({ news }: NewsGridProps) {
                         </span>
                       </div>
 
-                      <Link href={item.href}>
+                      <Link href={routes.news(item.slug)}>
                         <h3 className="max-w-2xl text-[20px] font-semibold leading-[1.35] tracking-[-0.02em] text-[#173D43] transition-colors duration-300 group-hover:text-[#118B99]">
                           {item.title}
                         </h3>
@@ -118,7 +119,7 @@ export function NewsGrid({ news }: NewsGridProps) {
                       </p>
 
                       <Link
-                        href={item.href}
+                        href={routes.news(item.slug)}
                         className="mt-4 inline-flex w-fit items-center gap-2 text-xs font-semibold text-[#118B99] transition-all duration-300 hover:gap-3"
                       >
                         Haberi görüntüle
@@ -146,7 +147,7 @@ export function NewsGrid({ news }: NewsGridProps) {
                 {news.slice(0, 5).map((item, index) => (
                   <Link
                     key={item.id}
-                    href={item.href}
+                    href={routes.news(item.slug)}
                     className="group relative block py-4 pl-5 first:pt-0"
                   >
                     <span className="absolute -left-[4.5px] top-[22px] h-2 w-2 rounded-full border-2 border-white bg-[#118B99] first:top-[6px]" />

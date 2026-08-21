@@ -36,7 +36,7 @@ export interface BrandItem {
 export interface SectorItem {
   id: string;
   title: string;
-  href: string;
+  slug: string;
   description?: string;
   image?: MediaImage;
 }

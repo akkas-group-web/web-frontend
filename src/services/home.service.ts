@@ -93,7 +93,7 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
     {
       id: "kobiler",
       title: "KOBİ'ler",
-      href: "/sektorler/kobiler",
+      slug: "kobiler",
       image: {
         url: "/sectors/kobi.png",
         alt: "KOBİ işletmeleri",
@@ -102,7 +102,7 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
     {
       id: "holdingler",
       title: "Holdingler",
-      href: "/sektorler/holdingler",
+      slug: "holdingler",
       image: {
         url: "/sectors/holding.png",
         alt: "Holdingler",
@@ -111,7 +111,7 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
     {
       id: "bankalar",
       title: "Bankalar",
-      href: "/sektorler/bankalar",
+      slug: "bankalar",
       image: {
         url: "/sectors/bank.png",
         alt: "Bankacılık sektörü",
@@ -120,7 +120,7 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
     {
       id: "insaat-enerji",
       title: "İnşaat ve Enerji",
-      href: "/sektorler/insaat-ve-enerji",
+      slug: "insaat-ve-enerji",
       image: {
         url: "/sectors/insaat.png",
         alt: "İnşaat ve enerji sektörü",
@@ -129,7 +129,7 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
     {
       id: "avm-perakende",
       title: "AVM ve Perakende",
-      href: "/sektorler/avm-ve-perakende",
+      slug: "avm-ve-perakende",
       image: {
         url: "/sectors/perakende.jpg",
         alt: "AVM ve perakende sektörü",
@@ -138,7 +138,7 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
     {
       id: "sanayi",
       title: "Sanayi Tesisleri",
-      href: "/sektorler/sanayi-tesisleri",
+      slug: "sanayi-tesisleri",
       image: {
         url: "/sectors/justin.png",
         alt: "Sanayi tesisleri",
@@ -147,7 +147,7 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
     {
       id: "Gıda",
       title: "Gıda",
-      href: "/sektorler/Gıda-sektoru",
+      slug: "Gıda-sektoru",
       image: {
         url: "/sectors/gida.png",
         alt: "Gıda sektörü",
@@ -156,7 +156,7 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
     {
       id: "saglik",
       title: "Sağlık, Hastane ve Klinik",
-      href: "/sektorler/saglik-hastane-klinik",
+      slug: "saglik-hastane-klinik",
       image: {
         url: "/sectors/saglik.png",
         alt: "Sağlık, hastane ve klinik sektörü",
@@ -165,7 +165,7 @@ const MOCK_HOME_CONTENT: Omit<HomeContent, "services" | "clients"> = {
     {
       id: "turizm",
       title: "Turizm",
-      href: "/sektorler/turizm",
+      slug: "turizm",
       image: {
         url: "/sectors/turizm.png",
         alt: "Turizm sektörü",

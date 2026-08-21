@@ -5,6 +5,7 @@ import type { SectorContent } from "@/types/sector";
 const MOCK_SECTOR_CONTENT: SectorContent[] = [
   {
     id: "saglik-hastane-klinik",
+    slug: "saglik-hastane-klinik",
     title: "Sağlık, Hastane ve Klinik",
     shortTitle: "Sağlık",
     description:
@@ -21,7 +22,7 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
         title: "OSGB & İş Sağlığı ve Güvenliği",
         description:
           "Sağlık kuruluşlarının iş sağlığı ve güvenliği yükümlülüklerini mevzuata uygun şekilde yönetmelerine yönelik profesyonel OSGB hizmetleri.",
-        href: "/hizmetlerimiz/osgb-is-sagligi-guvenligi",
+        categoryId: "osgb",
         icon: "osgb",
       },
       {
@@ -29,7 +30,7 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
         title: "KVKK Danışmanlığı",
         description:
           "Hasta, çalışan ve ziyaretçi verilerinin korunmasına yönelik KVKK uyum süreçlerinin oluşturulması ve geliştirilmesi.",
-        href: "/hizmetlerimiz/kvkk-danismanligi",
+        categoryId: "kvkk-danismanligi",
         icon: "kvkk",
       },
       {
@@ -37,7 +38,7 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
         title: "Kalite Sistemleri",
         description:
           "Sağlık kuruluşlarında kalite yönetim sistemlerinin kurulması, geliştirilmesi ve belgelendirme süreçlerine yönelik danışmanlık.",
-        href: "/hizmetlerimiz/kalite-sistemleri",
+        categoryId: "kalite-belgelendirme",
         icon: "quality",
       },
       {
@@ -45,7 +46,7 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
         title: "Mevzuat ve Uyum Danışmanlığı",
         description:
           "Sağlık sektöründeki güncel mevzuat ve kurumsal yükümlülüklerin takip edilmesi ve süreçlerin uyumlu şekilde yönetilmesi.",
-        href: "/hizmetlerimiz/mevzuat-uyum-danismanligi",
+        categoryId: "diger",
         icon: "compliance",
       },
     ],
@@ -93,7 +94,7 @@ export async function getSectorBySlug(
   slug: string,
 ): Promise<SectorContent | null> {
   try {
-    const sector = MOCK_SECTOR_CONTENT.find((item) => item.id === slug);
+    const sector = MOCK_SECTOR_CONTENT.find((item) => item.slug === slug);
 
     return sector ?? null;
   } catch (error) {

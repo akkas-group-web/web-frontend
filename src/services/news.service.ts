@@ -9,7 +9,7 @@ export const news: NewsItem[] = [
     excerpt:
       "Sanayi ve Teknoloji Bakanımız Mehmet Fatih Kacır'ın teşrifleriyle Selçuk Üniversitesi ve Necmettin Erbakan Üniversitesi Milli Teknoloji Atölyelerinin açılışı gerçekleştirildi.",
     date: "2026-07-31",
-    href: "/haberler/milli-teknoloji-atolyesi-konya",
+    slug: "milli-teknoloji-atolyesi-konya",
     category: "Teşvikler & Hibeler",
     image: {
       url: "/announcements/milli-teknoloji-atolyesi.jpeg",
@@ -29,7 +29,7 @@ export const news: NewsItem[] = [
     excerpt:
       "TÜBİTAK 1515 Öncül Ar-Ge Laboratuvarları Destekleme Programı kapsamında destek verdiğimiz Seramik Teknolojileri Öncül Ar-Ge Merkezi'nin açılışı gerçekleştirildi.",
     date: "2026-07-28",
-    href: "/haberler/tubitak-seramik-arge-merkezi",
+    slug: "tubitak-seramik-arge-merkezi",
     category: "Teşvikler & Hibeler",
     image: {
       url: "/announcements/tubitak-arge-merkezi.jpeg",
@@ -48,7 +48,7 @@ export const news: NewsItem[] = [
     excerpt:
       "Sınırda Karbon Düzenleme Mekanizması (SKDM) kapsamında 2026 yılı 2. çeyrek referans fiyatları açıklandı. Firmaların raporlama süreçlerini bu doğrultuda güncellemesi gerekiyor.",
     date: "2026-07-20",
-    href: "/haberler/cbam-2-ceyrek-fiyati-yayimlandi",
+    slug: "/cbam-2-ceyrek-fiyati-yayimlandi",
     category: "Akkaş Karbon",
     image: {
       url: "/announcements/cbam.jpeg",
@@ -67,7 +67,7 @@ export const news: NewsItem[] = [
     excerpt:
       "KOBİ'lerin yapay zeka dönüşümünü desteklemek amacıyla uygun faizli yeni bir kredi programı yürürlüğe girdi. Başvuru koşulları ve destek üst limitleri açıklandı.",
     date: "2026-07-20",
-    href: "/haberler/yapay-zeka-kredi-programi",
+    slug: "yapay-zeka-kredi-programi",
     category: "Teşvikler & Hibeler",
     image: {
       url: "/announcements/yz-kredi.jpeg",
@@ -86,7 +86,7 @@ export const news: NewsItem[] = [
     excerpt:
       "Sanayi işletmelerinin üretim kapasitesini artırmasına yönelik destek programının ikinci başvuru dönemi resmen açıldı. Son başvuru tarihi yakında duyurulacak.",
     date: "2026-06-08",
-    href: "/haberler/kapasite-gelistirme-destek-programi-2-basvuru-donemi-basladi",
+    slug: "/kapasite-gelistirme-destek-programi-2-basvuru-donemi-basladi",
     category: "Teşvikler & Hibeler",
     image: {
       url: "/announcements/kapasite-gelistirme.jpeg",
@@ -105,7 +105,7 @@ export const news: NewsItem[] = [
     excerpt:
       "Veri Sorumluları Sicili'ne (VERBİS) kayıt yükümlülüğü olan firmalar için son başvuru süresi Kişisel Verileri Koruma Kurulu kararıyla ertelendi.",
     date: "2026-06-01",
-    href: "/haberler/verbis-kayit-suresi-uzadi",
+    slug: "verbis-kayit-suresi-uzadi",
     category: "KVKK & Mevzuat",
     image: {
       url: "/announcements/verbis.jpeg",
@@ -132,7 +132,7 @@ export async function getNews(): Promise<NewsItem[]> {
 
 export async function getNewsBySlug(slug: string): Promise<NewsItem | null> {
   try {
-    const newsItem = news.find((item) => item.href === `/haberler/${slug}`);
+    const newsItem = news.find((item) => item.slug === slug);
     return newsItem ?? null;
   } catch (error) {
     logger.error("Haber detayı alınamadı", { error, slug });

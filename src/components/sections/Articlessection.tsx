@@ -10,6 +10,7 @@ import { SectionEyebrow } from "@/components/shared/SectionEyebrow";
 import { formatDate } from "@/lib/format-date";
 import type { ArticleItem } from "@/types/article";
 import { CardMedia } from "../shared/CardMedia";
+import { routes } from "@/lib/routes";
 
 interface ArticlesSectionProps {
   articles: ArticleItem[];
@@ -69,7 +70,7 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
               {currentItems.map((item) => (
                 <Link
                   key={item.id}
-                  href={item.href}
+                  href={routes.article(item.slug)}
                   className="card-surface group flex flex-col overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                 >
                   {/* Makale kapak görseli */}
@@ -147,9 +148,7 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
                   aria-label={`${index + 1}. sayfa`}
                   aria-current={index === page ? "page" : undefined}
                   className={`h-2 rounded-full transition-all duration-300 ${
-                    index === page
-                      ? "w-6 bg-[#1a7d8f]"
-                      : "w-2 bg-[#0d4d5c]/20"
+                    index === page ? "w-6 bg-[#1a7d8f]" : "w-2 bg-[#0d4d5c]/20"
                   }`}
                 />
               ))}

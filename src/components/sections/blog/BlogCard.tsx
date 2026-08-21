@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CalendarDays } from "lucide-react";
 
 import type { ArticleItem } from "@/types/article";
+import { routes } from "@/lib/routes";
 
 interface BlogCardProps {
   article: ArticleItem;
@@ -18,16 +19,16 @@ export function BlogCard({ article }: BlogCardProps) {
   return (
     <article className="group overflow-hidden rounded-[18px] border border-slate-200/80 bg-white shadow-[0_8px_30px_-20px_rgba(15,23,42,0.25)] transition-all duration-300 hover:-translate-y-1 hover:border-[#118B99]/20 hover:shadow-[0_18px_45px_-20px_rgba(17,139,153,0.25)]">
       <Link
-        href={article.href}
+        href={routes.article(article.slug)}
         className="relative block aspect-[16/9] overflow-hidden bg-[#EAF6F7]"
       >
-<Image
-  src={article.image.url}
-  alt={article.image.alt}
-  fill
-  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-/>
+        <Image
+          src={article.image.url}
+          alt={article.image.alt}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+        />
       </Link>
 
       <div className="p-5">
@@ -36,7 +37,7 @@ export function BlogCard({ article }: BlogCardProps) {
           <time>{formattedDate}</time>
         </div>
 
-        <Link href={article.href}>
+        <Link href={routes.article(article.slug)}>
           <h2 className="mt-3 text-[19px] font-semibold leading-[1.35] tracking-[-0.02em] text-[#173D43] transition-colors group-hover:text-[#118B99]">
             {article.title}
           </h2>
@@ -47,7 +48,7 @@ export function BlogCard({ article }: BlogCardProps) {
         </p>
 
         <Link
-          href={article.href}
+          href={routes.article(article.slug)}
           className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#118B99] transition-all hover:gap-3 hover:text-[#0D727C]"
         >
           Devamını Oku

@@ -5,12 +5,13 @@ export interface SectorService {
   id: string;
   title: string;
   description: string;
-  href: string;
+  categoryId: string;
   icon: ServiceIconKey;
 }
 
 export interface SectorContent {
   id: string;
+  slug: string;
   title: string;
   shortTitle?: string;
   description: string;

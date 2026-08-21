@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import type { SectorService } from "@/types/sector";
 import { getSectorIcon } from "./sector-icons";
+import { routes } from "@/lib/routes";
 
 interface SectorServicesProps {
   services: SectorService[];
@@ -42,7 +43,7 @@ export function SectorServices({ services }: SectorServicesProps) {
             return (
               <Link
                 key={service.id}
-                href={service.href}
+                href={routes.serviceCategory(service.categoryId)}
                 className="group relative overflow-hidden rounded-[22px] border border-brand-dark/8 bg-white p-6 shadow-[0_12px_35px_-25px_rgba(13,77,92,0.35)] transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-teal/20 hover:shadow-[0_22px_45px_-25px_rgba(17,139,153,0.3)]"
               >
                 {/* Hover dekorasyonu */}

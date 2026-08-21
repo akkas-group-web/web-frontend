@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CalendarDays } from "lucide-react";
 
 import type { HomeContent } from "@/types";
+import { routes } from "@/lib/routes";
 
 type NewsItem = HomeContent["announcements"][number];
 
@@ -21,7 +22,7 @@ export function NewsCard({ news }: NewsCardProps) {
     <article className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-slate-200/80 bg-white shadow-[0_8px_30px_-22px_rgba(15,23,42,0.2)] transition-all duration-300 hover:-translate-y-1 hover:border-[#118B99]/20 hover:shadow-[0_18px_45px_-22px_rgba(17,139,153,0.25)]">
       {/* Görsel */}
       <Link
-        href={news.href}
+        href={routes.news(news.slug)}
         className="relative block aspect-[16/9] overflow-hidden bg-[#EAF6F7]"
       >
         <Image
@@ -46,7 +47,7 @@ export function NewsCard({ news }: NewsCardProps) {
           <time>{formattedDate}</time>
         </div>
 
-        <Link href={news.href}>
+        <Link href={routes.news(news.slug)}>
           <h3 className="mt-3 text-[18px] font-semibold leading-[1.4] tracking-[-0.02em] text-[#173D43] transition-colors group-hover:text-[#118B99]">
             {news.title}
           </h3>
@@ -58,7 +59,7 @@ export function NewsCard({ news }: NewsCardProps) {
 
         <div className="mt-auto pt-5">
           <Link
-            href={news.href}
+            href={routes.news(news.slug)}
             className="inline-flex items-center gap-2 text-xs font-semibold text-[#118B99] transition-all hover:gap-3 hover:text-[#0D747E]"
           >
             Haberi Oku
