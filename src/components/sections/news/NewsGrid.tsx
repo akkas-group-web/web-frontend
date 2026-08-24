@@ -133,7 +133,7 @@ export function NewsGrid({ news }: NewsGridProps) {
           </div>
 
           {/* SAĞ - HIZLI GÜNDEM */}
-          <aside className="hidden lg:block">
+          <aside className="mt-4 lg:mt-0">
             <div>
               <div className="mb-5 flex items-center gap-2">
                 <Newspaper className="h-4 w-4 text-[#118B99]" />
