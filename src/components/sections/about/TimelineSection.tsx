@@ -97,8 +97,8 @@ export function TimelineSection({ milestones }: TimelineSectionProps) {
 
               return (
                 <div
-  key={milestone.id}
-  className={`
+                  key={milestone.id}
+                  className={`
     relative
     flex
     min-h-[230px]
@@ -108,7 +108,7 @@ export function TimelineSection({ milestones }: TimelineSectionProps) {
     md:pl-0
     ${isEven ? "md:flex-row" : "md:flex-row-reverse"}
   `}
->
+                >
                   {/* =========================================
                       CENTER DOT
                   ========================================== */}
@@ -266,19 +266,19 @@ export function TimelineSection({ milestones }: TimelineSectionProps) {
                           TITLE
                           Kartın ÜSTÜNDE
                       ========================================== */}
-                      <div
+   <div
   className={`
     mb-4 flex items-center gap-2
     md:mb-3
     ${isEven ? "md:ml-12" : "md:mr-12"}
   `}
 >
-                        <h3 className="font-heading text-lg font-bold text-[#0d4d5c] md:text-xl">
-                          {milestone.title}
-                        </h3>
+  <h3 className="font-heading text-lg font-bold text-[#0d4d5c] md:text-xl">
+    {milestone.title}
+  </h3>
 
-                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#1a7d8f]" />
-                      </div>
+  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#1a7d8f]" />
+</div>
 
                       {/* =========================================
                           WHITE CONTENT CARD
