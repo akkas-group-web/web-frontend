@@ -90,22 +90,25 @@ export function TimelineSection({ milestones }: TimelineSectionProps) {
             "
           />
 
-          <div className="space-y-24 md:space-y-28">
+          <div className="space-y-16 md:space-y-28">
             {milestones.map((milestone, idx) => {
               const isEven = idx % 2 === 0;
               const Icon = milestoneIcons[idx % milestoneIcons.length];
 
               return (
                 <div
-                  key={milestone.id}
-                  className={`
-                    relative
-                    flex
-                    min-h-[230px]
-                    items-center
-                    ${isEven ? "md:flex-row" : "md:flex-row-reverse"}
-                  `}
-                >
+  key={milestone.id}
+  className={`
+    relative
+    flex
+    min-h-[230px]
+    items-start
+    pl-12
+    md:items-center
+    md:pl-0
+    ${isEven ? "md:flex-row" : "md:flex-row-reverse"}
+  `}
+>
                   {/* =========================================
                       CENTER DOT
                   ========================================== */}
@@ -125,22 +128,23 @@ export function TimelineSection({ milestones }: TimelineSectionProps) {
                       stiffness: 180,
                     }}
                     className="
-                      absolute
-                      left-0
-                      top-1/2
-                      z-30
-                      flex
-                      h-8
-                      w-8
-                      -translate-y-1/2
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-[#1a7d8f]
-                      shadow-[0_0_0_5px_rgba(26,125,143,0.08)]
-                      md:left-1/2
-                      md:-translate-x-1/2
-                    "
+  absolute
+  left-0
+  top-8
+  z-30
+  flex
+  h-8
+  w-8
+  items-center
+  justify-center
+  rounded-full
+  bg-[#1a7d8f]
+  shadow-[0_0_0_5px_rgba(26,125,143,0.08)]
+  md:left-1/2
+  md:top-1/2
+  md:-translate-x-1/2
+  md:-translate-y-1/2
+"
                   >
                     <span className="h-2.5 w-2.5 rounded-full bg-white" />
                   </motion.div>
@@ -263,12 +267,12 @@ export function TimelineSection({ milestones }: TimelineSectionProps) {
                           Kartın ÜSTÜNDE
                       ========================================== */}
                       <div
-                        className={`
-                          mb-3 flex items-center gap-2
-
-                          ${isEven ? "md:ml-12" : "md:mr-12"}
-                        `}
-                      >
+  className={`
+    mb-4 flex items-center gap-2
+    md:mb-3
+    ${isEven ? "md:ml-12" : "md:mr-12"}
+  `}
+>
                         <h3 className="font-heading text-lg font-bold text-[#0d4d5c] md:text-xl">
                           {milestone.title}
                         </h3>
@@ -362,7 +366,7 @@ export function TimelineSection({ milestones }: TimelineSectionProps) {
             transition={{
               duration: 0.5,
             }}
-            className="relative z-20 mt-20 flex justify-center"
+            className="relative z-20 mt-20 flex justify-start pl-[2px] md:justify-center md:pl-0"
           >
             <div className="flex h-7 w-7 items-center justify-center rounded-full border-4 border-[#f5f2ec] bg-[#1a7d8f] shadow-[0_0_0_4px_rgba(26,125,143,0.08)]">
               <span className="h-1.5 w-1.5 rounded-full bg-white" />
