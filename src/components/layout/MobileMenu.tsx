@@ -1,99 +1,139 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { Menu, X, ChevronDown } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { ChevronDown, Menu, X } from "lucide-react";
+
 import { NAV_LINKS } from "@/constants/site";
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
   const [openSub, setOpenSub] = useState<string | null>(null);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  const closeMenu = () => {
+    setOpen(false);
+    setOpenSub(null);
+  };
+
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
+      {/* HAMBURGER */}
       <button
+        type="button"
         onClick={() => setOpen(true)}
-        className="rounded-full p-2 text-[#0d4d5c]"
+        className="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#0d4d5c] shadow-sm"
         aria-label="Menüyü aç"
       >
         <Menu className="h-6 w-6" />
       </button>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed inset-0 z-[60] flex flex-col bg-white px-6 py-5"
-          >
-            <div className="flex items-center justify-end">
-              <button onClick={() => setOpen(false)} aria-label="Menüyü kapat">
-                <X className="h-6 w-6 text-[#0d4d5c]" />
-              </button>
-            </div>
+      {open && (
+        <div className="fixed inset-0 z-[9999] flex min-h-[100dvh] flex-col bg-white">
+          {/* ÜST */}
+          <div className="flex h-[72px] shrink-0 items-center justify-between border-b border-[#118B99]/10 px-5">
+            <Link href="/" onClick={closeMenu}>
+              <Image
+                src="/akkasgrouplogo.png"
+                alt="Akkaş Group"
+                width={160}
+                height={56}
+                className="h-9 w-auto"
+              />
+            </Link>
 
-            <nav className="mt-6 flex-1 overflow-y-auto">
-              <ul className="flex flex-col gap-1">
-                {NAV_LINKS.map((link) => (
-                  <li key={link.href} className="border-b border-[#0d4d5c]/10">
-                    <div className="flex items-center justify-between py-3.5">
+            <button
+              type="button"
+              onClick={closeMenu}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-[#EFF7F8] text-[#0d4d5c]"
+              aria-label="Menüyü kapat"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+
+          {/* MENÜ */}
+          <nav className="flex-1 overflow-y-auto px-5 py-5">
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#118B99]">
+              Menü
+            </p>
+
+            <ul className="divide-y divide-[#118B99]/10">
+              {NAV_LINKS.map((link) => {
+                const hasChildren =
+                  Array.isArray(link.children) && link.children.length > 0;
+
+                const isOpen = openSub === link.label;
+
+                return (
+                  <li key={link.href}>
+                    <div className="flex min-h-[54px] items-center gap-2">
                       <Link
                         href={link.href}
-                        className="text-base font-semibold text-[#0d4d5c]"
-                        onClick={() => setOpen(false)}
+                        onClick={closeMenu}
+                        className="flex flex-1 items-center py-4 text-[16px] font-semibold text-[#173D43]"
                       >
                         {link.label}
                       </Link>
-                      {link.children && (
+
+                      {hasChildren && (
                         <button
+                          type="button"
                           onClick={() =>
-                            setOpenSub(
-                              openSub === link.label ? null : link.label,
-                            )
+                            setOpenSub(isOpen ? null : link.label)
                           }
-                          className="p-1"
+                          className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F3F9F9] text-[#118B99]"
+                          aria-label={`${link.label} alt menü`}
                         >
                           <ChevronDown
-                            className={`h-4 w-4 text-[#0d4d5c] transition-transform ${
-                              openSub === link.label ? "rotate-180" : ""
+                            className={`h-4 w-4 transition-transform ${
+                              isOpen ? "rotate-180" : ""
                             }`}
                           />
                         </button>
                       )}
                     </div>
 
-                    <AnimatePresence>
-                      {link.children && openSub === link.label && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.25 }}
-                          className="overflow-hidden pb-2"
-                        >
-                          {link.children.map((child) => (
-                            <Link
-                              key={child.href}
-                              href={child.href}
-                              className="block py-2 pl-3 text-sm text-[#333333]/80"
-                              onClick={() => setOpen(false)}
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    {hasChildren && isOpen && (
+                      <div className="mb-3 rounded-xl bg-[#F5FAFA] px-4 py-1">
+                        {link.children?.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            onClick={closeMenu}
+                            className="block border-b border-[#118B99]/10 py-3 text-sm text-[#526F74] last:border-b-0"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </li>
-                ))}
-              </ul>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                );
+              })}
+            </ul>
+          </nav>
+
+          {/* ALT BUTON */}
+          <div className="shrink-0 border-t border-[#118B99]/10 bg-white px-5 pb-[calc(env(safe-area-inset-bottom)+20px)] pt-4">
+            <Link
+              href="/iletisim"
+              onClick={closeMenu}
+              className="flex h-12 w-full items-center justify-center rounded-xl bg-[#118B99] text-sm font-semibold text-white"
+            >
+              Bize Ulaşın
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
