@@ -30,8 +30,7 @@ export function NewsHero() {
       <div
         className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] opacity-[0.035] lg:block"
         style={{
-          backgroundImage:
-            "radial-gradient(#118B99 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(#118B99 1px, transparent 1px)",
           backgroundSize: "22px 22px",
         }}
       />
@@ -68,7 +67,7 @@ export function NewsHero() {
           </div>
 
           {/* Sağ kategori alanı */}
-          <div className="hidden lg:block">
+          <div className="mt-2 lg:mt-0">
             <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.17em] text-[#789095]">
               Gündem Başlıkları
             </p>
@@ -100,7 +99,6 @@ export function NewsHero() {
         <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-[#118B99]/10 pt-5">
           <div className="flex items-center gap-2 text-xs font-semibold text-[#118B99]">
             <Radio className="h-3.5 w-3.5" />
-
             Güncel Haber Akışı
           </div>
 
