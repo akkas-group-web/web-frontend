@@ -1,3 +1,4 @@
+import { HeroSlide } from "@/services/hero.service";
 import type { ArticleItem } from "./article";
 import type { MediaImage } from "./media";
 import type { NewsItem } from "./news";
@@ -48,6 +49,13 @@ export interface StatItem {
   sub?: string;
 }
 
+export interface HomeSummaryContent {
+  eyebrow: string;
+  title: string;
+  description: string;
+  image: MediaImage;
+}
+
 export interface HomeContent {
   services: ServiceItem[];
   brands: BrandItem[];
@@ -56,4 +64,6 @@ export interface HomeContent {
   announcements: NewsItem[];
   articles: ArticleItem[];
   clients: ClientReference[];
+  heroSlides: HeroSlide[];
+  homeSummary: HomeSummaryContent;
 }

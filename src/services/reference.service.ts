@@ -1,6 +1,8 @@
 import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
 import type { ClientReference } from "@/types/reference";
+import { wpClient } from "../../wp/client";
+import { GET_REFERENCES_QUERY } from "../../wp/queries/references";
 
 const MOCK_CLIENT_REFERENCES: ClientReference[] = [
   {
@@ -68,10 +70,45 @@ const MOCK_CLIENT_REFERENCES: ClientReference[] = [
   },
 ];
 
+interface WPReferencesResponse {
+  references: {
+    nodes: {
+      id: string;
+      referenceFields: {
+        name: string;
+        sektor?: string;
+        website?: string;
+        logo: {
+          node: {
+            sourceUrl: string;
+            altText: string;
+          };
+        };
+      };
+    }[];
+  };
+}
+
+function mapReferencesFromWP(data: WPReferencesResponse): ClientReference[] {
+  return data.references.nodes.map((node) => ({
+    id: node.id,
+    name: node.referenceFields.name,
+    logo: {
+      url: node.referenceFields.logo.node.sourceUrl,
+      alt: node.referenceFields.logo.node.altText || node.referenceFields.name,
+    },
+    sector: node.referenceFields.sektor,
+    website: node.referenceFields.website,
+  }));
+}
+
 export async function getClientReferences(): Promise<ClientReference[]> {
   try {
     // İleride: await wpClient.query(REFERENCES_QUERY) burada olacak.
-    return MOCK_CLIENT_REFERENCES;
+    //return MOCK_CLIENT_REFERENCES;
+    const data =
+      await wpClient.request<WPReferencesResponse>(GET_REFERENCES_QUERY);
+    return mapReferencesFromWP(data);
   } catch (error) {
     logger.error("Referanslar içeriği alınamadı", { error });
     throw new AppError(
