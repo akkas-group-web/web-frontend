@@ -1,6 +1,9 @@
 import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
-import type { AboutContent } from "@/types/about";
+import type { AboutContent, TimelineMilestone } from "@/types/about";
+import { wpClient } from "../../wp/client";
+import { GET_ABOUT_PAGE_QUERY } from "../../wp/queries/about";
+import { GET_TIMELINE_ITEMS_QUERY } from "../../wp/queries/timeline";
 
 const MOCK_ABOUT_CONTENT: AboutContent = {
   hero: {
@@ -92,10 +95,129 @@ const MOCK_ABOUT_CONTENT: AboutContent = {
   ],
 };
 
+interface WPAboutPageResponse {
+  aboutPages: {
+    nodes: {
+      id: string;
+      aboutstorycontent: {
+        heroTitleHighlight: string;
+        heroTitleRest: string;
+        heroDescription: string;
+        heroImage: { node: { sourceUrl: string; altText: string } };
+        storyEyebrow: string;
+        storyTitle: string;
+        storyParagraphs: string;
+        storyHighlightQuote: string;
+        storyHighlightAuthor: string;
+        storyImage: { node: { sourceUrl: string; altText: string } };
+        vision: string;
+        mission: string;
+        stat1Value: string;
+        stat1Label: string;
+        stat2Value: string;
+        stat2Label: string;
+        stat3Value: string;
+        stat3Label: string;
+        stat4Value: string;
+        stat4Label: string;
+      };
+    }[];
+  };
+}
+
+interface WPTimelineResponse {
+  timelineItems: {
+    nodes: {
+      id: string;
+      timelineItemFields: {
+        year: string;
+        milestone_title: string;
+        description: string;
+      };
+    }[];
+  };
+}
+
+interface WPTimelineResponse {
+  timelineItems: {
+    nodes: {
+      id: string;
+      timelineItemFields: {
+        year: string;
+        milestone_title: string;
+        description: string;
+      };
+    }[];
+  };
+}
+
+function mapTimelineFromWP(data: WPTimelineResponse): TimelineMilestone[] {
+  return data.timelineItems.nodes.map((node) => ({
+    id: node.id,
+    year: node.timelineItemFields.year,
+    title: node.timelineItemFields.milestone_title,
+    description: node.timelineItemFields.description,
+  }));
+}
+
+function mapAboutPageFromWP(
+  data: WPAboutPageResponse,
+): Pick<AboutContent, "hero" | "story" | "visionMission" | "stats"> {
+  const fields = data.aboutPages.nodes[0].aboutstorycontent;
+
+  return {
+    hero: {
+      titleHighlight: fields.heroTitleHighlight,
+      titleRest: fields.heroTitleRest,
+      description: fields.heroDescription,
+      image: {
+        url: fields.heroImage.node.sourceUrl,
+        alt: fields.heroImage.node.altText || fields.heroTitleHighlight,
+      },
+    },
+    story: {
+      eyebrow: fields.storyEyebrow,
+      title: fields.storyTitle,
+      paragraphs: fields.storyParagraphs.split("\n").filter(Boolean),
+      highlightQuote: fields.storyHighlightQuote,
+      highlightAuthor: fields.storyHighlightAuthor,
+      image: {
+        url: fields.storyImage.node.sourceUrl,
+        alt: fields.storyImage.node.altText || fields.storyTitle,
+      },
+    },
+    visionMission: {
+      vision: fields.vision,
+      mission: fields.mission,
+    },
+    stats: [
+      { id: "stat-1", value: fields.stat1Value, label: fields.stat1Label },
+      { id: "stat-2", value: fields.stat2Value, label: fields.stat2Label },
+      { id: "stat-3", value: fields.stat3Value, label: fields.stat3Label },
+      { id: "stat-4", value: fields.stat4Value, label: fields.stat4Label },
+    ],
+  };
+}
+
 export async function getAboutContent(): Promise<AboutContent> {
   try {
     // İleride: await wpClient.query(ABOUT_QUERY) burada olacak.
-    return MOCK_ABOUT_CONTENT;
+    //   return MOCK_ABOUT_CONTENT;
+
+    const [data, timelineData] = await Promise.all([
+      wpClient.request<WPAboutPageResponse>(GET_ABOUT_PAGE_QUERY),
+      wpClient.request<WPTimelineResponse>(GET_TIMELINE_ITEMS_QUERY),
+    ]);
+
+    const wpContent = mapAboutPageFromWP(data);
+    const timeline = mapTimelineFromWP(timelineData);
+
+    return {
+      ...MOCK_ABOUT_CONTENT,
+      ...wpContent,
+      timeline,
+      // timeline ve values henüz CPT'ye bağlanmadı, mock veride kalıyor
+    };
   } catch (error) {
     logger.error("Hakkımızda içeriği alınamadı", { error });
 
