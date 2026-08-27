@@ -5,43 +5,43 @@ export interface BrandCompany extends NavChild {
   logo: string;
 }
 
-// export const BRAND_COMPANIES: BrandCompany[] = [
-//   {
-//     label: "Aker Patent",
-//     href: "/markalarimiz/aker-patent",
-//     logo: "/brands/akerpatent.png",
-//   },
-//   {
-//     label: "Akkaş OSGB",
-//     href: "/markalarimiz/akkas-osgb",
-//     logo: "/brands/akkasosgb.png",
-//   },
-//   {
-//     label: "Avrupa Yatırım Ajansı",
-//     href: "/markalarimiz/avrupa-yatirim-ajansi",
-//     logo: "/brands/aya.png",
-//   },
-//   {
-//     label: "Erkan Akkaş Danışmanlık",
-//     href: "/markalarimiz/erkan-akkas-danismanlik",
-//     logo: "/brands/erkanakkas.png",
-//   },
-//   {
-//     label: "Akkaş KVK",
-//     href: "/markalarimiz/akkas-kvk",
-//     logo: "/brands/akkaskvk.png",
-//   },
-//   {
-//     label: "Akkaş STST",
-//     href: "/markalarimiz/akkas-stst",
-//     logo: "/brands/akkassts.jpg",
-//   },
-//   {
-//     label: "Akkaş Akademi",
-//     href: "/markalarimiz/akkas-akademi",
-//     logo: "/brands/akerakademi.png",
-//   },
-// ];
+export const BRAND_COMPANIES: BrandCompany[] = [
+  {
+    label: "Aker Patent",
+    href: "/markalarimiz/aker-patent",
+    logo: "/brands/akerpatent.png",
+  },
+  {
+    label: "Akkaş OSGB",
+    href: "/markalarimiz/akkas-osgb",
+    logo: "/brands/akkasosgb.png",
+  },
+  {
+    label: "Avrupa Yatırım Ajansı",
+    href: "/markalarimiz/avrupa-yatirim-ajansi",
+    logo: "/brands/aya.png",
+  },
+  {
+    label: "Erkan Akkaş Danışmanlık",
+    href: "/markalarimiz/erkan-akkas-danismanlik",
+    logo: "/brands/erkanakkas.png",
+  },
+  {
+    label: "Akkaş KVK",
+    href: "/markalarimiz/akkas-kvk",
+    logo: "/brands/akkaskvk.png",
+  },
+  {
+    label: "Akkaş STST",
+    href: "/markalarimiz/akkas-stst",
+    logo: "/brands/akkassts.jpg",
+  },
+  {
+    label: "Akkaş Akademi",
+    href: "/markalarimiz/akkas-akademi",
+    logo: "/brands/akerakademi.png",
+  },
+];
 
 export const SECTORS: NavChild[] = [
   { label: "Üretim & Sanayi", href: "/sektorler/uretim-sanayi" },
@@ -58,10 +58,11 @@ export const SECTORS: NavChild[] = [
   { label: "Tarım", href: "/sektorler/tarim" },
 ];
 
+
 export const NAV_LINKS: NavItem[] = [
   { label: "Hakkımızda", href: "/hakkimizda" },
-  { label: "Referanslar", href: "/referanslar" },
   { label: "Hizmetlerimiz", href: "/hizmetlerimiz", children: SERVICES },
+  { label: "Referanslar", href: "/referanslar" },
   { label: "Makaleler", href: "/blog" },
   { label: "Haberler", href: "/haberler" },
   { label: "İletişim", href: "/iletisim" },
