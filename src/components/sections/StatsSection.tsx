@@ -286,7 +286,7 @@ export function StatsSection({
           transition={{
             duration: 0.7,
           }}
-          className="relative mx-auto w-full max-w-[420px] md:max-w-sm"
+          className="relative mx-auto w-full max-w-[420px] md:self-end md:max-w-sm"
         >
           <motion.div
             whileHover={{
