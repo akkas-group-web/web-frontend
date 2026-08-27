@@ -1,9 +1,10 @@
 import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
-import type { AboutContent, TimelineMilestone } from "@/types/about";
+import type { AboutContent, TimelineMilestone, ValueItem } from "@/types/about";
 import { wpClient } from "../../wp/client";
 import { GET_ABOUT_PAGE_QUERY } from "../../wp/queries/about";
 import { GET_TIMELINE_ITEMS_QUERY } from "../../wp/queries/timeline";
+import { GET_VALUE_ITEMS_QUERY } from "../../wp/queries/values";
 
 const MOCK_ABOUT_CONTENT: AboutContent = {
   hero: {
@@ -138,17 +139,24 @@ interface WPTimelineResponse {
   };
 }
 
-interface WPTimelineResponse {
-  timelineItems: {
+interface WPValueItemsResponse {
+  valueItems: {
     nodes: {
       id: string;
-      timelineItemFields: {
-        year: string;
-        milestone_title: string;
+      valueItemFields: {
+        value_title: string;
         description: string;
       };
     }[];
   };
+}
+
+function mapValuesFromWP(data: WPValueItemsResponse): ValueItem[] {
+  return data.valueItems.nodes.map((node) => ({
+    id: node.id,
+    title: node.valueItemFields.value_title,
+    description: node.valueItemFields.description,
+  }));
 }
 
 function mapTimelineFromWP(data: WPTimelineResponse): TimelineMilestone[] {
@@ -204,18 +212,21 @@ export async function getAboutContent(): Promise<AboutContent> {
     // İleride: await wpClient.query(ABOUT_QUERY) burada olacak.
     //   return MOCK_ABOUT_CONTENT;
 
-    const [data, timelineData] = await Promise.all([
+    const [data, timelineData, valuesData] = await Promise.all([
       wpClient.request<WPAboutPageResponse>(GET_ABOUT_PAGE_QUERY),
       wpClient.request<WPTimelineResponse>(GET_TIMELINE_ITEMS_QUERY),
+      wpClient.request<WPValueItemsResponse>(GET_VALUE_ITEMS_QUERY),
     ]);
 
     const wpContent = mapAboutPageFromWP(data);
     const timeline = mapTimelineFromWP(timelineData);
+    const values = mapValuesFromWP(valuesData);
 
     return {
       ...MOCK_ABOUT_CONTENT,
       ...wpContent,
       timeline,
+      values,
       // timeline ve values henüz CPT'ye bağlanmadı, mock veride kalıyor
     };
   } catch (error) {
