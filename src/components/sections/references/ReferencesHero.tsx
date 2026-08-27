@@ -1,6 +1,11 @@
 import { STATS } from "@/constants/site";
+import { AboutStatItem } from "@/types/about";
 
-export function ReferencesHero() {
+interface ReferencesHeroProps {
+  stats: AboutStatItem[];
+}
+
+export function ReferencesHero({ stats }: ReferencesHeroProps) {
   return (
     <section className="relative overflow-hidden bg-[#f4f6f8] pb-16 pt-32 md:pt-40">
       <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[#7fc7d4]/15 blur-3xl" />
@@ -20,8 +25,8 @@ export function ReferencesHero() {
         </p>
 
         <div className="mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-6 sm:grid-cols-4">
-          {STATS.map((stat) => (
-            <div key={stat.label}>
+          {stats.map((stat) => (
+            <div key={stat.id}>
               <p className="font-heading text-2xl font-bold text-[#1a7d8f] md:text-3xl">
                 {stat.value}
               </p>

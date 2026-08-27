@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ReferencesHero } from "@/components/sections/references/ReferencesHero";
 import { ReferencesLogoGrid } from "@/components/sections/references/ReferencesLogoGrid";
 import { ReferencesCTASection } from "@/components/sections/references/ReferencesCTASection";
-import { getClientReferences } from "@/services";
+import { getClientReferences, getHomeContent } from "@/services";
 
 export const metadata: Metadata = {
   title: "Referanslarımız | Akkaş Group",
@@ -13,10 +13,11 @@ export const metadata: Metadata = {
 
 export default async function ReferanslarPage() {
   const clients = await getClientReferences();
+  const stats = await getHomeContent();
 
   return (
     <>
-      <ReferencesHero />
+      <ReferencesHero stats={stats.stats} />
       <ReferencesLogoGrid clients={clients} />
       <ReferencesCTASection />
     </>
