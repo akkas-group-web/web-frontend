@@ -5,6 +5,7 @@ import { wpClient } from "../../wp/client";
 import { GET_ABOUT_PAGE_QUERY } from "../../wp/queries/about";
 import { GET_TIMELINE_ITEMS_QUERY } from "../../wp/queries/timeline";
 import { GET_VALUE_ITEMS_QUERY } from "../../wp/queries/values";
+import { HomeSummaryContent } from "@/types";
 
 const MOCK_ABOUT_CONTENT: AboutContent = {
   hero: {
@@ -121,8 +122,26 @@ interface WPAboutPageResponse {
         stat3Label: string;
         stat4Value: string;
         stat4Label: string;
+        homeSummaryEyebrow: string;
+        homeSummaryTitle: string;
+        homeSummaryDescription: string;
+        homeSummaryImage: { node: { sourceUrl: string; altText: string } };
       };
     }[];
+  };
+}
+
+function mapHomeSummaryFromWP(data: WPAboutPageResponse): HomeSummaryContent {
+  const fields = data.aboutPages.nodes[0].aboutstorycontent;
+
+  return {
+    eyebrow: fields.homeSummaryEyebrow,
+    title: fields.homeSummaryTitle,
+    description: fields.homeSummaryDescription,
+    image: {
+      url: fields.homeSummaryImage.node.sourceUrl,
+      alt: fields.homeSummaryImage.node.altText || fields.homeSummaryTitle,
+    },
   };
 }
 
@@ -234,6 +253,21 @@ export async function getAboutContent(): Promise<AboutContent> {
 
     throw new AppError(
       "Hakkımızda içeriği yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error,
+    );
+  }
+}
+
+export async function getHomeSummaryContent(): Promise<HomeSummaryContent> {
+  try {
+    const data =
+      await wpClient.request<WPAboutPageResponse>(GET_ABOUT_PAGE_QUERY);
+    return mapHomeSummaryFromWP(data);
+  } catch (error) {
+    logger.error("Ana sayfa özet içeriği alınamadı", { error });
+    throw new AppError(
+      "Ana sayfa özet içeriği yüklenemedi",
       "CONTENT_FETCH_FAILED",
       error,
     );

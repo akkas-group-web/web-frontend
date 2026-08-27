@@ -6,10 +6,12 @@ import { news } from "./news.service";
 import { getServiceCategories } from "./service.service";
 import { getClientReferences } from "./reference.service";
 import { getHeroSlides } from "./hero.service";
+import { getAboutContent } from "./about.service";
+import { getHomeSummaryContent } from "./about.service";
 
 const MOCK_HOME_CONTENT: Omit<
   HomeContent,
-  "services" | "clients" | "heroSlides"
+  "services" | "clients" | "heroSlides" | "stats" | "homeSummary"
 > = {
   articles,
 
@@ -177,44 +179,49 @@ const MOCK_HOME_CONTENT: Omit<
     },
   ],
 
-  stats: [
-    {
-      id: "years",
-      value: "25+",
-      label: "Yıllık tecrübe (1999'dan beri)",
-    },
-    {
-      id: "consultants",
-      value: "200+",
-      label: "Uzman danışman kadrosu",
-    },
-    {
-      id: "companies",
-      value: "18.000+",
-      label: "Hizmet verilen firma",
-    },
-    {
-      id: "brands",
-      value: "7",
-      label: "Grup şirketi",
-    },
-  ],
+  // stats: [
+  //   {
+  //     id: "years",
+  //     value: "25+",
+  //     label: "Yıllık tecrübe (1999'dan beri)",
+  //   },
+  //   {
+  //     id: "consultants",
+  //     value: "200+",
+  //     label: "Uzman danışman kadrosu",
+  //   },
+  //   {
+  //     id: "companies",
+  //     value: "18.000+",
+  //     label: "Hizmet verilen firma",
+  //   },
+  //   {
+  //     id: "brands",
+  //     value: "7",
+  //     label: "Grup şirketi",
+  //   },
+  // ],
 
   announcements: news,
 };
 
 export async function getHomeContent(): Promise<HomeContent> {
   try {
-    const [categories, clients, heroSlides] = await Promise.all([
-      getServiceCategories(),
-      getClientReferences(),
-      getHeroSlides(),
-    ]);
+    const [categories, clients, heroSlides, aboutContent, homeSummary] =
+      await Promise.all([
+        getServiceCategories(),
+        getClientReferences(),
+        getHeroSlides(),
+        getAboutContent(),
+        getHomeSummaryContent(),
+      ]);
 
     return {
       ...MOCK_HOME_CONTENT,
       clients,
       heroSlides,
+      stats: aboutContent.stats,
+      homeSummary,
       services: categories
         .filter((c) => c.featured)
         .map((c) => ({

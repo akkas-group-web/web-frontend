@@ -36,6 +36,15 @@ export const GET_ABOUT_PAGE_QUERY = gql`
           stat3Label
           stat4Value
           stat4Label
+          homeSummaryEyebrow
+          homeSummaryTitle
+          homeSummaryDescription
+          homeSummaryImage {
+            node {
+              sourceUrl
+              altText
+            }
+          }
         }
       }
     }
