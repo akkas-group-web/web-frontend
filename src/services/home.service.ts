@@ -93,6 +93,17 @@ const MOCK_HOME_CONTENT: Omit<
         alt: "Akkaş Akademi logosu",
       },
     },
+    {
+  id: "akkas-teknoloji",
+  name: "Akkaş Teknoloji",
+  description:
+    "Yazılım, bilişim ve dijital dönüşüm alanlarında kurumların ihtiyaçlarına yönelik yenilikçi teknoloji çözümleri sunmaktadır. İş süreçlerinin dijitalleştirilmesine ve daha verimli yönetilmesine destek olmaktadır.",
+  href: "/markalarimiz/akkas-teknoloji",
+  logo: {
+    url: "/brands/akkasteknoloji.png",
+    alt: "Akkaş Teknoloji logosu",
+  },
+},
   ],
 
   sectors: [
