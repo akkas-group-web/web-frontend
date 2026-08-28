@@ -8,10 +8,11 @@ import { getClientReferences } from "./reference.service";
 import { getHeroSlides } from "./hero.service";
 import { getAboutContent } from "./about.service";
 import { getHomeSummaryContent } from "./about.service";
+import { getSectors } from "./sector.service";
 
 const MOCK_HOME_CONTENT: Omit<
   HomeContent,
-  "services" | "clients" | "heroSlides" | "stats" | "homeSummary"
+  "services" | "clients" | "heroSlides" | "stats" | "homeSummary" | "sectors"
 > = {
   articles,
 
@@ -95,89 +96,89 @@ const MOCK_HOME_CONTENT: Omit<
     },
   ],
 
-  sectors: [
-    {
-      id: "kobiler",
-      title: "KOBİ'ler",
-      slug: "kobiler",
-      image: {
-        url: "/sectors/kobi.png",
-        alt: "KOBİ işletmeleri",
-      },
-    },
-    {
-      id: "holdingler",
-      title: "Holdingler",
-      slug: "holdingler",
-      image: {
-        url: "/sectors/holding.png",
-        alt: "Holdingler",
-      },
-    },
-    {
-      id: "bankalar",
-      title: "Bankalar",
-      slug: "bankalar",
-      image: {
-        url: "/sectors/bank.png",
-        alt: "Bankacılık sektörü",
-      },
-    },
-    {
-      id: "insaat-enerji",
-      title: "İnşaat ve Enerji",
-      slug: "insaat-ve-enerji",
-      image: {
-        url: "/sectors/insaat.png",
-        alt: "İnşaat ve enerji sektörü",
-      },
-    },
-    {
-      id: "avm-perakende",
-      title: "AVM ve Perakende",
-      slug: "avm-ve-perakende",
-      image: {
-        url: "/sectors/perakende.jpg",
-        alt: "AVM ve perakende sektörü",
-      },
-    },
-    {
-      id: "sanayi",
-      title: "Sanayi Tesisleri",
-      slug: "sanayi-tesisleri",
-      image: {
-        url: "/sectors/justin.png",
-        alt: "Sanayi tesisleri",
-      },
-    },
-    {
-      id: "Gıda",
-      title: "Gıda",
-      slug: "Gıda-sektoru",
-      image: {
-        url: "/sectors/gida.png",
-        alt: "Gıda sektörü",
-      },
-    },
-    {
-      id: "saglik",
-      title: "Sağlık, Hastane ve Klinik",
-      slug: "saglik-hastane-klinik",
-      image: {
-        url: "/sectors/saglik.png",
-        alt: "Sağlık, hastane ve klinik sektörü",
-      },
-    },
-    {
-      id: "turizm",
-      title: "Turizm",
-      slug: "turizm",
-      image: {
-        url: "/sectors/turizm.png",
-        alt: "Turizm sektörü",
-      },
-    },
-  ],
+  // sectors: [
+  //   {
+  //     id: "kobiler",
+  //     title: "KOBİ'ler",
+  //     slug: "kobiler",
+  //     image: {
+  //       url: "/sectors/kobi.png",
+  //       alt: "KOBİ işletmeleri",
+  //     },
+  //   },
+  //   {
+  //     id: "holdingler",
+  //     title: "Holdingler",
+  //     slug: "holdingler",
+  //     image: {
+  //       url: "/sectors/holding.png",
+  //       alt: "Holdingler",
+  //     },
+  //   },
+  //   {
+  //     id: "bankalar",
+  //     title: "Bankalar",
+  //     slug: "bankalar",
+  //     image: {
+  //       url: "/sectors/bank.png",
+  //       alt: "Bankacılık sektörü",
+  //     },
+  //   },
+  //   {
+  //     id: "insaat-enerji",
+  //     title: "İnşaat ve Enerji",
+  //     slug: "insaat-ve-enerji",
+  //     image: {
+  //       url: "/sectors/insaat.png",
+  //       alt: "İnşaat ve enerji sektörü",
+  //     },
+  //   },
+  //   {
+  //     id: "avm-perakende",
+  //     title: "AVM ve Perakende",
+  //     slug: "avm-ve-perakende",
+  //     image: {
+  //       url: "/sectors/perakende.jpg",
+  //       alt: "AVM ve perakende sektörü",
+  //     },
+  //   },
+  //   {
+  //     id: "sanayi",
+  //     title: "Sanayi Tesisleri",
+  //     slug: "sanayi-tesisleri",
+  //     image: {
+  //       url: "/sectors/justin.png",
+  //       alt: "Sanayi tesisleri",
+  //     },
+  //   },
+  //   {
+  //     id: "Gıda",
+  //     title: "Gıda",
+  //     slug: "Gıda-sektoru",
+  //     image: {
+  //       url: "/sectors/gida.png",
+  //       alt: "Gıda sektörü",
+  //     },
+  //   },
+  //   {
+  //     id: "saglik",
+  //     title: "Sağlık, Hastane ve Klinik",
+  //     slug: "saglik-hastane-klinik",
+  //     image: {
+  //       url: "/sectors/saglik.png",
+  //       alt: "Sağlık, hastane ve klinik sektörü",
+  //     },
+  //   },
+  //   {
+  //     id: "turizm",
+  //     title: "Turizm",
+  //     slug: "turizm",
+  //     image: {
+  //       url: "/sectors/turizm.png",
+  //       alt: "Turizm sektörü",
+  //     },
+  //   },
+  // ],
 
   // stats: [
   //   {
@@ -207,14 +208,21 @@ const MOCK_HOME_CONTENT: Omit<
 
 export async function getHomeContent(): Promise<HomeContent> {
   try {
-    const [categories, clients, heroSlides, aboutContent, homeSummary] =
-      await Promise.all([
-        getServiceCategories(),
-        getClientReferences(),
-        getHeroSlides(),
-        getAboutContent(),
-        getHomeSummaryContent(),
-      ]);
+    const [
+      categories,
+      clients,
+      heroSlides,
+      aboutContent,
+      homeSummary,
+      sectors,
+    ] = await Promise.all([
+      getServiceCategories(),
+      getClientReferences(),
+      getHeroSlides(),
+      getAboutContent(),
+      getHomeSummaryContent(),
+      getSectors(),
+    ]);
 
     return {
       ...MOCK_HOME_CONTENT,
@@ -222,6 +230,13 @@ export async function getHomeContent(): Promise<HomeContent> {
       heroSlides,
       stats: aboutContent.stats,
       homeSummary,
+      sectors: sectors.map((s) => ({
+        id: s.id,
+        title: s.title,
+        slug: s.slug,
+        description: s.description,
+        image: s.image,
+      })),
       services: categories
         .filter((c) => c.featured)
         .map((c) => ({

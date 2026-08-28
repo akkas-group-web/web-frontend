@@ -151,20 +151,12 @@ export function StatsSection({
           className="flex flex-col justify-start"
         >
           <span className="text-xs font-bold uppercase tracking-widest text-brand-teal">
-            Hakkımızda
             {homeSummary.eyebrow}
           </span>
-
           <h2 className="font-heading mt-3 max-w-xl text-2xl font-bold leading-tight text-brand-navy sm:text-3xl">
-            A&apos;dan Z&apos;ye danışmanlıkta güvenilir çözüm
             {homeSummary.title}
           </h2>
-
           <p className="mt-4 max-w-md text-sm leading-relaxed text-[#333333]/65 sm:text-base">
-            1999&apos;dan bu yana teşvik, yatırım, kalite belgelendirme ve KVKK
-            danışmanlığı alanlarında binlerce firmaya uçtan uca destek
-            sağlıyoruz. Grup şirketlerimizle sektörünüze özel çözümler
-            sunuyoruz.
             {homeSummary.description}
           </p>
 
