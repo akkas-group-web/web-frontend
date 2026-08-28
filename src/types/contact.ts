@@ -17,4 +17,5 @@ export interface ContactOffice {
   email?: string;
   latitude?: number;
   longitude?: number;
+  isMainOffice?: boolean;
 }
