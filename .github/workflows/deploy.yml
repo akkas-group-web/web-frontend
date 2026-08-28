@@ -23,7 +23,8 @@ jobs:
               git fetch origin
               git checkout develop
               git reset --hard origin/develop
-              docker compose -f compose.test.yml up -d --build
+              docker compose --env-file .env.test -f compose.test.yml build
+              docker compose --env-file .env.test -f compose.test.yml up -d --force-recreate
             fi
 
             if [ "${{ github.ref_name }}" = "main" ]; then
