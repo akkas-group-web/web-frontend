@@ -1,0 +1,35 @@
+name: Deploy Web Frontend
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            if [ "${{ github.ref_name }}" = "develop" ]; then
+              cd /home/debian/web-frontend-test
+              git fetch origin
+              git checkout develop
+              git reset --hard origin/develop
+              docker compose -f compose.test.yml up -d --build
+            fi
+
+            if [ "${{ github.ref_name }}" = "main" ]; then
+              cd /home/debian/web-frontend-prod
+              git fetch origin
+              git checkout main
+              git reset --hard origin/main
+              docker compose -f compose.prod.yml up -d --build
+            fi
