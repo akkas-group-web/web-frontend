@@ -12,69 +12,74 @@ import {
   Users,
   type LucideIcon,
 } from "lucide-react";
-
 import { STATS } from "@/constants/site";
-import type { MediaImage } from "@/types/media";
+import type { HeroSlide } from "@/services/hero.service";
 
-interface HeroSlide {
-  id: string;
-  eyebrow: string;
-  title: string;
-  description: string;
-  image: MediaImage;
-  href: string;
+interface HeroSectionProps {
+  slides: HeroSlide[];
 }
 
-const HERO_SLIDES: HeroSlide[] = [
-  {
-    id: "yatirim",
-    eyebrow: "Yatırım Danışmanlığı",
-    title: "Yatırımınızı doğru adımlarla büyütün",
-    description:
-      "Teşvik belgesi, fizibilite ve gümrük muafiyeti süreçlerinde uçtan uca yanınızdayız.",
-    image: {
-      url: "/hero/yatirim.png",
-      alt: "Yatırım danışmanlığı hizmeti",
-    },
-    href: "/hizmetlerimiz/yatirim-danismanligi",
-  },
-  {
-    id: "osgb",
-    eyebrow: "OSGB Hizmetleri",
-    title: "İş sağlığı ve güvenliğinde profesyonel çözümler",
-    description:
-      "KOSGEB, TÜBİTAK ve Kalkınma Ajansları destekleriyle işletmenizi ileri taşıyoruz.",
-    image: {
-      url: "/hero/osgb.png",
-      alt: "OSGB ve iş sağlığı güvenliği hizmetleri",
-    },
-    href: "/hizmetlerimiz/osgb",
-  },
-  {
-    id: "kvkk",
-    eyebrow: "KVKK Danışmanlığı",
-    title: "Veri uyumluluğunda güvende kalın",
-    description:
-      "VERBİS kaydından aydınlatma metinlerine, uçtan uca KVKK uyum süreci.",
-    image: {
-      url: "/hero/kvkk.jpg",
-      alt: "KVKK danışmanlığı ve veri güvenliği",
-    },
-    href: "/hizmetlerimiz/kvkk-danismanligi",
-  },
-  {
-    id: "kalite",
-    eyebrow: "Kalite Belgelendirme",
-    title: "ISO belgelendirmede güvenilir çözüm ortağınız",
-    description:
-      "ISO 9001, ISO 14001, ISO 27001 ve CE markalama süreçlerini birlikte yönetelim.",
-    image: {
-      url: "/hero/kalite.jpg",
-      alt: "ISO kalite belgelendirme hizmetleri",
-    },
-    href: "/hizmetlerimiz/kalite-sistemleri",
-  },
-];
+// import type { MediaImage } from "@/types/media";
+
+// interface HeroSlide {
+//   id: string;
+//   eyebrow: string;
+//   title: string;
+//   description: string;
+//   image: MediaImage;
+//   href: string;
+// }
+
+// const HERO_SLIDES: HeroSlide[] = [
+//   {
+//     id: "yatirim",
+//     eyebrow: "Yatırım Danışmanlığı",
+//     title: "Yatırımınızı doğru adımlarla büyütün",
+//     description:
+//       "Teşvik belgesi, fizibilite ve gümrük muafiyeti süreçlerinde uçtan uca yanınızdayız.",
+//     image: {
+//       url: "/hero/yatirim.png",
+//       alt: "Yatırım danışmanlığı hizmeti",
+//     },
+//     href: "/hizmetlerimiz/yatirim-danismanligi",
+//   },
+//   {
+//     id: "osgb",
+//     eyebrow: "OSGB Hizmetleri",
+//     title: "İş sağlığı ve güvenliğinde profesyonel çözümler",
+//     description:
+//       "KOSGEB, TÜBİTAK ve Kalkınma Ajansları destekleriyle işletmenizi ileri taşıyoruz.",
+//     image: {
+//       url: "/hero/osgb.png",
+//       alt: "OSGB ve iş sağlığı güvenliği hizmetleri",
+//     },
+//     href: "/hizmetlerimiz/osgb",
+//   },
+//   {
+//     id: "kvkk",
+//     eyebrow: "KVKK Danışmanlığı",
+//     title: "Veri uyumluluğunda güvende kalın",
+//     description:
+//       "VERBİS kaydından aydınlatma metinlerine, uçtan uca KVKK uyum süreci.",
+//     image: {
+//       url: "/hero/kvkk.jpg",
+//       alt: "KVKK danışmanlığı ve veri güvenliği",
+//     },
+//     href: "/hizmetlerimiz/kvkk-danismanligi",
+//   },
+//   {
+//     id: "kalite",
+//     eyebrow: "Kalite Belgelendirme",
+//     title: "ISO belgelendirmede güvenilir çözüm ortağınız",
+//     description:
+//       "ISO 9001, ISO 14001, ISO 27001 ve CE markalama süreçlerini birlikte yönetelim.",
+//     image: {
+//       url: "/hero/kalite.jpg",
+//       alt: "ISO kalite belgelendirme hizmetleri",
+//     },
+//     href: "/hizmetlerimiz/kalite-sistemleri",
+//   },
+// ];
 
 const AUTO_ADVANCE_MS = 6000;
 
@@ -86,19 +91,22 @@ const INFO_ROW_STATS = [STATS[0], STATS[2]];
 // Poster çerçevesinin sol altına taşan vurgu kartı için ayrı istatistik.
 const FLOATING_STAT = STATS[1];
 
-export function HeroSection() {
+export function HeroSection({ slides }: HeroSectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeSlide = HERO_SLIDES[activeIndex];
+  //const activeSlide = HERO_SLIDES[activeIndex];
+  const activeSlide = slides[activeIndex];
 
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveIndex((previousIndex) => {
-        return (previousIndex + 1) % HERO_SLIDES.length;
+        // return (previousIndex + 1) % HERO_SLIDES.length;
+        return (previousIndex + 1) % slides.length;
       });
     }, AUTO_ADVANCE_MS);
 
     return () => clearInterval(timer);
-  }, [activeIndex]);
+    //}, [activeIndex]);
+  }, [activeIndex, slides.length]);
 
   function goTo(index: number) {
     setActiveIndex(index);
@@ -107,14 +115,16 @@ export function HeroSection() {
   function goPrev() {
     setActiveIndex((previousIndex) => {
       return (
-        (previousIndex - 1 + HERO_SLIDES.length) % HERO_SLIDES.length
+        // (previousIndex - 1 + HERO_SLIDES.length) % HERO_SLIDES.length
+        (previousIndex - 1 + slides.length) % slides.length
       );
     });
   }
 
   function goNext() {
     setActiveIndex((previousIndex) => {
-      return (previousIndex + 1) % HERO_SLIDES.length;
+      //return (previousIndex + 1) % HERO_SLIDES.length;
+      return (previousIndex + 1) % slides.length;
     });
   }
 
@@ -272,7 +282,8 @@ export function HeroSection() {
       {/* Nokta navigasyon, sayaç ve ok butonları */}
       <div className="relative z-[3] mx-auto grid max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-6 py-5 md:px-12">
         <div className="flex gap-2">
-          {HERO_SLIDES.map((slide, index) => (
+          {/* {HERO_SLIDES.map((slide, index) => ( */}
+          {slides.map((slide, index) => (
             <button
               key={slide.id}
               type="button"
@@ -296,7 +307,8 @@ export function HeroSection() {
           <span className="h-px w-9 bg-white/25" />
 
           <small className="text-white/45">
-            {String(HERO_SLIDES.length).padStart(2, "0")}
+            {/* {String(HERO_SLIDES.length).padStart(2, "0")} */}
+            {String(slides.length).padStart(2, "0")}
           </small>
         </div>
 

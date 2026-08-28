@@ -6,11 +6,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
-import type { StatItem } from "@/types";
+import type { HomeSummaryContent, StatItem } from "@/types";
 
 interface StatsSectionProps {
   stats: StatItem[];
   imageSrc?: string;
+  homeSummary: HomeSummaryContent;
 }
 
 function parseStatValue(raw: string): {
@@ -37,10 +38,7 @@ interface AnimatedNumberProps {
   duration?: number;
 }
 
-function AnimatedNumber({
-  value,
-  duration = 1.6,
-}: AnimatedNumberProps) {
+function AnimatedNumber({ value, duration = 1.6 }: AnimatedNumberProps) {
   const ref = useRef<HTMLSpanElement>(null);
 
   const isInView = useInView(ref, {
@@ -61,19 +59,12 @@ function AnimatedNumber({
     let frame: number;
 
     const tick = (now: number) => {
-      const progress = Math.min(
-        (now - start) / (duration * 1000),
-        1,
-      );
+      const progress = Math.min((now - start) / (duration * 1000), 1);
 
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = number * eased;
 
-      setDisplay(
-        isInteger
-          ? Math.round(current)
-          : Number(current.toFixed(1)),
-      );
+      setDisplay(isInteger ? Math.round(current) : Number(current.toFixed(1)));
 
       if (progress < 1) {
         frame = requestAnimationFrame(tick);
@@ -105,9 +96,7 @@ function WaveOverlay() {
           key={idx}
           d={`M -50 ${80 + idx * 60} C 100 ${
             20 + idx * 60
-          }, 250 ${140 + idx * 60}, 500 ${
-            60 + idx * 60
-          }`}
+          }, 250 ${140 + idx * 60}, 500 ${60 + idx * 60}`}
           fill="none"
           stroke="white"
           strokeWidth="1"
@@ -129,6 +118,7 @@ function WaveOverlay() {
 export function StatsSection({
   stats,
   imageSrc = "/office/AkkaşPlaza.png",
+  homeSummary,
 }: StatsSectionProps) {
   const [primaryStat, ...restStats] = stats;
 
@@ -162,18 +152,20 @@ export function StatsSection({
         >
           <span className="text-xs font-bold uppercase tracking-widest text-brand-teal">
             Hakkımızda
+            {homeSummary.eyebrow}
           </span>
 
           <h2 className="font-heading mt-3 max-w-xl text-2xl font-bold leading-tight text-brand-navy sm:text-3xl">
             A&apos;dan Z&apos;ye danışmanlıkta güvenilir çözüm
-            ortağınız
+            {homeSummary.title}
           </h2>
 
           <p className="mt-4 max-w-md text-sm leading-relaxed text-[#333333]/65 sm:text-base">
-            1999&apos;dan bu yana teşvik, yatırım, kalite
-            belgelendirme ve KVKK danışmanlığı alanlarında binlerce
-            firmaya uçtan uca destek sağlıyoruz. Grup
-            şirketlerimizle sektörünüze özel çözümler sunuyoruz.
+            1999&apos;dan bu yana teşvik, yatırım, kalite belgelendirme ve KVKK
+            danışmanlığı alanlarında binlerce firmaya uçtan uca destek
+            sağlıyoruz. Grup şirketlerimizle sektörünüze özel çözümler
+            sunuyoruz.
+            {homeSummary.description}
           </p>
 
           <Link
@@ -181,7 +173,6 @@ export function StatsSection({
             className="group mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-brand-teal px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition-all hover:bg-brand-navy"
           >
             Devamını Oku
-
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
           </Link>
 
@@ -298,8 +289,8 @@ export function StatsSection({
             className="relative overflow-hidden rounded-[28px] shadow-2xl shadow-brand-teal/15 sm:rounded-[32px] md:rounded-[2.5rem]"
           >
             <Image
-              src={imageSrc}
-              alt="Akkaş Group ofis ve danışmanlık ekibi"
+              src={homeSummary.image.url}
+              alt={homeSummary.image.alt}
               width={900}
               height={1035}
               sizes="(max-width: 767px) 92vw, (max-width: 1024px) 42vw, 380px"
