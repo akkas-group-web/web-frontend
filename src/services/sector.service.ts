@@ -4,79 +4,6 @@ import type { SectorContent } from "@/types/sector";
 import { wpClient } from "../../wp/client";
 import { GET_SECTORS_QUERY } from "../../wp/queries/sectors";
 
-const MOCK_SECTOR_CONTENT: SectorContent[] = [
-  {
-    id: "saglik-hastane-klinik",
-    slug: "saglik-hastane-klinik",
-    title: "Sağlık, Hastane ve Klinik",
-    shortTitle: "Sağlık",
-    description:
-      "Hastane, klinik, tıp merkezi ve sağlık kuruluşlarının operasyonel, mevzuatsal ve kurumsal ihtiyaçlarına yönelik danışmanlık çözümleri.",
-    heroDescription:
-      "Sağlık kuruluşlarının iş sağlığı ve güvenliği, kişisel verilerin korunması, kalite yönetimi ve mevzuata uyum süreçlerini birlikte ele alıyor; kurumların sürdürülebilir ve güvenli bir yapıyla faaliyet göstermelerine destek oluyoruz.",
-    image: {
-      url: "/sectors/saglik.png",
-      alt: "Sağlık, hastane ve klinik sektörü",
-    },
-    services: [
-      {
-        id: "osgb",
-        title: "OSGB & İş Sağlığı ve Güvenliği",
-        description:
-          "Sağlık kuruluşlarının iş sağlığı ve güvenliği yükümlülüklerini mevzuata uygun şekilde yönetmelerine yönelik profesyonel OSGB hizmetleri.",
-        categoryId: "osgb",
-        icon: "osgb",
-      },
-      {
-        id: "kvkk",
-        title: "KVKK Danışmanlığı",
-        description:
-          "Hasta, çalışan ve ziyaretçi verilerinin korunmasına yönelik KVKK uyum süreçlerinin oluşturulması ve geliştirilmesi.",
-        categoryId: "kvkk-danismanligi",
-        icon: "kvkk",
-      },
-      {
-        id: "kalite",
-        title: "Kalite Sistemleri",
-        description:
-          "Sağlık kuruluşlarında kalite yönetim sistemlerinin kurulması, geliştirilmesi ve belgelendirme süreçlerine yönelik danışmanlık.",
-        categoryId: "kalite-belgelendirme",
-        icon: "quality",
-      },
-      {
-        id: "mevzuat-uyum",
-        title: "Mevzuat ve Uyum Danışmanlığı",
-        description:
-          "Sağlık sektöründeki güncel mevzuat ve kurumsal yükümlülüklerin takip edilmesi ve süreçlerin uyumlu şekilde yönetilmesi.",
-        categoryId: "diger",
-        icon: "compliance",
-      },
-    ],
-    benefits: [
-      "İş sağlığı ve güvenliği süreçlerinin mevzuata uygun şekilde yönetilmesi",
-      "Hasta ve çalışan verilerinin korunmasına yönelik KVKK süreçlerinin oluşturulması",
-      "Kalite yönetim sistemlerinin geliştirilmesi",
-      "Mevzuat değişikliklerinin takip edilmesi",
-      "Kurumsal risklerin ve uyum ihtiyaçlarının belirlenmesi",
-      "Sağlık kuruluşlarının sürdürülebilir bir yönetim yapısına kavuşması",
-    ],
-    stats: [
-      {
-        value: "25+",
-        label: "Yıllık danışmanlık tecrübesi",
-      },
-      {
-        value: "200+",
-        label: "Uzman danışman",
-      },
-      {
-        value: "18.000+",
-        label: "Hizmet verilen firma",
-      },
-    ],
-  },
-];
-
 interface WPSectorsResponse {
   sectors: {
     nodes: {
@@ -94,6 +21,19 @@ interface WPSectorsResponse {
         stat2Label: string;
         stat3Value: string;
         stat3Label: string;
+        servicesEyebrow: string | null;
+        servicesTitleLine1: string | null;
+        servicesTitleLine2: string | null;
+        servicesDescription: string | null;
+        showBenefitsSection: boolean;
+        benefitsEyebrow: string | null;
+        benefitsTitleLine1: string | null;
+        benefitsTitleLine2: string | null;
+        benefitsDescription: string | null;
+        showCtaSection: boolean;
+        ctaEyebrow: string | null;
+        ctaTitle: string | null;
+        ctaDescription: string | null;
       };
     }[];
   };
@@ -150,6 +90,19 @@ function mapSectorsFromWP(data: WPSectorsResponse): SectorContent[] {
         { value: fields.stat2Value, label: fields.stat2Label },
         { value: fields.stat3Value, label: fields.stat3Label },
       ].filter((s) => s.value && s.label),
+      servicesEyebrow: fields.servicesEyebrow ?? "",
+      servicesTitleLine1: fields.servicesTitleLine1 ?? "",
+      servicesTitleLine2: fields.servicesTitleLine2 ?? "",
+      servicesDescription: fields.servicesDescription ?? "",
+      showBenefitsSection: fields.showBenefitsSection ?? false,
+      benefitsEyebrow: fields.benefitsEyebrow ?? "",
+      benefitsTitleLine1: fields.benefitsTitleLine1 ?? "",
+      benefitsTitleLine2: fields.benefitsTitleLine2 ?? "",
+      benefitsDescription: fields.benefitsDescription ?? "",
+      showCtaSection: fields.showCtaSection ?? false,
+      ctaEyebrow: fields.ctaEyebrow ?? "",
+      ctaTitle: fields.ctaTitle ?? "",
+      ctaDescription: fields.ctaDescription ?? "",
     };
   });
 }

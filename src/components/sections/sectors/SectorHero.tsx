@@ -30,21 +30,18 @@ export function SectorHero({ sector }: SectorHeroProps) {
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           {/* Sol */}
           <div>
-            <Link
-              href="/sektorler"
-              className="group mb-8 inline-flex items-center gap-2 text-sm font-semibold text-brand-teal transition-all hover:gap-3 hover:text-brand-teal-dark"
-            >
+            <div className="group mb-8 inline-flex items-center gap-2 text-sm font-semibold text-brand-teal transition-all hover:gap-3 hover:text-brand-teal-dark">
               Sektörler
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+              {/* <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /> */}
+            </div>
 
-            <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-brand-teal/15 bg-white/75 px-4 py-2 shadow-sm backdrop-blur-sm">
+            {/* <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-brand-teal/15 bg-white/75 px-4 py-2 shadow-sm backdrop-blur-sm">
               <BriefcaseBusiness className="h-3.5 w-3.5 text-brand-teal" />
 
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-teal">
                 Sektörel Çözümler
               </span>
-            </div>
+            </div> */}
 
             <h1 className="max-w-3xl text-[42px] font-semibold leading-[1.06] tracking-[-0.045em] text-brand-navy sm:text-5xl lg:text-[62px]">
               {sector.title}
@@ -79,7 +76,7 @@ export function SectorHero({ sector }: SectorHeroProps) {
             <div className="relative overflow-hidden rounded-[28px] border border-white/70 bg-white/60 p-2 shadow-[0_30px_70px_-35px_rgba(13,77,92,0.35)] backdrop-blur-sm">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[22px] bg-brand-soft">
                 <Image
-                 src={sector.image.url}
+                  src={sector.image.url}
                   alt={sector.title}
                   fill
                   priority

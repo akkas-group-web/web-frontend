@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-export function SectorCTA() {
+interface SectorCTAProps {
+  eyebrow: string;
+  title: string;
+  description: string;
+}
+
+export function SectorCTA({ eyebrow, title, description }: SectorCTAProps) {
   return (
     <section className="bg-white px-6 py-16 sm:py-20 lg:px-8 lg:py-24">
       <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[28px] bg-gradient-to-br from-brand-teal to-brand-teal-dark px-6 py-12 text-center shadow-[0_25px_60px_-35px_rgba(17,139,153,0.6)] sm:px-10 sm:py-16 lg:px-16">
@@ -11,17 +17,15 @@ export function SectorCTA() {
 
         <div className="relative">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/65">
-            Sağlık sektörüne özel danışmanlık
+            {eyebrow}
           </p>
 
           <h2 className="mx-auto mt-4 max-w-3xl text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl lg:text-[46px]">
-            Kurumunuzun ihtiyaçlarını birlikte değerlendirelim.
+            {title}
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/70 sm:text-base">
-            Sağlık kuruluşunuzun mevcut süreçlerini ve ihtiyaçlarını
-            değerlendirerek size uygun danışmanlık çözümünü birlikte
-            belirleyebiliriz.
+            {description}
           </p>
 
           <Link
