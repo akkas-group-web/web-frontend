@@ -44,10 +44,20 @@ interface WPSectorsResponse {
         serviceTitle: string;
         description: string;
         icon: string;
-        categoryId: string;
+        categoryId: {
+          nodes: { id: string }[];
+        };
         relatedSector: {
           nodes: { id: string }[];
         };
+      };
+    }[];
+  };
+  serviceCategories: {
+    nodes: {
+      id: string;
+      serviceCategoryFields: {
+        categorySlug: string;
       };
     }[];
   };
@@ -56,6 +66,13 @@ interface WPSectorsResponse {
 function mapSectorsFromWP(data: WPSectorsResponse): SectorContent[] {
   return data.sectors.nodes.map((sectorNode) => {
     const fields = sectorNode.sectorFields;
+
+    const categorySlugById = new Map(
+      data.serviceCategories.nodes.map((c) => [
+        c.id,
+        c.serviceCategoryFields.categorySlug,
+      ]),
+    );
 
     const relatedServices = data.sectorServices.nodes
       .filter(
@@ -67,7 +84,10 @@ function mapSectorsFromWP(data: WPSectorsResponse): SectorContent[] {
         id: serviceNode.id,
         title: serviceNode.sectorServiceFields.serviceTitle,
         description: serviceNode.sectorServiceFields.description,
-        categoryId: serviceNode.sectorServiceFields.categoryId,
+        categoryId:
+          categorySlugById.get(
+            serviceNode.sectorServiceFields.categoryId.nodes[0]?.id ?? "",
+          ) ?? "",
         icon: serviceNode.sectorServiceFields
           .icon as SectorContent["services"][number]["icon"],
       }));

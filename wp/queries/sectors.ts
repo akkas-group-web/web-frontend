@@ -46,7 +46,13 @@ export const GET_SECTORS_QUERY = gql`
           serviceTitle
           description
           icon
-          categoryId
+          categoryId {
+            nodes {
+              ... on ServiceCategory {
+                id
+              }
+            }
+          }
           relatedSector {
             nodes {
               ... on Sector {
@@ -54,6 +60,14 @@ export const GET_SECTORS_QUERY = gql`
               }
             }
           }
+        }
+      }
+    }
+    serviceCategories {
+      nodes {
+        id
+        serviceCategoryFields {
+          categorySlug
         }
       }
     }
