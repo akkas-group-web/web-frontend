@@ -33,7 +33,11 @@ export const GET_SECTORS_QUERY = gql`
           serviceTitle
           description
           icon
-          categoryId
+          categoryId {
+  nodes {
+    id
+  }
+}
           relatedSector {
             nodes {
               ... on Sector {
