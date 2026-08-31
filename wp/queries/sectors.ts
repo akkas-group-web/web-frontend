@@ -23,21 +23,29 @@ export const GET_SECTORS_QUERY = gql`
           stat2Label
           stat3Value
           stat3Label
-        }
-      }
-    }
-    sectorServices {
-      nodes {
-        id
-        sectorServiceFields {
-          serviceTitle
-          description
-          icon
-          categoryId
-          relatedSector {
+          servicesEyebrow
+          servicesTitleLine1
+          servicesTitleLine2
+          servicesDescription
+          showBenefitsSection
+          benefitsEyebrow
+          benefitsTitleLine1
+          benefitsTitleLine2
+          benefitsDescription
+          showCtaSection
+          ctaEyebrow
+          ctaTitle
+          ctaDescription
+          relatedServices {
             nodes {
-              ... on Sector {
+              ... on ServiceCategory {
                 id
+                title
+                serviceCategoryFields {
+                  categorySlug
+                  description
+                  icon
+                }
               }
             }
           }
