@@ -161,11 +161,9 @@ export function StatsSection({
           <span className="text-xs font-bold uppercase tracking-widest text-brand-teal">
             {homeSummary.eyebrow}
           </span>
-
           <h2 className="font-heading mt-3 max-w-xl text-2xl font-bold leading-tight text-brand-navy sm:text-3xl">
             {homeSummary.title}
           </h2>
-
           <p className="mt-4 max-w-md text-sm leading-relaxed text-[#333333]/65 sm:text-base">
             {homeSummary.description}
           </p>

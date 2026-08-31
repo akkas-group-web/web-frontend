@@ -1,6 +1,8 @@
 import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
 import type { SectorContent } from "@/types/sector";
+import { wpClient } from "../../wp/client";
+import { GET_SECTORS_QUERY } from "../../wp/queries/sectors";
 
 const MOCK_SECTOR_CONTENT: SectorContent[] = [
   {
@@ -75,10 +77,87 @@ const MOCK_SECTOR_CONTENT: SectorContent[] = [
   },
 ];
 
+interface WPSectorsResponse {
+  sectors: {
+    nodes: {
+      id: string;
+      sectorFields: {
+        sectorSlug: string;
+        shortTitle: string;
+        description: string;
+        heroDescription: string;
+        sectorImage: { node: { sourceUrl: string; altText: string } };
+        benefits: string;
+        stat1Value: string;
+        stat1Label: string;
+        stat2Value: string;
+        stat2Label: string;
+        stat3Value: string;
+        stat3Label: string;
+      };
+    }[];
+  };
+  sectorServices: {
+    nodes: {
+      id: string;
+      sectorServiceFields: {
+        serviceTitle: string;
+        description: string;
+        icon: string;
+        categoryId: string;
+        relatedSector: {
+          nodes: { id: string }[];
+        };
+      };
+    }[];
+  };
+}
+
+function mapSectorsFromWP(data: WPSectorsResponse): SectorContent[] {
+  return data.sectors.nodes.map((sectorNode) => {
+    const fields = sectorNode.sectorFields;
+
+    const relatedServices = data.sectorServices.nodes
+      .filter(
+        (serviceNode) =>
+          serviceNode.sectorServiceFields.relatedSector.nodes[0]?.id ===
+          sectorNode.id,
+      )
+      .map((serviceNode) => ({
+        id: serviceNode.id,
+        title: serviceNode.sectorServiceFields.serviceTitle,
+        description: serviceNode.sectorServiceFields.description,
+        categoryId: serviceNode.sectorServiceFields.categoryId,
+        icon: serviceNode.sectorServiceFields
+          .icon as SectorContent["services"][number]["icon"],
+      }));
+
+    return {
+      id: sectorNode.id,
+      slug: fields.sectorSlug.replace(/^\/+/, ""),
+      title: fields.shortTitle,
+      shortTitle: fields.shortTitle,
+      description: fields.description,
+      heroDescription: fields.heroDescription,
+      image: {
+        url: fields.sectorImage.node.sourceUrl,
+        alt: fields.sectorImage.node.altText || fields.shortTitle,
+      },
+      services: relatedServices,
+      benefits: fields.benefits.split("\n").filter(Boolean),
+      stats: [
+        { value: fields.stat1Value, label: fields.stat1Label },
+        { value: fields.stat2Value, label: fields.stat2Label },
+        { value: fields.stat3Value, label: fields.stat3Label },
+      ].filter((s) => s.value && s.label),
+    };
+  });
+}
+
 export async function getSectors(): Promise<SectorContent[]> {
   try {
-    // İleride: await wpClient.query(SECTORS_QUERY) burada olacak.
-    return MOCK_SECTOR_CONTENT;
+    const data = await wpClient.request<WPSectorsResponse>(GET_SECTORS_QUERY);
+    return mapSectorsFromWP(data);
   } catch (error) {
     logger.error("Sektör içerikleri alınamadı", { error });
 
@@ -94,9 +173,8 @@ export async function getSectorBySlug(
   slug: string,
 ): Promise<SectorContent | null> {
   try {
-    const sector = MOCK_SECTOR_CONTENT.find((item) => item.slug === slug);
-
-    return sector ?? null;
+    const sectors = await getSectors();
+    return sectors.find((item) => item.slug === slug) ?? null;
   } catch (error) {
     logger.error("Sektör içeriği alınamadı", { error, slug });
 

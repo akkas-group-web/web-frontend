@@ -47,6 +47,8 @@ export default async function SectorPage({ params }: SectorPageProps) {
 
       <SectorServices services={sector.services} />
 
+      <SectorStats stats={sector.stats} />
+
       <SectorBenefits benefits={sector.benefits} />
 
       <SectorCTA />
