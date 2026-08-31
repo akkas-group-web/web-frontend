@@ -36,38 +36,19 @@ export const GET_SECTORS_QUERY = gql`
           ctaEyebrow
           ctaTitle
           ctaDescription
-        }
-      }
-    }
-    sectorServices {
-      nodes {
-        id
-        sectorServiceFields {
-          serviceTitle
-          description
-          icon
-          categoryId {
+          relatedServices {
             nodes {
               ... on ServiceCategory {
                 id
+                title
+                serviceCategoryFields {
+                  categorySlug
+                  description
+                  icon
+                }
               }
             }
           }
-          relatedSector {
-            nodes {
-              ... on Sector {
-                id
-              }
-            }
-          }
-        }
-      }
-    }
-    serviceCategories {
-      nodes {
-        id
-        serviceCategoryFields {
-          categorySlug
         }
       }
     }

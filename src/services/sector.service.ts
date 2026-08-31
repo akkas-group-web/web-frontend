@@ -34,63 +34,33 @@ interface WPSectorsResponse {
         ctaEyebrow: string | null;
         ctaTitle: string | null;
         ctaDescription: string | null;
-      };
-    }[];
-  };
-  sectorServices: {
-    nodes: {
-      id: string;
-      sectorServiceFields: {
-        serviceTitle: string;
-        description: string;
-        icon: string;
-        categoryId: {
-          nodes: { id: string }[];
+        relatedServices: {
+          nodes: {
+            id: string;
+            title: string;
+            serviceCategoryFields: {
+              categorySlug: string;
+              description: string;
+              icon: string;
+            };
+          }[];
         };
-        relatedSector: {
-          nodes: { id: string }[];
-        };
-      };
-    }[];
-  };
-  serviceCategories: {
-    nodes: {
-      id: string;
-      serviceCategoryFields: {
-        categorySlug: string;
       };
     }[];
   };
 }
-
 function mapSectorsFromWP(data: WPSectorsResponse): SectorContent[] {
   return data.sectors.nodes.map((sectorNode) => {
     const fields = sectorNode.sectorFields;
 
-    const categorySlugById = new Map(
-      data.serviceCategories.nodes.map((c) => [
-        c.id,
-        c.serviceCategoryFields.categorySlug,
-      ]),
-    );
-
-    const relatedServices = data.sectorServices.nodes
-      .filter(
-        (serviceNode) =>
-          serviceNode.sectorServiceFields.relatedSector.nodes[0]?.id ===
-          sectorNode.id,
-      )
-      .map((serviceNode) => ({
-        id: serviceNode.id,
-        title: serviceNode.sectorServiceFields.serviceTitle,
-        description: serviceNode.sectorServiceFields.description,
-        categoryId:
-          categorySlugById.get(
-            serviceNode.sectorServiceFields.categoryId.nodes[0]?.id ?? "",
-          ) ?? "",
-        icon: serviceNode.sectorServiceFields
-          .icon as SectorContent["services"][number]["icon"],
-      }));
+    const relatedServices = fields.relatedServices.nodes.map((serviceNode) => ({
+      id: serviceNode.id,
+      title: serviceNode.title,
+      description: serviceNode.serviceCategoryFields.description,
+      categoryId: serviceNode.serviceCategoryFields.categorySlug,
+      icon: serviceNode.serviceCategoryFields
+        .icon as SectorContent["services"][number]["icon"],
+    }));
 
     return {
       id: sectorNode.id,
