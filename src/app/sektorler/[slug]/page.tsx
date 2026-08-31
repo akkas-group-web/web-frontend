@@ -45,13 +45,31 @@ export default async function SectorPage({ params }: SectorPageProps) {
     <main className="overflow-x-hidden bg-white">
       <SectorHero sector={sector} />
 
-      <SectorServices services={sector.services} />
+      <SectorServices
+        services={sector.services}
+        eyebrow={sector.servicesEyebrow}
+        titleLine1={sector.servicesTitleLine1}
+        titleLine2={sector.servicesTitleLine2}
+        description={sector.servicesDescription}
+      />
 
-      <SectorStats stats={sector.stats} />
+      {sector.showBenefitsSection && (
+        <SectorBenefits
+          benefits={sector.benefits}
+          eyebrow={sector.benefitsEyebrow}
+          titleLine1={sector.benefitsTitleLine1}
+          titleLine2={sector.benefitsTitleLine2}
+          description={sector.benefitsDescription}
+        />
+      )}
 
-      <SectorBenefits benefits={sector.benefits} />
-
-      <SectorCTA />
+      {sector.showCtaSection && (
+        <SectorCTA
+          eyebrow={sector.ctaEyebrow}
+          title={sector.ctaTitle}
+          description={sector.ctaDescription}
+        />
+      )}
     </main>
   );
 }

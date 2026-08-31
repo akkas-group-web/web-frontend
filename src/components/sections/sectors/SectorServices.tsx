@@ -8,9 +8,19 @@ import { routes } from "@/lib/routes";
 
 interface SectorServicesProps {
   services: SectorService[];
+  eyebrow: string;
+  titleLine1: string;
+  titleLine2: string;
+  description: string;
 }
 
-export function SectorServices({ services }: SectorServicesProps) {
+export function SectorServices({
+  services,
+  eyebrow,
+  titleLine1,
+  titleLine2,
+  description,
+}: SectorServicesProps) {
   return (
     <section id="hizmetler" className="bg-white py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -20,19 +30,17 @@ export function SectorServices({ services }: SectorServicesProps) {
             <span className="h-[3px] w-10 rounded-full bg-brand-teal" />
 
             <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand-teal">
-              Sağlık Sektörüne Özel
+              {eyebrow}
             </span>
           </div>
 
           <h2 className="text-3xl font-semibold leading-tight tracking-[-0.035em] text-brand-navy sm:text-4xl lg:text-[48px]">
-            İhtiyacınıza uygun
-            <span className="block text-brand-teal">uzmanlık alanları</span>
+            {titleLine1}
+            <span className="block text-brand-teal">{titleLine2}</span>
           </h2>
 
           <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-[17px] sm:leading-8">
-            Sağlık kuruluşlarının karşılaştığı farklı operasyonel, mevzuatsal ve
-            kurumsal ihtiyaçlara yönelik uzmanlık alanlarımızı bir arada
-            sunuyoruz.
+            {description}
           </p>
         </div>
 
