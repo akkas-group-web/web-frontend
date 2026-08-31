@@ -17,3 +17,23 @@ export const GET_CONTACT_OFFICES_QUERY = `
     }
   }
 `;
+export const GET_CONTACT_PAGE_QUERY = `
+  query GetContactPage {
+    contactPages {
+      nodes {
+        contactPageFields {
+          heroTitle
+          heroDescription
+          locationsTitle
+          locationsDescription
+          locationsThumbnail {
+            node {
+              sourceUrl
+              altText
+            }
+          }
+        }
+      }
+    }
+  }
+`;

@@ -1,8 +1,12 @@
 import { SITE_CONFIG } from "@/constants/site";
+interface ContactMapProps {
+  address: string;
+}
 
-export function ContactMap() {
+export function ContactMap({ address }: ContactMapProps) {
   const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(
-    SITE_CONFIG.address,
+    address,
+    // SITE_CONFIG.address,
   )}&z=15&output=embed`;
 
   return (

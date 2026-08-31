@@ -3,7 +3,10 @@ import { logger } from "@/lib/logger/logger";
 import type { ContactOffice } from "@/types";
 import { getServiceCategories } from "./service.service";
 import { wpClient } from "../../wp/client";
-import { GET_CONTACT_OFFICES_QUERY } from "../../wp/queries/contact";
+import {
+  GET_CONTACT_OFFICES_QUERY,
+  GET_CONTACT_PAGE_QUERY,
+} from "../../wp/queries/contact";
 
 const MOCK_CONTACT_OFFICES: ContactOffice[] = [
   {
@@ -58,11 +61,43 @@ function mapContactOfficesFromWP(
   }));
 }
 
+interface WPContactPageResponse {
+  contactPages: {
+    nodes: {
+      contactPageFields: {
+        heroTitle: string;
+        heroDescription: string;
+        locationsTitle: string;
+        locationsDescription: string;
+        locationsThumbnail: {
+          node: { sourceUrl: string; altText: string };
+        };
+      };
+    }[];
+  };
+}
+
+function mapContactPageFromWP(data: WPContactPageResponse) {
+  const fields = data.contactPages.nodes[0].contactPageFields;
+
+  return {
+    heroTitle: fields.heroTitle,
+    heroDescription: fields.heroDescription,
+    locationsTitle: fields.locationsTitle,
+    locationsDescription: fields.locationsDescription,
+    locationsThumbnail: {
+      url: fields.locationsThumbnail.node.sourceUrl,
+      alt: fields.locationsThumbnail.node.altText || fields.locationsTitle,
+    },
+  };
+}
+
 export async function getContactContent() {
   try {
-    const [categories, officesData] = await Promise.all([
+    const [categories, officesData, pageData] = await Promise.all([
       getServiceCategories(),
       wpClient.request<WPContactOfficesResponse>(GET_CONTACT_OFFICES_QUERY),
+      wpClient.request<WPContactPageResponse>(GET_CONTACT_PAGE_QUERY),
     ]);
 
     const offices = mapContactOfficesFromWP(officesData);
@@ -75,9 +110,12 @@ export async function getContactContent() {
             ...offices.slice(mainIndex + 1),
           ]
         : offices;
+
+    const page = mapContactPageFromWP(pageData);
     return {
       services: categories.map((c) => c.label),
       offices: sortedOffices,
+      page,
       // offices,
     };
   } catch (error) {

@@ -6,7 +6,21 @@ import { Maximize2, X } from "lucide-react";
 
 import { ContactMap } from "./ContactMap";
 
-export function LocationsSection() {
+interface LocationsSectionProps {
+  title: string;
+  description: string;
+  thumbnailUrl: string;
+  thumbnailAlt: string;
+  mainOfficeAddress: string;
+}
+
+export function LocationsSection({
+  title,
+  description,
+  thumbnailUrl,
+  thumbnailAlt,
+  mainOfficeAddress,
+}: LocationsSectionProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   // Escape + scroll lock
@@ -38,20 +52,19 @@ export function LocationsSection() {
               </p>
 
               <h2 className="mt-2 font-heading text-xl font-semibold tracking-[-0.025em] text-brand-dark sm:text-2xl md:text-3xl">
-                Akkaş Group Merkez Ofis
+                {title}
               </h2>
             </div>
 
             <p className="max-w-[360px] text-sm leading-6 text-muted-foreground md:justify-self-end md:pb-1 md:text-right">
-              Türkiye genelindeki 9 farklı hizmet noktamızla müşterilerimize
-              daha yakınız.
+              {description}
             </p>
           </div>
 
           {/* MAP */}
           <div className="relative overflow-hidden rounded-2xl border border-brand-dark/10 bg-white shadow-sm sm:rounded-[24px]">
             <div className="relative h-[320px] sm:h-[390px] md:h-[430px] lg:h-[460px]">
-              <ContactMap />
+              <ContactMap address={mainOfficeAddress} />
 
               {/* Türkiye Lokasyonları thumbnail */}
               <button
@@ -62,8 +75,8 @@ export function LocationsSection() {
               >
                 <div className="relative aspect-[16/10] w-full">
                   <Image
-                    src="/office/locations-map.png"
-                    alt="Akkaş Group 9 farklı lokasyon"
+                    src={thumbnailUrl}
+                    alt={thumbnailAlt}
                     fill
                     className="object-cover"
                     sizes="(max-width: 640px) 140px, (max-width: 768px) 230px, 320px"

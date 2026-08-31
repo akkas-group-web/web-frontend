@@ -16,8 +16,18 @@ export default async function ContactPage() {
 
   return (
     <>
-      <ContactHero />
-      <LocationsSection />
+      <ContactHero
+        title={content.page.heroTitle}
+        description={content.page.heroDescription}
+      />
+
+      <LocationsSection
+        title={content.page.locationsTitle}
+        description={content.page.locationsDescription}
+        thumbnailUrl={content.page.locationsThumbnail.url}
+        thumbnailAlt={content.page.locationsThumbnail.alt}
+        mainOfficeAddress={content.offices[0]?.address ?? ""}
+      />
 
       <ContactSection offices={content.offices} services={content.services} />
     </>

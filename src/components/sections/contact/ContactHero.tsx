@@ -1,4 +1,9 @@
-export function ContactHero() {
+interface ContactHeroProps {
+  title: string;
+  description: string;
+}
+
+export function ContactHero({ title, description }: ContactHeroProps) {
   return (
     <section className="relative overflow-hidden border-b border-brand-dark/10 bg-white pt-16 md:pt-20">
       {/* Güçlendirilmiş arka plan geçişi */}
@@ -17,15 +22,14 @@ export function ContactHero() {
           </div>
 
           {/* Heading */}
+
           <h1 className="mt-3 font-heading text-2xl font-semibold leading-[1.15] tracking-[-0.035em] text-brand-dark sm:text-3xl md:text-4xl lg:text-[40px]">
-            Akkaş Group ile iletişime geçin.
+            {title}
           </h1>
 
           {/* Description */}
           <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground md:text-[15px] md:leading-7">
-            Sorularınız, projeleriniz ve danışmanlık ihtiyaçlarınız için uzman
-            ekibimizle iletişime geçebilir, ihtiyaçlarınıza özel çözümler
-            hakkında bilgi alabilirsiniz.
+            {description}
           </p>
         </div>
       </div>
