@@ -17,19 +17,27 @@ interface StatsSectionProps {
 function parseStatValue(raw: string): {
   number: number;
   suffix: string;
+  locale: boolean;
 } {
-  const match = raw.match(/^(\d+(?:[.,]\d+)?)(.*)$/);
+  const match = raw.match(/^([\d.,]+)(.*)$/);
 
   if (!match) {
     return {
       number: 0,
       suffix: raw,
+      locale: false,
     };
   }
 
+  const numericPart = match[1];
+  const suffix = match[2];
+
+  const normalized = numericPart.replace(/[.,]/g, "");
+
   return {
-    number: parseFloat(match[1].replace(",", ".")),
-    suffix: match[2],
+    number: Number(normalized),
+    suffix,
+    locale: numericPart.includes(".") || numericPart.includes(","),
   };
 }
 
@@ -46,7 +54,7 @@ function AnimatedNumber({ value, duration = 1.6 }: AnimatedNumberProps) {
     amount: 0.6,
   });
 
-  const { number, suffix } = parseStatValue(value);
+  const { number, suffix, locale } = parseStatValue(value);
 
   const [display, setDisplay] = useState(0);
 
@@ -76,12 +84,12 @@ function AnimatedNumber({ value, duration = 1.6 }: AnimatedNumberProps) {
     return () => cancelAnimationFrame(frame);
   }, [isInView, number, duration]);
 
-  return (
-    <span ref={ref}>
-      {display}
-      {suffix}
-    </span>
-  );
+return (
+  <span ref={ref}>
+    {locale ? display.toLocaleString("tr-TR") : display}
+    {suffix}
+  </span>
+);
 }
 
 function WaveOverlay() {
@@ -151,20 +159,14 @@ export function StatsSection({
           className="flex flex-col justify-start"
         >
           <span className="text-xs font-bold uppercase tracking-widest text-brand-teal">
-            Hakkımızda
             {homeSummary.eyebrow}
           </span>
 
           <h2 className="font-heading mt-3 max-w-xl text-2xl font-bold leading-tight text-brand-navy sm:text-3xl">
-            A&apos;dan Z&apos;ye danışmanlıkta güvenilir çözüm
             {homeSummary.title}
           </h2>
 
           <p className="mt-4 max-w-md text-sm leading-relaxed text-[#333333]/65 sm:text-base">
-            1999&apos;dan bu yana teşvik, yatırım, kalite belgelendirme ve KVKK
-            danışmanlığı alanlarında binlerce firmaya uçtan uca destek
-            sağlıyoruz. Grup şirketlerimizle sektörünüze özel çözümler
-            sunuyoruz.
             {homeSummary.description}
           </p>
 
@@ -205,7 +207,6 @@ export function StatsSection({
                 <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-brand-teal/10 blur-2xl transition-transform duration-700 group-hover:scale-150" />
 
                 <span className="relative text-[10px] font-bold uppercase tracking-widest text-[#333333]/50">
-                  {primaryStat.sub ?? "Öne Çıkan"}
                 </span>
 
                 <div className="font-heading relative mt-2 text-4xl font-bold text-brand-teal">
@@ -246,8 +247,8 @@ export function StatsSection({
                   {restStats.slice(0, 3).map((stat) => (
                     <li key={stat.id}>
                       <div className="font-heading text-2xl font-bold text-white">
-                        <AnimatedNumber value={stat.value} />
-                      </div>
+  <AnimatedNumber value={stat.value} />
+</div>
 
                       <div className="mt-0.5 text-xs font-medium leading-5 text-white/70">
                         {stat.label}

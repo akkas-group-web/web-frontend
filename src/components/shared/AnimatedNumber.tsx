@@ -8,16 +8,34 @@ interface AnimatedNumberProps {
   duration?: number;
 }
 
-function parseStatValue(raw: string): { number: number; suffix: string } {
-  const match = raw.match(/^(\d+(?:[.,]\d+)?)(.*)$/);
-  if (!match) return { number: 0, suffix: raw };
-  return { number: parseFloat(match[1].replace(",", ".")), suffix: match[2] };
+function parseStatValue(raw: string): {
+  number: number;
+  suffix: string;
+  formatted: boolean;
+} {
+  const match = raw.match(/^([\d.,]+)(.*)$/);
+
+  if (!match) {
+    return {
+      number: 0,
+      suffix: raw,
+      formatted: false,
+    };
+  }
+
+  const numericPart = match[1];
+
+  return {
+    number: Number(numericPart.replace(/[.,]/g, "")),
+    suffix: match[2],
+    formatted: numericPart.includes(".") || numericPart.includes(","),
+  };
 }
 
 export function AnimatedNumber({ value, duration = 1.6 }: AnimatedNumberProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.6 });
-  const { number, suffix } = parseStatValue(value);
+  const { number, suffix, formatted } = parseStatValue(value);
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
@@ -38,10 +56,10 @@ export function AnimatedNumber({ value, duration = 1.6 }: AnimatedNumberProps) {
     return () => cancelAnimationFrame(frame);
   }, [isInView, number, duration]);
 
-  return (
-    <span ref={ref}>
-      {display}
-      {suffix}
-    </span>
-  );
+ return (
+  <span ref={ref}>
+    {formatted ? display.toLocaleString("tr-TR") : display}
+    {suffix}
+  </span>
+);
 }
