@@ -2,9 +2,19 @@ import { CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
 
 interface SectorBenefitsProps {
   benefits: string[];
+  eyebrow: string;
+  titleLine1: string;
+  titleLine2: string;
+  description: string;
 }
 
-export function SectorBenefits({ benefits }: SectorBenefitsProps) {
+export function SectorBenefits({
+  benefits,
+  eyebrow,
+  titleLine1,
+  titleLine2,
+  description,
+}: SectorBenefitsProps) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-brand-navy to-brand-dark py-16 text-white sm:py-20 lg:py-24">
       <div className="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-brand-teal/15 blur-3xl" />
@@ -18,21 +28,17 @@ export function SectorBenefits({ benefits }: SectorBenefitsProps) {
               <span className="h-[3px] w-10 rounded-full bg-brand-sky" />
 
               <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand-turquoise-100">
-                Neden Akkaş Group?
+                {eyebrow}
               </span>
             </div>
 
             <h2 className="max-w-xl text-3xl font-semibold leading-tight tracking-[-0.035em] sm:text-4xl lg:text-[48px]">
-              Sağlık sektörünü
-              <span className="block text-brand-sky">
-                bütünsel ele alıyoruz.
-              </span>
+              {titleLine1}
+              <span className="block text-brand-sky">{titleLine2}</span>
             </h2>
 
             <p className="mt-6 max-w-lg text-base leading-7 text-white/65 sm:text-[17px] sm:leading-8">
-              Farklı uzmanlık alanlarını tek bir danışmanlık çatısı altında bir
-              araya getirerek sağlık kuruluşlarının ihtiyaçlarına bütünsel
-              çözümler sunuyoruz.
+              {description}
             </p>
 
             <div className="mt-8 flex items-center gap-3">

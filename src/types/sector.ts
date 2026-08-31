@@ -23,4 +23,17 @@ export interface SectorContent {
     value: string;
     label: string;
   }[];
+  servicesEyebrow: string;
+  servicesTitleLine1: string;
+  servicesTitleLine2: string;
+  servicesDescription: string;
+  showBenefitsSection: boolean;
+  benefitsEyebrow: string;
+  benefitsTitleLine1: string;
+  benefitsTitleLine2: string;
+  benefitsDescription: string;
+  showCtaSection: boolean;
+  ctaEyebrow: string;
+  ctaTitle: string;
+  ctaDescription: string;
 }
