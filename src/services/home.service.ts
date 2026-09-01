@@ -2,15 +2,15 @@ import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
 import type { HomeContent } from "@/types";
 
-import { articles } from "./blog.service";
+import { getBlogPosts } from "./blog.service";
+import { getHeroSlides } from "./hero.service";
 import { getNews } from "./news.service";
+
 import { getServiceCategories } from "./service.service";
 import { getClientReferences } from "./reference.service";
-import { getHeroSlides } from "./hero.service";
-import {
-  getAboutContent,
-  getHomeSummaryContent,
-} from "./about.service";
+
+import { getAboutContent, getHomeSummaryContent } from "./about.service";
+
 import { getSectors } from "./sector.service";
 
 const MOCK_HOME_CONTENT: Omit<
@@ -22,9 +22,8 @@ const MOCK_HOME_CONTENT: Omit<
   | "homeSummary"
   | "sectors"
   | "announcements"
+  | "articles"
 > = {
-  articles,
-
   brands: [
     {
       id: "aker-patent",
@@ -104,16 +103,16 @@ const MOCK_HOME_CONTENT: Omit<
       },
     },
     {
-  id: "akkas-teknoloji",
-  name: "Akkaş Teknoloji",
-  description:
-    "Yazılım, bilişim ve dijital dönüşüm alanlarında kurumların ihtiyaçlarına yönelik yenilikçi teknoloji çözümleri sunmaktadır. İş süreçlerinin dijitalleştirilmesine ve daha verimli yönetilmesine destek olmaktadır.",
-  href: "/markalarimiz/akkas-teknoloji",
-  logo: {
-    url: "/brands/akkasteknoloji.png",
-    alt: "Akkaş Teknoloji logosu",
-  },
-},
+      id: "akkas-teknoloji",
+      name: "Akkaş Teknoloji",
+      description:
+        "Yazılım, bilişim ve dijital dönüşüm alanlarında kurumların ihtiyaçlarına yönelik yenilikçi teknoloji çözümleri sunmaktadır. İş süreçlerinin dijitalleştirilmesine ve daha verimli yönetilmesine destek olmaktadır.",
+      href: "/markalarimiz/akkas-teknoloji",
+      logo: {
+        url: "/brands/akkasteknoloji.png",
+        alt: "Akkaş Teknoloji logosu",
+      },
+    },
   ],
 };
 
@@ -127,6 +126,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       homeSummary,
       sectors,
       announcements,
+      articles,
     ] = await Promise.all([
       getServiceCategories(),
       getClientReferences(),
@@ -135,23 +135,27 @@ export async function getHomeContent(): Promise<HomeContent> {
       getHomeSummaryContent(),
       getSectors(),
       getNews(),
+      getBlogPosts(),
     ]);
 
     return {
       ...MOCK_HOME_CONTENT,
+
       services: services.map((category) => ({
-  id: category.id,
-  title: category.label,
-  description: category.description,
-  href: category.href,
-  icon: category.icon,
-})),
+        id: category.id,
+        title: category.label,
+        description: category.description,
+        href: category.href,
+        icon: category.icon,
+      })),
+
       clients,
       heroSlides,
       stats: aboutContent.stats,
       homeSummary,
       sectors,
       announcements,
+      articles,
     };
   } catch (error) {
     logger.error("Ana sayfa içeriği alınamadı", { error });
