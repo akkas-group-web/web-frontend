@@ -44,9 +44,8 @@ function mapNewsFromWP(data: WPNewsResponse): NewsItem[] {
         url: node.featuredImage?.node.sourceUrl ?? "",
         alt: node.featuredImage?.node.altText || node.title,
       },
-      imageRatio:
-        selectedImageRatio === "square" ? "square" : "landscape",
-      content: node.newsItemFields.haberIcerigi
+      imageRatio: selectedImageRatio === "square" ? "square" : "landscape",
+      content: (node.newsItemFields.haberIcerigi ?? "")
         .split(/\r?\n\s*\r?\n/)
         .map((paragraph) => paragraph.trim())
         .filter(Boolean),
@@ -62,17 +61,11 @@ export async function getNews(): Promise<NewsItem[]> {
   } catch (error) {
     logger.error("Haberler alınamadı", { error });
 
-    throw new AppError(
-      "Haberler yüklenemedi",
-      "CONTENT_FETCH_FAILED",
-      error,
-    );
+    throw new AppError("Haberler yüklenemedi", "CONTENT_FETCH_FAILED", error);
   }
 }
 
-export async function getNewsBySlug(
-  slug: string,
-): Promise<NewsItem | null> {
+export async function getNewsBySlug(slug: string): Promise<NewsItem | null> {
   try {
     const items = await getNews();
 
