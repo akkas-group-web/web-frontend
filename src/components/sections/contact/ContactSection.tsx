@@ -6,11 +6,43 @@ import { ContactForm } from "./ContactForm";
 interface ContactSectionProps {
   offices: ContactOffice[];
   services: string[];
+  formTitle: string;
+  formDescription: string;
+  nameLabel: string;
+  namePlaceholder: string;
+  companyLabel: string;
+  companyPlaceholder: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  phoneLabel: string;
+  phonePlaceholder: string;
+  serviceLabel: string;
+  serviceDefault: string;
+  messageLabel: string;
+  messagePlaceholder: string;
+  submitButtonText: string;
+  kvkkPdfUrl: string;
 }
 
 export function ContactSection({
   offices,
   services,
+  formTitle,
+  formDescription,
+  nameLabel,
+  namePlaceholder,
+  companyLabel,
+  companyPlaceholder,
+  emailLabel,
+  emailPlaceholder,
+  phoneLabel,
+  phonePlaceholder,
+  serviceLabel,
+  serviceDefault,
+  messageLabel,
+  messagePlaceholder,
+  submitButtonText,
+  kvkkPdfUrl,
 }: ContactSectionProps) {
   const [mainOffice, ...otherOffices] = offices;
 
@@ -29,17 +61,31 @@ export function ContactSection({
             </p>
 
             <h2 className="mt-3 font-heading text-2xl font-semibold tracking-[-0.03em] text-brand-dark md:text-[28px]">
-              Size nasıl yardımcı olabiliriz?
+              {formTitle}
             </h2>
 
             <p className="mb-6 mt-3 max-w-lg text-sm leading-6 text-muted-foreground">
-              Formu doldurun, ilgili uzmanımız en kısa sürede sizinle iletişime
-              geçsin.
+              {formDescription}
             </p>
 
-            <ContactForm services={services} />
+            <ContactForm
+              services={services}
+              nameLabel={nameLabel}
+              namePlaceholder={namePlaceholder}
+              companyLabel={companyLabel}
+              companyPlaceholder={companyPlaceholder}
+              emailLabel={emailLabel}
+              emailPlaceholder={emailPlaceholder}
+              phoneLabel={phoneLabel}
+              phonePlaceholder={phonePlaceholder}
+              serviceLabel={serviceLabel}
+              serviceDefault={serviceDefault}
+              messageLabel={messageLabel}
+              messagePlaceholder={messagePlaceholder}
+              submitButtonText={submitButtonText}
+              kvkkPdfUrl={kvkkPdfUrl}
+            />
           </div>
-
           {/* RIGHT - CONTACT INFO */}
           <div className="lg:border-l lg:border-brand-dark/10 lg:pl-12">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-primary">
@@ -50,9 +96,7 @@ export function ContactSection({
               {mainOffice.city}
             </h3>
 
-            <p className="mt-1 text-sm text-muted-foreground">
-              Akkaş Plaza
-            </p>
+            <p className="mt-1 text-sm text-muted-foreground">Akkaş Plaza</p>
 
             {/* Contact Details */}
             <div className="mt-5 divide-y divide-brand-dark/10 border-y border-brand-dark/10">

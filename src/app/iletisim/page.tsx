@@ -29,7 +29,26 @@ export default async function ContactPage() {
         mainOfficeAddress={content.offices[0]?.address ?? ""}
       />
 
-      <ContactSection offices={content.offices} services={content.services} />
+      <ContactSection
+        offices={content.offices}
+        services={content.services}
+        formTitle={content.page.formTitle}
+        formDescription={content.page.formDescription}
+        nameLabel={content.page.nameLabel}
+        namePlaceholder={content.page.namePlaceholder}
+        companyLabel={content.page.companyLabel}
+        companyPlaceholder={content.page.companyPlaceholder}
+        emailLabel={content.page.emailLabel}
+        emailPlaceholder={content.page.emailPlaceholder}
+        phoneLabel={content.page.phoneLabel}
+        phonePlaceholder={content.page.phonePlaceholder}
+        serviceLabel={content.page.serviceLabel}
+        serviceDefault={content.page.serviceDefault}
+        messageLabel={content.page.messageLabel}
+        messagePlaceholder={content.page.messagePlaceholder}
+        submitButtonText={content.page.submitButtonText}
+        kvkkPdfUrl={content.page.kvkkPdfUrl}
+      />
     </>
   );
 }

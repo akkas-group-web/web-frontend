@@ -32,6 +32,26 @@ export const GET_CONTACT_PAGE_QUERY = `
               altText
             }
           }
+          formTitle
+          formDescription
+          nameLabel
+          namePlaceholder
+          companyLabel
+          companyPlaceholder
+          emailLabel
+          emailPlaceholder
+          phoneLabel
+          phonePlaceholder
+          serviceLabel
+          serviceDefault
+          messageLabel
+          messagePlaceholder
+          submitButtonText
+          kvkkPdf {
+            node {
+              mediaItemUrl
+            }
+          }
         }
       }
     }

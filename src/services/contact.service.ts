@@ -72,6 +72,24 @@ interface WPContactPageResponse {
         locationsThumbnail: {
           node: { sourceUrl: string; altText: string };
         };
+        formTitle: string;
+        formDescription: string;
+        nameLabel: string;
+        namePlaceholder: string;
+        companyLabel: string;
+        companyPlaceholder: string;
+        emailLabel: string;
+        emailPlaceholder: string;
+        phoneLabel: string;
+        phonePlaceholder: string;
+        serviceLabel: string;
+        serviceDefault: string;
+        messageLabel: string;
+        messagePlaceholder: string;
+        submitButtonText: string;
+        kvkkPdf: {
+          node: { mediaItemUrl: string };
+        };
       };
     }[];
   };
@@ -89,6 +107,22 @@ function mapContactPageFromWP(data: WPContactPageResponse) {
       url: fields.locationsThumbnail.node.sourceUrl,
       alt: fields.locationsThumbnail.node.altText || fields.locationsTitle,
     },
+    formTitle: fields.formTitle,
+    formDescription: fields.formDescription,
+    nameLabel: fields.nameLabel,
+    namePlaceholder: fields.namePlaceholder,
+    companyLabel: fields.companyLabel,
+    companyPlaceholder: fields.companyPlaceholder,
+    emailLabel: fields.emailLabel,
+    emailPlaceholder: fields.emailPlaceholder,
+    phoneLabel: fields.phoneLabel,
+    phonePlaceholder: fields.phonePlaceholder,
+    serviceLabel: fields.serviceLabel,
+    serviceDefault: fields.serviceDefault,
+    messageLabel: fields.messageLabel,
+    messagePlaceholder: fields.messagePlaceholder,
+    submitButtonText: fields.submitButtonText,
+    kvkkPdfUrl: fields.kvkkPdf.node.mediaItemUrl,
   };
 }
 

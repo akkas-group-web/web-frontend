@@ -264,7 +264,7 @@ export async function getHomeSummaryContent(): Promise<HomeSummaryContent> {
     const data =
       await wpClient.request<WPAboutPageResponse>(GET_ABOUT_PAGE_QUERY);
 
-    console.log("HOME SUMMARY WP:", data.aboutPages.nodes[0].aboutstorycontent);
+    // console.log("HOME SUMMARY WP:", data.aboutPages.nodes[0].aboutstorycontent);
     return mapHomeSummaryFromWP(data);
   } catch (error) {
     logger.error("Ana sayfa özet içeriği alınamadı", { error });

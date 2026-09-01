@@ -2,12 +2,41 @@
 
 import { useState } from "react";
 import { ArrowRight, ExternalLink } from "lucide-react";
-
 interface ContactFormProps {
   services: string[];
+  nameLabel: string;
+  namePlaceholder: string;
+  companyLabel: string;
+  companyPlaceholder: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  phoneLabel: string;
+  phonePlaceholder: string;
+  serviceLabel: string;
+  serviceDefault: string;
+  messageLabel: string;
+  messagePlaceholder: string;
+  submitButtonText: string;
+  kvkkPdfUrl: string;
 }
 
-export function ContactForm({ services }: ContactFormProps) {
+export function ContactForm({
+  services,
+  nameLabel,
+  namePlaceholder,
+  companyLabel,
+  companyPlaceholder,
+  emailLabel,
+  emailPlaceholder,
+  phoneLabel,
+  phonePlaceholder,
+  serviceLabel,
+  serviceDefault,
+  messageLabel,
+  messagePlaceholder,
+  submitButtonText,
+  kvkkPdfUrl,
+}: ContactFormProps) {
   const [kvkkOpened, setKvkkOpened] = useState(false);
 
   return (
@@ -19,7 +48,7 @@ export function ContactForm({ services }: ContactFormProps) {
             htmlFor="name"
             className="mb-1.5 block text-sm font-medium text-brand-dark"
           >
-            Ad Soyad <span className="text-red-500">*</span>
+            {nameLabel} <span className="text-red-500">*</span>
           </label>
 
           <input
@@ -27,7 +56,7 @@ export function ContactForm({ services }: ContactFormProps) {
             name="name"
             type="text"
             required
-            placeholder="Adınız Soyadınız"
+            placeholder={namePlaceholder}
             className="h-12 w-full rounded-xl border border-brand-dark/10 bg-[#f8fafb] px-4 text-base outline-none transition placeholder:text-[#9ca6a9] focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-brand-light/15 sm:text-sm"
           />
         </div>
@@ -37,14 +66,14 @@ export function ContactForm({ services }: ContactFormProps) {
             htmlFor="company"
             className="mb-1.5 block text-sm font-medium text-brand-dark"
           >
-            Firma
+            {companyLabel}
           </label>
 
           <input
             id="company"
             name="company"
             type="text"
-            placeholder="Firma adınız"
+            placeholder={companyPlaceholder}
             className="h-12 w-full rounded-xl border border-brand-dark/10 bg-[#f8fafb] px-4 text-base outline-none transition placeholder:text-[#9ca6a9] focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-brand-light/15 sm:text-sm"
           />
         </div>
@@ -57,7 +86,8 @@ export function ContactForm({ services }: ContactFormProps) {
             htmlFor="email"
             className="mb-1.5 block text-sm font-medium text-brand-dark"
           >
-            E-posta <span className="text-red-500">*</span>
+            {emailLabel}
+            <span className="text-red-500">*</span>
           </label>
 
           <input
@@ -65,7 +95,7 @@ export function ContactForm({ services }: ContactFormProps) {
             name="email"
             type="email"
             required
-            placeholder="ornek@firma.com"
+            placeholder={emailPlaceholder}
             className="h-12 w-full rounded-xl border border-brand-dark/10 bg-[#f8fafb] px-4 text-base outline-none transition placeholder:text-[#9ca6a9] focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-brand-light/15 sm:text-sm"
           />
         </div>
@@ -75,7 +105,7 @@ export function ContactForm({ services }: ContactFormProps) {
             htmlFor="phone"
             className="mb-1.5 block text-sm font-medium text-brand-dark"
           >
-            Telefon <span className="text-red-500">*</span>
+            {phoneLabel} <span className="text-red-500">*</span>
           </label>
 
           <input
@@ -83,7 +113,7 @@ export function ContactForm({ services }: ContactFormProps) {
             name="phone"
             type="tel"
             required
-            placeholder="+90 5__ ___ __ __"
+            placeholder={phonePlaceholder}
             className="h-12 w-full rounded-xl border border-brand-dark/10 bg-[#f8fafb] px-4 text-base outline-none transition placeholder:text-[#9ca6a9] focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-brand-light/15 sm:text-sm"
           />
         </div>
@@ -95,7 +125,8 @@ export function ContactForm({ services }: ContactFormProps) {
           htmlFor="service"
           className="mb-1.5 block text-sm font-medium text-brand-dark"
         >
-          İlgilendiğiniz Hizmet <span className="text-red-500">*</span>
+          {serviceLabel}
+          <span className="text-red-500">*</span>
         </label>
 
         <select
@@ -106,7 +137,7 @@ export function ContactForm({ services }: ContactFormProps) {
           className="h-12 w-full rounded-xl border border-brand-dark/10 bg-[#f8fafb] px-4 text-base text-[#576569] outline-none transition focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-brand-light/15 sm:text-sm"
         >
           <option value="" disabled>
-            Hizmet seçiniz
+            {serviceDefault}
           </option>
 
           {services.map((service) => (
@@ -123,7 +154,7 @@ export function ContactForm({ services }: ContactFormProps) {
           htmlFor="message"
           className="mb-1.5 block text-sm font-medium text-brand-dark"
         >
-          Mesajınız <span className="text-red-500">*</span>
+          {messageLabel} <span className="text-red-500">*</span>
         </label>
 
         <textarea
@@ -132,7 +163,7 @@ export function ContactForm({ services }: ContactFormProps) {
           rows={3}
           required
           minLength={10}
-          placeholder="Size nasıl yardımcı olabiliriz?"
+          placeholder={messagePlaceholder}
           className="min-h-[96px] w-full resize-none rounded-xl border border-brand-dark/10 bg-[#f8fafb] px-4 py-3 text-base outline-none transition placeholder:text-[#9ca6a9] focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-brand-light/15 sm:text-sm"
         />
       </div>
@@ -150,7 +181,7 @@ export function ContactForm({ services }: ContactFormProps) {
 
           <span className="text-xs leading-5 text-muted-foreground">
             <a
-              href="/documents/iletisimformuaydinlatmametni.pdf"
+              href={kvkkPdfUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setKvkkOpened(true)}
@@ -179,8 +210,7 @@ export function ContactForm({ services }: ContactFormProps) {
         type="submit"
         className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-brand-dark px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-brand-primary hover:shadow-lg sm:w-auto"
       >
-        Mesajı Gönder
-
+        {submitButtonText}
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
       </button>
     </form>
