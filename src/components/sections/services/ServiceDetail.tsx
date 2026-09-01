@@ -19,7 +19,7 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
       description={service.description}
       category={service.categoryTitle}
     >
-      <ServiceSection>
+      <ServiceSection title={service.contentTitle}>
         <div
           className={
             service.image
@@ -30,8 +30,8 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
           {service.image && (
             <div className="overflow-hidden rounded-xl border border-[#0d4d5c]/10 bg-white">
               <Image
-                src={service.image.url}
-                alt={service.image.alt}
+                src={service.image.url || ""}
+                alt={service.image.alt || service.title}
                 width={service.image.width ?? 600}
                 height={service.image.height ?? 400}
                 sizes="(max-width: 767px) 100vw, 280px"
@@ -41,9 +41,18 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
           )}
 
           <div className="space-y-5">
-            {service.content.map((paragraph, index) => (
-              <ServiceText key={index}>{paragraph}</ServiceText>
-            ))}
+            {/* WYSIWYG veya HTML/Düz Metin olarak gelen metni güvenle basar */}
+            {typeof service.content === "string" ? (
+              <div
+                className="prose prose-sm max-w-none text-[13.5px] leading-6 text-[#58696e]"
+                dangerouslySetInnerHTML={{ __html: service.content }}
+              />
+            ) : (
+              // Dizi (array) olarak gelirse geriye dönük uyumluluk sağlar
+              (service.content as string[])?.map((paragraph, index) => (
+                <ServiceText key={index}>{paragraph}</ServiceText>
+              ))
+            )}
           </div>
         </div>
       </ServiceSection>
