@@ -30,7 +30,18 @@ export function ValuesSection({ values }: ValuesSectionProps) {
 
         <div className="mt-14 flex flex-wrap justify-center gap-5">
           {values.map((value, idx) => {
-            const Icon = VALUE_ICONS[value.id] ?? ShieldCheck;
+            const titleKey = value.title.toLocaleLowerCase("tr-TR");
+
+const Icon =
+  titleKey.includes("hızlı")
+    ? Zap
+    : titleKey.includes("çözüm")
+      ? Crosshair
+      : titleKey.includes("bilgi")
+        ? Lightbulb
+        : titleKey.includes("güven")
+          ? ShieldCheck
+          : ShieldCheck;
 
             return (
               <motion.div

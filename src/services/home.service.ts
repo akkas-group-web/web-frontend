@@ -1,13 +1,17 @@
 import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
 import type { HomeContent } from "@/types";
-import { getAboutContent, getHomeSummaryContent } from "./about.service";
+
 import { getBlogPosts } from "./blog.service";
 import { getHeroSlides } from "./hero.service";
 import { getNews } from "./news.service";
-import { getClientReferences } from "./reference.service";
-import { getSectors } from "./sector.service";
+
 import { getServiceCategories } from "./service.service";
+import { getClientReferences } from "./reference.service";
+
+import { getAboutContent, getHomeSummaryContent } from "./about.service";
+
+import { getSectors } from "./sector.service";
 
 const MOCK_HOME_CONTENT: Omit<
   HomeContent,
@@ -69,7 +73,7 @@ const MOCK_HOME_CONTENT: Omit<
       id: "akkas-kvk",
       name: "Akkaş KVK",
       description:
-        "Kişisel verilerin korunması alanında danışmanlık hizmetleri sunmaktadır. Kurumların kişisel veri işleme süreçlerini mevzuata uygun şekilde yönetmelerine destek olmaktadır. KVKK kapsamında uyum süreçlerinin oluşturulmasına ve geliştirilmesine katkı sağlamaktadır.",
+        "Kişisel verilerin korunması alanında danışmanlık hizmetleri sunmaktadır. Kurumların kişisel veri işleme süreçlerini mevzuata uygun şekilde yönetmelerine destek olmaktadır.",
       href: "/markalarimiz/akkas-kvk",
       logo: {
         url: "/brands/akkaskvk.png",
@@ -80,7 +84,7 @@ const MOCK_HOME_CONTENT: Omit<
       id: "akkas-stst",
       name: "Akkaş STST",
       description:
-        "Sigorta teşvik sistemleri alanında işletmelere danışmanlık hizmetleri sunmaktadır. İşletmelerin yararlanabileceği sigorta teşviklerinin belirlenmesine destek olmaktadır. Teşvik süreçlerinin doğru ve etkin şekilde yönetilmesine katkı sağlamaktadır.",
+        "Sigorta teşvik sistemleri alanında işletmelere danışmanlık hizmetleri sunmaktadır. İşletmelerin yararlanabileceği sigorta teşviklerinin belirlenmesine ve süreçlerin yönetilmesine destek olmaktadır.",
       href: "/markalarimiz/akkas-stst",
       logo: {
         url: "/brands/akkassts.jpg",
@@ -91,11 +95,22 @@ const MOCK_HOME_CONTENT: Omit<
       id: "akkas-akademi",
       name: "Akkaş Akademi",
       description:
-        "Eğitim ve akademi alanında kurumların gelişim ihtiyaçlarına yönelik hizmetler sunmaktadır. Mesleki gelişim, kurumsal eğitim ve uzmanlık alanlarında eğitim çözümleri geliştirmektedir. Katılımcıların bilgi ve yetkinliklerini geliştirmeye yönelik programlar hazırlamaktadır.",
+        "Eğitim ve akademi alanında kurumların gelişim ihtiyaçlarına yönelik hizmetler sunmaktadır. Mesleki gelişim, kurumsal eğitim ve uzmanlık alanlarında eğitim çözümleri geliştirmektedir.",
       href: "/markalarimiz/akkas-akademi",
       logo: {
         url: "/brands/akerakademi.png",
         alt: "Akkaş Akademi logosu",
+      },
+    },
+    {
+      id: "akkas-teknoloji",
+      name: "Akkaş Teknoloji",
+      description:
+        "Yazılım, bilişim ve dijital dönüşüm alanlarında kurumların ihtiyaçlarına yönelik yenilikçi teknoloji çözümleri sunmaktadır. İş süreçlerinin dijitalleştirilmesine ve daha verimli yönetilmesine destek olmaktadır.",
+      href: "/markalarimiz/akkas-teknoloji",
+      logo: {
+        url: "/brands/akkasteknoloji.png",
+        alt: "Akkaş Teknoloji logosu",
       },
     },
   ],
