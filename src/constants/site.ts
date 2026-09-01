@@ -41,6 +41,11 @@ export const BRAND_COMPANIES: BrandCompany[] = [
     href: "/markalarimiz/akkas-akademi",
     logo: "/brands/akerakademi.png",
   },
+  {
+    label: "Akkaş Teknoloji",
+    href: "/markalarimiz/akkas-teknoloji",
+    logo: "/brands/akkasteknoloji.png",
+  },
 ];
 
 export const SECTORS: NavChild[] = [
@@ -72,7 +77,7 @@ export const STATS = [
   { value: "25+", label: "Yıllık Tecrübe", sub: "1999'dan beri" },
   { value: "200+", label: "Uzman Danışman Kadrosu" },
   { value: "18.000+", label: "Hizmet Verilen Firma" },
-  { value: "7", label: "Grup Şirketi" },
+  { value: "8", label: "Grup Şirketi" },
 ];
 
 export const SITE_CONFIG = {

@@ -1,18 +1,27 @@
 import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
 import type { HomeContent } from "@/types";
+
 import { articles } from "./blog.service";
-import { news } from "./news.service";
+import { getNews } from "./news.service";
 import { getServiceCategories } from "./service.service";
 import { getClientReferences } from "./reference.service";
 import { getHeroSlides } from "./hero.service";
-import { getAboutContent } from "./about.service";
-import { getHomeSummaryContent } from "./about.service";
+import {
+  getAboutContent,
+  getHomeSummaryContent,
+} from "./about.service";
 import { getSectors } from "./sector.service";
 
 const MOCK_HOME_CONTENT: Omit<
   HomeContent,
-  "services" | "clients" | "heroSlides" | "stats" | "homeSummary" | "sectors"
+  | "services"
+  | "clients"
+  | "heroSlides"
+  | "stats"
+  | "homeSummary"
+  | "sectors"
+  | "announcements"
 > = {
   articles,
 
@@ -65,7 +74,7 @@ const MOCK_HOME_CONTENT: Omit<
       id: "akkas-kvk",
       name: "Akkaş KVK",
       description:
-        "Kişisel verilerin korunması alanında danışmanlık hizmetleri sunmaktadır. Kurumların kişisel veri işleme süreçlerini mevzuata uygun şekilde yönetmelerine destek olmaktadır. KVKK kapsamında uyum süreçlerinin oluşturulmasına ve geliştirilmesine katkı sağlamaktadır.",
+        "Kişisel verilerin korunması alanında danışmanlık hizmetleri sunmaktadır. Kurumların kişisel veri işleme süreçlerini mevzuata uygun şekilde yönetmelerine destek olmaktadır.",
       href: "/markalarimiz/akkas-kvk",
       logo: {
         url: "/brands/akkaskvk.png",
@@ -76,7 +85,7 @@ const MOCK_HOME_CONTENT: Omit<
       id: "akkas-stst",
       name: "Akkaş STST",
       description:
-        "Sigorta teşvik sistemleri alanında işletmelere danışmanlık hizmetleri sunmaktadır. İşletmelerin yararlanabileceği sigorta teşviklerinin belirlenmesine destek olmaktadır. Teşvik süreçlerinin doğru ve etkin şekilde yönetilmesine katkı sağlamaktadır.",
+        "Sigorta teşvik sistemleri alanında işletmelere danışmanlık hizmetleri sunmaktadır. İşletmelerin yararlanabileceği sigorta teşviklerinin belirlenmesine ve süreçlerin yönetilmesine destek olmaktadır.",
       href: "/markalarimiz/akkas-stst",
       logo: {
         url: "/brands/akkassts.jpg",
@@ -87,134 +96,37 @@ const MOCK_HOME_CONTENT: Omit<
       id: "akkas-akademi",
       name: "Akkaş Akademi",
       description:
-        "Eğitim ve akademi alanında kurumların gelişim ihtiyaçlarına yönelik hizmetler sunmaktadır. Mesleki gelişim, kurumsal eğitim ve uzmanlık alanlarında eğitim çözümleri geliştirmektedir. Katılımcıların bilgi ve yetkinliklerini geliştirmeye yönelik programlar hazırlamaktadır.",
+        "Eğitim ve akademi alanında kurumların gelişim ihtiyaçlarına yönelik hizmetler sunmaktadır. Mesleki gelişim, kurumsal eğitim ve uzmanlık alanlarında eğitim çözümleri geliştirmektedir.",
       href: "/markalarimiz/akkas-akademi",
       logo: {
         url: "/brands/akerakademi.png",
         alt: "Akkaş Akademi logosu",
       },
     },
+    {
+  id: "akkas-teknoloji",
+  name: "Akkaş Teknoloji",
+  description:
+    "Yazılım, bilişim ve dijital dönüşüm alanlarında kurumların ihtiyaçlarına yönelik yenilikçi teknoloji çözümleri sunmaktadır. İş süreçlerinin dijitalleştirilmesine ve daha verimli yönetilmesine destek olmaktadır.",
+  href: "/markalarimiz/akkas-teknoloji",
+  logo: {
+    url: "/brands/akkasteknoloji.png",
+    alt: "Akkaş Teknoloji logosu",
+  },
+},
   ],
-
-  // sectors: [
-  //   {
-  //     id: "kobiler",
-  //     title: "KOBİ'ler",
-  //     slug: "kobiler",
-  //     image: {
-  //       url: "/sectors/kobi.png",
-  //       alt: "KOBİ işletmeleri",
-  //     },
-  //   },
-  //   {
-  //     id: "holdingler",
-  //     title: "Holdingler",
-  //     slug: "holdingler",
-  //     image: {
-  //       url: "/sectors/holding.png",
-  //       alt: "Holdingler",
-  //     },
-  //   },
-  //   {
-  //     id: "bankalar",
-  //     title: "Bankalar",
-  //     slug: "bankalar",
-  //     image: {
-  //       url: "/sectors/bank.png",
-  //       alt: "Bankacılık sektörü",
-  //     },
-  //   },
-  //   {
-  //     id: "insaat-enerji",
-  //     title: "İnşaat ve Enerji",
-  //     slug: "insaat-ve-enerji",
-  //     image: {
-  //       url: "/sectors/insaat.png",
-  //       alt: "İnşaat ve enerji sektörü",
-  //     },
-  //   },
-  //   {
-  //     id: "avm-perakende",
-  //     title: "AVM ve Perakende",
-  //     slug: "avm-ve-perakende",
-  //     image: {
-  //       url: "/sectors/perakende.jpg",
-  //       alt: "AVM ve perakende sektörü",
-  //     },
-  //   },
-  //   {
-  //     id: "sanayi",
-  //     title: "Sanayi Tesisleri",
-  //     slug: "sanayi-tesisleri",
-  //     image: {
-  //       url: "/sectors/justin.png",
-  //       alt: "Sanayi tesisleri",
-  //     },
-  //   },
-  //   {
-  //     id: "Gıda",
-  //     title: "Gıda",
-  //     slug: "Gıda-sektoru",
-  //     image: {
-  //       url: "/sectors/gida.png",
-  //       alt: "Gıda sektörü",
-  //     },
-  //   },
-  //   {
-  //     id: "saglik",
-  //     title: "Sağlık, Hastane ve Klinik",
-  //     slug: "saglik-hastane-klinik",
-  //     image: {
-  //       url: "/sectors/saglik.png",
-  //       alt: "Sağlık, hastane ve klinik sektörü",
-  //     },
-  //   },
-  //   {
-  //     id: "turizm",
-  //     title: "Turizm",
-  //     slug: "turizm",
-  //     image: {
-  //       url: "/sectors/turizm.png",
-  //       alt: "Turizm sektörü",
-  //     },
-  //   },
-  // ],
-
-  // stats: [
-  //   {
-  //     id: "years",
-  //     value: "25+",
-  //     label: "Yıllık tecrübe (1999'dan beri)",
-  //   },
-  //   {
-  //     id: "consultants",
-  //     value: "200+",
-  //     label: "Uzman danışman kadrosu",
-  //   },
-  //   {
-  //     id: "companies",
-  //     value: "18.000+",
-  //     label: "Hizmet verilen firma",
-  //   },
-  //   {
-  //     id: "brands",
-  //     value: "7",
-  //     label: "Grup şirketi",
-  //   },
-  // ],
-
-  announcements: news,
 };
 
 export async function getHomeContent(): Promise<HomeContent> {
   try {
     const [
-      categories,
+      services,
       clients,
       heroSlides,
       aboutContent,
       homeSummary,
       sectors,
+      announcements,
     ] = await Promise.all([
       getServiceCategories(),
       getClientReferences(),
@@ -222,30 +134,24 @@ export async function getHomeContent(): Promise<HomeContent> {
       getAboutContent(),
       getHomeSummaryContent(),
       getSectors(),
+      getNews(),
     ]);
 
     return {
       ...MOCK_HOME_CONTENT,
+      services: services.map((category) => ({
+  id: category.id,
+  title: category.label,
+  description: category.description,
+  href: category.href,
+  icon: category.icon,
+})),
       clients,
       heroSlides,
       stats: aboutContent.stats,
       homeSummary,
-      sectors: sectors.map((s) => ({
-        id: s.id,
-        title: s.title,
-        slug: s.slug,
-        description: s.description,
-        image: s.image,
-      })),
-      services: categories
-        .filter((c) => c.featured)
-        .map((c) => ({
-          id: c.id,
-          title: c.label,
-          description: c.description,
-          href: c.href,
-          icon: c.icon,
-        })),
+      sectors,
+      announcements,
     };
   } catch (error) {
     logger.error("Ana sayfa içeriği alınamadı", { error });

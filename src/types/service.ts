@@ -19,6 +19,7 @@ export interface ServiceDetail {
   slug: string;
   title: string;
   description: string;
+  contentTitle?: string;
   image?: MediaImage;
   content: string[];
 }
