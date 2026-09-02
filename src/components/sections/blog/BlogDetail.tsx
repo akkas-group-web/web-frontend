@@ -113,14 +113,13 @@ export function BlogDetail({ article }: BlogDetailProps) {
 
                 {article.author && (
                   <>
-                    {article.author.photo && (
+                    {article.author.photo?.url && (
                       <div className="relative mt-5 h-14 w-14 overflow-hidden rounded-full bg-[#EAF6F7] ring-4 ring-[#F1FAFA]">
-                        <Image
+                        <CardMedia
                           src={article.author.photo.url}
-                          alt={article.author.photo.alt}
-                          fill
-                          sizes="56px"
-                          className="object-cover"
+                          alt={article.author.photo.alt ?? article.author.name}
+                          ratio="square"
+                          fit="cover"
                         />
                       </div>
                     )}

@@ -99,7 +99,9 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
                     <div className="mt-4 flex items-center gap-2.5 border-t border-[#0d4d5c]/8 pt-3">
                       <AuthorAvatar
                         src={item.author.photo?.url}
-                        alt={item.author.photo?.alt ?? item.author.name}
+                        alt={
+                          item.author.photo?.alt || item.author.name || "Yazar"
+                        }
                         size={32}
                       />
 

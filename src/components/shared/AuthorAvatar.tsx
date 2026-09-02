@@ -2,30 +2,20 @@ import { CardMedia } from "./CardMedia";
 
 interface AuthorAvatarProps {
   src?: string | null;
-  alt: string;
+  alt?: string | null;
   /** Kenar uzunluğu (px). Varsayılan 36. */
   size?: number;
   className?: string;
 }
 
-/**
- * Yazar, danışman veya yönetici gibi kişi fotoğraflarını gösteren
- * dairesel avatar bileşeni.
- *
- * Duyurular bölümündeki CardMedia ile aynı Blur Letterbox koruma
- * katmanını kullanır: editör kare olmayan bir fotoğraf yüklese bile
- * görsel sert şekilde kırpılmaz veya deforme olmaz, arka planda
- * bulanık bir dolgu ile kare çerçeveye oturtulur.
- *
- * Sadece Makaleler kartlarında değil, ileride Yönetim Kurulu gibi
- * kişi fotoğrafı gösterilen her yerde tekrar kullanılabilir.
- */
 export function AuthorAvatar({
   src,
   alt,
   size = 36,
   className = "",
 }: AuthorAvatarProps) {
+  const safeAlt = alt && alt.trim().length > 0 ? alt : "";
+
   return (
     <div
       style={{ width: size, height: size }}
@@ -33,7 +23,7 @@ export function AuthorAvatar({
     >
       <CardMedia
         src={src}
-        alt={alt}
+        alt={safeAlt}
         ratio="square"
         fit="contain"
         className="rounded-full"

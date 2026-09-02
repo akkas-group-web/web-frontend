@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 interface CardMediaProps {
   src?: string | null;
-  alt: string;
+  alt?: string | null;
   /** Kart içindeki görsel alanının oranı (container oranı, kaynak görselin oranı değil) */
   ratio?: "square" | "video" | "wide";
   /**
@@ -34,7 +34,7 @@ export function CardMedia({
   className,
 }: CardMediaProps) {
   const hasImage = typeof src === "string" && src.trim().length > 0;
-
+  const safeAlt = alt ?? "";
   if (!hasImage) {
     return (
       <div
@@ -68,7 +68,7 @@ export function CardMedia({
 
       <Image
         src={src}
-        alt={alt}
+        alt={safeAlt}
         fill
         priority={priority}
         sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"

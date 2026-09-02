@@ -4,6 +4,7 @@ import { ArrowRight, CalendarDays } from "lucide-react";
 
 import type { HomeContent } from "@/types";
 import { routes } from "@/lib/routes";
+import { CardMedia } from "@/components/shared/CardMedia";
 
 type NewsItem = HomeContent["announcements"][number];
 
@@ -25,12 +26,12 @@ export function NewsCard({ news }: NewsCardProps) {
         href={routes.news(news.slug)}
         className="relative block aspect-[16/9] overflow-hidden bg-[#EAF6F7]"
       >
-        <Image
-          src={news.image.url}
-          alt={news.image.alt}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+        <CardMedia
+          src={news.image?.url}
+          alt={news.image?.alt}
+          ratio="video"
+          fit="cover"
+          className="transition-transform duration-700 group-hover:scale-[1.045]"
         />
 
         {news.category && (
