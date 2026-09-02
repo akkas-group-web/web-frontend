@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CalendarDays } from "lucide-react";
 
 import type { HomeContent } from "@/types";
 import { routes } from "@/lib/routes";
+import { CardMedia } from "@/components/shared/CardMedia";
 
 type NewsItem = HomeContent["announcements"][number];
 
@@ -18,33 +18,33 @@ export function NewsCard({ news }: NewsCardProps) {
     year: "numeric",
   });
 
+  const isSquare = news.imageRatio === "square";
+
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-slate-200/80 bg-white shadow-[0_8px_30px_-22px_rgba(15,23,42,0.2)] transition-all duration-300 hover:-translate-y-1 hover:border-[#118B99]/20 hover:shadow-[0_18px_45px_-22px_rgba(17,139,153,0.25)]">
-      {/* Görsel */}
       <Link
         href={routes.news(news.slug)}
-        className="relative block aspect-[16/9] overflow-hidden bg-[#EAF6F7]"
+        className="relative block overflow-hidden bg-[#EAF6F7]"
       >
-        <Image
+        <CardMedia
           src={news.image.url}
-          alt={news.image.alt}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+          alt={news.image.alt || news.title}
+          ratio={isSquare ? "square" : "video"}
+          fit="contain"
+          className="transition-transform duration-500 group-hover:scale-[1.02]"
         />
 
         {news.category && (
-          <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-[#0B727D]/85 px-3 py-1.5 text-[10px] font-semibold text-white backdrop-blur">
+          <span className="absolute left-4 top-4 z-20 rounded-full border border-white/20 bg-[#0B727D]/85 px-3 py-1.5 text-[10px] font-semibold text-white backdrop-blur">
             {news.category}
           </span>
         )}
       </Link>
 
-      {/* İçerik */}
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-center gap-2 text-xs text-[#799095]">
           <CalendarDays className="h-3.5 w-3.5 text-[#118B99]" />
-          <time>{formattedDate}</time>
+          <time dateTime={news.date}>{formattedDate}</time>
         </div>
 
         <Link href={routes.news(news.slug)}>

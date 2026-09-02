@@ -17,7 +17,6 @@ export const GET_NEWS_QUERY = gql`
         newsItemFields {
           excerptText
           kategori
-          gorselOrani
           haberIcerigi
         }
       }

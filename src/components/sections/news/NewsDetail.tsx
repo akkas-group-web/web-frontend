@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { ArrowLeft, CalendarDays, Clock3, Newspaper } from "lucide-react";
 
 import type { NewsItem } from "@/types/news";
+import { CardMedia } from "@/components/shared/CardMedia";
 
 interface NewsDetailProps {
   news: NewsItem;
@@ -15,6 +15,7 @@ export function NewsDetail({ news }: NewsDetailProps) {
     month: "long",
     year: "numeric",
   });
+
 
   return (
     <main className="overflow-hidden bg-white">
@@ -44,14 +45,17 @@ export function NewsDetail({ news }: NewsDetailProps) {
           <div className="grid gap-10 lg:grid-cols-[1fr_270px] lg:items-end">
             <div>
               <div className="mb-5 flex flex-wrap items-center gap-3">
-                <span className="inline-flex items-center gap-2 rounded-full bg-[#E1F4F5] px-3.5 py-2 text-xs font-semibold text-[#118B99]">
-                  <Newspaper className="h-3.5 w-3.5" />
-                  {news.category}
-                </span>
+                {news.category && (
+                  <span className="inline-flex items-center gap-2 rounded-full bg-[#E1F4F5] px-3.5 py-2 text-xs font-semibold text-[#118B99]">
+                    <Newspaper className="h-3.5 w-3.5" />
+                    {news.category}
+                  </span>
+                )}
 
                 <div className="flex items-center gap-2 text-sm text-[#789095]">
                   <CalendarDays className="h-4 w-4 text-[#118B99]" />
-                  <time>{formattedDate}</time>
+
+                  <time dateTime={news.date}>{formattedDate}</time>
                 </div>
               </div>
 
@@ -77,7 +81,8 @@ export function NewsDetail({ news }: NewsDetailProps) {
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <Clock3 className="h-4 w-4 text-[#118B99]" />3 dk okuma
+                    <Clock3 className="h-4 w-4 text-[#118B99]" />
+                    3 dk okuma
                   </div>
                 </div>
               </div>
@@ -86,19 +91,18 @@ export function NewsDetail({ news }: NewsDetailProps) {
         </div>
       </section>
 
-      {/* GÖRSEL */}
-      <section className="mx-auto max-w-5xl px-6 pt-10 lg:px-8">
-        <div className="relative aspect-[16/7] overflow-hidden rounded-[24px] bg-[#EAF6F7]">
-          <Image
-            src={news.image.url}
-            alt={news.title}
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 960px"
-            className="object-cover"
-          />
-        </div>
-      </section>
+{/* GÖRSEL */}
+<section className="mx-auto max-w-5xl px-6 pt-10 lg:px-8">
+  <div className="overflow-hidden rounded-[24px]">
+    <CardMedia
+      src={news.image.url}
+      alt={news.image.alt || news.title}
+      ratio="video"
+      fit="contain"
+      priority
+    />
+  </div>
+</section>
 
       {/* İÇERİK */}
       <section className="mx-auto max-w-6xl px-6 py-14 lg:px-8 lg:py-16">
@@ -136,7 +140,7 @@ export function NewsDetail({ news }: NewsDetailProps) {
 
             <div className="mt-8 space-y-6 text-[17px] leading-[1.95] text-[#516D72]">
               {news.content.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+                <p key={`${news.id}-${index}`}>{paragraph}</p>
               ))}
             </div>
 
