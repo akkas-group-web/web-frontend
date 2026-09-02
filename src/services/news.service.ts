@@ -24,15 +24,13 @@ interface WPNewsNode {
   newsItemFields: {
     excerptText: string;
     kategori: string;
-    gorselOrani: string[];
     haberIcerigi: string;
   };
 }
 
 function mapNewsFromWP(data: WPNewsResponse): NewsItem[] {
   return data.newsItems.nodes.map((node) => {
-    const selectedImageRatio = node.newsItemFields.gorselOrani?.[0];
-
+  
     return {
       id: node.id,
       title: node.title,
@@ -44,7 +42,7 @@ function mapNewsFromWP(data: WPNewsResponse): NewsItem[] {
         url: node.featuredImage?.node.sourceUrl ?? "",
         alt: node.featuredImage?.node.altText || node.title,
       },
-      imageRatio: selectedImageRatio === "square" ? "square" : "landscape",
+      imageRatio: "landscape",
       content: (node.newsItemFields.haberIcerigi ?? "")
         .split(/\r?\n\s*\r?\n/)
         .map((paragraph) => paragraph.trim())
