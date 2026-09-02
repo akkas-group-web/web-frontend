@@ -2,7 +2,7 @@ import { gql } from "graphql-request";
 
 export const GET_SERVICES_QUERY = gql`
   query GetServices {
-    serviceCategories {
+    serviceCategories(first: 100) {
       nodes {
         id
         title
@@ -14,7 +14,7 @@ export const GET_SERVICES_QUERY = gql`
         }
       }
     }
-    serviceChildren {
+    serviceChildren(first: 100) {
       nodes {
         id
         serviceChildId {
