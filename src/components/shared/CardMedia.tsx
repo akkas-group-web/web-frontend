@@ -2,17 +2,17 @@
 "use client";
 
 import Image from "next/image";
+
 import { cn } from "@/lib/utils";
 
 interface CardMediaProps {
-  src: string;
+  src?: string | null;
   alt: string;
-  /** Kart içindeki görsel alanının oranı (container oranı, kaynak görselin oranı değil) */
+  /** Kart içindeki görsel alanının oranı */
   ratio?: "square" | "video" | "wide";
   /**
-   * "cover"   -> klasik kırpma (yalnızca kaynak oranının container'a çok yakın
-   *              olduğundan eminseniz kullanın, örn. editör tarafından crop edilmiş görseller)
-   * "contain" -> görselin tamamını gösterir, bulanık arka plan ile boşluk doldurulur
+   * cover: Görsel alanı tamamen kaplar.
+   * contain: Görselin tamamını bulanık arka planla gösterir.
    */
   fit?: "cover" | "contain";
   priority?: boolean;
@@ -33,6 +33,8 @@ export function CardMedia({
   priority = false,
   className,
 }: CardMediaProps) {
+  const hasImage = typeof src === "string" && src.trim().length > 0;
+
   return (
     <div
       className={cn(
@@ -41,30 +43,39 @@ export function CardMedia({
         className,
       )}
     >
-      {fit === "contain" && (
-        <Image
-          src={src}
-          alt=""
-          aria-hidden
-          fill
-          priority={priority}
-          className="scale-110 object-cover opacity-60 blur-2xl"
-        />
-      )}
+      {hasImage ? (
+        <>
+          {fit === "contain" && (
+            <Image
+              src={src}
+              alt=""
+              aria-hidden
+              fill
+              priority={priority}
+              sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+              className="scale-110 object-cover opacity-60 blur-2xl"
+            />
+          )}
 
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        priority={priority}
-        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
-        className={cn(
-          "relative z-10 transition-transform duration-500",
-          fit === "cover"
-            ? "object-cover group-hover:scale-105"
-            : "object-contain",
-        )}
-      />
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            priority={priority}
+            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+            className={cn(
+              "relative z-10 transition-transform duration-500",
+              fit === "cover"
+                ? "object-cover group-hover:scale-105"
+                : "object-contain",
+            )}
+          />
+        </>
+      ) : (
+        <div className="flex h-full w-full items-center justify-center px-5 text-center text-sm font-medium text-[#668085]">
+          Görsel bulunamadı
+        </div>
+      )}
     </div>
   );
 }

@@ -145,73 +145,40 @@ export function BlogDetail({ article }: BlogDetailProps) {
               </div>
             </div>
           </aside>
+{/* YAZI */}
+<article className="min-w-0">
+  <div className="mb-8 flex items-center gap-3">
+    <span className="h-[3px] w-10 rounded-full bg-[#118B99]" />
 
-          {/* YAZI */}
-          <article className="min-w-0">
-            <div className="mb-8 flex items-center gap-3">
-              <span className="h-[3px] w-10 rounded-full bg-[#118B99]" />
+    <span className="text-xs font-bold uppercase tracking-[0.16em] text-[#118B99]">
+      Makale
+    </span>
+  </div>
 
-              <span className="text-xs font-bold uppercase tracking-[0.16em] text-[#118B99]">
-                Makale
-              </span>
-            </div>
+  <p className="text-[19px] font-medium leading-[1.9] text-[#34565C]">
+    {article.excerpt}
+  </p>
 
-            <p className="text-[19px] font-medium leading-[1.9] text-[#34565C]">
-              {article.excerpt}
-            </p>
+  <div className="mt-8 space-y-6 text-[16px] leading-[1.95] text-[#526D72] sm:text-[17px]">
+    {article.content.length > 0 ? (
+      article.content.map((paragraph, index) => (
+        <p key={`${article.id}-paragraph-${index}`}>{paragraph}</p>
+      ))
+    ) : (
+      <p>{article.excerpt}</p>
+    )}
+  </div>
 
-            <div className="mt-8 text-[16px] leading-[1.95] text-[#526D72] sm:text-[17px]">
-              <p>
-                İş dünyasında yaşanan gelişmeler, şirketlerin yatırım, büyüme ve
-                stratejik planlama süreçlerini doğrudan etkileyebiliyor.
-              </p>
-
-              <p className="mt-6">
-                Güncel gelişmelerin, mevzuatın ve sektörel değişimlerin doğru
-                şekilde takip edilmesi işletmeler açısından önemli avantajlar
-                sağlayabilir.
-              </p>
-
-              <h2 className="mt-11 text-[25px] font-semibold leading-tight tracking-[-0.025em] text-[#173F45]">
-                Firmalar açısından neden önemli?
-              </h2>
-
-              <p className="mt-5">
-                Doğru zamanda yapılan planlama, işletmelerin fırsatları daha
-                etkin değerlendirmesine ve süreçlerini daha sağlıklı yönetmesine
-                katkı sağlar.
-              </p>
-
-              <p className="mt-6">
-                Özellikle teşvik, destek ve mevzuat değişikliklerinde güncel
-                bilgilerin doğru yorumlanması büyük önem taşır.
-              </p>
-
-              <h2 className="mt-11 text-[25px] font-semibold leading-tight tracking-[-0.025em] text-[#173F45]">
-                Süreç nasıl yönetilmeli?
-              </h2>
-
-              <p className="mt-5">
-                İşletmenin mevcut durumu, yatırım planları ve ihtiyaçları
-                değerlendirilerek uygun süreçlerin belirlenmesi gerekir.
-              </p>
-
-              <p className="mt-6">
-                Akkaş Group olarak işletmelerin ihtiyaç duyduğu güncel bilgileri
-                ve uzman görüşlerini paylaşmaya devam ediyoruz.
-              </p>
-            </div>
-
-            <div className="mt-12 border-t border-[#118B99]/10 pt-8">
-              <Link
-                href="/blog"
-                className="group inline-flex items-center gap-2 text-sm font-semibold text-[#118B99] transition-all hover:gap-3 hover:text-[#0D747E]"
-              >
-                <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                Tüm Blog Yazılarına Dön
-              </Link>
-            </div>
-          </article>
+  <div className="mt-12 border-t border-[#118B99]/10 pt-8">
+    <Link
+      href="/blog"
+      className="group inline-flex items-center gap-2 text-sm font-semibold text-[#118B99] transition-all hover:gap-3 hover:text-[#0D747E]"
+    >
+      <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+      Tüm Blog Yazılarına Dön
+    </Link>
+  </div>
+</article>
         </div>
       </section>
     </main>

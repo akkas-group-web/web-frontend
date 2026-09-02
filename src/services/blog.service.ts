@@ -27,6 +27,8 @@ interface WPArticleNode {
     kisaAciklama: string;
     authorName: string;
     metin: string | null;
+    articleContent: string | null;
+
     authorPhoto: {
       node: {
         sourceUrl: string;
@@ -38,8 +40,14 @@ interface WPArticleNode {
 
 function mapArticlesFromWP(data: WPArticlesResponse): ArticleItem[] {
   return data.articleItems.nodes.map((node) => {
-    const coverImageUrl = node.featuredImage?.node.sourceUrl ?? "";
-    const authorName = node.articleItemFields.authorName;
+    const coverImageUrl =
+      node.featuredImage?.node.sourceUrl ?? "";
+
+    const authorName =
+      node.articleItemFields.authorName || "Akkaş Group";
+
+    const articleContent =
+      node.articleItemFields.articleContent ?? "";
 
     return {
       id: node.id,
@@ -50,12 +58,15 @@ function mapArticlesFromWP(data: WPArticlesResponse): ArticleItem[] {
 
       image: {
         url: coverImageUrl,
-        alt: node.featuredImage?.node.altText || node.title,
+        alt:
+          node.featuredImage?.node.altText ||
+          node.title,
       },
 
       author: {
         name: authorName,
         role: node.articleItemFields.metin || undefined,
+
         photo: {
           url:
             node.articleItemFields.authorPhoto?.node.sourceUrl ??
@@ -65,19 +76,27 @@ function mapArticlesFromWP(data: WPArticlesResponse): ArticleItem[] {
             authorName,
         },
       },
+
+      content: articleContent
+        .split(/\r?\n\s*\r?\n/)
+        .map((paragraph) => paragraph.trim())
+        .filter(Boolean),
     };
   });
 }
 
 export async function getBlogPosts(): Promise<ArticleItem[]> {
   try {
-    const data = await wpClient.request<WPArticlesResponse>(
-      GET_ARTICLES_QUERY,
-    );
+    const data =
+      await wpClient.request<WPArticlesResponse>(
+        GET_ARTICLES_QUERY,
+      );
 
     return mapArticlesFromWP(data);
   } catch (error) {
-    logger.error("Blog içerikleri alınamadı", { error });
+    logger.error("Blog içerikleri alınamadı", {
+      error,
+    });
 
     throw new AppError(
       "Blog içerikleri yüklenemedi",
@@ -93,9 +112,15 @@ export async function getBlogPostBySlug(
   try {
     const articles = await getBlogPosts();
 
-    return articles.find((item) => item.slug === slug) ?? null;
+    return (
+      articles.find((article) => article.slug === slug) ??
+      null
+    );
   } catch (error) {
-    logger.error("Blog yazısı alınamadı", { error, slug });
+    logger.error("Blog yazısı alınamadı", {
+      error,
+      slug,
+    });
 
     throw new AppError(
       "Blog yazısı yüklenemedi",
