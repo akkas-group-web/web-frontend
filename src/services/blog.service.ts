@@ -41,9 +41,7 @@ function mapArticlesFromWP(data: WPArticlesResponse): ArticleItem[] {
     const coverImageUrl = node.featuredImage?.node.sourceUrl ?? "";
     const authorName = node.articleItemFields.authorName;
     const authorPhotoUrl =
-      node.articleItemFields.authorPhoto?.node.sourceUrl ??
-      coverImageUrl ??
-      null;
+      node.articleItemFields.authorPhoto?.node.sourceUrl ?? null;
 
     return {
       id: node.id,

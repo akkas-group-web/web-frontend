@@ -76,9 +76,9 @@ export function BlogDetail({ article }: BlogDetailProps) {
                 <span className="hidden h-4 w-px bg-[#118B99]/20 sm:block" />
                 <div className="relative h-8 w-8 overflow-hidden rounded-full ring-2 ring-[#DCF1F2]">
                   <CardMedia
-                    src={article.image?.url}
-                    alt={article.image?.alt ?? article.title}
-                    ratio="wide"
+                    src={article.author.photo?.url}
+                    alt={article.author.photo?.alt ?? article.author.name}
+                    ratio="square"
                     fit="cover"
                   />
                 </div>
