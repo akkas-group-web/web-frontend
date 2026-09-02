@@ -64,6 +64,12 @@ export function BrandsStrip({ brands }: BrandsStripProps) {
             >
               <Link
                 href={brand.href}
+                target={brand.linkTarget === "_blank" ? "_blank" : undefined}
+                rel={
+                  brand.linkTarget === "_blank"
+                    ? "noopener noreferrer"
+                    : undefined
+                }
                 onClick={(event) => handleCardClick(event, brand.id)}
                 className="group relative flex min-h-[280px] flex-col rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-xl [@media(hover:hover)_and_(pointer:fine)]:aspect-[4/3] [@media(hover:hover)_and_(pointer:fine)]:min-h-0"
               >

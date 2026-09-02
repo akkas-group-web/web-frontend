@@ -31,6 +31,7 @@ export interface BrandItem {
   name: string;
   description: string;
   href: string;
+  linkTarget?: string | null;
   logo: MediaImage;
 }
 
