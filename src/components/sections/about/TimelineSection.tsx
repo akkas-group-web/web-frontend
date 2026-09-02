@@ -336,12 +336,7 @@ export function TimelineSection({ milestones }: TimelineSectionProps) {
                           {milestone.description}
                         </p>
 
-                        {/* BOTTOM LINK */}
-                        <div className="relative mt-5">
-                          <span className="text-xs font-semibold text-[#1a7d8f] transition-colors duration-200 group-hover:text-[#0d4d5c]">
-                            Detayları Gör →
-                          </span>
-                        </div>
+                    
                       </motion.div>
                     </motion.div>
                   </div>

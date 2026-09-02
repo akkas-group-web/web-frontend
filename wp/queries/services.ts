@@ -22,6 +22,13 @@ export const GET_SERVICES_QUERY = gql`
           childSlug
           childDescription
           childContent
+          contentTitle
+          contentImage {
+            node {
+              sourceUrl
+              altText
+            }
+          }
           relatedCategory {
             nodes {
               ... on ServiceCategory {

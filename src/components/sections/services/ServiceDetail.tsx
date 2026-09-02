@@ -83,7 +83,7 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
       description={service.description}
       category={service.categoryTitle}
     >
-      <ServiceSection>
+      <ServiceSection title={service.contentTitle}>
         <div
           className={
             service.image
@@ -94,8 +94,8 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
           {service.image && (
             <div className="overflow-hidden rounded-xl border border-[#0d4d5c]/10 bg-white">
               <Image
-                src={service.image.url}
-                alt={service.image.alt}
+                src={service.image.url || ""}
+                alt={service.image.alt || service.title}
                 width={service.image.width ?? 600}
                 height={service.image.height ?? 400}
                 sizes="(max-width: 767px) 100vw, 280px"
@@ -105,43 +105,50 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
           )}
 
           <div className="space-y-3">
-            {service.content.map((paragraph, index) => {
-              const isSubHeading = paragraph.startsWith("### ");
-              const isHeading = paragraph.startsWith("## ");
+            {typeof service.content === "string" ? (
+              <div
+                className="prose prose-sm max-w-none text-[13.5px] leading-6 text-[#58696e]"
+                dangerouslySetInnerHTML={{ __html: service.content }}
+              />
+            ) : (
+              service.content.map((paragraph, index) => {
+                const isSubHeading = paragraph.startsWith("### ");
+                const isHeading = paragraph.startsWith("## ");
 
-              if (isSubHeading) {
-  const title = paragraph.replace("### ", "");
-  const link = renderLink(title);
+                if (isSubHeading) {
+                  const title = paragraph.replace("### ", "");
+                  const link = renderLink(title);
 
-  return (
-    <h3
-      key={index}
-      className="pt-2 text-base font-semibold text-[#0d4d5c]"
-    >
-      {link ?? title}
-    </h3>
-  );
-}
+                  return (
+                    <h3
+                      key={index}
+                      className="pt-2 text-base font-semibold text-[#0d4d5c]"
+                    >
+                      {link ?? title}
+                    </h3>
+                  );
+                }
 
-              if (isHeading) {
+                if (isHeading) {
+                  return (
+                    <h2
+                      key={index}
+                      className="pt-3 text-base font-semibold text-[#0d4d5c] md:text-lg"
+                    >
+                      {paragraph.replace("## ", "")}
+                    </h2>
+                  );
+                }
+
+                const link = renderLink(paragraph);
+
                 return (
-                  <h2
-                    key={index}
-                    className="pt-3 text-base font-semibold text-[#0d4d5c] md:text-lg"
-                  >
-                    {paragraph.replace("## ", "")}
-                  </h2>
+                  <ServiceText key={index}>
+                    {link ?? renderInlineBold(paragraph)}
+                  </ServiceText>
                 );
-              }
-
-            const link = renderLink(paragraph);
-
-return (
-  <ServiceText key={index}>
-    {link ?? renderInlineBold(paragraph)}
-  </ServiceText>
-);
-            })}
+              })
+            )}
           </div>
         </div>
       </ServiceSection>

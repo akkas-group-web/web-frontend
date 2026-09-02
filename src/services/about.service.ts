@@ -151,7 +151,7 @@ interface WPTimelineResponse {
       id: string;
       timelineItemFields: {
         year: string;
-        milestone_title: string;
+        milestoneTitle: string;
         description: string;
       };
     }[];
@@ -182,7 +182,7 @@ function mapTimelineFromWP(data: WPTimelineResponse): TimelineMilestone[] {
   return data.timelineItems.nodes.map((node) => ({
     id: node.id,
     year: node.timelineItemFields.year,
-    title: node.timelineItemFields.milestone_title,
+    title: node.timelineItemFields.milestoneTitle,
     description: node.timelineItemFields.description,
   }));
 }
