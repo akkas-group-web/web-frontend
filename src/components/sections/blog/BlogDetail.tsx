@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, CalendarDays, Clock3 } from "lucide-react";
 
 import type { ArticleItem } from "@/types/article";
+import { CardMedia } from "@/components/shared/CardMedia";
 
 interface BlogDetailProps {
   article: ArticleItem;
@@ -74,12 +75,11 @@ export function BlogDetail({ article }: BlogDetailProps) {
               <>
                 <span className="hidden h-4 w-px bg-[#118B99]/20 sm:block" />
                 <div className="relative h-8 w-8 overflow-hidden rounded-full ring-2 ring-[#DCF1F2]">
-                  <Image
-                    src={article.author.photo.url}
-                    alt={article.author.photo.alt}
-                    fill
-                    sizes="32px"
-                    className="object-cover"
+                  <CardMedia
+                    src={article.image?.url}
+                    alt={article.image?.alt ?? article.title}
+                    ratio="wide"
+                    fit="cover"
                   />
                 </div>
               </>
@@ -91,13 +91,11 @@ export function BlogDetail({ article }: BlogDetailProps) {
       {/* KAPAK */}
       <section className="mx-auto max-w-5xl px-6 lg:px-8">
         <div className="relative aspect-[16/9] overflow-hidden rounded-[24px] bg-[#EAF6F7]">
-          <Image
-            src={article.image.url}
-            alt={article.image.alt}
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 960px"
-            className="object-cover"
+          <CardMedia
+            src={article.image?.url}
+            alt={article.image?.alt ?? article.title}
+            ratio="wide"
+            fit="cover"
           />
         </div>
       </section>

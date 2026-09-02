@@ -4,7 +4,7 @@ export interface ArticleAuthor {
   name: string;
   role?: string;
   /** Editör tarafından yüklenen fotoğraf; herhangi bir en-boy oranında olabilir. */
-  photo: MediaImage;
+  photo: MediaImage | null;
 }
 
 export interface ArticleItem {
@@ -15,6 +15,6 @@ export interface ArticleItem {
   date: string;
   slug: string;
   /** Makale kapak görseli; kart tasarımı dikdörtgen (video oranı) varsayar. */
-  image: MediaImage;
+  image: MediaImage | null;
   author: ArticleAuthor;
 }

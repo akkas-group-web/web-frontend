@@ -5,7 +5,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface CardMediaProps {
-  src: string;
+  src?: string | null;
   alt: string;
   /** Kart içindeki görsel alanının oranı (container oranı, kaynak görselin oranı değil) */
   ratio?: "square" | "video" | "wide";
@@ -33,6 +33,20 @@ export function CardMedia({
   priority = false,
   className,
 }: CardMediaProps) {
+  const hasImage = typeof src === "string" && src.trim().length > 0;
+
+  if (!hasImage) {
+    return (
+      <div
+        className={cn(
+          "relative w-full overflow-hidden bg-[#0d4d5c]/5",
+          RATIO_CLASS[ratio],
+          className,
+        )}
+      />
+    );
+  }
+
   return (
     <div
       className={cn(

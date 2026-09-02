@@ -40,6 +40,10 @@ function mapArticlesFromWP(data: WPArticlesResponse): ArticleItem[] {
   return data.articleItems.nodes.map((node) => {
     const coverImageUrl = node.featuredImage?.node.sourceUrl ?? "";
     const authorName = node.articleItemFields.authorName;
+    const authorPhotoUrl =
+      node.articleItemFields.authorPhoto?.node.sourceUrl ??
+      coverImageUrl ??
+      null;
 
     return {
       id: node.id,
@@ -48,22 +52,23 @@ function mapArticlesFromWP(data: WPArticlesResponse): ArticleItem[] {
       date: node.date,
       slug: node.slug,
 
-      image: {
-        url: coverImageUrl,
-        alt: node.featuredImage?.node.altText || node.title,
-      },
+      image: coverImageUrl
+        ? {
+            url: coverImageUrl,
+            alt: node.featuredImage?.node.altText || node.title,
+          }
+        : null,
 
       author: {
         name: authorName,
         role: node.articleItemFields.metin || undefined,
-        photo: {
-          url:
-            node.articleItemFields.authorPhoto?.node.sourceUrl ??
-            coverImageUrl,
-          alt:
-            node.articleItemFields.authorPhoto?.node.altText ||
-            authorName,
-        },
+        photo: authorPhotoUrl
+          ? {
+              url: authorPhotoUrl,
+              alt:
+                node.articleItemFields.authorPhoto?.node.altText || authorName,
+            }
+          : null,
       },
     };
   });
@@ -71,9 +76,7 @@ function mapArticlesFromWP(data: WPArticlesResponse): ArticleItem[] {
 
 export async function getBlogPosts(): Promise<ArticleItem[]> {
   try {
-    const data = await wpClient.request<WPArticlesResponse>(
-      GET_ARTICLES_QUERY,
-    );
+    const data = await wpClient.request<WPArticlesResponse>(GET_ARTICLES_QUERY);
 
     return mapArticlesFromWP(data);
   } catch (error) {

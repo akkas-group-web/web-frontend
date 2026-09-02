@@ -81,12 +81,13 @@ export function AnnouncementsSection({
                   >
                     {/* Görsel - dinamik oran: kare veya dikdörtgen */}
                     <CardMedia
-                      src={item.image.url}
+                      src={item.image?.url}
                       alt={item.title}
                       ratio={isSquare ? "square" : "video"}
                       fit="contain"
                       className="transition-transform duration-500 group-hover:scale-[1.02]"
                     />
+
                     <div className="flex flex-1 flex-col p-3.5">
                       <time className="text-[11px] font-medium text-[#333333]/40">
                         {formatDate(item.date)}

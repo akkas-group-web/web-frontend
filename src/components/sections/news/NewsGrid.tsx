@@ -79,7 +79,7 @@ export function NewsGrid({ news }: NewsGridProps) {
                       className="relative block aspect-[16/10] overflow-hidden rounded-[16px] bg-[#EAF6F7]"
                     >
                       <Image
-                        src={item.image.url}
+                        src={item.image?.url}
                         alt={item.title}
                         fill
                         sizes="210px"

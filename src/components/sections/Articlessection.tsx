@@ -75,8 +75,8 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
                 >
                   {/* Makale kapak görseli */}
                   <CardMedia
-                    src={item.image.url}
-                    alt={item.image.alt}
+                    src={item.image?.url}
+                    alt={item.image?.alt ?? item.title}
                     ratio="video"
                     fit="contain"
                     className="transition-transform duration-500 group-hover:scale-[1.02]"
@@ -98,8 +98,8 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
                     {/* Yazar bilgileri */}
                     <div className="mt-4 flex items-center gap-2.5 border-t border-[#0d4d5c]/8 pt-3">
                       <AuthorAvatar
-                        src={item.author.photo.url}
-                        alt={item.author.photo.alt}
+                        src={item.author.photo?.url}
+                        alt={item.author.photo?.alt ?? item.author.name}
                         size={32}
                       />
 

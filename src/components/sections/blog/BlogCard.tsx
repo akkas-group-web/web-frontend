@@ -4,6 +4,7 @@ import { ArrowRight, CalendarDays } from "lucide-react";
 
 import type { ArticleItem } from "@/types/article";
 import { routes } from "@/lib/routes";
+import { CardMedia } from "@/components/shared/CardMedia";
 
 interface BlogCardProps {
   article: ArticleItem;
@@ -22,12 +23,11 @@ export function BlogCard({ article }: BlogCardProps) {
         href={routes.article(article.slug)}
         className="relative block aspect-[16/9] overflow-hidden bg-[#EAF6F7]"
       >
-        <Image
-          src={article.image.url}
-          alt={article.image.alt}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+        <CardMedia
+          src={article.image?.url}
+          alt={article.image?.alt ?? article.title}
+          ratio="wide"
+          fit="cover"
         />
       </Link>
 

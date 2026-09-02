@@ -1,7 +1,7 @@
 import { CardMedia } from "./CardMedia";
 
 interface AuthorAvatarProps {
-  src: string;
+  src?: string | null;
   alt: string;
   /** Kenar uzunluğu (px). Varsayılan 36. */
   size?: number;
