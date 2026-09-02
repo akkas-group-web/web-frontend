@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, CalendarDays, Clock3, Newspaper } from "lucide-react";
 
 import type { NewsItem } from "@/types/news";
+import { CardMedia } from "@/components/shared/CardMedia";
 
 interface NewsDetailProps {
   news: NewsItem;
@@ -89,14 +90,17 @@ export function NewsDetail({ news }: NewsDetailProps) {
       {/* GÖRSEL */}
       <section className="mx-auto max-w-5xl px-6 pt-10 lg:px-8">
         <div className="relative aspect-[16/7] overflow-hidden rounded-[24px] bg-[#EAF6F7]">
-          <Image
-            src={news.image.url}
-            alt={news.title}
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 960px"
-            className="object-cover"
-          />
+          {/* GÖRSEL */}
+          <section className="mx-auto max-w-5xl px-6 pt-10 lg:px-8">
+            <CardMedia
+              src={news.image?.url}
+              alt={news.image?.alt ?? news.title}
+              ratio="wide"
+              fit="cover"
+              priority
+              className="aspect-[16/7] rounded-[24px]"
+            />
+          </section>
         </div>
       </section>
 
