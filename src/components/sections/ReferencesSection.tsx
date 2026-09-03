@@ -1,70 +1,66 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
+import type { ClientReference } from "@/types/reference";
 
-const ROW_1 = [
-  "Solana",
-  "Samsung",
-  "Discord",
-  "Adobe",
-  "GoodRx",
-  "Okta",
-  "Blizzard",
-  "Stellar",
-  "TRUTH.",
-  "Brain.fm",
-];
-const ROW_2 = [
-  "Treecard",
-  "PayJunction",
-  "Chapter",
-  "Berkshire Hathaway",
-  "RE/MAX",
-  "Facebook",
-  "Libra",
-  "Gofundme",
-  "Sağlık A.Ş.",
-  "Lojistik A.Ş.",
-];
+interface ReferencesSectionProps {
+  clients: ClientReference[];
+}
 
 function MarqueeRow({
   items,
   direction,
   duration,
 }: {
-  items: string[];
+  items: ClientReference[];
   direction: "left" | "right";
   duration: number;
 }) {
   const doubled = [...items, ...items];
+
   return (
     <div className="relative flex overflow-hidden">
       <motion.div
-        className="flex shrink-0 gap-10 pr-10"
+        className="flex shrink-0 gap-8 pr-8"
         animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
         transition={{ duration, repeat: Infinity, ease: "linear" }}
       >
-        {doubled.map((name, i) => (
-          <span
-            key={`${name}-${i}`}
-            className="flex h-16 items-center whitespace-nowrap px-6 text-lg font-bold tracking-tight text-white/35 transition-colors hover:text-[#7fc7d4]"
+        {doubled.map((client, i) => (
+          <div
+            key={`${client.id}-${i}`}
+            className="flex h-16 w-32 shrink-0 items-center justify-center rounded-xl bg-white/95 px-5 opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
           >
-            {name}
-          </span>
+            {client.logo ? (
+              <Image
+                src={client.logo.url}
+                alt={client.logo.alt}
+                width={100}
+                height={32}
+                className="h-8 w-auto object-contain"
+              />
+            ) : (
+              <span className="text-sm font-bold tracking-tight text-[#0d4d5c]">
+                {client.name}
+              </span>
+            )}
+          </div>
         ))}
       </motion.div>
     </div>
   );
 }
 
-export function ReferencesSection() {
+export function ReferencesSection({ clients }: ReferencesSectionProps) {
+  const mid = Math.ceil(clients.length / 2);
+  const row1 = clients.slice(0, mid);
+  const row2 = clients.slice(mid);
+
   return (
     <section className="relative overflow-hidden bg-[#242629] py-16">
-      {/* Yumuşak dekoratif lekeler - diğer bölümlerle uyumlu */}
       <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[#1a7d8f]/10 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-[#7fc7d4]/10 blur-3xl" />
 
-      {/* Kenarlarda yumuşak solma (fade) efekti */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[#242629] to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[#242629] to-transparent" />
 
@@ -83,8 +79,8 @@ export function ReferencesSection() {
       </div>
 
       <div className="relative mt-10 space-y-4">
-        <MarqueeRow items={ROW_1} direction="left" duration={30} />
-        <MarqueeRow items={ROW_2} direction="right" duration={34} />
+        <MarqueeRow items={row1} direction="left" duration={30} />
+        <MarqueeRow items={row2} direction="right" duration={34} />
       </div>
     </section>
   );

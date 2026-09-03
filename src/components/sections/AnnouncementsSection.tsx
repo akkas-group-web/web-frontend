@@ -6,11 +6,12 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { SectionEyebrow } from "@/components/shared/SectionEyebrow";
-import type { AnnouncementItem } from "@/types";
+import type { NewsItem } from "@/types/news";
 import { CardMedia } from "../shared/CardMedia";
+import { routes } from "@/lib/routes";
 
 interface AnnouncementsSectionProps {
-  announcements: AnnouncementItem[];
+  announcements: NewsItem[];
 }
 
 const ITEMS_PER_PAGE = 5;
@@ -75,12 +76,12 @@ export function AnnouncementsSection({
                 return (
                   <Link
                     key={item.id}
-                    href={item.href}
+                    href={routes.news(item.slug)}
                     className="card-surface group flex flex-col overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                   >
                     {/* Görsel - dinamik oran: kare veya dikdörtgen */}
                     <CardMedia
-                      src={item.image}
+                      src={item.image.url}
                       alt={item.title}
                       ratio={isSquare ? "square" : "video"}
                       fit="contain"

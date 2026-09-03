@@ -1,6 +1,7 @@
 export type AppErrorCode =
   | "CONTENT_FETCH_FAILED"
   | "INVALID_CONTENT_SHAPE"
+  | "BRANDS_FETCH_FAILED"
   | "UNKNOWN";
 
 export class AppError extends Error {

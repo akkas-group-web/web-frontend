@@ -1,5 +1,10 @@
-import { ArticleItem } from "./article";
-
+import { HeroSlide } from "@/services/hero.service";
+import type { ArticleItem } from "./article";
+import type { MediaImage } from "./media";
+import type { NewsItem } from "./news";
+export * from "./contact";
+import type { ClientReference } from "@/types/reference";
+export * from "./media";
 export interface ServiceItem {
   id: string;
   title: string;
@@ -16,24 +21,26 @@ export type ServiceIconKey =
   | "quality"
   | "osgb"
   | "kvkk"
-  | "carbon";
-
+  | "carbon"
+  | "education"
+  | "prokvk"
+  | "compliance"
+  | "other";
 export interface BrandItem {
   id: string;
   name: string;
   description: string;
   href: string;
-  // label: string;
-  logo: string;
+  linkTarget?: string | null;
+  logo: MediaImage;
 }
 
 export interface SectorItem {
   id: string;
   title: string;
-  href: string;
-  description?: string; // Sektörün kısa açıklaması
-  // iconName?: string; // Dinamik ikon ismi
-  image?: string;
+  slug: string;
+  description?: string;
+  image?: MediaImage;
 }
 
 export interface StatItem {
@@ -43,21 +50,21 @@ export interface StatItem {
   sub?: string;
 }
 
-export interface AnnouncementItem {
-  id: string;
+export interface HomeSummaryContent {
+  eyebrow: string;
   title: string;
-  excerpt: string;
-  date: string;
-  href: string;
-  category: string;
-  image: string;
-  imageRatio?: "landscape" | "square"; // belirtilmezse landscape (4/3) kabul edilir
+  description: string;
+  image: MediaImage;
 }
+
 export interface HomeContent {
   services: ServiceItem[];
   brands: BrandItem[];
   sectors: SectorItem[];
   stats: StatItem[];
-  announcements: AnnouncementItem[];
+  announcements: NewsItem[];
   articles: ArticleItem[];
+  clients: ClientReference[];
+  heroSlides: HeroSlide[];
+  homeSummary: HomeSummaryContent;
 }

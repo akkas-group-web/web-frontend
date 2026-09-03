@@ -1,8 +1,10 @@
+import type { MediaImage } from "./media";
+
 export interface ArticleAuthor {
   name: string;
   role?: string;
   /** Editör tarafından yüklenen fotoğraf; herhangi bir en-boy oranında olabilir. */
-  photo: string;
+  photo: MediaImage;
 }
 
 export interface ArticleItem {
@@ -11,8 +13,8 @@ export interface ArticleItem {
   excerpt: string;
   /** ISO 8601 tarih string'i, ör. "2025-03-14T00:00:00.000Z" */
   date: string;
-  href: string;
+  slug: string;
   /** Makale kapak görseli; kart tasarımı dikdörtgen (video oranı) varsayar. */
-  image: string;
+  image: MediaImage;
   author: ArticleAuthor;
 }

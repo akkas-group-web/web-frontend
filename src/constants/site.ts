@@ -1,13 +1,5 @@
-export interface NavChild {
-  label: string;
-  href: string;
-}
-
-export interface NavItem {
-  label: string;
-  href: string;
-  children?: NavChild[];
-}
+import { SERVICES } from "./services";
+import type { NavChild, NavItem } from "@/types/navigation";
 
 export interface BrandCompany extends NavChild {
   logo: string;
@@ -49,6 +41,11 @@ export const BRAND_COMPANIES: BrandCompany[] = [
     href: "/markalarimiz/akkas-akademi",
     logo: "/brands/akerakademi.png",
   },
+  {
+    label: "Akkaş Teknoloji",
+    href: "/markalarimiz/akkas-teknoloji",
+    logo: "/brands/akkasteknoloji.png",
+  },
 ];
 
 export const SECTORS: NavChild[] = [
@@ -66,44 +63,13 @@ export const SECTORS: NavChild[] = [
   { label: "Tarım", href: "/sektorler/tarim" },
 ];
 
-export const SERVICES: NavChild[] = [
-  {
-    label: "Kalite Belgelendirme",
-    href: "/hizmetlerimiz/kalite-belgelendirme",
-  },
-  { label: "Eğitimler", href: "/hizmetlerimiz/egitimler" },
-  {
-    label: "Yatırım Danışmanlığı",
-    href: "/hizmetlerimiz/yatirim-danismanligi",
-  },
-  {
-    label: "Fikri ve Sınai Mülkiyet Hakları",
-    href: "/hizmetlerimiz/fikri-sinai-mulkiyet",
-  },
-  {
-    label: "Ortak Sağlık ve Güvenlik Birimi Hizmetlerimiz",
-    href: "/hizmetlerimiz/osgb",
-  },
-  { label: "Devlet Destekleri", href: "/hizmetlerimiz/devlet-destekleri" },
-  {
-    label: "Sigorta Teşvik Danışmanlığı",
-    href: "/hizmetlerimiz/sigorta-tesvik-danismanligi",
-  },
-  {
-    label: "Kişisel Verileri Koruma Danışmanlığı",
-    href: "/hizmetlerimiz/kvkk-danismanligi",
-  },
-  { label: "Akkaş Karbon", href: "/hizmetlerimiz/akkas-karbon" },
-  { label: "ProKVK", href: "/hizmetlerimiz/prokvk" },
-  { label: "Diğer Hizmetlerimiz", href: "/hizmetlerimiz/diger" },
-];
 
 export const NAV_LINKS: NavItem[] = [
   { label: "Hakkımızda", href: "/hakkimizda" },
-  { label: "Markalarımız", href: "/markalarimiz", children: BRAND_COMPANIES },
-  { label: "Referanslar", href: "/referanslar" },
-  { label: "Blog", href: "/sektorler" },
   { label: "Hizmetlerimiz", href: "/hizmetlerimiz", children: SERVICES },
+  { label: "Referanslar", href: "/referanslar" },
+  { label: "Makaleler", href: "/blog" },
+  { label: "Haberler", href: "/haberler" },
   { label: "İletişim", href: "/iletisim" },
 ];
 
@@ -111,7 +77,7 @@ export const STATS = [
   { value: "25+", label: "Yıllık Tecrübe", sub: "1999'dan beri" },
   { value: "200+", label: "Uzman Danışman Kadrosu" },
   { value: "18.000+", label: "Hizmet Verilen Firma" },
-  { value: "7", label: "Grup Şirketi" },
+  { value: "8", label: "Grup Şirketi" },
 ];
 
 export const SITE_CONFIG = {
