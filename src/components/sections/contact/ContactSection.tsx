@@ -6,11 +6,17 @@ import { ContactForm } from "./ContactForm";
 interface ContactSectionProps {
   offices: ContactOffice[];
   services: string[];
+  formEyebrow?: string;
+  formTitle?: string;
+  formDescription?: string;
 }
 
 export function ContactSection({
   offices,
   services,
+  formEyebrow,
+  formTitle,
+  formDescription,
 }: ContactSectionProps) {
   const [mainOffice, ...otherOffices] = offices;
 
@@ -24,18 +30,23 @@ export function ContactSection({
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           {/* LEFT - FORM */}
           <div className="max-w-xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-primary">
-              İletişim
-            </p>
+            {formEyebrow && (
+  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-primary">
+    {formEyebrow}
+  </p>
+)}
 
-            <h2 className="mt-3 font-heading text-2xl font-semibold tracking-[-0.03em] text-brand-dark md:text-[28px]">
-              Size nasıl yardımcı olabiliriz?
-            </h2>
+{formTitle && (
+  <h2 className="mt-3 font-heading text-2xl font-semibold tracking-[-0.03em] text-brand-dark md:text-[28px]">
+    {formTitle}
+  </h2>
+)}
 
-            <p className="mb-6 mt-3 max-w-lg text-sm leading-6 text-muted-foreground">
-              Formu doldurun, ilgili uzmanımız en kısa sürede sizinle iletişime
-              geçsin.
-            </p>
+{formDescription && (
+  <p className="mb-6 mt-3 max-w-lg text-sm leading-6 text-muted-foreground">
+    {formDescription}
+  </p>
+)}
 
             <ContactForm services={services} />
           </div>

@@ -14,12 +14,11 @@ export const GET_NEWS_QUERY = gql`
             altText
           }
         }
-        newsItemFields {
-          excerptText
-          kategori
-          gorselOrani
-          haberIcerigi
-        }
+       newsItemFields {
+  excerptText
+  kategori
+  haberIcerigi
+}
       }
     }
   }

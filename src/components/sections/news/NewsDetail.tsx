@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 import { ArrowLeft, CalendarDays, Clock3, Newspaper } from "lucide-react";
 
@@ -7,6 +8,136 @@ import type { NewsItem } from "@/types/news";
 
 interface NewsDetailProps {
   news: NewsItem;
+}
+
+function renderLink(text: string) {
+  const tokenRegex =
+    /(https?:\/\/[^\s]+|www\.[^\s]+|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,})/gi;
+
+  const parts = text.split(tokenRegex);
+
+  return parts.map((part, index) => {
+    if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(part)) {
+      return (
+        <a
+          key={index}
+          href={`mailto:${part}`}
+          className="font-medium text-[#118B99] hover:text-[#0D747E]"
+        >
+          {part}
+        </a>
+      );
+    }
+
+    if (/^(https?:\/\/|www\.)/.test(part)) {
+      const href = part.startsWith("www.") ? `https://${part}` : part;
+
+      return (
+        <a
+          key={index}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-[#118B99] hover:text-[#0D747E]"
+        >
+          {part}
+        </a>
+      );
+    }
+
+    return renderInlineBold(part);
+  });
+}
+
+function renderInlineBold(text: string) {
+  const parts = text.split(/(\*\*.*?\*\*|\*.*?\*)/g);
+
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={index} className="font-semibold text-[#31565C]">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+
+    if (part.startsWith("*") && part.endsWith("*")) {
+      return (
+        <em key={index} className="italic">
+          {part.slice(1, -1)}
+        </em>
+      );
+    }
+
+    return part;
+  });
+}
+
+function renderNewsContent(content: string[]) {
+  const elements: ReactNode[] = [];
+  let listItems: string[] = [];
+
+  const flushList = () => {
+    if (listItems.length > 0) {
+      elements.push(
+        <ul
+          key={`list-${elements.length}`}
+          className="list-disc space-y-2 pl-6"
+        >
+          {listItems.map((item, index) => (
+            <li key={index}>{renderLink(item)}</li>
+          ))}
+        </ul>,
+      );
+
+      listItems = [];
+    }
+  };
+
+  content.forEach((paragraph, index) => {
+    const text = paragraph.trim();
+
+    if (!text) return;
+
+    if (text.startsWith("- ")) {
+      listItems.push(text.slice(2));
+      return;
+    }
+
+    flushList();
+
+    if (text.startsWith("### ")) {
+      elements.push(
+        <h3
+          key={index}
+          className="pt-2 text-lg font-semibold text-[#31565C]"
+        >
+          {renderInlineBold(text.slice(4))}
+        </h3>,
+      );
+      return;
+    }
+
+    if (text.startsWith("## ")) {
+      elements.push(
+        <h2
+          key={index}
+          className="pt-2 text-xl font-semibold tracking-[-0.02em] text-[#173D43]"
+        >
+          {renderInlineBold(text.slice(3))}
+        </h2>,
+      );
+      return;
+    }
+
+    elements.push(
+       <p key={index}>{renderLink(text)}</p>,
+    );
+  });
+
+  flushList();
+
+  return elements;
 }
 
 export function NewsDetail({ news }: NewsDetailProps) {
@@ -134,11 +265,9 @@ export function NewsDetail({ news }: NewsDetailProps) {
               {news.excerpt}
             </p>
 
-            <div className="mt-8 space-y-6 text-[17px] leading-[1.95] text-[#516D72]">
-              {news.content.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
-            </div>
+        <div className="mt-6 space-y-3 text-[16px] leading-[1.7] text-[#516D72]">
+  {renderNewsContent(news.content)}
+</div>
 
             <div className="mt-12 border-t border-[#118B99]/10 pt-8">
               <Link

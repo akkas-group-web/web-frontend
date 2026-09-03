@@ -78,13 +78,15 @@ export function NewsGrid({ news }: NewsGridProps) {
                       href={routes.news(item.slug)}
                       className="relative block aspect-[16/10] overflow-hidden rounded-[16px] bg-[#EAF6F7]"
                     >
-                      <Image
-                        src={item.image.url}
-                        alt={item.title}
-                        fill
-                        sizes="210px"
-                        className="object-cover transition-transform duration-700 group-hover:scale-[1.045]"
-                      />
+                      {item.image?.url ? (
+  <Image
+    src={item.image.url}
+    alt={item.image.alt || item.title || "Haber görseli"}
+    fill
+    sizes="210px"
+    className="object-cover transition-transform duration-700 group-hover:scale-[1.045]"
+  />
+) : null}
                     </Link>
 
                     {/* İÇERİK */}
