@@ -22,13 +22,15 @@ export function BlogCard({ article }: BlogCardProps) {
         href={routes.article(article.slug)}
         className="relative block aspect-[16/9] overflow-hidden bg-[#EAF6F7]"
       >
-        <Image
-          src={article.image.url}
-          alt={article.image.alt}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-        />
+        {article.image?.url ? (
+  <Image
+    src={article.image.url}
+    alt={article.image.alt || article.title || "Makale görseli"}
+    fill
+    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+  />
+) : null}
       </Link>
 
       <div className="p-5">

@@ -72,6 +72,10 @@ const MOCK_CLIENT_REFERENCES: ClientReference[] = [
 
 interface WPReferencesResponse {
   references: {
+    pageInfo: {
+      hasNextPage: boolean;
+      endCursor: string | null;
+    };
     nodes: {
       id: string;
       referenceFields: {
@@ -83,34 +87,54 @@ interface WPReferencesResponse {
             sourceUrl: string;
             altText: string;
           };
-        };
+        } | null;
       };
     }[];
   };
 }
 
 function mapReferencesFromWP(data: WPReferencesResponse): ClientReference[] {
-  return data.references.nodes.map((node) => ({
-    id: node.id,
-    name: node.referenceFields.name,
-    logo: {
-      url: node.referenceFields.logo.node.sourceUrl,
-      alt: node.referenceFields.logo.node.altText || node.referenceFields.name,
-    },
-    sector: node.referenceFields.sektor,
-    website: node.referenceFields.website,
-  }));
+  return data.references.nodes
+    .filter((node) => node.referenceFields.logo?.node?.sourceUrl)
+    .map((node) => ({
+      id: node.id,
+      name: node.referenceFields.name ?? "",
+      logo: {
+        url: node.referenceFields.logo!.node.sourceUrl,
+        alt:
+          node.referenceFields.logo!.node.altText ||
+          node.referenceFields.name ||
+          "Referans logosu",
+      },
+      sector: node.referenceFields.sektor,
+      website: node.referenceFields.website,
+    }));
 }
 
 export async function getClientReferences(): Promise<ClientReference[]> {
   try {
-    // İleride: await wpClient.query(REFERENCES_QUERY) burada olacak.
-    //return MOCK_CLIENT_REFERENCES;
-    const data =
-      await wpClient.request<WPReferencesResponse>(GET_REFERENCES_QUERY);
-    return mapReferencesFromWP(data);
+    const allReferences: ClientReference[] = [];
+
+    let after: string | null = null;
+    let hasNextPage = true;
+
+    while (hasNextPage) {
+      const data: WPReferencesResponse =
+        await wpClient.request<WPReferencesResponse>(
+          GET_REFERENCES_QUERY,
+          { after },
+        );
+
+      allReferences.push(...mapReferencesFromWP(data));
+
+      hasNextPage = data.references.pageInfo.hasNextPage;
+      after = data.references.pageInfo.endCursor;
+    }
+
+    return allReferences;
   } catch (error) {
     logger.error("Referanslar içeriği alınamadı", { error });
+
     throw new AppError(
       "Referanslar içeriği yüklenemedi",
       "CONTENT_FETCH_FAILED",
