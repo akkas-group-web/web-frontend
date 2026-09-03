@@ -14,11 +14,11 @@ export const GET_NEWS_QUERY = gql`
             altText
           }
         }
-       newsItemFields {
-  excerptText
-  kategori
-  haberIcerigi
-}
+        newsItemFields {
+          excerptText
+          kategori
+          haberIcerigi
+        }
       }
     }
   }

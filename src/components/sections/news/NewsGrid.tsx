@@ -1,10 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { ArrowUpRight, CalendarDays, Newspaper } from "lucide-react";
 
 import type { HomeContent } from "@/types";
 import { routes } from "@/lib/routes";
+import { CardMedia } from "@/components/shared/CardMedia";
 
 type NewsItem = HomeContent["announcements"][number];
 
@@ -76,15 +76,15 @@ export function NewsGrid({ news }: NewsGridProps) {
                     {/* GÖRSEL */}
                     <Link
                       href={routes.news(item.slug)}
-                      className="relative block aspect-[16/10] overflow-hidden rounded-[16px] bg-[#EAF6F7]"
+                      className="block self-start overflow-hidden rounded-[16px] bg-[#EAF6F7]"
                     >
-                      {item.image?.url ? (
-  <Image
+{item.image?.url ? (
+  <CardMedia
     src={item.image.url}
     alt={item.image.alt || item.title || "Haber görseli"}
-    fill
-    sizes="210px"
-    className="object-cover transition-transform duration-700 group-hover:scale-[1.045]"
+    ratio="video"
+    fit="contain"
+    className="transition-transform duration-500 group-hover:scale-[1.02]"
   />
 ) : null}
                     </Link>
