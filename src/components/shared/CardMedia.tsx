@@ -33,6 +33,18 @@ export function CardMedia({
   priority = false,
   className,
 }: CardMediaProps) {
+  if (!src?.trim()) {
+    return (
+      <div
+        className={cn(
+          "relative w-full overflow-hidden bg-[#0d4d5c]/5",
+          RATIO_CLASS[ratio],
+          className,
+        )}
+      />
+    );
+  }
+
   return (
     <div
       className={cn(

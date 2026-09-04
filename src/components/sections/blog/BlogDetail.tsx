@@ -70,37 +70,43 @@ export function BlogDetail({ article }: BlogDetailProps) {
               <Clock3 className="h-4 w-4 text-[#118B99]" />4 dk okuma
             </div>
 
-            {article.author && (
-              <>
-                <span className="hidden h-4 w-px bg-[#118B99]/20 sm:block" />
-                <div className="relative h-8 w-8 overflow-hidden rounded-full ring-2 ring-[#DCF1F2]">
-                  <Image
-                    src={article.author.photo.url}
-                    alt={article.author.photo.alt}
-                    fill
-                    sizes="32px"
-                    className="object-cover"
-                  />
-                </div>
-              </>
-            )}
+            {article.author?.photo?.url && (
+  <>
+    <span className="hidden h-4 w-px bg-[#118B99]/20 sm:block" />
+    <div className="relative h-8 w-8 overflow-hidden rounded-full ring-2 ring-[#DCF1F2]">
+      <Image
+        src={article.author.photo.url}
+        alt={
+          article.author.photo.alt ||
+          article.author.name ||
+          "Yazar profil fotoğrafı"
+        }
+        fill
+        sizes="32px"
+        className="object-cover"
+      />
+    </div>
+  </>
+)}
           </div>
         </div>
       </section>
 
       {/* KAPAK */}
-      <section className="mx-auto max-w-5xl px-6 lg:px-8">
-        <div className="relative aspect-[16/9] overflow-hidden rounded-[24px] bg-[#EAF6F7]">
-          <Image
-            src={article.image.url}
-            alt={article.image.alt}
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 960px"
-            className="object-cover"
-          />
-        </div>
-      </section>
+     {article.image?.url && (
+  <section className="mx-auto max-w-5xl px-6 lg:px-8">
+    <div className="relative aspect-[16/9] overflow-hidden rounded-[24px] bg-[#EAF6F7]">
+      <Image
+        src={article.image.url}
+        alt={article.image.alt || article.title || "Makale görseli"}
+        fill
+        priority
+        sizes="(max-width: 1024px) 100vw, 960px"
+        className="object-cover"
+      />
+    </div>
+  </section>
+)}
 
       {/* MAKALE */}
       <section className="mx-auto max-w-6xl px-6 py-14 lg:px-8 lg:py-16">
@@ -115,15 +121,19 @@ export function BlogDetail({ article }: BlogDetailProps) {
 
                 {article.author && (
                   <>
-                    {article.author.photo && (
+                    {article.author.photo?.url && (
                       <div className="relative mt-5 h-14 w-14 overflow-hidden rounded-full bg-[#EAF6F7] ring-4 ring-[#F1FAFA]">
-                        <Image
-                          src={article.author.photo.url}
-                          alt={article.author.photo.alt}
-                          fill
-                          sizes="56px"
-                          className="object-cover"
-                        />
+                       <Image
+  src={article.author.photo.url}
+  alt={
+    article.author.photo.alt ||
+    article.author.name ||
+    "Yazar profil fotoğrafı"
+  }
+  fill
+  sizes="56px"
+  className="object-cover"
+/>
                       </div>
                     )}
 

@@ -55,17 +55,17 @@ function MarqueeRow({
       >
         {doubled.map((client, i) => (
           <div
-  key={`${client.id}-${i}`}
-  className="flex h-20 w-44 shrink-0 items-center justify-center rounded-xl bg-white/95 px-2 transition-all duration-300 hover:scale-105"
->
-            {client.logo ? (
-<Image
-  src={client.logo.url}
-  alt={client.logo.alt || client.name || "Referans logosu"}
-  width={160}
-  height={60}
-  className="max-h-14 max-w-[150px] object-contain"
-/>
+            key={`${client.id}-${i}`}
+            className="flex h-20 w-44 shrink-0 items-center justify-center rounded-xl bg-white/95 px-2 transition-all duration-300 hover:scale-105"
+          >
+            {client.logo?.url ? (
+              <Image
+                src={client.logo.url}
+                alt={client.logo.alt || client.name || "Referans logosu"}
+                width={160}
+                height={60}
+                className="max-h-14 max-w-[150px] object-contain"
+              />
             ) : (
               <span className="text-sm font-bold tracking-tight text-[#0d4d5c]">
                 {client.name}
