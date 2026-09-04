@@ -73,16 +73,18 @@ export function BrandsStrip({ brands }: BrandsStripProps) {
                 onClick={(event) => handleCardClick(event, brand.id)}
                 className="group relative flex min-h-[280px] flex-col rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-xl [@media(hover:hover)_and_(pointer:fine)]:aspect-[4/3] [@media(hover:hover)_and_(pointer:fine)]:min-h-0"
               >
-                {/* Logo alanı */}
-                <div className="relative h-48 p-6 pb-10 [@media(hover:hover)_and_(pointer:fine)]:h-auto [@media(hover:hover)_and_(pointer:fine)]:flex-1">
-                  <Image
-                    src={brand.logo.url}
-                    alt={brand.logo.alt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="pointer-events-none object-contain p-6 transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
+              {/* Logo alanı */}
+<div className="relative h-48 p-6 pb-10 [@media(hover:hover)_and_(pointer:fine)]:h-auto [@media(hover:hover)_and_(pointer:fine)]:flex-1">
+  {brand.logo?.url ? (
+    <Image
+      src={brand.logo.url}
+      alt={brand.logo.alt || brand.name || "Grup şirketi logosu"}
+      fill
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+      className="pointer-events-none object-contain p-6 transition-transform duration-500 group-hover:scale-105"
+    />
+  ) : null}
+</div>
 
                 {/* Normal başlık */}
                 <div

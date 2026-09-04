@@ -21,16 +21,18 @@ export function AboutStorySection({ content }: AboutStorySectionProps) {
           transition={{ duration: 0.7 }}
           className="relative"
         >
-          <div className="relative overflow-hidden rounded-[2rem] shadow-xl shadow-[#0d4d5c]/10">
-            <Image
-              src={content.image.url}
-              alt={content.image.alt}
-              width={content.image.width ?? 640}
-              height={content.image.height ?? 760}
-              sizes="(min-width: 768px) 40vw, 100vw"
-              className="h-auto w-full object-cover"
-            />
-          </div>
+         <div className="relative overflow-hidden rounded-[2rem] shadow-xl shadow-[#0d4d5c]/10">
+  {content.image?.url ? (
+    <Image
+      src={content.image.url}
+      alt={content.image.alt || content.title || "Hakkımızda görseli"}
+      width={content.image.width ?? 640}
+      height={content.image.height ?? 760}
+      sizes="(min-width: 768px) 40vw, 100vw"
+      className="h-auto w-full object-cover"
+    />
+  ) : null}
+</div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

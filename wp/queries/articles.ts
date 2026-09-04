@@ -18,6 +18,7 @@ export const GET_ARTICLES_QUERY = gql`
           kisaAciklama
           authorName
           metin
+          articleContent
           authorPhoto {
             node {
               sourceUrl
