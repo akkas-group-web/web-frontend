@@ -78,13 +78,15 @@ export function NewsGrid({ news }: NewsGridProps) {
                       href={routes.news(item.slug)}
                       className="block self-start overflow-hidden rounded-[16px] bg-[#EAF6F7]"
                     >
-                      <CardMedia
-                        src={item.image.url}
-                        alt={item.image.alt || item.title}
-                        ratio="video"
-                        fit="contain"
-                        className="transition-transform duration-500 group-hover:scale-[1.02]"
-                      />
+{item.image?.url ? (
+  <CardMedia
+    src={item.image.url}
+    alt={item.image.alt || item.title || "Haber görseli"}
+    ratio="video"
+    fit="contain"
+    className="transition-transform duration-500 group-hover:scale-[1.02]"
+  />
+) : null}
                     </Link>
 
                     {/* İÇERİK */}

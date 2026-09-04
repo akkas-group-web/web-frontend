@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
@@ -80,13 +79,15 @@ export function AnnouncementsSection({
                     className="card-surface group flex flex-col overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                   >
                     {/* Görsel - dinamik oran: kare veya dikdörtgen */}
-                    <CardMedia
-                      src={item.image.url}
-                      alt={item.title}
-                      ratio={isSquare ? "square" : "video"}
-                      fit="contain"
-                      className="transition-transform duration-500 group-hover:scale-[1.02]"
-                    />
+                    {item.image?.url ? (
+  <CardMedia
+    src={item.image.url}
+    alt={item.image.alt || item.title}
+    ratio={isSquare ? "square" : "video"}
+    fit="contain"
+    className="transition-transform duration-500 group-hover:scale-[1.02]"
+  />
+) : null}
                     <div className="flex flex-1 flex-col p-3.5">
                       <time className="text-[11px] font-medium text-[#333333]/40">
                         {formatDate(item.date)}
