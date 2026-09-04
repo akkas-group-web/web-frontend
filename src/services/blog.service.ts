@@ -15,6 +15,7 @@ interface WPArticleNode {
   title: string;
   slug: string;
   date: string;
+ 
 
   featuredImage: {
     node: {
@@ -27,6 +28,7 @@ interface WPArticleNode {
     kisaAciklama: string;
     authorName: string;
     metin: string | null;
+    articleContent: string | null;
     authorPhoto: {
       node: {
         sourceUrl: string;
@@ -45,6 +47,7 @@ function mapArticlesFromWP(data: WPArticlesResponse): ArticleItem[] {
       id: node.id,
       title: node.title,
       excerpt: node.articleItemFields.kisaAciklama,
+      content: node.articleItemFields.articleContent || "",
       date: node.date,
       slug: node.slug,
 

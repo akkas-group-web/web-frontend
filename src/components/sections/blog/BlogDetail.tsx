@@ -8,12 +8,65 @@ interface BlogDetailProps {
   article: ArticleItem;
 }
 
+function renderArticleContent(content: string) {
+  return content
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line, index) => {
+      if (/^##\s+/.test(line)) {
+        return (
+          <h2
+            key={index}
+            className="mt-11 text-[25px] font-semibold leading-tight tracking-[-0.025em] text-[#173F45]"
+          >
+            {line.replace(/^##\s+/, "")}
+          </h2>
+        );
+      }
+      if (/^###\s+/.test(line)) {
+        return (
+          <h3
+            key={index}
+            className="mt-8 text-[20px] font-semibold leading-tight text-[#31565C]"
+          >
+            {line.replace(/^###\s+/, "")}
+          </h3>
+        );
+      }
+
+      if (line.startsWith("- ")) {
+        return (
+          <p
+            key={index}
+            className="mt-2 pl-4 text-[16px] leading-[1.8] text-[#526D72] sm:text-[17px]"
+          >
+            - {line.slice(2)}
+          </p>
+        );
+      }
+
+      return (
+        <p
+          key={index}
+          className="mt-4 text-[16px] leading-[1.85] text-[#526D72] sm:text-[17px]"
+        >
+          {line}
+        </p>
+      );
+    });
+}
+
 export function BlogDetail({ article }: BlogDetailProps) {
   const formattedDate = new Date(article.date).toLocaleDateString("tr-TR", {
     day: "numeric",
     month: "long",
     year: "numeric",
   });
+  const readingTime = Math.max(
+    1,
+    Math.ceil(article.content.trim().split(/\s+/).filter(Boolean).length / 200),
+  );
 
   return (
     <main className="overflow-x-hidden bg-white">
@@ -67,46 +120,47 @@ export function BlogDetail({ article }: BlogDetailProps) {
             <span className="hidden h-4 w-px bg-[#118B99]/20 sm:block" />
 
             <div className="flex items-center gap-2 text-sm text-[#789095]">
-              <Clock3 className="h-4 w-4 text-[#118B99]" />4 dk okuma
+              <Clock3 className="h-4 w-4 text-[#118B99]" />
+              {readingTime} dk okuma
             </div>
 
             {article.author?.photo?.url && (
-  <>
-    <span className="hidden h-4 w-px bg-[#118B99]/20 sm:block" />
-    <div className="relative h-8 w-8 overflow-hidden rounded-full ring-2 ring-[#DCF1F2]">
-      <Image
-        src={article.author.photo.url}
-        alt={
-          article.author.photo.alt ||
-          article.author.name ||
-          "Yazar profil fotoğrafı"
-        }
-        fill
-        sizes="32px"
-        className="object-cover"
-      />
-    </div>
-  </>
-)}
+              <>
+                <span className="hidden h-4 w-px bg-[#118B99]/20 sm:block" />
+                <div className="relative h-8 w-8 overflow-hidden rounded-full ring-2 ring-[#DCF1F2]">
+                  <Image
+                    src={article.author.photo.url}
+                    alt={
+                      article.author.photo.alt ||
+                      article.author.name ||
+                      "Yazar profil fotoğrafı"
+                    }
+                    fill
+                    sizes="32px"
+                    className="object-cover"
+                  />
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>
 
       {/* KAPAK */}
-     {article.image?.url && (
-  <section className="mx-auto max-w-5xl px-6 lg:px-8">
-    <div className="relative aspect-[16/9] overflow-hidden rounded-[24px] bg-[#EAF6F7]">
-      <Image
-        src={article.image.url}
-        alt={article.image.alt || article.title || "Makale görseli"}
-        fill
-        priority
-        sizes="(max-width: 1024px) 100vw, 960px"
-        className="object-cover"
-      />
-    </div>
-  </section>
-)}
+      {article.image?.url && (
+        <section className="mx-auto max-w-5xl px-6 lg:px-8">
+          <div className="relative aspect-[16/9] overflow-hidden rounded-[24px] bg-[#EAF6F7]">
+            <Image
+              src={article.image.url}
+              alt={article.image.alt || article.title || "Makale görseli"}
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 960px"
+              className="object-cover"
+            />
+          </div>
+        </section>
+      )}
 
       {/* MAKALE */}
       <section className="mx-auto max-w-6xl px-6 py-14 lg:px-8 lg:py-16">
@@ -123,17 +177,17 @@ export function BlogDetail({ article }: BlogDetailProps) {
                   <>
                     {article.author.photo?.url && (
                       <div className="relative mt-5 h-14 w-14 overflow-hidden rounded-full bg-[#EAF6F7] ring-4 ring-[#F1FAFA]">
-                       <Image
-  src={article.author.photo.url}
-  alt={
-    article.author.photo.alt ||
-    article.author.name ||
-    "Yazar profil fotoğrafı"
-  }
-  fill
-  sizes="56px"
-  className="object-cover"
-/>
+                        <Image
+                          src={article.author.photo.url}
+                          alt={
+                            article.author.photo.alt ||
+                            article.author.name ||
+                            "Yazar profil fotoğrafı"
+                          }
+                          fill
+                          sizes="56px"
+                          className="object-cover"
+                        />
                       </div>
                     )}
 
@@ -147,11 +201,6 @@ export function BlogDetail({ article }: BlogDetailProps) {
                   </>
                 )}
 
-                <div className="my-5 h-px w-10 bg-[#118B99]/15" />
-
-                <p className="text-xs leading-5 text-[#82999D]">
-                  Uzman görüşleri ve güncel sektörel değerlendirmeler.
-                </p>
               </div>
             </div>
           </aside>
@@ -166,51 +215,11 @@ export function BlogDetail({ article }: BlogDetailProps) {
               </span>
             </div>
 
-            <p className="text-[19px] font-medium leading-[1.9] text-[#34565C]">
-              {article.excerpt}
-            </p>
-
-            <div className="mt-8 text-[16px] leading-[1.95] text-[#526D72] sm:text-[17px]">
-              <p>
-                İş dünyasında yaşanan gelişmeler, şirketlerin yatırım, büyüme ve
-                stratejik planlama süreçlerini doğrudan etkileyebiliyor.
-              </p>
-
-              <p className="mt-6">
-                Güncel gelişmelerin, mevzuatın ve sektörel değişimlerin doğru
-                şekilde takip edilmesi işletmeler açısından önemli avantajlar
-                sağlayabilir.
-              </p>
-
-              <h2 className="mt-11 text-[25px] font-semibold leading-tight tracking-[-0.025em] text-[#173F45]">
-                Firmalar açısından neden önemli?
-              </h2>
-
-              <p className="mt-5">
-                Doğru zamanda yapılan planlama, işletmelerin fırsatları daha
-                etkin değerlendirmesine ve süreçlerini daha sağlıklı yönetmesine
-                katkı sağlar.
-              </p>
-
-              <p className="mt-6">
-                Özellikle teşvik, destek ve mevzuat değişikliklerinde güncel
-                bilgilerin doğru yorumlanması büyük önem taşır.
-              </p>
-
-              <h2 className="mt-11 text-[25px] font-semibold leading-tight tracking-[-0.025em] text-[#173F45]">
-                Süreç nasıl yönetilmeli?
-              </h2>
-
-              <p className="mt-5">
-                İşletmenin mevcut durumu, yatırım planları ve ihtiyaçları
-                değerlendirilerek uygun süreçlerin belirlenmesi gerekir.
-              </p>
-
-              <p className="mt-6">
-                Akkaş Group olarak işletmelerin ihtiyaç duyduğu güncel bilgileri
-                ve uzman görüşlerini paylaşmaya devam ediyoruz.
-              </p>
-            </div>
+            {article.content && (
+              <div className="mt-8">
+                {renderArticleContent(article.content)}
+              </div>
+            )}
 
             <div className="mt-12 border-t border-[#118B99]/10 pt-8">
               <Link
