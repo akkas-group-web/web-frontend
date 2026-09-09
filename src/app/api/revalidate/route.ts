@@ -4,8 +4,7 @@ import { revalidatePath } from "next/cache";
 const CPT_PATH_MAP: Record<string, (slug?: string) => string[]> = {
   news_item: (slug) =>
     slug ? ["/haberler", `/haberler/${slug}`] : ["/haberler"],
-  article_item: (slug) =>
-    slug ? ["/haberler", `/haberler/${slug}`] : ["/haberler"],
+  article_item: (slug) => (slug ? ["/blog", `/blog/${slug}`] : ["/blog"]),
   sector: (slug) =>
     slug ? ["/sektorler", `/sektorler/${slug}`] : ["/sektorler"],
   service_category: (slug) =>
@@ -16,9 +15,9 @@ const CPT_PATH_MAP: Record<string, (slug?: string) => string[]> = {
   contact_page: () => ["/iletisim"],
   hero_slide: () => ["/"],
   reference: () => ["/", "/referanslar"],
-  timeline_item: () => ["/kurumsal"],
-  value_item: () => ["/kurumsal"],
-  about_page: () => ["/kurumsal"],
+  timeline_item: () => ["/hakkimizda"],
+  value_item: () => ["/hakkimizda"],
+  about_page: () => ["/hakkimizda"],
   brand: (slug) => (slug ? [`/markalarimiz/${slug}`] : ["/markalarimiz"]),
 };
 
