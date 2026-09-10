@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Minus, Plus } from "lucide-react";
 
@@ -10,10 +10,9 @@ interface ServicesAccordionProps {
   categories: ServiceCategory[];
 }
 
-export function ServicesAccordion({
-  categories,
-}: ServicesAccordionProps) {
+export function ServicesAccordion({ categories }: ServicesAccordionProps) {
   const [openService, setOpenService] = useState<string | null>(null);
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   return (
     <section className="bg-white">
@@ -26,13 +25,27 @@ export function ServicesAccordion({
             return (
               <section
                 key={serviceKey}
-                className="border-b border-[#0d4d5c]/15"
+                ref={(el) => {
+                  sectionRefs.current[serviceKey] = el;
+                }}
+                className="scroll-mt-28 border-b border-[#0d4d5c]/15"
               >
                 <button
                   type="button"
-                  onClick={() =>
-                    setOpenService(isOpen ? null : serviceKey)
-                  }
+                  onClick={() => {
+                    const nextOpenService = isOpen ? null : serviceKey;
+
+                    setOpenService(nextOpenService);
+
+                    if (nextOpenService) {
+                      setTimeout(() => {
+                        sectionRefs.current[serviceKey]?.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                        });
+                      }, 100);
+                    }
+                  }}
                   aria-expanded={isOpen}
                   aria-controls={`service-content-${serviceIndex}`}
                   className="group flex w-full items-center justify-between gap-5 px-2 py-3.5 text-left md:px-3 md:py-4"
@@ -67,7 +80,7 @@ export function ServicesAccordion({
                     id={`service-content-${serviceIndex}`}
                     className="border-t border-[#0d4d5c]/10 bg-[#f8fbfb] px-4 py-3 md:px-6 md:py-4"
                   >
-                    <div className="grid gap-x-8 md:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
                       {service.children.map((child, childIndex) => {
                         const childKey = `${child.label}-${childIndex}`;
 
@@ -82,9 +95,9 @@ export function ServicesAccordion({
                           <Link
                             key={childKey}
                             href={childHref}
-                            className="group flex items-center justify-between gap-4 border-b border-[#0d4d5c]/10 py-2.5 text-[13px] leading-5 text-[#53666b] transition-colors hover:text-[#16859a]"
+                            className="group flex min-w-0 items-center justify-between gap-3 border-b border-[#0d4d5c]/10 py-2.5 text-[13px] leading-5 text-[#53666b] transition-colors hover:text-[#16859a] sm:text-sm"
                           >
-                            <span>{child.label}</span>
+                            <span className="min-w-0 flex-1 break-words">{child.label}</span>
 
                             <ArrowRight className="h-3.5 w-3.5 shrink-0 text-[#a1afb2] transition-all group-hover:translate-x-1 group-hover:text-[#16859a]" />
                           </Link>
