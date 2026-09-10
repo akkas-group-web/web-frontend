@@ -1,0 +1,31 @@
+services:
+  web-frontend-test:
+    container_name: akkasgroup-web-frontend-test
+    build:
+      context: .
+      dockerfile: Dockerfile
+      network: host
+      args:
+         WP_GRAPHQL_ENDPOINT: ${WP_GRAPHQL_BUILD_ENDPOINT}
+
+    restart: unless-stopped
+
+    ports:
+      - "9070:3000"
+
+    env_file:
+      - .env.test
+
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+
+    networks:
+      - default
+      - cms-akkasgroup-network
+
+networks:
+  cms-akkasgroup-network:
+    external: true
+    name: cms-akkasgroup-network
