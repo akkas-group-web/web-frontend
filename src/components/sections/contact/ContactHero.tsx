@@ -6,6 +6,7 @@ interface ContactHeroProps {
   };
 }
 export function ContactHero({ content }: ContactHeroProps) {
+  const eyebrow = content.eyebrow || "İletişim";
   return (
     <section className="relative overflow-hidden border-b border-brand-dark/10 bg-white pt-16 md:pt-20">
       {/* Güçlendirilmiş arka plan geçişi */}
@@ -18,9 +19,9 @@ export function ContactHero({ content }: ContactHeroProps) {
           <div className="flex items-center gap-3">
             <span className="h-px w-9 bg-brand-primary" />
 
-           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-primary">
-  {content.eyebrow}
-</span>
+            <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand-primary">
+              {eyebrow}
+            </span>
           </div>
           {/* Heading */}
           <h1 className="mt-3 font-heading text-2xl font-semibold leading-[1.15] tracking-[-0.035em] text-brand-dark sm:text-3xl md:text-4xl lg:text-[40px]">
