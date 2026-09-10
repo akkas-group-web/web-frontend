@@ -6,7 +6,15 @@ import { Maximize2, X } from "lucide-react";
 
 import { ContactMap } from "./ContactMap";
 
-export function LocationsSection() {
+interface LocationsSectionProps {
+  content: {
+    eyebrow: string;
+    title: string;
+    description: string;
+  };
+}
+
+export function LocationsSection({ content }: LocationsSectionProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   // Escape + scroll lock
@@ -31,22 +39,22 @@ export function LocationsSection() {
       <section className="bg-brand-gray-light py-8 md:py-11">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-12">
           {/* SECTION HEADER */}
-          <div className="mb-5 grid gap-3 md:grid-cols-[1fr_360px] md:items-end md:gap-10">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-primary sm:text-xs">
-                Konumumuz
-              </p>
+        
+<div className="mb-5">
+  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-primary sm:text-xs">
+  {content.eyebrow}
+</p>
 
-              <h2 className="mt-2 font-heading text-xl font-semibold tracking-[-0.025em] text-brand-dark sm:text-2xl md:text-3xl">
-                Akkaş Group Merkez Ofis
-              </h2>
-            </div>
+  <h2 className="mt-2 font-heading text-xl font-semibold tracking-[-0.025em] text-brand-dark sm:text-2xl md:text-3xl">
+    {content.title}
+  </h2>
 
-            <p className="max-w-[360px] text-sm leading-6 text-muted-foreground md:justify-self-end md:pb-1 md:text-right">
-              Türkiye genelindeki 9 farklı hizmet noktamızla müşterilerimize
-              daha yakınız.
-            </p>
-          </div>
+  {content.description && (
+    <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
+      {content.description}
+    </p>
+  )}
+</div>
 
           {/* MAP */}
           <div className="relative overflow-hidden rounded-2xl border border-brand-dark/10 bg-white shadow-sm sm:rounded-[24px]">
