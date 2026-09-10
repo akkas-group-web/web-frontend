@@ -4,11 +4,31 @@ import type { ContactOffice } from "@/types";
 import { ContactForm } from "./ContactForm";
 
 interface ContactSectionProps {
+  officeLabels: {
+  addressLabel: string;
+  otherOfficesTitle: string;
+};
   offices: ContactOffice[];
   services: string[];
   formEyebrow?: string;
   formTitle?: string;
   formDescription?: string;
+  formFields: {
+    nameLabel: string;
+    namePlaceholder: string;
+    companyLabel: string;
+    companyPlaceholder: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    phoneLabel: string;
+    phonePlaceholder: string;
+    serviceLabel: string;
+    serviceDefault: string;
+    messageLabel: string;
+    messagePlaceholder: string;
+    submitButtonText: string;
+    kvkkPdfUrl: string;
+  };
 }
 
 export function ContactSection({
@@ -17,6 +37,8 @@ export function ContactSection({
   formEyebrow,
   formTitle,
   formDescription,
+  formFields,
+  officeLabels,
 }: ContactSectionProps) {
   const [mainOffice, ...otherOffices] = offices;
 
@@ -28,30 +50,28 @@ export function ContactSection({
     <section className="bg-white py-8 md:py-10">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
-          {/* LEFT - FORM */}
           <div className="max-w-xl">
             {formEyebrow && (
-  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-primary">
-    {formEyebrow}
-  </p>
-)}
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-primary">
+                {formEyebrow}
+              </p>
+            )}
 
-{formTitle && (
-  <h2 className="mt-3 font-heading text-2xl font-semibold tracking-[-0.03em] text-brand-dark md:text-[28px]">
-    {formTitle}
-  </h2>
-)}
+            {formTitle && (
+              <h2 className="mt-3 font-heading text-2xl font-semibold tracking-[-0.03em] text-brand-dark md:text-[28px]">
+                {formTitle}
+              </h2>
+            )}
 
-{formDescription && (
-  <p className="mb-6 mt-3 max-w-lg text-sm leading-6 text-muted-foreground">
-    {formDescription}
-  </p>
-)}
+            {formDescription && (
+              <p className="mb-6 mt-3 max-w-lg text-sm leading-6 text-muted-foreground">
+                {formDescription}
+              </p>
+            )}
 
-            <ContactForm services={services} />
+            <ContactForm services={services} fields={formFields} />
           </div>
 
-          {/* RIGHT - CONTACT INFO */}
           <div className="lg:border-l lg:border-brand-dark/10 lg:pl-12">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-primary">
               {mainOffice.title}
@@ -61,11 +81,6 @@ export function ContactSection({
               {mainOffice.city}
             </h3>
 
-            <p className="mt-1 text-sm text-muted-foreground">
-              Akkaş Plaza
-            </p>
-
-            {/* Contact Details */}
             <div className="mt-5 divide-y divide-brand-dark/10 border-y border-brand-dark/10">
               {mainOffice.address && (
                 <div className="flex gap-3 py-3">
@@ -73,7 +88,7 @@ export function ContactSection({
 
                   <div>
                     <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                      Adres
+                      {officeLabels.addressLabel}
                     </p>
 
                     <p className="mt-1.5 max-w-sm text-sm leading-6 text-brand-dark">
@@ -84,22 +99,31 @@ export function ContactSection({
               )}
 
               {mainOffice.phone && (
-                <a
-                  href={`tel:${mainOffice.phone.replace(/\D/g, "")}`}
-                  className="group flex gap-3 py-4"
-                >
+                <div className="flex gap-3 py-4">
                   <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
 
                   <div>
                     <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                      Telefon
+                      {formFields.phoneLabel}
                     </p>
 
-                    <p className="mt-1.5 text-sm font-medium text-brand-dark transition-colors group-hover:text-brand-primary">
-                      {mainOffice.phone}
-                    </p>
+                    <div className="mt-1.5 flex flex-col gap-2">
+                      {mainOffice.phone
+                        .split(/\r?\n|(?=\+90)/)
+                        .map((phone) => phone.trim())
+                        .filter(Boolean)
+                        .map((phone, index) => (
+                          <a
+                            key={`${phone}-${index}`}
+                            href={`tel:${phone.replace(/[^\d+]/g, "")}`}
+                            className="text-sm font-medium text-brand-dark transition-colors hover:text-brand-primary"
+                          >
+                            {phone}
+                          </a>
+                        ))}
+                    </div>
                   </div>
-                </a>
+                </div>
               )}
 
               {mainOffice.email && (
@@ -111,7 +135,7 @@ export function ContactSection({
 
                   <div>
                     <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                      E-posta
+                      {formFields.emailLabel}
                     </p>
 
                     <p className="mt-1.5 text-sm font-medium text-brand-dark transition-colors group-hover:text-brand-primary">
@@ -122,10 +146,9 @@ export function ContactSection({
               )}
             </div>
 
-            {/* Other Locations */}
             <div className="mt-7">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-primary">
-                Diğer Hizmet Noktalarımız
+                {officeLabels.otherOfficesTitle}
               </p>
 
               <div className="mt-3 grid grid-cols-1 gap-x-7 sm:grid-cols-2">

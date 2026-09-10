@@ -235,17 +235,21 @@ export function HeroSection({ slides }: HeroSectionProps) {
               </div>
 
               <div className="relative h-[300px] overflow-hidden rounded-[15px] bg-brand-turquoise-50">
-  {activeSlide.image?.url ? (
-    <Image
-      src={activeSlide.image.url}
-      alt={activeSlide.image.alt || activeSlide.title || "Hero görseli"}
-      fill
-      priority={activeIndex === 0}
-      sizes="(max-width: 1024px) 100vw, 480px"
-      className="object-cover"
-    />
-  ) : null}
-</div>
+                {activeSlide.image?.url ? (
+                  <Image
+                    src={activeSlide.image.url}
+                    alt={
+                      activeSlide.image.alt ||
+                      activeSlide.title ||
+                      "Hero görseli"
+                    }
+                    fill
+                    priority={activeIndex === 0}
+                    sizes="(max-width: 1024px) 100vw, 480px"
+                    className="object-cover"
+                  />
+                ) : null}
+              </div>
             </motion.div>
           </AnimatePresence>
 

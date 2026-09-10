@@ -22,16 +22,16 @@ export function AboutHero({ content }: AboutHeroProps) {
             className="relative overflow-hidden rounded-2xl"
           >
             {content.image?.url ? (
-  <Image
-    src={content.image.url}
-    alt={content.image.alt || "Hakkımızda görseli"}
-    width={900}
-    height={620}
-    priority
-    sizes="(min-width: 768px) 50vw, 100vw"
-    className="h-[320px] w-full object-cover md:h-[460px]"
-  />
-) : null}
+              <Image
+                src={content.image.url}
+                alt={content.image.alt || "Hakkımızda görseli"}
+                width={900}
+                height={620}
+                priority
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="h-[320px] w-full object-cover md:h-[460px]"
+              />
+            ) : null}
           </motion.div>
 
           <motion.div

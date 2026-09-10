@@ -81,10 +81,10 @@ export function SectorsSection({ sectors }: SectorsSectionProps) {
           >
             {/* Görsel */}
             <div className="relative h-[220px] w-full overflow-hidden rounded-2xl md:h-[260px]">
-              {sector.image ? (
+              {sector.image?.url ? (
                 <Image
                   src={sector.image.url}
-                  alt={sector.image.alt}
+                  alt={sector.image.alt || sector.title || "Sektör görseli"}
                   fill
                   quality={90}
                   sizes="(min-width: 768px) 300px, 260px"

@@ -17,3 +17,31 @@ export const GET_CONTACT_OFFICES_QUERY = `
     }
   }
 `;
+
+export const GET_CONTACT_PAGE_QUERY = `
+  query GetContactPageContent {
+    contactPage(id: "iletisim-detay", idType: SLUG) {
+      contactPageFields {
+        heroTitle
+        heroDescription
+        locationsTitle
+        locationsDescription
+        formTitle
+        formDescription
+        nameLabel
+        namePlaceholder
+        companyLabel
+        companyPlaceholder
+        emailLabel
+        emailPlaceholder
+        phoneLabel
+        phonePlaceholder
+        serviceLabel
+        serviceDefault
+        messageLabel
+        messagePlaceholder
+        submitButtonText
+      }
+    }
+  }
+`;
