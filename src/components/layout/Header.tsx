@@ -19,10 +19,10 @@ export function Header() {
           <Image
             src="/akkasgrouplogo.png"
             alt="Akkaş Group"
-            width={180}
-            height={64}
+            width={280}
+            height={100}
             priority
-            className="h-9 w-auto sm:h-10"
+            className="h-14 w-auto sm:h-16"
           />
         </Link>
 
