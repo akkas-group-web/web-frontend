@@ -153,3 +153,19 @@ export async function getServiceByCategoryAndSlug(
     );
   }
 }
+
+export async function getServicesAndCategories(): Promise<{
+  categories: ServiceCategory[];
+  services: ServiceDetail[];
+}> {
+  try {
+    const data = await wpClient.request<WPServicesResponse>(GET_SERVICES_QUERY);
+    return {
+      categories: mapServiceCategoriesFromWP(data),
+      services: mapServiceDetailsFromWP(data),
+    };
+  } catch (error) {
+    logger.error("Hizmetler ve kategoriler alınamadı", { error });
+    throw new AppError("Hizmetler yüklenemedi", "CONTENT_FETCH_FAILED", error);
+  }
+}
