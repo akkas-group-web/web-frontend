@@ -11,7 +11,7 @@ export function mapWPBrandToBrandItem(node: WPBrandNode): BrandItem {
     id: node.id,
     name: node.title,
     description: node.brandFields.description,
-    href: node.brandFields.href.url,
+    href: node.brandFields.href?.url ?? "",
     linkTarget: node.brandFields.href.target,
     logo: node.brandFields.logo?.node
       ? {
