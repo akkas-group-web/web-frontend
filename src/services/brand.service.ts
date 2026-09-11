@@ -12,7 +12,7 @@ export function mapWPBrandToBrandItem(node: WPBrandNode): BrandItem {
     name: node.title,
     description: node.brandFields.description,
     href: node.brandFields.href?.url ?? "",
-    linkTarget: node.brandFields.href.target,
+    linkTarget: node.brandFields.href?.target,
     logo: node.brandFields.logo?.node
       ? {
           url: node.brandFields.logo.node.sourceUrl,
