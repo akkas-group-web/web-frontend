@@ -18,7 +18,8 @@ const CPT_PATH_MAP: Record<string, (slug?: string) => string[]> = {
   timeline_item: () => ["/hakkimizda"],
   value_item: () => ["/hakkimizda"],
   about_page: () => ["/hakkimizda"],
-  brand: (slug) => (slug ? [`/markalarimiz/${slug}`] : ["/markalarimiz"]),
+  brand: (slug) =>
+    slug ? ["/markalarimiz", `/markalarimiz/${slug}`] : ["/markalarimiz"],
 };
 
 export async function POST(request: NextRequest) {
