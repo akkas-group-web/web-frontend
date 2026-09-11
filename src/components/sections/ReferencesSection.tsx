@@ -107,8 +107,8 @@ export function ReferencesSection({ clients }: ReferencesSectionProps) {
       </div>
 
       <div className="relative mt-10 space-y-4">
-        <MarqueeRow items={row1} direction="left" duration={350} />
-        <MarqueeRow items={row2} direction="right" duration={360} />
+        <MarqueeRow items={row1} direction="left" duration={1500} />
+        <MarqueeRow items={row2} direction="right" duration={1550} />
       </div>
     </section>
   );
