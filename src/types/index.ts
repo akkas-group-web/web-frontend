@@ -32,7 +32,7 @@ export interface BrandItem {
   description: string;
   href: string;
   linkTarget?: string | null;
-  logo: MediaImage;
+  logo: MediaImage | null;
 }
 
 export interface SectorItem {
