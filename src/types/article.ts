@@ -11,6 +11,7 @@ export interface ArticleItem {
   id: string;
   title: string;
   excerpt: string;
+  content: string;
   /** ISO 8601 tarih string'i, ör. "2025-03-14T00:00:00.000Z" */
   date: string;
   slug: string;

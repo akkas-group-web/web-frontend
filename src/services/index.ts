@@ -10,6 +10,7 @@ export {
   getServices,
   getServiceByCategoryAndSlug,
   getServiceCategories,
+  getServicesAndCategories,
 } from "./service.service";
 
 export { getSectors, getSectorBySlug } from "./sector.service";

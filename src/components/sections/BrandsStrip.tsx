@@ -75,13 +75,17 @@ export function BrandsStrip({ brands }: BrandsStripProps) {
               >
                 {/* Logo alanı */}
                 <div className="relative h-48 p-6 pb-10 [@media(hover:hover)_and_(pointer:fine)]:h-auto [@media(hover:hover)_and_(pointer:fine)]:flex-1">
-                  <Image
-                    src={brand.logo.url}
-                    alt={brand.logo.alt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="pointer-events-none object-contain p-6 transition-transform duration-500 group-hover:scale-105"
-                  />
+                  {brand.logo?.url ? (
+                    <Image
+                      src={brand.logo.url}
+                      alt={
+                        brand.logo.alt || brand.name || "Grup şirketi logosu"
+                      }
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="pointer-events-none object-contain p-6 transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : null}
                 </div>
 
                 {/* Normal başlık */}

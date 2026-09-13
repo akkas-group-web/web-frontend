@@ -1,0 +1,178 @@
+.cp-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cp-subheader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  flex-shrink: 0;
+  background: white;
+}
+
+.cp-back {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 4px;
+  color: #64748b;
+  transition: background 0.12s;
+}
+.cp-back:hover { background: #f1f5f9; }
+
+.cp-title {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #1e293b;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cp-msgs {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cp-msg {
+  display: flex;
+  gap: 7px;
+}
+.cp-msg.user { flex-direction: row-reverse; }
+
+.cp-av {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #0891b2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.cp-bubble {
+  max-width: 82%;
+  padding: 8px 11px;
+  font-size: 12px;
+  line-height: 1.55;
+  border-radius: 4px 10px 10px 10px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  color: #1e293b;
+}
+.cp-msg.user .cp-bubble {
+  background: #0891b2;
+  color: white;
+  border-color: transparent;
+  border-radius: 10px 4px 10px 10px;
+}
+
+.cp-typing {
+  display: flex;
+  gap: 4px;
+  padding: 10px 13px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px 10px 10px 10px;
+  width: fit-content;
+}
+.cp-typing span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #22d3ee;
+  animation: cwtp 1.2s infinite;
+}
+.cp-typing span:nth-child(2) { animation-delay: 0.2s; }
+.cp-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes cwtp {
+  0%,60%,100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* ── Sohbet içi dosya yönetimi ── */
+.cp-files-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #ecfeff;
+  border: 1px solid #a5f3fc;
+  border-radius: 14px;
+  padding: 4px 9px;
+  color: #0891b2;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: inherit;
+  flex-shrink: 0;
+}
+
+.cp-files-btn:hover {
+  background: #cffafe;
+}
+
+.cp-files-count {
+  font-weight: 600;
+}
+
+.cp-files-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.cp-file-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+.cp-file-name {
+  color: #475569;
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cp-attach {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: all 0.12s;
+}
+
+.cp-attach:hover {
+  background: #ecfeff;
+  color: #0891b2;
+}

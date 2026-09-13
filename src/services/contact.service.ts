@@ -3,7 +3,10 @@ import { logger } from "@/lib/logger/logger";
 import type { ContactOffice } from "@/types";
 import { getServiceCategories } from "./service.service";
 import { wpClient } from "../../wp/client";
-import { GET_CONTACT_OFFICES_QUERY } from "../../wp/queries/contact";
+import {
+  GET_CONTACT_OFFICES_QUERY,
+  GET_CONTACT_PAGE_QUERY,
+} from "../../wp/queries/contact";
 
 const MOCK_CONTACT_OFFICES: ContactOffice[] = [
   {
@@ -42,6 +45,41 @@ interface WPContactOfficesResponse {
   };
 }
 
+interface WPContactPageResponse {
+  contactPage: {
+    contactPageFields: {
+      formTitle: string | null;
+      formDescription: string | null;
+      heroEyebrow: string | null;
+      heroTitle: string | null;
+      heroDescription: string | null;
+      locationsEyebrow: string | null;
+      locationsTitle: string | null;
+      locationsDescription: string | null;
+      nameLabel: string | null;
+      namePlaceholder: string | null;
+      companyLabel: string | null;
+      companyPlaceholder: string | null;
+      emailLabel: string | null;
+      emailPlaceholder: string | null;
+      phoneLabel: string | null;
+      phonePlaceholder: string | null;
+      serviceLabel: string | null;
+      serviceDefault: string | null;
+      messageLabel: string | null;
+      messagePlaceholder: string | null;
+      submitButtonText: string | null;
+      addressLabel: string | null;
+      otherOfficesTitle: string | null;
+      kvkkPdf: {
+  node: {
+    mediaItemUrl: string;
+  };
+} | null;
+    };
+  } | null;
+}
+
 function mapContactOfficesFromWP(
   data: WPContactOfficesResponse,
 ): ContactOffice[] {
@@ -60,22 +98,67 @@ function mapContactOfficesFromWP(
 
 export async function getContactContent() {
   try {
-    const [categories, officesData] = await Promise.all([
+    const [categories, officesData, pageData] = await Promise.all([
       getServiceCategories(),
       wpClient.request<WPContactOfficesResponse>(GET_CONTACT_OFFICES_QUERY),
+      wpClient.request<WPContactPageResponse>(GET_CONTACT_PAGE_QUERY),
     ]);
+
+    const pageFields = pageData.contactPage?.contactPageFields;
+
+    if (!pageFields) {
+      throw new Error("İletişim sayfası içeriği bulunamadı.");
+    }
 
     const offices = mapContactOfficesFromWP(officesData);
     const mainIndex = offices.findIndex((o) => o.isMainOffice);
-    const sortedOffices =
-      mainIndex > 0
-        ? [
-            offices[mainIndex],
-            ...offices.slice(0, mainIndex),
-            ...offices.slice(mainIndex + 1),
-          ]
-        : offices;
-    return {
+const sortedOffices =
+  mainIndex > 0
+    ? [
+        offices[mainIndex],
+        ...offices.slice(0, mainIndex),
+        ...offices.slice(mainIndex + 1),
+      ]
+    : offices;
+
+const kvkkPdfUrl =
+  pageFields.kvkkPdf?.node.mediaItemUrl ??
+  "/documents/iletisimformuaydinlatmametni.pdf";
+
+return {
+      hero: {
+        eyebrow: pageFields.heroEyebrow ?? "",
+        title: pageFields.heroTitle ?? "",
+        description: pageFields.heroDescription ?? "",
+      },
+      locations: {
+        eyebrow: pageFields.locationsEyebrow ?? "",
+        title: pageFields.locationsTitle ?? "",
+        description: pageFields.locationsDescription ?? "",
+      },
+      formTitle: pageFields.formTitle ?? "",
+      formDescription: pageFields.formDescription ?? "",
+      formFields: {
+        nameLabel: pageFields.nameLabel ?? "",
+        namePlaceholder: pageFields.namePlaceholder ?? "",
+        companyLabel: pageFields.companyLabel ?? "",
+        companyPlaceholder: pageFields.companyPlaceholder ?? "",
+        emailLabel: pageFields.emailLabel ?? "",
+        emailPlaceholder: pageFields.emailPlaceholder ?? "",
+        phoneLabel: pageFields.phoneLabel ?? "",
+        phonePlaceholder: pageFields.phonePlaceholder ?? "",
+        serviceLabel: pageFields.serviceLabel ?? "",
+        serviceDefault: pageFields.serviceDefault ?? "",
+        messageLabel: pageFields.messageLabel ?? "",
+        messagePlaceholder: pageFields.messagePlaceholder ?? "",
+        submitButtonText: pageFields.submitButtonText ?? "",
+kvkkPdfUrl,
+      },
+      officeLabels: {
+        addressLabel: pageFields.addressLabel ?? "",
+        otherOfficesTitle: pageFields.otherOfficesTitle ?? "",
+      },
+
       services: categories.map((c) => c.label),
       offices: sortedOffices,
       // offices,

@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useAnimationControls } from "framer-motion";
 
 import type { ClientReference } from "@/types/reference";
@@ -55,17 +56,17 @@ function MarqueeRow({
       >
         {doubled.map((client, i) => (
           <div
-  key={`${client.id}-${i}`}
-  className="flex h-20 w-44 shrink-0 items-center justify-center rounded-xl bg-white/95 px-2 transition-all duration-300 hover:scale-105"
->
-            {client.logo ? (
-<Image
-  src={client.logo.url}
-  alt={client.logo.alt || client.name || "Referans logosu"}
-  width={160}
-  height={60}
-  className="max-h-14 max-w-[150px] object-contain"
-/>
+            key={`${client.id}-${i}`}
+            className="flex h-20 w-44 shrink-0 items-center justify-center rounded-xl bg-white/95 px-2 transition-all duration-300 hover:scale-105"
+          >
+            {client.logo?.url ? (
+              <Image
+                src={client.logo.url}
+                alt={client.logo.alt || client.name || "Referans logosu"}
+                width={160}
+                height={60}
+                className="max-h-14 max-w-[150px] object-contain"
+              />
             ) : (
               <span className="text-sm font-bold tracking-tight text-[#0d4d5c]">
                 {client.name}
@@ -107,9 +108,28 @@ export function ReferencesSection({ clients }: ReferencesSectionProps) {
       </div>
 
       <div className="relative mt-10 space-y-4">
-        <MarqueeRow items={row1} direction="left" duration={350} />
-        <MarqueeRow items={row2} direction="right" duration={360} />
+        <MarqueeRow items={row1} direction="left" duration={1500} />
+        <MarqueeRow items={row2} direction="right" duration={1550} />
       </div>
+      <motion.div
+  initial={{ opacity: 0, y: 12 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  className="relative z-20 mt-10 flex justify-center"
+>
+  <Link
+    href="/referanslar"
+    className="group inline-flex items-center gap-2 rounded-full border border-[#7fc7d4] px-6 py-3 text-sm font-semibold text-[#7fc7d4] transition-all duration-300 hover:bg-[#7fc7d4] hover:text-[#242629]"
+  >
+    Tüm Referansları İncele
+    <span
+      aria-hidden="true"
+      className="transition-transform duration-300 group-hover:translate-x-1"
+    >
+      →
+    </span>
+  </Link>
+</motion.div>
     </section>
   );
 }

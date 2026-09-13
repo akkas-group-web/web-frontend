@@ -84,12 +84,12 @@ function AnimatedNumber({ value, duration = 1.6 }: AnimatedNumberProps) {
     return () => cancelAnimationFrame(frame);
   }, [isInView, number, duration]);
 
-return (
-  <span ref={ref}>
-    {locale ? display.toLocaleString("tr-TR") : display}
-    {suffix}
-  </span>
-);
+  return (
+    <span ref={ref}>
+      {locale ? display.toLocaleString("tr-TR") : display}
+      {suffix}
+    </span>
+  );
 }
 
 function WaveOverlay() {
@@ -204,8 +204,7 @@ export function StatsSection({
               >
                 <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-brand-teal/10 blur-2xl transition-transform duration-700 group-hover:scale-150" />
 
-                <span className="relative text-[10px] font-bold uppercase tracking-widest text-[#333333]/50">
-                </span>
+                <span className="relative text-[10px] font-bold uppercase tracking-widest text-[#333333]/50"></span>
 
                 <div className="font-heading relative mt-2 text-4xl font-bold text-brand-teal">
                   <AnimatedNumber value={primaryStat.value} />
@@ -245,8 +244,8 @@ export function StatsSection({
                   {restStats.slice(0, 3).map((stat) => (
                     <li key={stat.id}>
                       <div className="font-heading text-2xl font-bold text-white">
-  <AnimatedNumber value={stat.value} />
-</div>
+                        <AnimatedNumber value={stat.value} />
+                      </div>
 
                       <div className="mt-0.5 text-xs font-medium leading-5 text-white/70">
                         {stat.label}
@@ -288,8 +287,8 @@ export function StatsSection({
             className="relative overflow-hidden rounded-[28px] shadow-2xl shadow-brand-teal/15 sm:rounded-[32px] md:rounded-[2.5rem]"
           >
             <Image
-              src={homeSummary.image.url}
-              alt={homeSummary.image.alt}
+              src={homeSummary.image?.url || imageSrc}
+              alt={homeSummary.image?.alt || "Akkaş Group"}
               width={900}
               height={1035}
               sizes="(max-width: 767px) 92vw, (max-width: 1024px) 42vw, 380px"

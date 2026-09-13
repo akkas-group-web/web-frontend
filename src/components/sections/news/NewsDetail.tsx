@@ -73,6 +73,15 @@ function renderInlineBold(text: string) {
   });
 }
 
+function renderTextWithLineBreaks(text: string) {
+  return text.split(/\r?\n/).map((line, index, lines) => (
+    <span key={index}>
+      {renderLink(line)}
+      {index < lines.length - 1 && <br />}
+    </span>
+  ));
+}
+
 function renderNewsContent(content: string[]) {
   const elements: ReactNode[] = [];
   let listItems: string[] = [];
@@ -108,10 +117,7 @@ function renderNewsContent(content: string[]) {
 
     if (text.startsWith("### ")) {
       elements.push(
-        <h3
-          key={index}
-          className="pt-2 text-lg font-semibold text-[#31565C]"
-        >
+        <h3 key={index} className="pt-2 text-lg font-semibold text-[#31565C]">
           {renderInlineBold(text.slice(4))}
         </h3>,
       );
@@ -130,9 +136,9 @@ function renderNewsContent(content: string[]) {
       return;
     }
 
-    elements.push(
-       <p key={index}>{renderLink(text)}</p>,
-    );
+   elements.push(
+  <p key={index}>{renderTextWithLineBreaks(text)}</p>,
+);
   });
 
   flushList();
@@ -146,7 +152,12 @@ export function NewsDetail({ news }: NewsDetailProps) {
     month: "long",
     year: "numeric",
   });
-
+  const readingTime = Math.max(
+    1,
+    Math.ceil(
+      news.content.join(" ").trim().split(/\s+/).filter(Boolean).length / 200,
+    ),
+  );
 
   return (
     <main className="overflow-hidden bg-white">
@@ -213,7 +224,7 @@ export function NewsDetail({ news }: NewsDetailProps) {
 
                   <div className="flex items-center gap-2">
                     <Clock3 className="h-4 w-4 text-[#118B99]" />
-                    3 dk okuma
+                    {readingTime} dk okuma
                   </div>
                 </div>
               </div>
@@ -222,18 +233,18 @@ export function NewsDetail({ news }: NewsDetailProps) {
         </div>
       </section>
 
-{/* GÖRSEL */}
-<section className="mx-auto max-w-5xl px-6 pt-10 lg:px-8">
-  <div className="overflow-hidden rounded-[24px]">
-    <CardMedia
-      src={news.image.url}
-      alt={news.image.alt || news.title}
-      ratio="video"
-      fit="contain"
-      priority
-    />
-  </div>
-</section>
+      {/* GÖRSEL */}
+      <section className="mx-auto max-w-5xl px-6 pt-10 lg:px-8">
+        <div className="overflow-hidden rounded-[24px]">
+          <CardMedia
+            src={news.image.url}
+            alt={news.image.alt || news.title}
+            ratio="video"
+            fit="contain"
+            priority
+          />
+        </div>
+      </section>
 
       {/* İÇERİK */}
       <section className="mx-auto max-w-6xl px-6 py-14 lg:px-8 lg:py-16">
@@ -265,13 +276,9 @@ export function NewsDetail({ news }: NewsDetailProps) {
               </span>
             </div>
 
-            <p className="text-[19px] font-medium leading-[1.9] text-[#34575C]">
-              {news.excerpt}
-            </p>
-
-<div className="mt-8 space-y-6 text-[17px] leading-[1.95] text-[#516D72]">
-  {renderNewsContent(news.content)}
-</div>
+            <div className="mt-8 space-y-6 text-[17px] leading-[1.95] text-[#516D72]">
+              {renderNewsContent(news.content)}
+            </div>
 
             <div className="mt-12 border-t border-[#118B99]/10 pt-8">
               <Link

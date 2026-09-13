@@ -11,12 +11,14 @@ export function mapWPBrandToBrandItem(node: WPBrandNode): BrandItem {
     id: node.id,
     name: node.title,
     description: node.brandFields.description,
-    href: node.brandFields.href.url,
-    linkTarget: node.brandFields.href.target,
-    logo: {
-      url: node.brandFields.logo.node.sourceUrl,
-      alt: node.brandFields.logo.node.altText || node.title,
-    },
+    href: node.brandFields.href?.url ?? "",
+    linkTarget: node.brandFields.href?.target,
+    logo: node.brandFields.logo?.node
+      ? {
+          url: node.brandFields.logo.node.sourceUrl,
+          alt: node.brandFields.logo.node.altText || node.title,
+        }
+      : null,
   };
 }
 
