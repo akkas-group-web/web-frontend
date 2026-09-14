@@ -8,8 +8,7 @@ import AdminLogin from "./AdminLogin";
 import AdminPanel from "./AdminPanel";
 import "./ChatWidget.css";
 
-const API_URL = process.env.NEXT_PUBLIC_CHAT_API_URL || "http://localhost:3001";
-
+const API_URL = process.env.NEXT_PUBLIC_CHAT_API_URL || "http://213.32.21.117:9050";
 export default function ChatWidget() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -56,50 +55,54 @@ export default function ChatWidget() {
     setShowBubble(false);
   }
 
-  function openChat(title, firstMessage = null, files = [], fileContent = "") {
-    setPrevView(view);
-    setChatTitle(title);
-    setChatFiles(files);
-    setSessionId(null);
-    setChatMessages([]);
-    setView("chat");
+function openChat(title, firstMessage = null, files = [], fileContent = "") {
+  setPrevView(view);
+  setChatTitle(title);
+  setChatFiles(files);
+  setSessionId(null);
+  setChatMessages([]);
+  setView("chat");
 
-    if (firstMessage) {
-      setTimeout(() => {
-        setChatMessages((prev) => [...prev, { id: Date.now(), role: "user", text: firstMessage }]);
-        sendToBackend(firstMessage, null, fileContent);
-      }, 300);
-    }
-  }
-
-  async function sendToBackend(message, currentSessionId, fileContent = "") {
-    try {
-      const res = await fetch(`${API_URL}/api/chat`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message,
-          sessionId: currentSessionId,
-          areaId: null,
-          fileContent,
-          pageUrl: window.location.href,
-        }),
+  if (firstMessage) {
+    setTimeout(() => {
+      setChatMessages((prev) => [...prev, { id: Date.now(), role: "user", text: firstMessage }]);
+      const typingId = Date.now() + 1;
+      setChatMessages((prev) => [...prev, { id: typingId, role: "typing", text: "" }]);
+      sendToBackend(firstMessage, null, fileContent).finally(() => {
+        setChatMessages((prev) => prev.filter(m => m.role !== "typing"));
       });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        setSessionId(data.sessionId);
-        setChatMessages((prev) => [...prev, { id: Date.now(), role: "bot", text: data.reply }]);
-        fetchHistory();
-      } else {
-        setChatMessages((prev) => [...prev, { id: Date.now(), role: "bot", text: "Bir hata oluştu, lütfen tekrar deneyin." }]);
-      }
-    } catch (err) {
-      console.error("Backend hatası:", err);
-      setChatMessages((prev) => [...prev, { id: Date.now(), role: "bot", text: "Bağlantı hatası, backend çalışıyor mu?" }]);
-    }
+    }, 300);
   }
+}
+
+async function sendToBackend(message, currentSessionId, fileContent = '') {
+  try {
+    const res = await fetch(`${API_URL}/api/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message,
+        sessionId: currentSessionId,
+        areaId: null,
+        fileContent,
+        pageUrl: window.location.href,
+      }),
+    })
+
+    const data = await res.json()
+
+    if (res.ok) {
+      setSessionId(data.sessionId)
+      setChatMessages((prev) => [...prev, { id: Date.now(), role: 'bot', text: data.reply }])
+      fetchHistory()
+    } else {
+      setChatMessages((prev) => [...prev, { id: Date.now(), role: 'bot', text: 'Bir hata oluştu, lütfen tekrar deneyin.' }])
+    }
+  } catch (err) {
+    console.error('Backend hatası:', err)
+    setChatMessages((prev) => [...prev, { id: Date.now(), role: 'bot', text: 'Bağlantı hatası, backend çalışıyor mu?' }])
+  }
+}
 
   function handleNewChat(firstMessage, files = [], fileContent = "") {
     const title = files.length > 0 ? files[0].name?.replace(/\.[^/.]+$/, "") : "Yeni Sohbet";
