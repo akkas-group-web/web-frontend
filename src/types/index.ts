@@ -40,7 +40,7 @@ export interface SectorItem {
   title: string;
   slug: string;
   description?: string;
-  image?: MediaImage;
+  image: MediaImage | null;
 }
 
 export interface StatItem {
