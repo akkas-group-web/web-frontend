@@ -11,15 +11,9 @@ const CPT_PATH_MAP: Record<
   sector: (slug) =>
     slug ? ["/sektorler", `/sektorler/${slug}`] : ["/sektorler"],
   service_category: (slug) =>
-    slug ? ["/hizmetlerimiz", `/hizmetlerimiz/${slug}`] : ["/hizmetlerimiz"],
-  service_child: (slug, category) =>
-    slug && category
-      ? [
-          "/hizmetlerimiz",
-          `/hizmetlerimiz/${category}`,
-          `/hizmetlerimiz/${category}/${slug}`,
-        ]
-      : ["/hizmetlerimiz"],
+    slug ? [`/hizmetlerimiz/${slug}`] : ["/hizmetlerimiz"],
+  service_child: (slug) =>
+    slug ? [`/hizmetlerimiz/${slug}`] : ["/hizmetlerimiz"],
   contact_office: () => ["/iletisim"],
   contact_page: () => ["/iletisim"],
   hero_slide: () => ["/"],
