@@ -247,11 +247,9 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   // --- Kurumsal Sayfalar ---
   "/application/uploads/pdf/dosya.pdf": "/",
   "/cerezlere-iliskin-aydinlatma-metni": "/cerez-politikasi",
-  "/hakkimizda": "/hakkimizda",
-  "/iletisim": "/iletisim",
-  "/referanslar": "/referanslar",
+
   // --- Blog Yazıları ---
-  "/Blog": "/blog//Blog",
+
   "/Blog/detay/2024-kariyer-gunlerinde-akkas-group-olarak-yine-yerimizi-aldik":
     "/blog/2024-kariyer-gunlerinde-akkas-group-olarak-yine-yerimizi-aldik",
   "/Blog/detay/6111-sayili-kanun-numarali-tesvik-uzatildi":
@@ -414,11 +412,11 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/blog/yurt-disi-pazar-arastirmasi-destegi",
   "/Blog/detay/yurt-disi-pazar-destek-programi":
     "/blog/yurt-disi-pazar-destek-programi",
-  "/Blog/index/": "/blog//Blog/index/",
-  "/Blog/index/27": "/blog//Blog/index/27",
-  "/Blog/index/36": "/blog//Blog/index/36",
-  "/Blog/index/45": "/blog//Blog/index/45",
-  "/Blog/index/54": "/blog//Blog/index/54",
-  "/Blog/index/9": "/blog//Blog/index/9",
+  // "/Blog/index/": "/blog//Blog/index/",
+  // "/Blog/index/27": "/blog//Blog/index/27",
+  // "/Blog/index/36": "/blog//Blog/index/36",
+  // "/Blog/index/45": "/blog//Blog/index/45",
+  // "/Blog/index/54": "/blog//Blog/index/54",
+  // "/Blog/index/9": "/blog//Blog/index/9",
   "/Blog/kategori/genel": "/blog//Blog/kategori/genel",
 };
