@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 
-const CPT_PATH_MAP: Record<string, (slug?: string) => string[]> = {
+const CPT_PATH_MAP: Record<
+  string,
+  (slug?: string, category?: string) => string[]
+> = {
   news_item: (slug) =>
     slug ? ["/haberler", `/haberler/${slug}`] : ["/haberler"],
   article_item: (slug) => (slug ? ["/blog", `/blog/${slug}`] : ["/blog"]),
@@ -9,8 +12,14 @@ const CPT_PATH_MAP: Record<string, (slug?: string) => string[]> = {
     slug ? ["/sektorler", `/sektorler/${slug}`] : ["/sektorler"],
   service_category: (slug) =>
     slug ? ["/hizmetlerimiz", `/hizmetlerimiz/${slug}`] : ["/hizmetlerimiz"],
-  service_child: (slug) =>
-    slug ? ["/hizmetlerimiz", `/hizmetlerimiz/${slug}`] : ["/hizmetlerimiz"],
+  service_child: (slug, category) =>
+    slug && category
+      ? [
+          "/hizmetlerimiz",
+          `/hizmetlerimiz/${category}`,
+          `/hizmetlerimiz/${category}/${slug}`,
+        ]
+      : ["/hizmetlerimiz"],
   contact_office: () => ["/iletisim"],
   contact_page: () => ["/iletisim"],
   hero_slide: () => ["/"],
@@ -27,14 +36,14 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: "Geçersiz secret" }, { status: 401 });
   }
 
-  let body: { post_type?: string; slug?: string };
+  let body: { post_type?: string; slug?: string; category?: string };
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ message: "Geçersiz JSON" }, { status: 400 });
   }
 
-  const { post_type, slug } = body;
+  const { post_type, slug, category } = body;
 
   if (!post_type) {
     return NextResponse.json({ message: "post_type zorunlu" }, { status: 400 });
@@ -48,7 +57,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const paths = resolvePaths(slug);
+  const paths = resolvePaths(slug, category);
   paths.forEach((path) => revalidatePath(path));
 
   return NextResponse.json({ revalidated: true, paths, now: Date.now() });
