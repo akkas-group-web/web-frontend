@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 
-const CPT_PATH_MAP: Record<
-  string,
-  (slug?: string, category?: string) => string[]
-> = {
+const CPT_PATH_MAP: Record<string, (slug?: string) => string[]> = {
   news_item: (slug) =>
     slug ? ["/haberler", `/haberler/${slug}`] : ["/haberler"],
   article_item: (slug) => (slug ? ["/blog", `/blog/${slug}`] : ["/blog"]),
@@ -30,14 +27,14 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: "Geçersiz secret" }, { status: 401 });
   }
 
-  let body: { post_type?: string; slug?: string; category?: string };
+  let body: { post_type?: string; slug?: string };
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ message: "Geçersiz JSON" }, { status: 400 });
   }
 
-  const { post_type, slug, category } = body;
+  const { post_type, slug } = body;
 
   if (!post_type) {
     return NextResponse.json({ message: "post_type zorunlu" }, { status: 400 });
@@ -51,7 +48,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const paths = resolvePaths(slug, category);
+  const paths = resolvePaths(slug);
   paths.forEach((path) => revalidatePath(path));
 
   return NextResponse.json({ revalidated: true, paths, now: Date.now() });
