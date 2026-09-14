@@ -8,8 +8,7 @@ import AdminLogin from "./AdminLogin";
 import AdminPanel from "./AdminPanel";
 import "./ChatWidget.css";
 
-const API_URL = process.env.NEXT_PUBLIC_CHAT_API_URL || "http://localhost:3001";
-
+const API_URL = process.env.NEXT_PUBLIC_CHAT_API_URL || "http://213.32.21.117:9050";
 export default function ChatWidget() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
