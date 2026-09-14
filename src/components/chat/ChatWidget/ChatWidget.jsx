@@ -66,7 +66,7 @@ function openChat(title, firstMessage = null, files = [], fileContent = "") {
   if (firstMessage) {
     setTimeout(() => {
       setChatMessages((prev) => [...prev, { id: Date.now(), role: "user", text: firstMessage }]);
-      const typingId = Date.now() + 1;
+      const typingId = `typing-${Date.now()}`;
       setChatMessages((prev) => [...prev, { id: typingId, role: "typing", text: "" }]);
       sendToBackend(firstMessage, null, fileContent).finally(() => {
         setChatMessages((prev) => prev.filter(m => m.role !== "typing"));
