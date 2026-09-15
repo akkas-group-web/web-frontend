@@ -211,38 +211,35 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/uluslar-arasi-ar-ge-yardimlari-ve-ab-hibe-fonlari-danismanligi":
     "/hizmetlerimiz/ar-ge-yonetimi/uluslar-arasi-ar-ge-yardimlari-ve-ab-hibe-fonlari-danismanligi",
   // --- Eğitimler ---
-  "/6645-isbasi-egitim-programini-tamamlayanlarin-istihdamina-yonelik-tesvik":
-    "/hizmetlerimiz/egitimler/6645-isbasi-egitim-programini-tamamlayanlarin-istihdamina-yonelik-tesvik",
+  // "/6645-isbasi-egitim-programini-tamamlayanlarin-istihdamina-yonelik-tesvik":
+  //   "/hizmetlerimiz/egitimler/6645-isbasi-egitim-programini-tamamlayanlarin-istihdamina-yonelik-tesvik",
   "/arge-tesvikleri-egitimleri":
     "/hizmetlerimiz/egitimler/arge-tesvikleri-egitimleri",
   "/devlet-destekleri-egitimleri":
     "/hizmetlerimiz/egitimler/devlet-destekleri-egitimleri",
   "/dis-ticaret-mevzuati-egitimleri":
     "/hizmetlerimiz/egitimler/dis-ticaret-mevzuati-egitimleri",
-  "/farkindalik-egitimlerinin-yapilmasi":
-    "/hizmetlerimiz/egitimler/farkindalik-egitimlerinin-yapilmasi",
+  // "/farkindalik-egitimlerinin-yapilmasi":
+  //   "/hizmetlerimiz/egitimler/farkindalik-egitimlerinin-yapilmasi",
   "/fikri-ve-sinai-mulki-haklar-egitimleri":
-    "/hizmetlerimiz/egitimler/fikri-ve-sinai-mulki-haklar-egitimleri",
-  "/hijyen-belgesi-egitimleri":
-    "/hizmetlerimiz/egitimler/hijyen-belgesi-egitimleri",
-
+    "/hizmetlerimiz/egitimler/fikri-ve-sinai-mulki-haklar-egitimi",
   "/kalite-yonetim-sistemi-egitimleri":
     "/hizmetlerimiz/egitimler/kalite-yonetim-sistemi-egitimleri",
   "/kurumsal-pazarlama-egitimleri":
     "/hizmetlerimiz/egitimler/kurumsal-pazarlama-egitimleri",
   "/musteri-iliskileri-yonetimi-egitimleri":
-    "/hizmetlerimiz/egitimler/musteri-iliskileri-yonetimi-egitimleri",
+    "/hizmetlerimiz/egitimler/musteri-iliskileri-yonetimi-egitimi",
   "/musteri-memnuniyeti-egitimleri":
     "/hizmetlerimiz/egitimler/musteri-memnuniyeti-egitimleri",
   "/nlp-egitimleri": "/hizmetlerimiz/egitimler/nlp-egitimleri",
   "/satis-pazarlama-egitimleri":
     "/hizmetlerimiz/egitimler/satis-pazarlama-egitimleri",
-  "/sirketlere-ve-universitelere-sertifikali-egitimler":
-    "/hizmetlerimiz/egitimler/sirketlere-ve-universitelere-sertifikali-egitimler",
+  // "/sirketlere-ve-universitelere-sertifikali-egitimler":
+  //   "/hizmetlerimiz/egitimler/sirketlere-ve-universitelere-sertifikali-egitimler",
   "/uygulamali-psikolojik-satis-teknikleri":
     "/hizmetlerimiz/egitimler/uygulamali-psikolojik-satis-teknikleri",
   // --- İnsan Kaynakları ---
-  "/insan-kaynaklari": "/hizmetlerimiz/insan-kaynaklari",
+  // "/insan-kaynaklari": "/hizmetlerimiz/insan-kaynaklari",
   // --- Kurumsal Sayfalar ---
   "/application/uploads/pdf/dosya.pdf": "/",
   "/cerezlere-iliskin-aydinlatma-metni": "/cerez-politikasi",
