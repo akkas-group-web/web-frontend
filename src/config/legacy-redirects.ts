@@ -26,65 +26,65 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/yatirim-danismanligi/yesil-donusum-destek-programi",
   "/teknoloji-odakli-sanayi-hamle-programi":
     "/hizmetlerimiz/yatirim-danismanligi/teknoloji-odakli-sanayi-hamle-programi",
-  // --- Teşvik ve Hibe Danışmanlığı ---
-  "/14857-engelli-sigortali-istihdamina-yonelik-tesvik":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/14857-engelli-sigortali-istihdamina-yonelik-tesvik",
-  "/15746-arastirma-gelistirme-ve-tasarim-faaliyetlerine-iliskin-tesvik":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/15746-arastirma-gelistirme-ve-tasarim-faaliyetlerine-iliskin-tesvik",
-  "/4447-15921-issizlik-odenegi-alanlarin-istihdami-halinde-uygulanan-prim-tesviki":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/4447-15921-issizlik-odenegi-alanlarin-istihdami-halinde-uygulanan-prim-tesviki",
-  "/5225-55225-25225-kultur-yatirimlari-ve-girisimleri-hakkinda-uygulanan-sigorta-primi-tesviki":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/5225-55225-25225-kultur-yatirimlari-ve-girisimleri-hakkinda-uygulanan-sigorta-primi-tesviki",
-  "/5510-25510-16322-26322-yatirimlarda-devlet-yardimlari-hakkinda-kararlar-uyarinca-uygulanan-tesvik":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/5510-25510-16322-26322-yatirimlarda-devlet-yardimlari-hakkinda-kararlar-uyarinca-uygulanan-tesvik",
-  "/5510-46486-56486-66486-ilave-6-puanlik-prim-indirimi":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/5510-46486-56486-66486-ilave-6-puanlik-prim-indirimi",
-  "/5510-6486-yurtdisina-goturulen-gonderilen-sigortalilara-uygulanan-5-puanlik-prim-indirimi":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/5510-6486-yurtdisina-goturulen-gonderilen-sigortalilara-uygulanan-5-puanlik-prim-indirimi",
-  "/5510-malulluk-yaslilik-ve-olum-sigortasi-isveren-hissesinden-5-puanlik-indirim":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/5510-malulluk-yaslilik-ve-olum-sigortasi-isveren-hissesinden-5-puanlik-indirim",
-  "/6111-sayili-tesvikten-nasil-fayda-saglanir":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/6111-sayili-tesvikten-nasil-fayda-saglanir",
-  "/ab-fonlari": "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/ab-fonlari",
-  "/cari-donem-takipleri-6111":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/cari-donem-takipleri-6111",
-  "/devlet-tesvikleri-ve-kobiler":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/devlet-tesvikleri-ve-kobiler",
+  // --- devlet destekleri ---
+  // "/14857-engelli-sigortali-istihdamina-yonelik-tesvik":
+  //   "/hizmetlerimiz/devlet-destekleri/14857-engelli-sigortali-istihdamina-yonelik-tesvik",
+  // "/15746-arastirma-gelistirme-ve-tasarim-faaliyetlerine-iliskin-tesvik":
+  //   "/hizmetlerimiz/devlet-destekleri/15746-arastirma-gelistirme-ve-tasarim-faaliyetlerine-iliskin-tesvik",
+  // "/4447-15921-issizlik-odenegi-alanlarin-istihdami-halinde-uygulanan-prim-tesviki":
+  //   "/hizmetlerimiz/devlet-destekleri/4447-15921-issizlik-odenegi-alanlarin-istihdami-halinde-uygulanan-prim-tesviki",
+  // "/5225-55225-25225-kultur-yatirimlari-ve-girisimleri-hakkinda-uygulanan-sigorta-primi-tesviki":
+  //   "/hizmetlerimiz/devlet-destekleri/5225-55225-25225-kultur-yatirimlari-ve-girisimleri-hakkinda-uygulanan-sigorta-primi-tesviki",
+  // "/5510-25510-16322-26322-yatirimlarda-devlet-yardimlari-hakkinda-kararlar-uyarinca-uygulanan-tesvik":
+  //   "/hizmetlerimiz/devlet-destekleri/5510-25510-16322-26322-yatirimlarda-devlet-yardimlari-hakkinda-kararlar-uyarinca-uygulanan-tesvik",
+  // "/5510-46486-56486-66486-ilave-6-puanlik-prim-indirimi":
+  //   "/hizmetlerimiz/devlet-destekleri/5510-46486-56486-66486-ilave-6-puanlik-prim-indirimi",
+  // "/5510-6486-yurtdisina-goturulen-gonderilen-sigortalilara-uygulanan-5-puanlik-prim-indirimi":
+  //   "/hizmetlerimiz/devlet-destekleri/5510-6486-yurtdisina-goturulen-gonderilen-sigortalilara-uygulanan-5-puanlik-prim-indirimi",
+  // "/5510-malulluk-yaslilik-ve-olum-sigortasi-isveren-hissesinden-5-puanlik-indirim":
+  //   "/hizmetlerimiz/devlet-destekleri/5510-malulluk-yaslilik-ve-olum-sigortasi-isveren-hissesinden-5-puanlik-indirim",
+  // "/6111-sayili-tesvikten-nasil-fayda-saglanir":
+  //   "/hizmetlerimiz/devlet-destekleri/6111-sayili-tesvikten-nasil-fayda-saglanir",
+  "/ab-fonlari": "/hizmetlerimiz/devlet-destekleri/ab-fonlari",
+  // "/cari-donem-takipleri-6111":
+  //   "/hizmetlerimiz/devlet-destekleri/cari-donem-takipleri-6111",
+  // "/devlet-tesvikleri-ve-kobiler":
+  //   "/hizmetlerimiz/devlet-destekleri/devlet-tesvikleri-ve-kobiler",
 
-  "/dijital-donusum-destek-programi-basladi":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/dijital-donusum-destek-programi-basladi",
+  // "/dijital-donusum-destek-programi-basladi":
+  //   "/hizmetlerimiz/devlet-destekleri/dijital-donusum-destek-programi-basladi",
   "/dis-ticaret-destekleri":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/dis-ticaret-destekleri",
-  "/gecmis-donem-tesvik-hesaplamalari":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/gecmis-donem-tesvik-hesaplamalari",
-  "/ipard": "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/ipard",
+    "/hizmetlerimiz/devlet-destekleri/dis-ticaret-destekleri",
+  // "/gecmis-donem-tesvik-hesaplamalari":
+  //   "/hizmetlerimiz/devlet-destekleri/gecmis-donem-tesvik-hesaplamalari",
+  "/ipard": "/hizmetlerimiz/devlet-destekleri/ipard",
   "/kalkinma-ajanslari-destekleri":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/kalkinma-ajanslari-destekleri",
+    "/hizmetlerimiz/devlet-destekleri/kalkinma-ajanslari-destekleri",
   "/kirsal-kalkinma-proje-destekleri-tkdk":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/kirsal-kalkinma-proje-destekleri-tkdk",
-  "/kobigel-2021": "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/kobigel-2021",
-  "/konaklama-tesislerine-sgk-prim-destegi":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/konaklama-tesislerine-sgk-prim-destegi",
-  "/kosgeb-destekleri":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/kosgeb-destekleri",
+    "/hizmetlerimiz/devlet-destekleri/kirsal-kalkinma-proje-destekleri-tkdk",
+  "/kobigel-2021": "/hizmetlerimiz/devlet-destekleri/kobigel-2021",
+  // "/konaklama-tesislerine-sgk-prim-destegi":
+  //   "/hizmetlerimiz/devlet-destekleri/konaklama-tesislerine-sgk-prim-destegi",
+  "/kosgeb-destekleri": "/hizmetlerimiz/devlet-destekleri/kosgeb-destekleri",
   "/sanayi-bakanligi-destekleri":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/sanayi-bakanligi-destekleri",
+    "/hizmetlerimiz/devlet-destekleri/sanayi-bakanligi-destekleri",
 
-  "/teknoloji-odakli-sanayi-hamle-programi-basladi":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/teknoloji-odakli-sanayi-hamle-programi-basladi",
+  // "/teknoloji-odakli-sanayi-hamle-programi-basladi":
+  //   "/hizmetlerimiz/devlet-destekleri/teknoloji-odakli-sanayi-hamle-programi-basladi",
   "/ticaret-bakanligi-destekleri":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/ticaret-bakanligi-destekleri",
-  "/tubitak-destekleri":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/tubitak-destekleri",
+    "/hizmetlerimiz/devlet-destekleri/ticaret-bakanligi-destekleri",
+  "/tubitak-destekleri": "/hizmetlerimiz/devlet-destekleri/tubitak-destekleri",
   "/ulastirma-bakanligi-destekleri":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/ulastirma-bakanligi-destekleri",
+    "/hizmetlerimiz/devlet-destekleri/ulastirma-bakanligi-destekleri",
 
-  "/yesil-donusum-destek-programi-basladi":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/yesil-donusum-destek-programi-basladi",
+  // "/yesil-donusum-destek-programi-basladi":
+  //   "/hizmetlerimiz/devlet-destekleri/yesil-donusum-destek-programi-basladi",
   "/yesil-sanayi-destek-programi":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/yesil-sanayi-destek-programi",
-  "/yurt-disi-pazar-destek-programi":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/yurt-disi-pazar-destek-programi",
+    "/hizmetlerimiz/devlet-destekleri/yesil-sanayi-destek-programi",
+  // "/yurt-disi-pazar-destek-programi":
+  //   "/hizmetlerimiz/devlet-destekleri/yurt-disi-pazar-destek-programi",
+  "/arge-ve-tasarim-merkezi-kurulumu":
+    "/hizmetlerimiz/devlet-destekleri/arge-ve-tasarim-merkezi-kurulumu",
   // --- Makale ---
   "/sgk-tesvikleri-ve-sigorta-tesvik-sistemi":
     "/hizmetlerimiz/sigorta-tesvik-danismanligi/sgk-tesvikleri-ve-sigorta-tesvik-sistemi",
@@ -209,8 +209,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/akkas-karbon/kurumsal-su-ayak-izi-hesaplama-ve-raporlama",
   "/skdm-basladi": "/hizmetlerimiz/akkas-karbon/skdm-basladi",
   // --- Ar-Ge Yönetimi ---
-  "/arge-ve-tasarim-merkezi-kurulumu":
-    "/hizmetlerimiz/ar-ge-yonetimi/arge-ve-tasarim-merkezi-kurulumu",
+
   "/kosgeb-ar-ge-ur-ge-ve-inovasyon-destekleri-basladi":
     "/hizmetlerimiz/ar-ge-yonetimi/kosgeb-ar-ge-ur-ge-ve-inovasyon-destekleri-basladi",
   "/uluslar-arasi-ar-ge-yardimlari-ve-ab-hibe-fonlari-danismanligi":
