@@ -96,21 +96,21 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/sts-hizmetleri":
     "/hizmetlerimiz/sigorta-tesvik-danismanligi/sts-hizmetleri",
   // --- Marka, Patent ve Fikri Mülkiyet ---
-  "/barkod-tescili":
-    "/hizmetlerimiz/marka-patent-fikri-mulkiyet/barkod-tescili",
+  // "/barkod-tescili":
+  //   "/hizmetlerimiz/fikri-sinai-mulkiyet-haklari/barkod-tescili",
   "/cografi-isaret-tescili":
-    "/hizmetlerimiz/marka-patent-fikri-mulkiyet/cografi-isaret-tescili",
+    "/hizmetlerimiz/fikri-sinai-mulkiyet-haklari/cografi-isaret-tescili",
   "/entegre-devre-topografyasi":
-    "/hizmetlerimiz/marka-patent-fikri-mulkiyet/entegre-devre-topografyasi",
-  "/marka-tescili": "/hizmetlerimiz/marka-patent-fikri-mulkiyet/marka-tescili",
+    "/hizmetlerimiz/fikri-sinai-mulkiyet-haklari/entegre-devre-topografyasi",
+  "/marka-tescili": "/hizmetlerimiz/fikri-sinai-mulkiyet-haklari/marka-tescili",
   "/patent-ve-faydali-model-tescili":
-    "/hizmetlerimiz/marka-patent-fikri-mulkiyet/patent-ve-faydali-model-tescili",
-  "/tasarim": "/hizmetlerimiz/marka-patent-fikri-mulkiyet/tasarim",
-  "/telif-hakki": "/hizmetlerimiz/marka-patent-fikri-mulkiyet/telif-hakki",
+    "/hizmetlerimiz/fikri-sinai-mulkiyet-haklari/patent-ve-faydali-model-tescili",
+  "/tasarim": "/hizmetlerimiz/fikri-sinai-mulkiyet-haklari/tasarim",
+  "/telif-hakki": "/hizmetlerimiz/fikri-sinai-mulkiyet-haklari/telif-hakki",
   "/uluslararasi-patent-ve-marka-arastirmasi":
-    "/hizmetlerimiz/marka-patent-fikri-mulkiyet/uluslararasi-patent-ve-marka-arastirmasi",
+    "/hizmetlerimiz/fikri-sinai-mulkiyet-haklari/uluslararasi-patent-ve-marka-arastirmasi",
   "/yurt-disi-marka-tescili":
-    "/hizmetlerimiz/marka-patent-fikri-mulkiyet/yurt-disi-marka-tescili",
+    "/hizmetlerimiz/fikri-sinai-mulkiyet-haklari/yurt-disi-marka-tescili",
   // --- Kalite Belgelendirme ---
   // "/ced-belgesi": "/hizmetlerimiz/kalite-belgelendirme/ced-belgesi",
   "/gap-iyi-tarim-uygulamalari":
