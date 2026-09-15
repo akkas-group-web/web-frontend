@@ -113,21 +113,14 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/kalite-sistemleri/gap-iyi-tarim-uygulamalari",
   "/garanti-belgesi": "/hizmetlerimiz/kalite-sistemleri/garanti-belgesi",
   "/helal-gida-belgesi": "/hizmetlerimiz/kalite-sistemleri/helal-gida-belgesi",
-  "/hijyen-belgesi": "/hizmetlerimiz/kalite-sistemleri/hijyen-belgesi",
   "/iso-10002-musteri-memnuniyeti-belgesi":
     "/hizmetlerimiz/kalite-sistemleri/iso-10002-musteri-memnuniyeti-belgesi",
   "/iso-14001-cevre-yonetim-sistemi":
-    "/hizmetlerimiz/kalite-sistemleri/iso-14001-cevre-yonetim-sistemi",
-  "/iso-22000-haccp-gida-guvenligi":
-    "/hizmetlerimiz/kalite-sistemleri/iso-22000-haccp-gida-guvenligi",
-  "/iso-27001-bilgi-guvenligi-yonetim-sistemi":
     "/hizmetlerimiz/kalite-sistemleri/iso-27001-bilgi-guvenligi-yonetim-sistemi",
   "/iso-9001-2015kalite-yonetim-sistemi":
     "/hizmetlerimiz/kalite-sistemleri/iso-9001-2015kalite-yonetim-sistemi",
   "/iso-ts-16949": "/hizmetlerimiz/kalite-sistemleri/iso-ts-16949",
   "/kapasite-raporu": "/hizmetlerimiz/kalite-sistemleri/kapasite-raporu",
-  "/ohsas-18001-is-sagligi-ve-is-guvenligi":
-    "/hizmetlerimiz/kalite-sistemleri/ohsas-18001-is-sagligi-ve-is-guvenligi",
   "/sanayi-sicil-belgesi":
     "/hizmetlerimiz/kalite-sistemleri/sanayi-sicil-belgesi",
   "/tse-hizmet-yeri-yeterlilik-belgesi":
