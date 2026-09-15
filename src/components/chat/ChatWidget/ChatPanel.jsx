@@ -1,9 +1,8 @@
-"use client";
-
 import { useState, useRef, useEffect } from 'react'
 import './ChatPanel.css'
 
 const ACCEPTED = '.pdf,.docx,.doc,.xlsx,.xls,.csv,.pptx,.txt,.png,.jpg,.jpeg'
+const API_URL = process.env.NEXT_PUBLIC_CHAT_API_URL || 'http://localhost:3001'
 
 export default function ChatPanel({ title, messages, setMessages, files, setFiles, sessionId, onSendMessage, onBack }) {
   const [isTyping, setIsTyping] = useState(false)
@@ -17,45 +16,32 @@ export default function ChatPanel({ title, messages, setMessages, files, setFile
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, isTyping])
 
-  function readFileAsText(file) {
-    return new Promise((resolve) => {
-      const reader = new FileReader()
-      reader.onload = (e) => resolve(e.target.result)
-      reader.onerror = () => resolve('')
-      reader.readAsText(file, 'UTF-8')
-    })
-  }
-
-async function handleAddFiles(fileList) {
-  const newFiles = Array.from(fileList)
-
-  for (const file of newFiles) {
-    try {
-      const formData = new FormData()
-      formData.append('file', file)
-
-      const res = await fetch('http://localhost:3001/api/documents/extract', {
-        method: 'POST',
-        body: formData,
-      })
-
-      const data = await res.json()
-
-      if (res.ok && data.content) {
-        setFileTexts(prev => [...prev, data.content])
-        setFiles(prev => [...prev, { name: file.name, type: file.name.split('.').pop().toLowerCase() }])
+  async function handleAddFiles(fileList) {
+    const newFiles = Array.from(fileList)
+    for (const file of newFiles) {
+      try {
+        const formData = new FormData()
+        formData.append('file', file)
+        const res = await fetch(`${API_URL}/api/documents/extract`, {
+          method: 'POST',
+          body: formData,
+        })
+        const data = await res.json()
+        if (res.ok && data.content) {
+          setFileTexts(prev => [...prev, `[${file.name}]\n${data.content}`])
+          setFiles(prev => [...prev, { name: file.name, type: file.name.split('.').pop().toLowerCase() }])
+        }
+      } catch (err) {
+        console.error('Dosya metin çıkarma hatası:', err)
       }
-    } catch (err) {
-      console.error('Dosya metin çıkarma hatası:', err)
     }
+    setMessages(prev => [...prev, {
+      id: Date.now(),
+      role: 'bot',
+      text: `${newFiles.length} dosya bu sohbete eklendi: ${newFiles.map(f => f.name).join(', ')}`,
+    }])
   }
 
-  setMessages(prev => [...prev, {
-    id: Date.now(),
-    role: 'bot',
-    text: `${newFiles.length} dosya bu sohbete eklendi: ${newFiles.map(f => f.name).join(', ')}`,
-  }])
-}
   async function sendMessage() {
     const v = inputRef.current?.value.trim()
     if (!v || isTyping) return
@@ -64,9 +50,15 @@ async function handleAddFiles(fileList) {
     setMessages(prev => [...prev, { id: Date.now(), role: 'user', text: v }])
     setIsTyping(true)
 
-    const combinedFileContent = fileTexts.join('\n\n---\n\n')
-    await onSendMessage(v, sessionId, combinedFileContent)
-    setIsTyping(false)
+    try {
+      const combinedFileContent = fileTexts.join('\n\n---\n\n')
+      await onSendMessage(v, sessionId, combinedFileContent)
+    } catch (err) {
+      console.error('Mesaj gönderme hatası:', err)
+      setMessages(prev => [...prev, { id: Date.now(), role: 'bot', text: 'Bir hata oluştu.' }])
+    } finally {
+      setIsTyping(false)
+    }
   }
 
   function handleKey(e) {
@@ -80,6 +72,8 @@ async function handleAddFiles(fileList) {
     if (ext === 'xlsx' || ext === 'xls' || ext === 'csv') return '📗'
     return '📄'
   }
+
+  const showTyping = isTyping || messages.some(m => m.role === 'typing')
 
   return (
     <div className="cp-root">
@@ -112,24 +106,41 @@ async function handleAddFiles(fileList) {
       )}
 
       <div className="cp-msgs">
-        {messages.map(msg => (
-          <div key={msg.id} className={`cp-msg${msg.role === 'user' ? ' user' : ''}`}>
-            {msg.role === 'bot' && (
-              <div className="cp-av">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
-                  <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
-                </svg>
+        {messages.map(msg => {
+          if (msg.role === 'typing') {
+            return (
+              <div key={msg.id} className="cp-msg">
+                <div className="cp-av">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
+                  </svg>
+                </div>
+                <div className="cp-typing">
+                  <span /><span /><span />
+                </div>
               </div>
-            )}
-            <div className="cp-bubble">
-              {msg.text.split('\n').map((line, i) => (
-                <span key={i}>{line}{i < msg.text.split('\n').length - 1 && <br />}</span>
-              ))}
-            </div>
-          </div>
-        ))}
+            )
+          }
 
-        {isTyping && (
+          return (
+            <div key={msg.id} className={`cp-msg${msg.role === 'user' ? ' user' : ''}`}>
+              {msg.role === 'bot' && (
+                <div className="cp-av">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
+                  </svg>
+                </div>
+              )}
+              <div className="cp-bubble">
+                {msg.text.split('\n').map((line, i) => (
+                  <span key={i}>{line}{i < msg.text.split('\n').length - 1 && <br />}</span>
+                ))}
+              </div>
+            </div>
+          )
+        })}
+
+        {showTyping && !messages.some(m => m.role === 'typing') && (
           <div className="cp-msg">
             <div className="cp-av">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">

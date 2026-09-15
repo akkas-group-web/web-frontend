@@ -1,16 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 
-const CPT_PATH_MAP: Record<string, (slug?: string) => string[]> = {
+type ResolvePaths = (slug?: string, categorySlug?: string) => string[];
+
+const CPT_PATH_MAP: Record<string, ResolvePaths> = {
   news_item: (slug) =>
     slug ? ["/haberler", `/haberler/${slug}`] : ["/haberler"],
   article_item: (slug) => (slug ? ["/blog", `/blog/${slug}`] : ["/blog"]),
   sector: (slug) =>
     slug ? ["/sektorler", `/sektorler/${slug}`] : ["/sektorler"],
   service_category: (slug) =>
-    slug ? [`/hizmetlerimiz/${slug}`] : ["/hizmetlerimiz"],
-  service_child: (slug) =>
-    slug ? [`/hizmetlerimiz/${slug}`] : ["/hizmetlerimiz"],
+    slug ? ["/hizmetlerimiz", `/hizmetlerimiz/${slug}`] : ["/hizmetlerimiz"],
+  service_child: (slug, categorySlug) => {
+    const paths = ["/hizmetlerimiz"];
+    if (categorySlug) {
+      paths.push(`/hizmetlerimiz/${categorySlug}`);
+      if (slug) {
+        paths.push(`/hizmetlerimiz/${categorySlug}/${slug}`);
+      }
+    } else if (slug) {
+      // category_slug gelmediyse (eski/eksik payload), en azından tek seviyeli path'i dene
+      paths.push(`/hizmetlerimiz/${slug}`);
+    }
+    return paths;
+  },
   contact_office: () => ["/iletisim"],
   contact_page: () => ["/iletisim"],
   hero_slide: () => ["/"],
@@ -27,14 +40,14 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: "Geçersiz secret" }, { status: 401 });
   }
 
-  let body: { post_type?: string; slug?: string };
+  let body: { post_type?: string; slug?: string; category_slug?: string };
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ message: "Geçersiz JSON" }, { status: 400 });
   }
 
-  const { post_type, slug } = body;
+  const { post_type, slug, category_slug } = body;
 
   if (!post_type) {
     return NextResponse.json({ message: "post_type zorunlu" }, { status: 400 });
@@ -48,7 +61,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const paths = resolvePaths(slug);
+  const paths = resolvePaths(slug, category_slug);
   paths.forEach((path) => revalidatePath(path));
 
   return NextResponse.json({ revalidated: true, paths, now: Date.now() });

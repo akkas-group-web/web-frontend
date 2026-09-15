@@ -16,7 +16,7 @@ export interface SectorContent {
   shortTitle?: string;
   description: string;
   heroDescription: string;
-  image: MediaImage;
+  image: MediaImage | null;
   services: SectorService[];
   benefits: string[];
   stats?: {

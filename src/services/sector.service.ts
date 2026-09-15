@@ -53,14 +53,16 @@ function mapSectorsFromWP(data: WPSectorsResponse): SectorContent[] {
   return data.sectors.nodes.map((sectorNode) => {
     const fields = sectorNode.sectorFields;
 
-    const relatedServices = fields.relatedServices.nodes.map((serviceNode) => ({
-      id: serviceNode.id,
-      title: serviceNode.title,
-      description: serviceNode.serviceCategoryFields.description,
-      categoryId: serviceNode.serviceCategoryFields.categorySlug,
-      icon: serviceNode.serviceCategoryFields
-        .icon as SectorContent["services"][number]["icon"],
-    }));
+    const relatedServices = (fields.relatedServices?.nodes ?? []).map(
+      (serviceNode) => ({
+        id: serviceNode.id,
+        title: serviceNode.title,
+        description: serviceNode.serviceCategoryFields.description,
+        categoryId: serviceNode.serviceCategoryFields.categorySlug,
+        icon: serviceNode.serviceCategoryFields
+          .icon as SectorContent["services"][number]["icon"],
+      }),
+    );
 
     return {
       id: sectorNode.id,
@@ -69,10 +71,12 @@ function mapSectorsFromWP(data: WPSectorsResponse): SectorContent[] {
       shortTitle: fields.shortTitle,
       description: fields.description,
       heroDescription: fields.heroDescription,
-      image: {
-        url: fields.sectorImage.node.sourceUrl,
-        alt: fields.sectorImage.node.altText || fields.shortTitle,
-      },
+      image: fields.sectorImage?.node
+        ? {
+            url: fields.sectorImage.node.sourceUrl,
+            alt: fields.sectorImage.node.altText || fields.shortTitle,
+          }
+        : null,
       services: relatedServices,
       benefits: fields.benefits.split("\n").filter(Boolean),
       stats: [

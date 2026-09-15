@@ -75,14 +75,20 @@ export function SectorHero({ sector }: SectorHeroProps) {
 
             <div className="relative overflow-hidden rounded-[28px] border border-white/70 bg-white/60 p-2 shadow-[0_30px_70px_-35px_rgba(13,77,92,0.35)] backdrop-blur-sm">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[22px] bg-brand-soft">
-                <Image
-                  src={sector.image.url}
-                  alt={sector.title}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 hover:scale-[1.03]"
-                />
+                {sector.image ? (
+                  <Image
+                    src={sector.image.url}
+                    alt={sector.image.alt || sector.title}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-brand-soft text-sm font-medium text-brand-navy/40">
+                    {sector.title}
+                  </div>
+                )}
 
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/35 via-transparent to-transparent" />
               </div>
