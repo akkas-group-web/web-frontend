@@ -92,9 +92,11 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   // --- grup sirketleri ---
   "/sigorta-tesvik-sistemi":
     "/hizmetlerimiz/sigorta-tesvik-danismanligi/sigorta-tesvik-sistemi",
+
   // --- Sigorta tesvik danimanligi (hizmetler) ---
   "/sts-hizmetleri":
     "/hizmetlerimiz/sigorta-tesvik-danismanligi/sts-hizmetleri",
+
   // --- Marka, Patent ve Fikri Mülkiyet ---
   // "/barkod-tescili":
   //   "/hizmetlerimiz/fikri-sinai-mulkiyet-haklari/barkod-tescili",
@@ -111,6 +113,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/fikri-sinai-mulkiyet-haklari/uluslararasi-patent-ve-marka-arastirmasi",
   "/yurt-disi-marka-tescili":
     "/hizmetlerimiz/fikri-sinai-mulkiyet-haklari/yurt-disi-marka-tescili",
+
   // --- Kalite Belgelendirme ---
   // "/ced-belgesi": "/hizmetlerimiz/kalite-belgelendirme/ced-belgesi",
   "/gap-iyi-tarim-uygulamalari":
@@ -128,7 +131,6 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/kalite-belgelendirme/iso-14001-cevre-yonetim-sistemi",
   "/iso-ts-16949": "/hizmetlerimiz/kalite-belgelendirme/iso-ts-16949",
   "/ce-markalama": "/hizmetlerimiz/kalite-belgelendirme/ce-markalama",
-
   "/iso-45001-is-sagligi-ve-guvenligi":
     "/hizmetlerimiz/kalite-belgelendirme/iso-45001-is-sagligi-ve-guvenligi",
   "/iso-22000-haccp-gida-guvenligi":
@@ -162,41 +164,48 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/risk-degerlendirmesi-ve-raporlama",
   // "/yabanci-personel-islemleri":
   //   "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/yabanci-personel-islemleri",
+
   // --- KVKK Danışmanlığı ---
-  "/6698-sayili-kisisel-verileri-koruma-kanunu-kapsaminda-bazi-terimler":
-    "/hizmetlerimiz/kvkk-danismanligi/6698-sayili-kisisel-verileri-koruma-kanunu-kapsaminda-bazi-terimler",
-  "/6698-sayili-kisisel-verilerin-korunmasi-kanunu-zorunlulugu-hakkinda":
-    "/hizmetlerimiz/kvkk-danismanligi/6698-sayili-kisisel-verilerin-korunmasi-kanunu-zorunlulugu-hakkinda",
+  // "/6698-sayili-kisisel-verileri-koruma-kanunu-kapsaminda-bazi-terimler":
+  //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/6698-sayili-kisisel-verileri-koruma-kanunu-kapsaminda-bazi-terimler",
+  // "/6698-sayili-kisisel-verilerin-korunmasi-kanunu-zorunlulugu-hakkinda":
+  //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/6698-sayili-kisisel-verilerin-korunmasi-kanunu-zorunlulugu-hakkinda",
   "/acik-rizalarin-hazirlanmasi":
-    "/hizmetlerimiz/kvkk-danismanligi/acik-rizalarin-hazirlanmasi",
+    "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/acik-rizalarin-hazirlanmasi",
   "/aydinlatma-metinlerinin-hazirlanmasi":
-    "/hizmetlerimiz/kvkk-danismanligi/aydinlatma-metinlerinin-hazirlanmasi",
+    "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/aydinlatma-metinlerinin-hazirlanmasi",
+  "/guvenlik-onlemlerinin-belirlenmesi":
+    "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/guvenlik-onlemlerinin-belirlenmesi",
   "/denetimlerin-yapilmasi":
-    "/hizmetlerimiz/kvkk-danismanligi/denetimlerin-yapilmasi",
-  "/gdpr": "/hizmetlerimiz/kvkk-danismanligi/gdpr",
-  "/kisisel-veri-sahibi-nin-haklari-ve-kanun-hukumlerinin-uygulanmayacagi-haller":
-    "/hizmetlerimiz/kvkk-danismanligi/kisisel-veri-sahibi-nin-haklari-ve-kanun-hukumlerinin-uygulanmayacagi-haller",
-  "/kisisel-verileri-koruma-kanunu":
-    "/hizmetlerimiz/kvkk-danismanligi/kisisel-verileri-koruma-kanunu",
-  "/kisisel-verilerin-ve-ozel-nitelikli-kisisel-verilerin-yurt-disina-aktarilma-sartlari":
-    "/hizmetlerimiz/kvkk-danismanligi/kisisel-verilerin-ve-ozel-nitelikli-kisisel-verilerin-yurt-disina-aktarilma-sartlari",
-  "/kvkk-tarafindan-verilen-guncel-kararlar":
-    "/hizmetlerimiz/kvkk-danismanligi/kvkk-tarafindan-verilen-guncel-kararlar",
+    "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/denetimlerin-yapilmasi",
+  "/gdpr": "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/gdpr",
+  "/farkindalik-egitimlerinin-yapilmasi":
+    "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/farkindalik-egitimlerinin-yapilmasi",
+  // "/kisisel-veri-sahibi-nin-haklari-ve-kanun-hukumlerinin-uygulanmayacagi-haller":
+  //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/kisisel-veri-sahibi-nin-haklari-ve-kanun-hukumlerinin-uygulanmayacagi-haller",
+  // "/kisisel-verileri-koruma-kanunu":
+  //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/kisisel-verileri-koruma-kanunu",
+  // "/kisisel-verilerin-ve-ozel-nitelikli-kisisel-verilerin-yurt-disina-aktarilma-sartlari":
+  //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/kisisel-verilerin-ve-ozel-nitelikli-kisisel-verilerin-yurt-disina-aktarilma-sartlari",
+  // "/kvkk-tarafindan-verilen-guncel-kararlar":
+  //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/kvkk-tarafindan-verilen-guncel-kararlar",
   "/politikalarin-hazirlanmasi":
-    "/hizmetlerimiz/kvkk-danismanligi/politikalarin-hazirlanmasi",
-  "/prokvk-aydinlatma-riza-yonetimi-gizlilik-sozlesmeleri-taahhutname":
-    "/hizmetlerimiz/kvkk-danismanligi/prokvk-aydinlatma-riza-yonetimi-gizlilik-sozlesmeleri-taahhutname",
-  "/prokvk-nedir": "/hizmetlerimiz/kvkk-danismanligi/prokvk-nedir",
-  "/prokvk-ozellikleri-nelerdir":
-    "/hizmetlerimiz/kvkk-danismanligi/prokvk-ozellikleri-nelerdir",
-  "/unutulma-kvk-bilgi-notu":
-    "/hizmetlerimiz/kvkk-danismanligi/unutulma-kvk-bilgi-notu",
-  "/verbis-kayit-suresi-5-haziran-2026-ya-uzadi":
-    "/hizmetlerimiz/kvkk-danismanligi/verbis-kayit-suresi-5-haziran-2026-ya-uzadi",
+    "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/politikalarin-hazirlanmasi",
+  // "/prokvk-aydinlatma-riza-yonetimi-gizlilik-sozlesmeleri-taahhutname":
+  //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/prokvk-aydinlatma-riza-yonetimi-gizlilik-sozlesmeleri-taahhutname",
+  // "/prokvk-nedir":
+  //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/prokvk-nedir",
+  // "/prokvk-ozellikleri-nelerdir":
+  //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/prokvk-ozellikleri-nelerdir",
+  // "/unutulma-kvk-bilgi-notu":
+  //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/unutulma-kvk-bilgi-notu",
+  // "/verbis-kayit-suresi-5-haziran-2026-ya-uzadi":
+  //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/verbis-kayit-suresi-5-haziran-2026-ya-uzadi",
   "/verbis-sistemine-kayit-yapilmasi":
-    "/hizmetlerimiz/kvkk-danismanligi/verbis-sistemine-kayit-yapilmasi",
+    "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/verbis-danismanligi",
   "/veri-envanteri-hazirlanmasi":
-    "/hizmetlerimiz/kvkk-danismanligi/veri-envanteri-hazirlanmasi",
+    "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/kisisel-veri-envanteri-hazirlanmasi",
+
   // --- Akkaş Karbon ---
   "/akkas-karbon-nedir": "/hizmetlerimiz/akkas-karbon/akkas-karbon-nedir",
   "/cbam-2-ceyrek-fiyati-yayimlandi":
@@ -208,12 +217,13 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/kurumsal-su-ayak-izi-hesaplama-ve-raporlama":
     "/hizmetlerimiz/akkas-karbon/kurumsal-su-ayak-izi-hesaplama-ve-raporlama",
   "/skdm-basladi": "/hizmetlerimiz/akkas-karbon/skdm-basladi",
-  // --- Ar-Ge Yönetimi ---
 
+  // --- Ar-Ge Yönetimi ---
   "/kosgeb-ar-ge-ur-ge-ve-inovasyon-destekleri-basladi":
     "/hizmetlerimiz/ar-ge-yonetimi/kosgeb-ar-ge-ur-ge-ve-inovasyon-destekleri-basladi",
   "/uluslar-arasi-ar-ge-yardimlari-ve-ab-hibe-fonlari-danismanligi":
     "/hizmetlerimiz/ar-ge-yonetimi/uluslar-arasi-ar-ge-yardimlari-ve-ab-hibe-fonlari-danismanligi",
+
   // --- Eğitimler ---
   // "/6645-isbasi-egitim-programini-tamamlayanlarin-istihdamina-yonelik-tesvik":
   //   "/hizmetlerimiz/egitimler/6645-isbasi-egitim-programini-tamamlayanlarin-istihdamina-yonelik-tesvik",
@@ -223,8 +233,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/egitimler/devlet-destekleri-egitimleri",
   "/dis-ticaret-mevzuati-egitimleri":
     "/hizmetlerimiz/egitimler/dis-ticaret-mevzuati-egitimleri",
-  // "/farkindalik-egitimlerinin-yapilmasi":
-  //   "/hizmetlerimiz/egitimler/farkindalik-egitimlerinin-yapilmasi",
+
   "/fikri-ve-sinai-mulki-haklar-egitimleri":
     "/hizmetlerimiz/egitimler/fikri-ve-sinai-mulki-haklar-egitimi",
   "/kalite-yonetim-sistemi-egitimleri":
@@ -242,6 +251,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   //   "/hizmetlerimiz/egitimler/sirketlere-ve-universitelere-sertifikali-egitimler",
   "/uygulamali-psikolojik-satis-teknikleri":
     "/hizmetlerimiz/egitimler/uygulamali-psikolojik-satis-teknikleri",
+
   // --- İnsan Kaynakları ---
   // "/insan-kaynaklari": "/hizmetlerimiz/insan-kaynaklari",
   // --- Kurumsal Sayfalar ---
@@ -249,7 +259,6 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/cerezlere-iliskin-aydinlatma-metni": "/cerez-politikasi",
 
   // --- Blog Yazıları ---
-
   "/Blog/detay/2024-kariyer-gunlerinde-akkas-group-olarak-yine-yerimizi-aldik":
     "/blog/2024-kariyer-gunlerinde-akkas-group-olarak-yine-yerimizi-aldik",
   "/Blog/detay/6111-sayili-kanun-numarali-tesvik-uzatildi":
