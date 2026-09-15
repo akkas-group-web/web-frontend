@@ -107,10 +107,10 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/yurt-disi-marka-tescili":
     "/hizmetlerimiz/marka-patent-fikri-mulkiyet/yurt-disi-marka-tescili",
   // --- Kalite Belgelendirme ---
-  "/ced-belgesi": "/hizmetlerimiz/kalite-belgelendirme/ced-belgesi",
+  // "/ced-belgesi": "/hizmetlerimiz/kalite-belgelendirme/ced-belgesi",
   "/gap-iyi-tarim-uygulamalari":
     "/hizmetlerimiz/kalite-belgelendirme/gap-iyi-tarim-uygulamalari",
-  "/garanti-belgesi": "/hizmetlerimiz/kalite-belgelendirme/garanti-belgesi",
+  // "/garanti-belgesi": "/hizmetlerimiz/kalite-belgelendirme/garanti-belgesi",
   "/helal-gida-belgesi":
     "/hizmetlerimiz/kalite-belgelendirme/helal-gida-belgesi",
   "/iso-10002-musteri-memnuniyeti-belgesi":
@@ -123,21 +123,22 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/kalite-belgelendirme/iso-14001-cevre-yonetim-sistemi",
   "/iso-ts-16949": "/hizmetlerimiz/kalite-belgelendirme/iso-ts-16949",
   "/ce-markalama": "/hizmetlerimiz/kalite-belgelendirme/ce-markalama",
-  "/kapasite-raporu": "/hizmetlerimiz/kalite-belgelendirme/kapasite-raporu",
-  "/sanayi-sicil-belgesi":
-    "/hizmetlerimiz/kalite-belgelendirme/sanayi-sicil-belgesi",
-  "/tse-hizmet-yeri-yeterlilik-belgesi":
-    "/hizmetlerimiz/kalite-belgelendirme/tse-hizmet-yeri-yeterlilik-belgesi",
-  "/turizm-isletme-belgesi":
-    "/hizmetlerimiz/kalite-belgelendirme/turizm-isletme-belgesi",
-  "/yerli-mali-belgesi":
-    "/hizmetlerimiz/kalite-belgelendirme/yerli-mali-belgesi",
+
+  "/iso-45001-is-sagligi-ve-guvenligi":
+    "/hizmetlerimiz/kalite-belgelendirme/iso-45001-is-sagligi-ve-guvenligi",
+  "/iso-22000-haccp-gida-guvenligi":
+    "/hizmetlerimiz/kalite-belgelendirme/iso-22000",
+  // "/kapasite-raporu": "/hizmetlerimiz/kalite-belgelendirme/kapasite-raporu",
+  // "/sanayi-sicil-belgesi":
+  //   "/hizmetlerimiz/kalite-belgelendirme/sanayi-sicil-belgesi",
+  // "/tse-hizmet-yeri-yeterlilik-belgesi":
+  //   "/hizmetlerimiz/kalite-belgelendirme/tse-hizmet-yeri-yeterlilik-belgesi",
+  // "/turizm-isletme-belgesi":
+  //   "/hizmetlerimiz/kalite-belgelendirme/turizm-isletme-belgesi",
+  // "/yerli-mali-belgesi":
+  //   "/hizmetlerimiz/kalite-belgelendirme/yerli-mali-belgesi",
+
   // --- OSGB — İş Sağlığı ve Güvenliği ---
-  "/calisma-izni": "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/calisma-izni",
-  "/gida-sektorunde-is-sagligi-ve-guvenligi":
-    "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/gida-sektorunde-is-sagligi-ve-guvenligi",
-  "/guvenlik-onlemlerinin-belirlenmesi":
-    "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/guvenlik-onlemlerinin-belirlenmesi",
   "/is-guvenligi-uzmani-hizmetleri":
     "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/is-guvenligi-uzmani-hizmetleri",
   "/is-yeri-acil-durum-plani-hazirlama":
@@ -148,14 +149,14 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/is-yeri-saglik-personeli-hizmetleri",
   "/is-sagligi-ve-is-guvenligi-egitimleri":
     "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/is-sagligi-ve-is-guvenligi-egitimleri",
-  "/pandemi-koronavirus-covid-19-salgininda-is-yerlerinde-alinmasi-gereken-tedbirler":
-    "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/pandemi-koronavirus-covid-19-salgininda-is-yerlerinde-alinmasi-gereken-tedbirler",
+  // "/pandemi-koronavirus-covid-19-salgininda-is-yerlerinde-alinmasi-gereken-tedbirler":
+  //   "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/pandemi-koronavirus-covid-19-salgininda-is-yerlerinde-alinmasi-gereken-tedbirler",
   "/patlamadan-korunma-dokumani-hazirlama":
     "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/patlamadan-korunma-dokumani-hazirlama",
   "/risk-degerlendirmesi-ve-raporlama":
     "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/risk-degerlendirmesi-ve-raporlama",
-  "/yabanci-personel-islemleri":
-    "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/yabanci-personel-islemleri",
+  // "/yabanci-personel-islemleri":
+  //   "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/yabanci-personel-islemleri",
   // --- KVKK Danışmanlığı ---
   "/6698-sayili-kisisel-verileri-koruma-kanunu-kapsaminda-bazi-terimler":
     "/hizmetlerimiz/kvkk-danismanligi/6698-sayili-kisisel-verileri-koruma-kanunu-kapsaminda-bazi-terimler",
