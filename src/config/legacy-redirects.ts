@@ -18,6 +18,14 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/yatirim-danismanligi/yatirim-tesvik-belgesi",
   "/yatirim-tesvik-belgesi-gumruk-vergi-muafiyetleri":
     "/hizmetlerimiz/yatirim-danismanligi/yatirim-tesvik-belgesi-gumruk-vergi-muafiyetleri",
+  "/turizm-isletme-belgesi":
+    "/hizmetlerimiz/yatirim-danismanligi/turizm-isletme-belgesi",
+  "/dijital-donusum-destek-programi":
+    "/hizmetlerimiz/yatirim-danismanligi/dijital-donusum-destek-programi",
+  "/yesil-donusum-destek-programi":
+    "/hizmetlerimiz/yatirim-danismanligi/yesil-donusum-destek-programi",
+  "/teknoloji-odakli-sanayi-hamle-programi":
+    "/hizmetlerimiz/yatirim-danismanligi/teknoloji-odakli-sanayi-hamle-programi",
   // --- Teşvik ve Hibe Danışmanlığı ---
   "/14857-engelli-sigortali-istihdamina-yonelik-tesvik":
     "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/14857-engelli-sigortali-istihdamina-yonelik-tesvik",
@@ -42,8 +50,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/cari-donem-takipleri-6111",
   "/devlet-tesvikleri-ve-kobiler":
     "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/devlet-tesvikleri-ve-kobiler",
-  "/dijital-donusum-destek-programi":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/dijital-donusum-destek-programi",
+
   "/dijital-donusum-destek-programi-basladi":
     "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/dijital-donusum-destek-programi-basladi",
   "/dis-ticaret-destekleri":
@@ -62,8 +69,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/kosgeb-destekleri",
   "/sanayi-bakanligi-destekleri":
     "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/sanayi-bakanligi-destekleri",
-  "/teknoloji-odakli-sanayi-hamle-programi":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/teknoloji-odakli-sanayi-hamle-programi",
+
   "/teknoloji-odakli-sanayi-hamle-programi-basladi":
     "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/teknoloji-odakli-sanayi-hamle-programi-basladi",
   "/ticaret-bakanligi-destekleri":
@@ -72,8 +78,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/tubitak-destekleri",
   "/ulastirma-bakanligi-destekleri":
     "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/ulastirma-bakanligi-destekleri",
-  "/yesil-donusum-destek-programi":
-    "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/yesil-donusum-destek-programi",
+
   "/yesil-donusum-destek-programi-basladi":
     "/hizmetlerimiz/tesvik-ve-hibe-danismanligi/yesil-donusum-destek-programi-basladi",
   "/yesil-sanayi-destek-programi":
