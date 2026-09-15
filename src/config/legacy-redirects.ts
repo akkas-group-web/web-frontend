@@ -133,27 +133,29 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/yerli-mali-belgesi":
     "/hizmetlerimiz/kalite-belgelendirme/yerli-mali-belgesi",
   // --- OSGB — İş Sağlığı ve Güvenliği ---
-  "/calisma-izni": "/hizmetlerimiz/osgb-is-sagligi-guvenligi/calisma-izni",
+  "/calisma-izni": "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/calisma-izni",
   "/gida-sektorunde-is-sagligi-ve-guvenligi":
-    "/hizmetlerimiz/osgb-is-sagligi-guvenligi/gida-sektorunde-is-sagligi-ve-guvenligi",
+    "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/gida-sektorunde-is-sagligi-ve-guvenligi",
   "/guvenlik-onlemlerinin-belirlenmesi":
-    "/hizmetlerimiz/osgb-is-sagligi-guvenligi/guvenlik-onlemlerinin-belirlenmesi",
+    "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/guvenlik-onlemlerinin-belirlenmesi",
   "/is-guvenligi-uzmani-hizmetleri":
-    "/hizmetlerimiz/osgb-is-sagligi-guvenligi/is-guvenligi-uzmani-hizmetleri",
+    "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/is-guvenligi-uzmani-hizmetleri",
   "/is-yeri-acil-durum-plani-hazirlama":
-    "/hizmetlerimiz/osgb-is-sagligi-guvenligi/is-yeri-acil-durum-plani-hazirlama",
+    "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/is-yeri-acil-durum-plani-hazirlama",
   "/is-yeri-hekimligi-hizmetleri":
-    "/hizmetlerimiz/osgb-is-sagligi-guvenligi/is-yeri-hekimligi-hizmetleri",
+    "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/is-yeri-hekimligi-hizmetleri",
   "/is-yeri-saglik-personeli-hizmetleri":
-    "/hizmetlerimiz/osgb-is-sagligi-guvenligi/is-yeri-saglik-personeli-hizmetleri",
+    "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/is-yeri-saglik-personeli-hizmetleri",
+  "/is-sagligi-ve-is-guvenligi-egitimleri":
+    "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/is-sagligi-ve-is-guvenligi-egitimleri",
   "/pandemi-koronavirus-covid-19-salgininda-is-yerlerinde-alinmasi-gereken-tedbirler":
-    "/hizmetlerimiz/osgb-is-sagligi-guvenligi/pandemi-koronavirus-covid-19-salgininda-is-yerlerinde-alinmasi-gereken-tedbirler",
+    "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/pandemi-koronavirus-covid-19-salgininda-is-yerlerinde-alinmasi-gereken-tedbirler",
   "/patlamadan-korunma-dokumani-hazirlama":
-    "/hizmetlerimiz/osgb-is-sagligi-guvenligi/patlamadan-korunma-dokumani-hazirlama",
+    "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/patlamadan-korunma-dokumani-hazirlama",
   "/risk-degerlendirmesi-ve-raporlama":
-    "/hizmetlerimiz/osgb-is-sagligi-guvenligi/risk-degerlendirmesi-ve-raporlama",
+    "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/risk-degerlendirmesi-ve-raporlama",
   "/yabanci-personel-islemleri":
-    "/hizmetlerimiz/osgb-is-sagligi-guvenligi/yabanci-personel-islemleri",
+    "/hizmetlerimiz/ortak-saglik-guvenlik-birimi/yabanci-personel-islemleri",
   // --- KVKK Danışmanlığı ---
   "/6698-sayili-kisisel-verileri-koruma-kanunu-kapsaminda-bazi-terimler":
     "/hizmetlerimiz/kvkk-danismanligi/6698-sayili-kisisel-verileri-koruma-kanunu-kapsaminda-bazi-terimler",
@@ -222,8 +224,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/egitimler/fikri-ve-sinai-mulki-haklar-egitimleri",
   "/hijyen-belgesi-egitimleri":
     "/hizmetlerimiz/egitimler/hijyen-belgesi-egitimleri",
-  "/is-sagligi-ve-is-guvenligi-egitimleri":
-    "/hizmetlerimiz/egitimler/is-sagligi-ve-is-guvenligi-egitimleri",
+
   "/kalite-yonetim-sistemi-egitimleri":
     "/hizmetlerimiz/egitimler/kalite-yonetim-sistemi-egitimleri",
   "/kurumsal-pazarlama-egitimleri":
