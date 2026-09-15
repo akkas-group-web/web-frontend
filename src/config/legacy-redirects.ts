@@ -93,7 +93,6 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   // --- Marka, Patent ve Fikri Mülkiyet ---
   "/barkod-tescili":
     "/hizmetlerimiz/marka-patent-fikri-mulkiyet/barkod-tescili",
-  "/ce-markalama": "/hizmetlerimiz/marka-patent-fikri-mulkiyet/ce-markalama",
   "/cografi-isaret-tescili":
     "/hizmetlerimiz/marka-patent-fikri-mulkiyet/cografi-isaret-tescili",
   "/entegre-devre-topografyasi":
@@ -108,26 +107,31 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/yurt-disi-marka-tescili":
     "/hizmetlerimiz/marka-patent-fikri-mulkiyet/yurt-disi-marka-tescili",
   // --- Kalite Belgelendirme ---
-  "/ced-belgesi": "/hizmetlerimiz/kalite-sistemleri/ced-belgesi",
+  "/ced-belgesi": "/hizmetlerimiz/kalite-belgelendirme/ced-belgesi",
   "/gap-iyi-tarim-uygulamalari":
-    "/hizmetlerimiz/kalite-sistemleri/gap-iyi-tarim-uygulamalari",
-  "/garanti-belgesi": "/hizmetlerimiz/kalite-sistemleri/garanti-belgesi",
-  "/helal-gida-belgesi": "/hizmetlerimiz/kalite-sistemleri/helal-gida-belgesi",
+    "/hizmetlerimiz/kalite-belgelendirme/gap-iyi-tarim-uygulamalari",
+  "/garanti-belgesi": "/hizmetlerimiz/kalite-belgelendirme/garanti-belgesi",
+  "/helal-gida-belgesi":
+    "/hizmetlerimiz/kalite-belgelendirme/helal-gida-belgesi",
   "/iso-10002-musteri-memnuniyeti-belgesi":
-    "/hizmetlerimiz/kalite-sistemleri/iso-10002-musteri-memnuniyeti-belgesi",
-  "/iso-14001-cevre-yonetim-sistemi":
-    "/hizmetlerimiz/kalite-sistemleri/iso-27001-bilgi-guvenligi-yonetim-sistemi",
+    "/hizmetlerimiz/kalite-belgelendirme/iso-10002-musteri-memnuniyeti-belgesi",
+  "/iso-27001-bilgi-guvenligi-yonetim-sistemi":
+    "/hizmetlerimiz/kalite-belgelendirme/iso-27001-bilgi-guvenligi-yonetim-sistemi",
   "/iso-9001-2015kalite-yonetim-sistemi":
-    "/hizmetlerimiz/kalite-sistemleri/iso-9001-2015kalite-yonetim-sistemi",
-  "/iso-ts-16949": "/hizmetlerimiz/kalite-sistemleri/iso-ts-16949",
-  "/kapasite-raporu": "/hizmetlerimiz/kalite-sistemleri/kapasite-raporu",
+    "/hizmetlerimiz/kalite-belgelendirme/iso-9001-2015kalite-yonetim-sistemi",
+  "/iso-14001-cevre-yonetim-sistemi":
+    "/hizmetlerimiz/kalite-belgelendirme/iso-14001-cevre-yonetim-sistemi",
+  "/iso-ts-16949": "/hizmetlerimiz/kalite-belgelendirme/iso-ts-16949",
+  "/ce-markalama": "/hizmetlerimiz/kalite-belgelendirme/ce-markalama",
+  "/kapasite-raporu": "/hizmetlerimiz/kalite-belgelendirme/kapasite-raporu",
   "/sanayi-sicil-belgesi":
-    "/hizmetlerimiz/kalite-sistemleri/sanayi-sicil-belgesi",
+    "/hizmetlerimiz/kalite-belgelendirme/sanayi-sicil-belgesi",
   "/tse-hizmet-yeri-yeterlilik-belgesi":
-    "/hizmetlerimiz/kalite-sistemleri/tse-hizmet-yeri-yeterlilik-belgesi",
+    "/hizmetlerimiz/kalite-belgelendirme/tse-hizmet-yeri-yeterlilik-belgesi",
   "/turizm-isletme-belgesi":
-    "/hizmetlerimiz/kalite-sistemleri/turizm-isletme-belgesi",
-  "/yerli-mali-belgesi": "/hizmetlerimiz/kalite-sistemleri/yerli-mali-belgesi",
+    "/hizmetlerimiz/kalite-belgelendirme/turizm-isletme-belgesi",
+  "/yerli-mali-belgesi":
+    "/hizmetlerimiz/kalite-belgelendirme/yerli-mali-belgesi",
   // --- OSGB — İş Sağlığı ve Güvenliği ---
   "/calisma-izni": "/hizmetlerimiz/osgb-is-sagligi-guvenligi/calisma-izni",
   "/gida-sektorunde-is-sagligi-ve-guvenligi":
