@@ -54,7 +54,7 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
         </div>
 
         {/* Kart grid'i */}
-        <div className="relative mt-8 min-h-[420px]">
+        <div className="relative mt-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={page}
@@ -74,15 +74,15 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
                   className="card-surface group flex flex-col overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                 >
                   {/* Makale kapak görseli */}
-                 {item.image?.url ? (
-  <CardMedia
-    src={item.image.url}
-    alt={item.image.alt || item.title}
-    ratio="video"
-    fit="contain"
-    className="transition-transform duration-500 group-hover:scale-[1.02]"
-  />
-) : null}
+                  {item.image?.url ? (
+                    <CardMedia
+                      src={item.image.url}
+                      alt={item.image.alt || item.title}
+                      ratio="video"
+                      fit="contain"
+                      className="transition-transform duration-500 group-hover:scale-[1.02]"
+                    />
+                  ) : null}
 
                   <div className="flex flex-1 flex-col p-4">
                     <time className="text-[11px] font-medium text-[#333333]/40">
@@ -99,17 +99,17 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
 
                     {/* Yazar bilgileri */}
                     <div className="mt-4 flex items-center gap-2.5 border-t border-[#0d4d5c]/8 pt-3">
-                     {item.author?.photo?.url ? (
-  <AuthorAvatar
-    src={item.author.photo.url}
-    alt={
-      item.author.photo.alt ||
-      item.author.name ||
-      "Yazar profil fotoğrafı"
-    }
-    size={32}
-  />
-) : null}
+                      {item.author?.photo?.url ? (
+                        <AuthorAvatar
+                          src={item.author.photo.url}
+                          alt={
+                            item.author.photo.alt ||
+                            item.author.name ||
+                            "Yazar profil fotoğrafı"
+                          }
+                          size={32}
+                        />
+                      ) : null}
 
                       <div className="min-w-0">
                         <p className="truncate text-xs font-semibold text-[#0d4d5c]">
@@ -137,7 +137,7 @@ export function ArticlesSection({ articles }: ArticlesSectionProps) {
 
         {/* Sayfalama kontrolleri */}
         {totalPages > 1 && (
-          <div className="mt-10 flex items-center justify-center gap-4">
+          <div className="mt-8 flex items-center justify-center gap-4">
             <button
               type="button"
               onClick={() => goTo(page - 1)}
