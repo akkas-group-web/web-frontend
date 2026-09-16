@@ -228,13 +228,15 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/prokvk-ozellikleri-nelerdir":
     "/hizmetlerimiz/pro-kvk/prokvk-ozellikleri-nelerdir",
   "/prokvk-aydinlatma-riza-yonetimi-gizlilik-sozlesmeleri-taahhutname":
-    "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/prokvk-aydinlatma-riza-yonetimi-gizlilik-sozlesmeleri-taahhutname",
+    "/hizmetlerimiz/pro-kvk/prokvk-aydinlatma-riza-yonetimi-gizlilik-sozlesmeleri-taahhutname",
+
+  // --- Diğer Hizmetmetlerimiz ---
+  "/uluslar-arasi-ar-ge-yardimlari-ve-ab-hibe-fonlari-danismanligi":
+    "/hizmetlerimiz/diger-hizmetlerimiz/uluslar-arasi-ar-ge-yardimlari-ve-ab-hibe-fonlari-danismanligi",
 
   // --- Ar-Ge Yönetimi ---
   "/kosgeb-ar-ge-ur-ge-ve-inovasyon-destekleri-basladi":
     "/hizmetlerimiz/ar-ge-yonetimi/kosgeb-ar-ge-ur-ge-ve-inovasyon-destekleri-basladi",
-  "/uluslar-arasi-ar-ge-yardimlari-ve-ab-hibe-fonlari-danismanligi":
-    "/hizmetlerimiz/ar-ge-yonetimi/uluslar-arasi-ar-ge-yardimlari-ve-ab-hibe-fonlari-danismanligi",
 
   // --- Eğitimler ---
 
