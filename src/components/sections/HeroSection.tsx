@@ -19,68 +19,6 @@ interface HeroSectionProps {
   slides: HeroSlide[];
 }
 
-// import type { MediaImage } from "@/types/media";
-
-// interface HeroSlide {
-//   id: string;
-//   eyebrow: string;
-//   title: string;
-//   description: string;
-//   image: MediaImage;
-//   href: string;
-// }
-
-// const HERO_SLIDES: HeroSlide[] = [
-//   {
-//     id: "yatirim",
-//     eyebrow: "Yatırım Danışmanlığı",
-//     title: "Yatırımınızı doğru adımlarla büyütün",
-//     description:
-//       "Teşvik belgesi, fizibilite ve gümrük muafiyeti süreçlerinde uçtan uca yanınızdayız.",
-//     image: {
-//       url: "/hero/yatirim.png",
-//       alt: "Yatırım danışmanlığı hizmeti",
-//     },
-//     href: "/hizmetlerimiz/yatirim-danismanligi",
-//   },
-//   {
-//     id: "osgb",
-//     eyebrow: "OSGB Hizmetleri",
-//     title: "İş sağlığı ve güvenliğinde profesyonel çözümler",
-//     description:
-//       "KOSGEB, TÜBİTAK ve Kalkınma Ajansları destekleriyle işletmenizi ileri taşıyoruz.",
-//     image: {
-//       url: "/hero/osgb.png",
-//       alt: "OSGB ve iş sağlığı güvenliği hizmetleri",
-//     },
-//     href: "/hizmetlerimiz/osgb",
-//   },
-//   {
-//     id: "kvkk",
-//     eyebrow: "KVKK Danışmanlığı",
-//     title: "Veri uyumluluğunda güvende kalın",
-//     description:
-//       "VERBİS kaydından aydınlatma metinlerine, uçtan uca KVKK uyum süreci.",
-//     image: {
-//       url: "/hero/kvkk.jpg",
-//       alt: "KVKK danışmanlığı ve veri güvenliği",
-//     },
-//     href: "/hizmetlerimiz/kvkk-danismanligi",
-//   },
-//   {
-//     id: "kalite",
-//     eyebrow: "Kalite Belgelendirme",
-//     title: "ISO belgelendirmede güvenilir çözüm ortağınız",
-//     description:
-//       "ISO 9001, ISO 14001, ISO 27001 ve CE markalama süreçlerini birlikte yönetelim.",
-//     image: {
-//       url: "/hero/kalite.jpg",
-//       alt: "ISO kalite belgelendirme hizmetleri",
-//     },
-//     href: "/hizmetlerimiz/kalite-sistemleri",
-//   },
-// ];
-
 const AUTO_ADVANCE_MS = 6000;
 
 // Sol taraftaki bilgi satırında gösterilecek 2 istatistik ve ikonları.
@@ -144,7 +82,7 @@ export function HeroSection({ slides }: HeroSectionProps) {
       <div className="pointer-events-none absolute right-[15%] top-20 h-[380px] w-[380px] rounded-full bg-white/25 blur-[100px]" />
       <div className="pointer-events-none absolute -bottom-40 -left-24 h-[390px] w-[390px] rounded-full bg-brand-turquoise-300/30 blur-[100px]" />
 
-      <div className="relative z-[2] mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-6 pb-10 pt-28 md:px-12 md:pt-32 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:pt-47">
+      <div className="relative z-[2] mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-6 pb-10 pt-28 md:px-12 md:pt-32 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:pt-47 lg:min-h-[560px]">
         {/* Sol: Metin içeriği */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -160,11 +98,11 @@ export function HeroSection({ slides }: HeroSectionProps) {
               {activeSlide.eyebrow}
             </span>
 
-            <h1 className="mx-auto max-w-[580px] text-[32px] font-bold leading-[1.08] tracking-[-1.2px] md:text-[40px] lg:mx-0 lg:text-[44px]">
+            <h1 className="mx-auto max-w-[580px] min-h-[70px] text-[32px] font-bold leading-[1.08] tracking-[-1.2px] md:min-h-[88px] md:text-[40px] lg:mx-0 lg:min-h-[96px] lg:text-[44px] line-clamp-2">
               {activeSlide.title}
             </h1>
 
-            <p className="mx-auto mt-4 max-w-[500px] text-[13px] leading-relaxed text-white/75 lg:mx-0">
+            <p className="mx-auto mt-4 max-w-[500px] min-h-[64px] text-[13px] leading-relaxed text-white/75 lg:mx-0 line-clamp-3">
               {activeSlide.description}
             </p>
 
@@ -205,7 +143,7 @@ export function HeroSection({ slides }: HeroSectionProps) {
                         {stat.value}
                       </strong>
 
-                      <small className="text-[9px] tracking-wide text-white/50">
+                      <small className="whitespace-nowrap text-[9px] tracking-wide text-white/50">
                         {stat.label}
                       </small>
                     </div>
