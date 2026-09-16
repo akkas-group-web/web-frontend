@@ -10,7 +10,9 @@ const CPT_PATH_MAP: Record<string, ResolvePaths> = {
   sector: (slug) =>
     slug ? ["/sektorler", `/sektorler/${slug}`] : ["/sektorler"],
   service_category: (slug) =>
-    slug ? ["/hizmetlerimiz", `/hizmetlerimiz/${slug}`] : ["/hizmetlerimiz"],
+    slug
+      ? ["/", "/hizmetlerimiz", `/hizmetlerimiz/${slug}`]
+      : ["/", "/hizmetlerimiz"],
   service_child: (slug, categorySlug) => {
     const paths = ["/hizmetlerimiz"];
     if (categorySlug) {

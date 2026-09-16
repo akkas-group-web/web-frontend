@@ -47,6 +47,10 @@ interface WPServicesResponse {
 }
 
 function getDisplayOrder(value: number | string | null | undefined) {
+  if (value === null || value === undefined || value === "") {
+    return 9999;
+  }
+
   const order = Number(value);
 
   return Number.isFinite(order) ? order : 9999;
@@ -55,43 +59,51 @@ function getDisplayOrder(value: number | string | null | undefined) {
 function mapServiceCategoriesFromWP(
   data: WPServicesResponse,
 ): ServiceCategory[] {
-  return [...data.serviceCategories.nodes]
-    .sort(
-      (a, b) =>
-        getDisplayOrder(a.serviceCategoryFields.displayorder) -
-        getDisplayOrder(b.serviceCategoryFields.displayorder),
-    )
-    .map((categoryNode) => {
-      const fields = categoryNode.serviceCategoryFields;
+return [...data.serviceCategories.nodes]
+  .sort(
+    (a, b) =>
+      getDisplayOrder(a.serviceCategoryFields.displayorder) -
+      getDisplayOrder(b.serviceCategoryFields.displayorder),
+  )
+  .map((categoryNode): ServiceCategory | null => {
+    const fields = categoryNode.serviceCategoryFields;
 
-      const children = data.serviceChildren.nodes
-        .filter(
-          (childNode) =>
-            childNode.serviceChildId?.relatedCategory?.nodes?.[0]?.id ===
-            categoryNode.id,
-        )
-        .sort(
-          (a, b) =>
-            getDisplayOrder(a.serviceChildId.displayorder) -
-            getDisplayOrder(b.serviceChildId.displayorder),
-        )
-        .map((childNode) => ({
-          label: childNode.serviceChildId.childLabel,
-          href: `/hizmetlerimiz/${fields.categorySlug}/${childNode.serviceChildId.childSlug}`,
-        }));
+    if (!fields || !fields.categorySlug) {
+      logger.error("Kategori alanları eksik, atlanıyor", {
+        categoryId: categoryNode.id,
+        title: categoryNode.title,
+      });
+      return null;
+    }
+
+    const children = data.serviceChildren.nodes
+      .filter(
+        (childNode) =>
+          childNode.serviceChildId?.relatedCategory?.nodes?.[0]?.id ===
+          categoryNode.id,
+      )
+      .sort(
+        (a, b) =>
+          getDisplayOrder(a.serviceChildId.displayorder) -
+          getDisplayOrder(b.serviceChildId.displayorder),
+      )
+      .map((childNode) => ({
+        label: childNode.serviceChildId.childLabel,
+        href: `/hizmetlerimiz/${fields.categorySlug}/${childNode.serviceChildId.childSlug}`,
+      }));
 
       return {
-        id: fields.categorySlug,
-        label: categoryNode.title,
-        href: `/hizmetlerimiz/${fields.categorySlug}`,
-        description: fields.description,
-        icon: fields.icon as ServiceIconKey,
-        featured: fields.featured,
-        children,
-      };
-    });
+      id: fields.categorySlug,
+      label: categoryNode.title,
+      href: `/hizmetlerimiz/${fields.categorySlug}`,
+      description: fields.description,
+      icon: fields.icon as ServiceIconKey,
+      featured: fields.featured,
+      children,
+    };
+  })
+  .filter((category) => category !== null) as ServiceCategory[];
 }
-
 function mapServiceDetailsFromWP(data: WPServicesResponse): ServiceDetail[] {
   return [...data.serviceChildren.nodes]
     .sort(
@@ -99,36 +111,48 @@ function mapServiceDetailsFromWP(data: WPServicesResponse): ServiceDetail[] {
         getDisplayOrder(a.serviceChildId.displayorder) -
         getDisplayOrder(b.serviceChildId.displayorder),
     )
-    .map((childNode) => {
+    .map((childNode): ServiceDetail | null => {
+      const childFields = childNode.serviceChildId;
+
+      // childSlug olmayan kayıt route üretemez, atla
+      if (!childFields?.childSlug) {
+        logger.error("Hizmet slug'ı eksik, atlanıyor", {
+          childId: childNode.id,
+        });
+        return null;
+      }
+
       const relatedCategoryId =
-        childNode.serviceChildId?.relatedCategory?.nodes?.[0]?.id;
+        childFields.relatedCategory?.nodes?.[0]?.id;
 
       const categoryNode = data.serviceCategories.nodes.find(
         (c) => c.id === relatedCategoryId,
       );
 
-      const rawImage = childNode.serviceChildId.contentImage?.node;
+      const rawImage = childFields.contentImage?.node;
 
       return {
-        id: childNode.serviceChildId.childSlug,
-        category: categoryNode?.serviceCategoryFields.categorySlug ?? "",
+        id: childFields.childSlug,
+        category: categoryNode?.serviceCategoryFields?.categorySlug ?? "",
         categoryTitle: categoryNode?.title ?? "",
-        slug: childNode.serviceChildId.childSlug,
-        title: childNode.serviceChildId.childLabel,
-        description: childNode.serviceChildId.childDescription,
-        contentTitle: childNode.serviceChildId.contentTitle ?? "",
-        content: childNode.serviceChildId.childContent
+        slug: childFields.childSlug,
+        title: childFields.childLabel,
+        description: childFields.childDescription,
+        contentTitle: childFields.contentTitle ?? "",
+        content: (childFields.childContent ?? "")
           .split("\n")
           .filter(Boolean),
         image: rawImage
           ? {
               url: rawImage.sourceUrl,
-              alt: rawImage.altText || childNode.serviceChildId.childLabel,
+              alt: rawImage.altText || childFields.childLabel,
             }
           : undefined,
       };
-    });
+    })
+    .filter((service) => service !== null) as ServiceDetail[];
 }
+
 
 export async function getServices(): Promise<ServiceDetail[]> {
   try {
