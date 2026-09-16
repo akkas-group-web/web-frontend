@@ -201,12 +201,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/kvkk-tarafindan-verilen-guncel-kararlar",
   "/politikalarin-hazirlanmasi":
     "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/politikalarin-hazirlanmasi",
-  // "/prokvk-aydinlatma-riza-yonetimi-gizlilik-sozlesmeleri-taahhutname":
-  //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/prokvk-aydinlatma-riza-yonetimi-gizlilik-sozlesmeleri-taahhutname",
-  // "/prokvk-nedir":
-  //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/prokvk-nedir",
-  // "/prokvk-ozellikleri-nelerdir":
-  //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/prokvk-ozellikleri-nelerdir",
+
   // "/unutulma-kvk-bilgi-notu":
   //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/unutulma-kvk-bilgi-notu",
   // "/verbis-kayit-suresi-5-haziran-2026-ya-uzadi":
@@ -227,6 +222,13 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/kurumsal-su-ayak-izi-hesaplama-ve-raporlama":
     "/hizmetlerimiz/akkas-karbon/kurumsal-su-ayak-izi-hesaplama-ve-raporlama",
   "/skdm-basladi": "/hizmetlerimiz/akkas-karbon/skdm-basladi",
+
+  //--- Pro KVK ---
+  "/prokvk-nedir": "/hizmetlerimiz/pro-kvk/prokvk-nedir",
+  "/prokvk-ozellikleri-nelerdir":
+    "/hizmetlerimiz/pro-kvk/prokvk-ozellikleri-nelerdir",
+  "/prokvk-aydinlatma-riza-yonetimi-gizlilik-sozlesmeleri-taahhutname":
+    "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/prokvk-aydinlatma-riza-yonetimi-gizlilik-sozlesmeleri-taahhutname",
 
   // --- Ar-Ge Yönetimi ---
   "/kosgeb-ar-ge-ur-ge-ve-inovasyon-destekleri-basladi":
