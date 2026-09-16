@@ -26,65 +26,51 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/yatirim-danismanligi/yesil-donusum-destek-programi",
   "/teknoloji-odakli-sanayi-hamle-programi":
     "/hizmetlerimiz/yatirim-danismanligi/teknoloji-odakli-sanayi-hamle-programi",
-  // --- devlet destekleri ---
-  // "/14857-engelli-sigortali-istihdamina-yonelik-tesvik":
-  //   "/hizmetlerimiz/devlet-destekleri/14857-engelli-sigortali-istihdamina-yonelik-tesvik",
-  // "/15746-arastirma-gelistirme-ve-tasarim-faaliyetlerine-iliskin-tesvik":
-  //   "/hizmetlerimiz/devlet-destekleri/15746-arastirma-gelistirme-ve-tasarim-faaliyetlerine-iliskin-tesvik",
-  // "/4447-15921-issizlik-odenegi-alanlarin-istihdami-halinde-uygulanan-prim-tesviki":
-  //   "/hizmetlerimiz/devlet-destekleri/4447-15921-issizlik-odenegi-alanlarin-istihdami-halinde-uygulanan-prim-tesviki",
-  // "/5225-55225-25225-kultur-yatirimlari-ve-girisimleri-hakkinda-uygulanan-sigorta-primi-tesviki":
-  //   "/hizmetlerimiz/devlet-destekleri/5225-55225-25225-kultur-yatirimlari-ve-girisimleri-hakkinda-uygulanan-sigorta-primi-tesviki",
-  // "/5510-25510-16322-26322-yatirimlarda-devlet-yardimlari-hakkinda-kararlar-uyarinca-uygulanan-tesvik":
-  //   "/hizmetlerimiz/devlet-destekleri/5510-25510-16322-26322-yatirimlarda-devlet-yardimlari-hakkinda-kararlar-uyarinca-uygulanan-tesvik",
-  // "/5510-46486-56486-66486-ilave-6-puanlik-prim-indirimi":
-  //   "/hizmetlerimiz/devlet-destekleri/5510-46486-56486-66486-ilave-6-puanlik-prim-indirimi",
-  // "/5510-6486-yurtdisina-goturulen-gonderilen-sigortalilara-uygulanan-5-puanlik-prim-indirimi":
-  //   "/hizmetlerimiz/devlet-destekleri/5510-6486-yurtdisina-goturulen-gonderilen-sigortalilara-uygulanan-5-puanlik-prim-indirimi",
-  // "/5510-malulluk-yaslilik-ve-olum-sigortasi-isveren-hissesinden-5-puanlik-indirim":
-  //   "/hizmetlerimiz/devlet-destekleri/5510-malulluk-yaslilik-ve-olum-sigortasi-isveren-hissesinden-5-puanlik-indirim",
-  // "/6111-sayili-tesvikten-nasil-fayda-saglanir":
-  //   "/hizmetlerimiz/devlet-destekleri/6111-sayili-tesvikten-nasil-fayda-saglanir",
-  "/ab-fonlari": "/hizmetlerimiz/devlet-destekleri/ab-fonlari",
-  // "/cari-donem-takipleri-6111":
-  //   "/hizmetlerimiz/devlet-destekleri/cari-donem-takipleri-6111",
-  // "/devlet-tesvikleri-ve-kobiler":
-  //   "/hizmetlerimiz/devlet-destekleri/devlet-tesvikleri-ve-kobiler",
 
-  // "/dijital-donusum-destek-programi-basladi":
-  //   "/hizmetlerimiz/devlet-destekleri/dijital-donusum-destek-programi-basladi",
+  // --- devlet destekleri ---
+  "/ab-fonlari": "/hizmetlerimiz/devlet-destekleri/ab-fonlari",
   "/dis-ticaret-destekleri":
     "/hizmetlerimiz/devlet-destekleri/dis-ticaret-destekleri",
-  // "/gecmis-donem-tesvik-hesaplamalari":
-  //   "/hizmetlerimiz/devlet-destekleri/gecmis-donem-tesvik-hesaplamalari",
   "/ipard": "/hizmetlerimiz/devlet-destekleri/ipard",
   "/kalkinma-ajanslari-destekleri":
     "/hizmetlerimiz/devlet-destekleri/kalkinma-ajanslari-destekleri",
   "/kirsal-kalkinma-proje-destekleri-tkdk":
     "/hizmetlerimiz/devlet-destekleri/kirsal-kalkinma-proje-destekleri-tkdk",
   "/kobigel-2021": "/hizmetlerimiz/devlet-destekleri/kobigel-2021",
-  // "/konaklama-tesislerine-sgk-prim-destegi":
-  //   "/hizmetlerimiz/devlet-destekleri/konaklama-tesislerine-sgk-prim-destegi",
   "/kosgeb-destekleri": "/hizmetlerimiz/devlet-destekleri/kosgeb-destekleri",
   "/sanayi-bakanligi-destekleri":
     "/hizmetlerimiz/devlet-destekleri/sanayi-bakanligi-destekleri",
-
-  // "/teknoloji-odakli-sanayi-hamle-programi-basladi":
-  //   "/hizmetlerimiz/devlet-destekleri/teknoloji-odakli-sanayi-hamle-programi-basladi",
   "/ticaret-bakanligi-destekleri":
     "/hizmetlerimiz/devlet-destekleri/ticaret-bakanligi-destekleri",
   "/tubitak-destekleri": "/hizmetlerimiz/devlet-destekleri/tubitak-destekleri",
   "/ulastirma-bakanligi-destekleri":
     "/hizmetlerimiz/devlet-destekleri/ulastirma-bakanligi-destekleri",
+  "/yesil-sanayi-destek-programi":
+    "/hizmetlerimiz/devlet-destekleri/yesil-sanayi-destek-programi",
+  "/arge-ve-tasarim-merkezi-kurulumu":
+    "/hizmetlerimiz/devlet-destekleri/arge-ve-tasarim-merkezi-kurulumu",
+
+  // "/6111-sayili-tesvikten-nasil-fayda-saglanir":
+  //   "/hizmetlerimiz/devlet-destekleri/6111-sayili-tesvikten-nasil-fayda-saglanir",
+
+  // "/devlet-tesvikleri-ve-kobiler":
+  //   "/hizmetlerimiz/devlet-destekleri/devlet-tesvikleri-ve-kobiler",
+
+  // "/dijital-donusum-destek-programi-basladi":
+  //   "/hizmetlerimiz/devlet-destekleri/dijital-donusum-destek-programi-basladi",
+
+  // "/konaklama-tesislerine-sgk-prim-destegi":
+  //   "/hizmetlerimiz/devlet-destekleri/konaklama-tesislerine-sgk-prim-destegi",
+
+  // "/teknoloji-odakli-sanayi-hamle-programi-basladi":
+  //   "/hizmetlerimiz/devlet-destekleri/teknoloji-odakli-sanayi-hamle-programi-basladi",
 
   // "/yesil-donusum-destek-programi-basladi":
   //   "/hizmetlerimiz/devlet-destekleri/yesil-donusum-destek-programi-basladi",
-  "/yesil-sanayi-destek-programi":
-    "/hizmetlerimiz/devlet-destekleri/yesil-sanayi-destek-programi",
+
   // "/yurt-disi-pazar-destek-programi":
   //   "/hizmetlerimiz/devlet-destekleri/yurt-disi-pazar-destek-programi",
-  "/arge-ve-tasarim-merkezi-kurulumu":
-    "/hizmetlerimiz/devlet-destekleri/arge-ve-tasarim-merkezi-kurulumu",
+
   // --- Makale ---
   "/sgk-tesvikleri-ve-sigorta-tesvik-sistemi":
     "/hizmetlerimiz/sigorta-tesvik-danismanligi/sgk-tesvikleri-ve-sigorta-tesvik-sistemi",
@@ -96,6 +82,30 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   // --- Sigorta tesvik danimanligi (hizmetler) ---
   "/sts-hizmetleri":
     "/hizmetlerimiz/sigorta-tesvik-danismanligi/sts-hizmetleri",
+  "/gecmis-donem-tesvik-hesaplamalari":
+    "/hizmetlerimiz/sigorta-tesvik-danismanligi/gecmis-donem-tesvik-hesaplamalari",
+  "/cari-donem-takipleri-6111":
+    "/hizmetlerimiz/sigorta-tesvik-danismanligi/cari-donem-takipleri-6111",
+  "/6645-isbasi-egitim-programini-tamamlayanlarin-istihdamina-yonelik-tesvik":
+    "/hizmetlerimiz/sigorta-tesvik-danismanligi/6645-isbasi-egitim-programini-tamamlayanlarin-istihdamina-yonelik-tesvik",
+
+  "/14857-engelli-sigortali-istihdamina-yonelik-tesvik":
+    "/hizmetlerimiz/sigorta-tesvik-danismanligi/14857-engelli-sigortali-istihdamina-yonelik-tesvik",
+
+  "/15746-arastirma-gelistirme-ve-tasarim-faaliyetlerine-iliskin-tesvik":
+    "/hizmetlerimiz/sigorta-tesvik-danismanligi/15746-arastirma-gelistirme-ve-tasarim-faaliyetlerine-iliskin-tesvik",
+  "/5225-55225-25225-kultur-yatirimlari-ve-girisimleri-hakkinda-uygulanan-sigorta-primi-tesviki":
+    "/hizmetlerimiz/sigorta-tesvik-danismanligi/5225-55225-25225-kultur-yatirimlari-ve-girisimleri-hakkinda-uygulanan-sigorta-primi-tesviki",
+  "/5510-25510-16322-26322-yatirimlarda-devlet-yardimlari-hakkinda-kararlar-uyarinca-uygulanan-tesvik":
+    "/hizmetlerimiz/sigorta-tesvik-danismanligi/5510-25510-16322-26322-yatirimlarda-devlet-yardimlari-hakkinda-kararlar-uyarinca-uygulanan-tesvik",
+  "/5510-46486-56486-66486-ilave-6-puanlik-prim-indirimi":
+    "/hizmetlerimiz/sigorta-tesvik-danismanligi/5510-46486-56486-66486-ilave-6-puanlik-prim-indirimi",
+  "/5510-6486-yurtdisina-goturulen-gonderilen-sigortalilara-uygulanan-5-puanlik-prim-indirimi":
+    "/hizmetlerimiz/sigorta-tesvik-danismanligi/5510-6486-yurtdisina-goturulen-gonderilen-sigortalilara-uygulanan-5-puanlik-prim-indirimi",
+  "/5510-malulluk-yaslilik-ve-olum-sigortasi-isveren-hissesinden-5-puanlik-indirim":
+    "/hizmetlerimiz/sigorta-tesvik-danismanligi/5510-malulluk-yaslilik-ve-olum-sigortasi-isveren-hissesinden-5-puanlik-indirim",
+  "/4447-15921-issizlik-odenegi-alanlarin-istihdami-halinde-uygulanan-prim-tesviki":
+    "/hizmetlerimiz/sigorta-tesvik-danismanligi/4447-15921-issizlik-odenegi-alanlarin-istihdami-halinde-uygulanan-prim-tesviki",
 
   // --- Marka, Patent ve Fikri Mülkiyet ---
   // "/barkod-tescili":
@@ -225,8 +235,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/ar-ge-yonetimi/uluslar-arasi-ar-ge-yardimlari-ve-ab-hibe-fonlari-danismanligi",
 
   // --- Eğitimler ---
-  // "/6645-isbasi-egitim-programini-tamamlayanlarin-istihdamina-yonelik-tesvik":
-  //   "/hizmetlerimiz/egitimler/6645-isbasi-egitim-programini-tamamlayanlarin-istihdamina-yonelik-tesvik",
+
   "/arge-tesvikleri-egitimleri":
     "/hizmetlerimiz/egitimler/arge-tesvikleri-egitimleri",
   "/devlet-destekleri-egitimleri":
