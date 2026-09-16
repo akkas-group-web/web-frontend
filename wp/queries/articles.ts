@@ -2,7 +2,7 @@ import { gql } from "graphql-request";
 
 export const GET_ARTICLES_QUERY = gql`
   query GetArticles {
-    articleItems {
+    articleItems(first: 100) {
       nodes {
         id
         title
@@ -19,6 +19,7 @@ export const GET_ARTICLES_QUERY = gql`
           authorName
           metin
           articleContent
+          displayorder
           authorPhoto {
             node {
               sourceUrl
