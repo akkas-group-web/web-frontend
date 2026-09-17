@@ -15,9 +15,15 @@ interface ServiceDetailProps {
 }
 
 function renderInlineBold(text: string) {
-  const parts = text.split(/(\*\*.*?\*\*)/g);
+  const parts = text
+    .split(/(<br\s*\/?>|\*\*.*?\*\*)/gi)
+    .filter(Boolean);
 
   return parts.map((part, index) => {
+    if (/^<br\s*\/?>$/i.test(part)) {
+      return <br key={index} />;
+    }
+
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
         <strong key={index} className="font-semibold text-[#0d4d5c]">
@@ -138,78 +144,78 @@ function renderContent(lines: string[]): ReactNode[] {
 
       const groupedHeader = hasGroupedTableHeader(headers);
 
-elements.push(
-  <div
-    key={`table-${index}`}
-    className="my-6 w-full overflow-x-auto rounded-xl border border-[#0d4d5c]/10"
-  >
-    <table className="w-full min-w-[700px] border-collapse text-left text-[13px]">
-      <thead className="bg-[#f2f8f9]">
-        {groupedHeader ? (
-          <>
-            <tr>
-              <th
-                colSpan={3}
-                className="border-b border-r border-[#0d4d5c]/10 px-4 py-3 font-semibold text-[#0d4d5c]"
-              >
-                {renderInlineBold(headers[0])}
-              </th>
+      elements.push(
+        <div
+          key={`table-${index}`}
+          className="my-6 w-full overflow-x-auto rounded-xl border border-[#0d4d5c]/10"
+        >
+          <table className="w-full min-w-[700px] border-collapse text-left text-[13px]">
+            <thead className="bg-[#f2f8f9]">
+              {groupedHeader ? (
+                <>
+                  <tr>
+                    <th
+                      colSpan={3}
+                      className="border-b border-r border-[#0d4d5c]/10 px-4 py-3 font-semibold text-[#0d4d5c]"
+                    >
+                      {renderInlineBold(headers[0])}
+                    </th>
 
-              <th
-                colSpan={3}
-                className="border-b border-[#0d4d5c]/10 px-4 py-3 font-semibold text-[#0d4d5c]"
-              >
-                {renderInlineBold(headers[3])}
-              </th>
-            </tr>
+                    <th
+                      colSpan={3}
+                      className="border-b border-[#0d4d5c]/10 px-4 py-3 font-semibold text-[#0d4d5c]"
+                    >
+                      {renderInlineBold(headers[3])}
+                    </th>
+                  </tr>
 
-            {rows[0] && (
-              <tr>
-                {rows[0].map((cell, cellIndex) => (
-                  <th
-                    key={cellIndex}
-                    className="border-b border-r border-[#0d4d5c]/10 px-4 py-3 font-medium text-[#0d4d5c] last:border-r-0"
-                  >
-                    {renderInlineBold(cell)}
-                  </th>
-                ))}
-              </tr>
-            )}
-          </>
-        ) : (
-          <tr>
-            {headers.map((header, headerIndex) => (
-              <th
-                key={headerIndex}
-                className="border-b border-r border-[#0d4d5c]/10 px-4 py-3 font-semibold text-[#0d4d5c] last:border-r-0"
-              >
-                {renderInlineBold(header)}
-              </th>
-            ))}
-          </tr>
-        )}
-      </thead>
+                  {rows[0] && (
+                    <tr>
+                      {rows[0].map((cell, cellIndex) => (
+                        <th
+                          key={cellIndex}
+                          className="border-b border-r border-[#0d4d5c]/10 px-4 py-3 font-medium text-[#0d4d5c] last:border-r-0"
+                        >
+                          {renderInlineBold(cell)}
+                        </th>
+                      ))}
+                    </tr>
+                  )}
+                </>
+              ) : (
+                <tr>
+                  {headers.map((header, headerIndex) => (
+                    <th
+                      key={headerIndex}
+                      className="border-b border-r border-[#0d4d5c]/10 px-4 py-3 font-semibold text-[#0d4d5c] last:border-r-0"
+                    >
+                      {renderInlineBold(header)}
+                    </th>
+                  ))}
+                </tr>
+              )}
+            </thead>
 
-      <tbody>
-        {(groupedHeader ? rows.slice(1) : rows).map((row, rowIndex) => (
-          <tr
-            key={rowIndex}
-            className="border-b border-[#0d4d5c]/10 last:border-b-0"
-          >
-            {row.map((cell, cellIndex) => (
-              <td
-                key={cellIndex}
-                className="border-r border-[#0d4d5c]/10 px-4 py-3 align-top leading-6 text-[#58696e] last:border-r-0"
-              >
-                {renderInlineBold(cell)}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>,
-);
+            <tbody>
+              {(groupedHeader ? rows.slice(1) : rows).map((row, rowIndex) => (
+                <tr
+                  key={rowIndex}
+                  className="border-b border-[#0d4d5c]/10 last:border-b-0"
+                >
+                  {row.map((cell, cellIndex) => (
+                    <td
+                      key={cellIndex}
+                      className="border-r border-[#0d4d5c]/10 px-4 py-3 align-top leading-6 text-[#58696e] last:border-r-0"
+                    >
+                      {renderInlineBold(cell)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>,
+      );
 
       continue;
     }
@@ -222,10 +228,7 @@ elements.push(
       const link = renderLink(title);
 
       elements.push(
-        <h3
-          key={index}
-          className="pt-2 text-base font-semibold text-[#0d4d5c]"
-        >
+        <h3 key={index} className="pt-2 text-base font-semibold text-[#0d4d5c]">
           {link ?? title}
         </h3>,
       );
@@ -269,7 +272,7 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
       description={service.description}
       category={service.categoryTitle}
     >
-      <ServiceSection title={service.contentTitle}>
+      <ServiceSection>
         <div
           className={
             service.image
@@ -291,6 +294,12 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
           )}
 
           <div className="space-y-3">
+            {service.contentTitle && (
+              <h2 className="text-lg font-bold text-[#0d4d5c] md:text-xl">
+                {service.contentTitle}
+              </h2>
+            )}
+
             {typeof service.content === "string" ? (
               <div
                 className="prose prose-sm max-w-none text-[13.5px] leading-6 text-[#58696e]"
