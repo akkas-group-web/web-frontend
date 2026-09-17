@@ -8,6 +8,22 @@ interface BlogDetailProps {
   article: ArticleItem;
 }
 
+function renderInlineBold(text: string) {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={index} className="font-semibold text-[#31565C]">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+
+    return part;
+  });
+}
+
 function renderArticleContent(content: string) {
   return content
     .split(/\r?\n/)
@@ -20,17 +36,29 @@ function renderArticleContent(content: string) {
             key={index}
             className="mt-11 text-[25px] font-semibold leading-tight tracking-[-0.025em] text-[#173F45]"
           >
-            {line.replace(/^##\s+/, "")}
+            {renderInlineBold(line.replace(/^##\s+/, ""))}
           </h2>
         );
       }
+
       if (/^###\s+/.test(line)) {
         return (
           <h3
             key={index}
             className="mt-8 text-[20px] font-semibold leading-tight text-[#31565C]"
           >
-            {line.replace(/^###\s+/, "")}
+            {renderInlineBold(line.replace(/^###\s+/, ""))}
+          </h3>
+        );
+      }
+
+      if (/^\*\*.+\*\*$/.test(line)) {
+        return (
+          <h3
+            key={index}
+            className="mt-8 text-[20px] font-semibold leading-tight text-[#31565C]"
+          >
+            {line.slice(2, -2)}
           </h3>
         );
       }
@@ -41,7 +69,7 @@ function renderArticleContent(content: string) {
             key={index}
             className="mt-2 pl-4 text-[16px] leading-[1.8] text-[#526D72] sm:text-[17px]"
           >
-            - {line.slice(2)}
+            - {renderInlineBold(line.slice(2))}
           </p>
         );
       }
@@ -51,12 +79,11 @@ function renderArticleContent(content: string) {
           key={index}
           className="mt-4 text-[16px] leading-[1.85] text-[#526D72] sm:text-[17px]"
         >
-          {line}
+          {renderInlineBold(line)}
         </p>
       );
     });
 }
-
 export function BlogDetail({ article }: BlogDetailProps) {
   const formattedDate = new Date(article.date).toLocaleDateString("tr-TR", {
     day: "numeric",
