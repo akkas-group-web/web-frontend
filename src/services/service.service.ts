@@ -15,9 +15,11 @@ interface WPServicesResponse {
         description: string;
         icon: string;
         featured: boolean;
+        displayorder?: number | string | null;
       };
     }[];
   };
+
   serviceChildren: {
     nodes: {
       id: string;
@@ -27,61 +29,88 @@ interface WPServicesResponse {
         childDescription: string;
         childContent: string;
         contentTitle?: string;
+        displayorder?: number | string | null;
+
         contentImage?: {
           node: {
             sourceUrl: string;
             altText?: string;
           };
         };
-        relatedCategory: {
+
+        relatedCategory?: {
           nodes: { id: string }[];
-        };
+        } | null;
       };
     }[];
   };
 }
 
+function getDisplayOrder(value: number | string | null | undefined) {
+  if (value === null || value === undefined || value === "") {
+    return 9999;
+  }
+
+  const order = Number(value);
+
+  return Number.isFinite(order) ? order : 9999;
+}
+
 function mapServiceCategoriesFromWP(
   data: WPServicesResponse,
 ): ServiceCategory[] {
-  return data.serviceCategories.nodes
-    .map((categoryNode): ServiceCategory | null => {
-      const fields = categoryNode.serviceCategoryFields;
+return [...data.serviceCategories.nodes]
+  .sort(
+    (a, b) =>
+      getDisplayOrder(a.serviceCategoryFields.displayorder) -
+      getDisplayOrder(b.serviceCategoryFields.displayorder),
+  )
+  .map((categoryNode): ServiceCategory | null => {
+    const fields = categoryNode.serviceCategoryFields;
 
-      if (!fields || !fields.categorySlug) {
-        logger.error("Kategori alanları eksik, atlanıyor", {
-          categoryId: categoryNode.id,
-          title: categoryNode.title,
-        });
-        return null;
-      }
+    if (!fields || !fields.categorySlug) {
+      logger.error("Kategori alanları eksik, atlanıyor", {
+        categoryId: categoryNode.id,
+        title: categoryNode.title,
+      });
+      return null;
+    }
 
-      const children = data.serviceChildren.nodes
-        .filter(
-          (childNode) =>
-            childNode.serviceChildId.relatedCategory?.nodes[0]?.id ===
-            categoryNode.id,
-        )
-        .map((childNode) => ({
-          label: childNode.serviceChildId.childLabel,
-          href: `/hizmetlerimiz/${fields.categorySlug}/${childNode.serviceChildId.childSlug}`,
-        }));
+    const children = data.serviceChildren.nodes
+      .filter(
+        (childNode) =>
+          childNode.serviceChildId?.relatedCategory?.nodes?.[0]?.id ===
+          categoryNode.id,
+      )
+      .sort(
+        (a, b) =>
+          getDisplayOrder(a.serviceChildId.displayorder) -
+          getDisplayOrder(b.serviceChildId.displayorder),
+      )
+      .map((childNode) => ({
+        label: childNode.serviceChildId.childLabel,
+        href: `/hizmetlerimiz/${fields.categorySlug}/${childNode.serviceChildId.childSlug}`,
+      }));
 
       return {
-        id: fields.categorySlug,
-        label: categoryNode.title,
-        href: `/hizmetlerimiz/${fields.categorySlug}`,
-        description: fields.description,
-        icon: fields.icon as ServiceIconKey,
-        featured: fields.featured,
-        children,
-      };
-    })
-    .filter((category) => category !== null) as ServiceCategory[];
+      id: fields.categorySlug,
+      label: categoryNode.title,
+      href: `/hizmetlerimiz/${fields.categorySlug}`,
+      description: fields.description,
+      icon: fields.icon as ServiceIconKey,
+      featured: fields.featured,
+      children,
+    };
+  })
+  .filter((category) => category !== null) as ServiceCategory[];
 }
-
 function mapServiceDetailsFromWP(data: WPServicesResponse): ServiceDetail[] {
-  return data.serviceChildren.nodes
+  return [...data.serviceChildren.nodes]
+    .sort(
+      (a, b) =>
+        getDisplayOrder(a.serviceChildId.displayorder) -
+        getDisplayOrder(b.serviceChildId.displayorder),
+    )
     .map((childNode): ServiceDetail | null => {
       const childFields = childNode.serviceChildId;
 
@@ -93,25 +122,30 @@ function mapServiceDetailsFromWP(data: WPServicesResponse): ServiceDetail[] {
         return null;
       }
 
-      const relatedCategoryId = childFields.relatedCategory?.nodes[0]?.id;
+      const relatedCategoryId =
+        childFields.relatedCategory?.nodes?.[0]?.id;
 
       const categoryNode = data.serviceCategories.nodes.find(
         (c) => c.id === relatedCategoryId,
       );
-      const rawImage = childNode.serviceChildId.contentImage?.node;
+
+      const rawImage = childFields.contentImage?.node;
+
       return {
-        id: childNode.serviceChildId.childSlug,
+        id: childFields.childSlug,
         category: categoryNode?.serviceCategoryFields?.categorySlug ?? "",
         categoryTitle: categoryNode?.title ?? "",
-        slug: childNode.serviceChildId.childSlug,
-        title: childNode.serviceChildId.childLabel,
-        description: childNode.serviceChildId.childDescription,
-        contentTitle: childNode.serviceChildId.contentTitle ?? "",
-        content: (childFields.childContent ?? "").split("\n").filter(Boolean),
+        slug: childFields.childSlug,
+        title: childFields.childLabel,
+        description: childFields.childDescription,
+        contentTitle: childFields.contentTitle ?? "",
+        content: (childFields.childContent ?? "")
+          .split("\n")
+          .filter(Boolean),
         image: rawImage
           ? {
               url: rawImage.sourceUrl,
-              alt: rawImage.altText || childNode.serviceChildId.childLabel,
+              alt: rawImage.altText || childFields.childLabel,
             }
           : undefined,
       };
@@ -119,14 +153,17 @@ function mapServiceDetailsFromWP(data: WPServicesResponse): ServiceDetail[] {
     .filter((service) => service !== null) as ServiceDetail[];
 }
 
+
 export async function getServices(): Promise<ServiceDetail[]> {
   try {
-    // İleride: await wpClient.query(SERVICES_QUERY) burada olacak.
-    //  return MOCK_SERVICE_DETAILS;
-    const data = await wpClient.request<WPServicesResponse>(GET_SERVICES_QUERY);
+    const data = await wpClient.request<WPServicesResponse>(
+      GET_SERVICES_QUERY,
+    );
+
     return mapServiceDetailsFromWP(data);
   } catch (error) {
     logger.error("Hizmetler içeriği alınamadı", { error });
+
     throw new AppError(
       "Hizmetler içeriği yüklenemedi",
       "CONTENT_FETCH_FAILED",
@@ -135,15 +172,16 @@ export async function getServices(): Promise<ServiceDetail[]> {
   }
 }
 
-// --- mevcut MOCK_SERVICE_DETAILS ve getServices/getServiceByCategoryAndSlug aynen kalıyor ---
-
 export async function getServiceCategories(): Promise<ServiceCategory[]> {
   try {
-    // İleride: await wpClient.query(SERVICE_CATEGORIES_QUERY) burada olacak.
-    const data = await wpClient.request<WPServicesResponse>(GET_SERVICES_QUERY);
+    const data = await wpClient.request<WPServicesResponse>(
+      GET_SERVICES_QUERY,
+    );
+
     return mapServiceCategoriesFromWP(data);
   } catch (error) {
     logger.error("Hizmet kategorileri alınamadı", { error });
+
     throw new AppError(
       "Hizmet kategorileri yüklenemedi",
       "CONTENT_FETCH_FAILED",
@@ -158,6 +196,7 @@ export async function getServiceByCategoryAndSlug(
 ): Promise<ServiceDetail | null> {
   try {
     const services = await getServices();
+
     return (
       services.find(
         (service) => service.category === category && service.slug === slug,
@@ -165,6 +204,7 @@ export async function getServiceByCategoryAndSlug(
     );
   } catch (error) {
     logger.error("Hizmet detayı alınamadı", { error, category, slug });
+
     throw new AppError(
       "Hizmet detayı yüklenemedi",
       "CONTENT_FETCH_FAILED",
@@ -178,13 +218,21 @@ export async function getServicesAndCategories(): Promise<{
   services: ServiceDetail[];
 }> {
   try {
-    const data = await wpClient.request<WPServicesResponse>(GET_SERVICES_QUERY);
+    const data = await wpClient.request<WPServicesResponse>(
+      GET_SERVICES_QUERY,
+    );
+
     return {
       categories: mapServiceCategoriesFromWP(data),
       services: mapServiceDetailsFromWP(data),
     };
   } catch (error) {
     logger.error("Hizmetler ve kategoriler alınamadı", { error });
-    throw new AppError("Hizmetler yüklenemedi", "CONTENT_FETCH_FAILED", error);
+
+    throw new AppError(
+      "Hizmetler yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error,
+    );
   }
 }
