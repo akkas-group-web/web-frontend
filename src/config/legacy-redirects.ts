@@ -272,6 +272,18 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/cerezlere-iliskin-aydinlatma-metni": "/cerez-politikasi",
 
   // --- Blog Yazıları ---
+  "/Blog/detay/isletmelere-girisimcilere-ve-yatirimcilara-yonelik-bilgi-transferini-kolaylastiran-online-teknoloji":
+    "/blog/isletmelere-girisimcilere-ve-yatirimcilara-yonelik-bilgi-transferini-kolaylastiran-online-teknoloji",
+
+  "/Blog/detay/telefonda-dogru-iletisim-icin-altin-ogutler":
+    "/blog/telefonda-dogru-iletisim-icin-altin-ogutler",
+
+  "/Blog/detay/kimyasal-maddelerin-is-hayatindaki-yeri":
+    "/blog/kimyasal-maddelerin-is-hayatindaki-yeri",
+
+  "/Blog/detay/isg-egitimlerinin-gerekliligi":
+    "/blog/isg-egitimlerinin-gerekliligi",
+
   "/Blog/detay/2024-kariyer-gunlerinde-akkas-group-olarak-yine-yerimizi-aldik":
     "/blog/2024-kariyer-gunlerinde-akkas-group-olarak-yine-yerimizi-aldik",
   "/Blog/detay/6111-sayili-kanun-numarali-tesvik-uzatildi":
@@ -323,10 +335,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/Blog/detay/is-sagligi-ve-guvenligi": "/blog/is-sagligi-ve-guvenligi",
   "/Blog/detay/is-sagligi-ve-guvenliginin-onemi":
     "/blog/is-sagligi-ve-guvenliginin-onemi",
-  "/Blog/detay/isg-egitimlerinin-gerekliligi":
-    "/blog/isg-egitimlerinin-gerekliligi",
-  "/Blog/detay/isletmelere-girisimcilere-ve-yatirimcilara-yonelik-bilgi-transferini-kolaylastiran-online-teknoloji":
-    "/blog/isletmelere-girisimcilere-ve-yatirimcilara-yonelik-bilgi-transferini-kolaylastiran-online-teknoloji",
+
   "/Blog/detay/istanbul-okan-universitesi-kariyer-gunleri":
     "/blog/istanbul-okan-universitesi-kariyer-gunleri",
   "/Blog/detay/istanbul-zaim-universitesi-fikri-ve-sinai-haklar-egitim-programi":
@@ -339,8 +348,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/blog/kapasite-gelistirme-destek-programi-2-basvuru-donemi-basladi",
   "/Blog/detay/karbon-ayak-izi-kavramina-genel-bakis":
     "/blog/karbon-ayak-izi-kavramina-genel-bakis",
-  "/Blog/detay/kimyasal-maddelerin-is-hayatindaki-yeri":
-    "/blog/kimyasal-maddelerin-is-hayatindaki-yeri",
+
   "/Blog/detay/kirsal-kalkinma-yatirim-programi":
     "/blog/kirsal-kalkinma-yatirim-programi",
   "/Blog/detay/kisisel-veri-sahibi-nin-haklari-ve-kanun-hukumlerinin-uygulanmayacagi-haller":
@@ -404,8 +412,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/blog/teknoloji-odakli-sanayi-hamle-programi",
   "/Blog/detay/teknoloji-odakli-sanayi-hamle-programi-basladi":
     "/blog/teknoloji-odakli-sanayi-hamle-programi-basladi",
-  "/Blog/detay/telefonda-dogru-iletisim-icin-altin-ogutler":
-    "/blog/telefonda-dogru-iletisim-icin-altin-ogutler",
+
   "/Blog/detay/tubitak-1501-sanayi-ar-ge-projeleri-ve-1507-kobi-ar-ge-baslangic-destek-programi":
     "/blog/tubitak-1501-sanayi-ar-ge-projeleri-ve-1507-kobi-ar-ge-baslangic-destek-programi",
   "/Blog/detay/unutulma-kvk-bilgi-notu": "/blog/unutulma-kvk-bilgi-notu",
