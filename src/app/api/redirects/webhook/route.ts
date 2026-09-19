@@ -135,25 +135,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     );
 
     /*
-     * Yeni URL geçmişte bu post için bir redirect kaynağı olarak
-     * kullanılmış olabilir.
-     *
-     * Örneğin:
-     *
-     * 2026 -> 202
-     * 202  -> 2026
-     *
-     * geldiğinde 2026 artık canonical URL olduğu için
-     * "2026 -> 202" kaydını aktif redirect olarak tutmamalıyız.
-     */
-    await connection.execute(
-      `DELETE FROM redirects
-       WHERE wp_post_id = ?
-         AND old_uri = ?`,
-      [postId, new_uri],
-    );
-
-    /*
      * Bu postun geçmişteki bütün URL'lerini yeni canonical URL'ye
      * bağla.
      *
@@ -169,7 +150,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
      *
      * olur.
      *
-     * Böylece uzun redirect zincirleri de kısaltılmış olur.
+     * DELETE kullanmıyoruz. Böylece redirects_svc kullanıcısının
+     * DELETE yetkisine ihtiyaç kalmıyor.
      */
     await connection.execute(
       `UPDATE redirects
@@ -185,6 +167,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     /*
      * Eski URL zaten kayıtlıysa mevcut kaydı güncelle.
      * Yoksa yeni redirect oluştur.
+     *
+     * Eğer new_uri daha önce bu post için old_uri olarak kayıtlıysa,
+     * bu upsert mevcut kaydı yeni canonical URL'ye yönlendirir.
      */
     await connection.execute(
       `INSERT INTO redirects
