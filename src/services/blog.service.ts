@@ -37,23 +37,36 @@ interface WPArticleNode {
     } | null;
   };
 }
-function getDisplayOrder(value: number | string | null | undefined) {
+function getDisplayOrder(
+  value: number | string | null | undefined,
+): number | null {
   if (value === null || value === undefined || value === "") {
-    return 9999;
+    return null;
   }
 
   const order = Number(value);
 
-  return Number.isFinite(order) ? order : 9999;
+  return Number.isFinite(order) ? order : null;
 }
 
 function mapArticlesFromWP(data: WPArticlesResponse): ArticleItem[] {
   return [...data.articleItems.nodes]
-    .sort(
-      (a, b) =>
-        getDisplayOrder(a.articleItemFields.displayorder) -
-        getDisplayOrder(b.articleItemFields.displayorder),
-    )
+  .sort((a, b) => {
+  const orderA = getDisplayOrder(a.articleItemFields.displayorder);
+  const orderB = getDisplayOrder(b.articleItemFields.displayorder);
+
+  // İkisinde de sıra yoksa en yeni tarih üstte
+  if (orderA === null && orderB === null) {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  }
+
+  // Sırası boş olanlar en üstte
+  if (orderA === null) return -1;
+  if (orderB === null) return 1;
+
+  // İkisinde de sıra varsa büyük sayı üstte
+  return orderB - orderA;
+})
     .map((node) => {
       const coverImageUrl = node.featuredImage?.node.sourceUrl ?? "";
       const authorName = node.articleItemFields.authorName;
