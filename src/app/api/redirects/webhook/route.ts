@@ -128,10 +128,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
      */
     await connection.query(
       `SELECT id
-       FROM redirects
-       WHERE wp_post_id = ?
-       FOR UPDATE`,
-      [postId],
+   FROM redirects
+   WHERE wp_post_id = ?
+      OR target_wp_post_id = ?
+   FOR UPDATE`,
+      [postId, postId],
     );
 
     /*
