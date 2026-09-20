@@ -11,10 +11,12 @@ export const GET_SERVICES_QUERY = gql`
           description
           icon
           featured
+          displayorder
         }
       }
     }
-    serviceChildren(first: 100) {
+
+    serviceChildren(first: 500) {
       nodes {
         id
         serviceChildId {
@@ -23,12 +25,15 @@ export const GET_SERVICES_QUERY = gql`
           childDescription
           childContent
           contentTitle
+          displayorder
+
           contentImage {
             node {
               sourceUrl
               altText
             }
           }
+
           relatedCategory {
             nodes {
               ... on ServiceCategory {
