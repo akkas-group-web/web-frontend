@@ -164,6 +164,16 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       [new_uri, postId, new_uri],
     );
 
+    await connection.execute(
+      `UPDATE redirects
+   SET new_uri = ?,
+       status_code = 301,
+       updated_at = CURRENT_TIMESTAMP
+   WHERE target_wp_post_id = ?
+     AND old_uri <> ?`,
+      [new_uri, postId, new_uri],
+    );
+
     /*
      * Eski URL zaten kayıtlıysa mevcut kaydı güncelle.
      * Yoksa yeni redirect oluştur.
