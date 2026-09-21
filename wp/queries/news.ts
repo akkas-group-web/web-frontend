@@ -2,7 +2,7 @@ import { gql } from "graphql-request";
 
 export const GET_NEWS_QUERY = gql`
   query GetNews {
-    newsItems {
+    newsItems(first: 100) {
       nodes {
         id
         title
@@ -18,6 +18,7 @@ export const GET_NEWS_QUERY = gql`
           excerptText
           kategori
           haberIcerigi
+          displayorder
         }
       }
     }
