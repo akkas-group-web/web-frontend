@@ -10,7 +10,7 @@ export const routes = {
   // Sabit (parametresiz) route'lar da buraya eklenebilir:
   newsList: () => "/haberler",
   blogList: () => "/blog",
-  sectorsList: () => "/sektorler",
+  // sectorsList: () => "/sektorler",
   contact: () => "/iletisim",
   about: () => "/hakkimizda",
 } as const;

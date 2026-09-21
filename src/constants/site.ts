@@ -48,21 +48,20 @@ export const BRAND_COMPANIES: BrandCompany[] = [
   },
 ];
 
-export const SECTORS: NavChild[] = [
-  { label: "Üretim & Sanayi", href: "/sektorler/uretim-sanayi" },
-  { label: "Gıda", href: "/sektorler/gida" },
-  { label: "Tekstil", href: "/sektorler/tekstil" },
-  { label: "Otomotiv", href: "/sektorler/otomotiv" },
-  { label: "Kimya", href: "/sektorler/kimya" },
-  { label: "İnşaat", href: "/sektorler/insaat" },
-  { label: "Lojistik", href: "/sektorler/lojistik" },
-  { label: "Enerji", href: "/sektorler/enerji" },
-  { label: "Sağlık", href: "/sektorler/saglik" },
-  { label: "Bilişim & Teknoloji", href: "/sektorler/bilisim-teknoloji" },
-  { label: "Turizm", href: "/sektorler/turizm" },
-  { label: "Tarım", href: "/sektorler/tarim" },
-];
-
+// export const SECTORS: NavChild[] = [
+//   { label: "Üretim & Sanayi", href: "/sektorler/uretim-sanayi" },
+//   { label: "Gıda", href: "/sektorler/gida" },
+//   { label: "Tekstil", href: "/sektorler/tekstil" },
+//   { label: "Otomotiv", href: "/sektorler/otomotiv" },
+//   { label: "Kimya", href: "/sektorler/kimya" },
+//   { label: "İnşaat", href: "/sektorler/insaat" },
+//   { label: "Lojistik", href: "/sektorler/lojistik" },
+//   { label: "Enerji", href: "/sektorler/enerji" },
+//   { label: "Sağlık", href: "/sektorler/saglik" },
+//   { label: "Bilişim & Teknoloji", href: "/sektorler/bilisim-teknoloji" },
+//   { label: "Turizm", href: "/sektorler/turizm" },
+//   { label: "Tarım", href: "/sektorler/tarim" },
+// ];
 
 export const NAV_LINKS: NavItem[] = [
   { label: "Hakkımızda", href: "/hakkimizda" },

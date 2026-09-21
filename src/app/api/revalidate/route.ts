@@ -7,8 +7,7 @@ const CPT_PATH_MAP: Record<string, ResolvePaths> = {
   news_item: (slug) =>
     slug ? ["/haberler", `/haberler/${slug}`] : ["/haberler"],
   article_item: (slug) => (slug ? ["/blog", `/blog/${slug}`] : ["/blog"]),
-  sector: (slug) =>
-    slug ? ["/sektorler", `/sektorler/${slug}`] : ["/sektorler"],
+  sector: (slug) => (slug ? ["/", `/sektorler/${slug}`] : ["/"]),
   service_category: (slug) =>
     slug
       ? ["/", "/hizmetlerimiz", `/hizmetlerimiz/${slug}`]
