@@ -9,6 +9,8 @@ import {
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://akkasgroup.com";
 
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/`, changeFrequency: "weekly", priority: 1 },
@@ -32,11 +34,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "daily",
       priority: 0.8,
     },
-    {
-      url: `${BASE_URL}${routes.sectorsList()}`,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
+    // {
+    //   url: `${BASE_URL}${routes.sectorsList()}`,
+    //   changeFrequency: "monthly",
+    //   priority: 0.8,
+    // },
   ];
 
   const [news, articles, sectors, { categories, services }] = await Promise.all(
