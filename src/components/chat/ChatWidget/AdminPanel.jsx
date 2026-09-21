@@ -5,7 +5,7 @@ import './AdminPanel.css'
 
 const ACCEPTED = '.pdf,.docx,.doc,.xlsx,.xls,.csv,.pptx,.txt,.png,.jpg,.jpeg'
 const API_URL =
-  process.env.NEXT_PUBLIC_CHAT_API_URL || "http://localhost:3001"
+  process.env.NEXT_PUBLIC_CHAT_API_URL || "/chatbox"
 export default function AdminPanel({ onBack, onPreview }) {
   const [areas, setAreas] = useState([])
   const [activeAreaId, setActiveAreaId] = useState(null)
