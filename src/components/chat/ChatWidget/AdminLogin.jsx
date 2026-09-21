@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import './AdminLogin.css'
 
 const PIN_LENGTH = 4
-const API_URL = process.env.NEXT_PUBLIC_CHAT_API_URL || '/chatbox'
+const API_URL = 'https://akkasgroup.com/chatbox'
 export default function AdminLogin({ onBack, onSuccess }) {
   const [pin, setPin] = useState('')
   const [error, setError] = useState(false)
