@@ -6,4 +6,5 @@ export interface ClientReference {
   logo: MediaImage;
   sector?: string;
   website?: string;
+  displayorder?: number | null;
 }

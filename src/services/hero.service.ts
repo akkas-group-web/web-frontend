@@ -12,6 +12,7 @@ export interface HeroSlide {
   description: string;
   image: MediaImage;
   href: string;
+  displayOrder: number;
 }
 
 interface WPHeroSlidesResponse {
@@ -23,6 +24,7 @@ interface WPHeroSlidesResponse {
         title_text: string;
         description: string;
         link: string;
+        displayorder: number | string | null;
         image: {
           node: {
             sourceUrl: string;
@@ -35,19 +37,22 @@ interface WPHeroSlidesResponse {
 }
 
 function mapHeroSlidesFromWP(data: WPHeroSlidesResponse): HeroSlide[] {
-  return data.heroSlides.nodes.map((node) => ({
-    id: node.id,
-    eyebrow: node.heroSlideFields.eyebrow,
-    title: node.heroSlideFields.title_text,
-    description: node.heroSlideFields.description,
-    href: node.heroSlideFields.link,
-    image: {
-      url: node.heroSlideFields.image.node.sourceUrl,
-      alt:
-        node.heroSlideFields.image.node.altText ||
-        node.heroSlideFields.title_text,
-    },
-  }));
+  return data.heroSlides.nodes
+    .map((node) => ({
+      id: node.id,
+      eyebrow: node.heroSlideFields.eyebrow,
+      title: node.heroSlideFields.title_text,
+      description: node.heroSlideFields.description,
+      href: node.heroSlideFields.link,
+      displayOrder: Number(node.heroSlideFields.displayorder ?? 999),
+      image: {
+        url: node.heroSlideFields.image.node.sourceUrl,
+        alt:
+          node.heroSlideFields.image.node.altText ||
+          node.heroSlideFields.title_text,
+      },
+    }))
+    .sort((a, b) => a.displayOrder - b.displayOrder);
 }
 
 export async function getHeroSlides(): Promise<HeroSlide[]> {
@@ -55,9 +60,11 @@ export async function getHeroSlides(): Promise<HeroSlide[]> {
     const data = await wpClient.request<WPHeroSlidesResponse>(
       GET_HERO_SLIDES_QUERY,
     );
+
     return mapHeroSlidesFromWP(data);
   } catch (error) {
     logger.error("Hero slaytları alınamadı", { error });
+
     throw new AppError(
       "Hero slaytları yüklenemedi",
       "CONTENT_FETCH_FAILED",

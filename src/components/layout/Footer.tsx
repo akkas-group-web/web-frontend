@@ -125,18 +125,12 @@ export function Footer() {
             </Link>
 
             <Link
-              href="https://akkasgroup.com/kisisel-verilerik-koruma-kanunu"
+              href="https://akkasgroup.com/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/kisisel-verileri-koruma-kanunu"
               className="break-words text-white/45 transition-colors hover:text-white"
             >
               Kişisel Verileri Koruma Kanunu
             </Link>
 
-            <Link
-              href="https://akkasgroup.com/6111-sayili-tesvikten-nasil-fayda-saglanir"
-              className="break-words text-white/45 transition-colors hover:text-white"
-            >
-              6111 Sayılı Teşvikten Nasıl Fayda Sağlanır?
-            </Link>
           </div>
         </div>
 
@@ -210,42 +204,42 @@ export function Footer() {
             />
           </form>
 
-<div className="mt-3 space-y-2">
-  <label className="flex cursor-pointer items-start gap-2 text-[11px] leading-4 text-white/40">
-    <input
-      type="checkbox"
-      checked={kvkkAccepted}
-      onChange={(e) => setKvkkAccepted(e.target.checked)}
-      className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-[#7fc7d4]"
-    />
+          <div className="mt-3 space-y-2">
+            <label className="flex cursor-pointer items-start gap-2 text-[11px] leading-4 text-white/40">
+              <input
+                type="checkbox"
+                checked={kvkkAccepted}
+                onChange={(e) => setKvkkAccepted(e.target.checked)}
+                className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-[#7fc7d4]"
+              />
 
-    <span>
-      <a
-        href="/documents/iletisimformuaydinlatmametni.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="underline hover:text-white/70"
-      >
-        KVKK Aydınlatma Metni
-      </a>{" "}
-      &apos;ni okudum ve kabul ediyorum.
-    </span>
-  </label>
+              <span>
+                <a
+                  href="/documents/iletisimformuaydinlatmametni.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-white/70"
+                >
+                  KVKK Aydınlatma Metni
+                </a>{" "}
+                &apos;ni okudum ve kabul ediyorum.
+              </span>
+            </label>
 
-  <label className="flex cursor-pointer items-start gap-2 text-[11px] leading-4 text-white/40">
-    <input
-      type="checkbox"
-      checked={bulletinAccepted}
-      onChange={(e) => setBulletinAccepted(e.target.checked)}
-      className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-[#7fc7d4]"
-    />
+            <label className="flex cursor-pointer items-start gap-2 text-[11px] leading-4 text-white/40">
+              <input
+                type="checkbox"
+                checked={bulletinAccepted}
+                onChange={(e) => setBulletinAccepted(e.target.checked)}
+                className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-[#7fc7d4]"
+              />
 
-    <span>
-      E-bülten gönderimi için kişisel verilerimin işlenmesini kabul
-      ediyorum.
-    </span>
-  </label>
-</div>
+              <span>
+                E-bülten gönderimi için kişisel verilerimin işlenmesini kabul
+                ediyorum.
+              </span>
+            </label>
+          </div>
           <div className="mt-3 space-y-2"></div>
           <button
             type="submit"
@@ -305,7 +299,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10 py-6 text-center text-xs text-white/30">
-        © {new Date().getFullYear()} Akkaş Group — Tüm hakları saklıdır.
+        © {new Date().getFullYear()} Akkaş Teknoloji — Tüm hakları saklıdır.
       </div>
     </footer>
   );
