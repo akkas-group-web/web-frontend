@@ -125,18 +125,12 @@ export function Footer() {
             </Link>
 
             <Link
-              href="https://akkasgroup.com/kisisel-verilerik-koruma-kanunu"
+              href="https://akkasgroup.com/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/kisisel-verileri-koruma-kanunu"
               className="break-words text-white/45 transition-colors hover:text-white"
             >
               Kişisel Verileri Koruma Kanunu
             </Link>
 
-            <Link
-              href="https://akkasgroup.com/6111-sayili-tesvikten-nasil-fayda-saglanir"
-              className="break-words text-white/45 transition-colors hover:text-white"
-            >
-              6111 Sayılı Teşvikten Nasıl Fayda Sağlanır?
-            </Link>
           </div>
         </div>
 
