@@ -82,6 +82,7 @@ interface WPReferencesResponse {
         name: string;
         sektor?: string;
         website?: string;
+        displayorder?: number | null;
         logo: {
           node: {
             sourceUrl: string;
@@ -108,6 +109,7 @@ function mapReferencesFromWP(data: WPReferencesResponse): ClientReference[] {
       },
       sector: node.referenceFields.sektor,
       website: node.referenceFields.website,
+      displayorder: node.referenceFields.displayorder,
     }));
 }
 
@@ -120,10 +122,9 @@ export async function getClientReferences(): Promise<ClientReference[]> {
 
     while (hasNextPage) {
       const data: WPReferencesResponse =
-        await wpClient.request<WPReferencesResponse>(
-          GET_REFERENCES_QUERY,
-          { after },
-        );
+        await wpClient.request<WPReferencesResponse>(GET_REFERENCES_QUERY, {
+          after,
+        });
 
       allReferences.push(...mapReferencesFromWP(data));
 
@@ -131,7 +132,22 @@ export async function getClientReferences(): Promise<ClientReference[]> {
       after = data.references.pageInfo.endCursor;
     }
 
-    return allReferences;
+    return allReferences.sort((a, b) => {
+      const aOrder = Number(a.displayorder);
+      const bOrder = Number(b.displayorder);
+
+      const aHasOrder = Number.isFinite(aOrder) && aOrder > 0;
+      const bHasOrder = Number.isFinite(bOrder) && bOrder > 0;
+
+      if (aHasOrder && bHasOrder) {
+        return aOrder - bOrder;
+      }
+
+      if (aHasOrder) return -1;
+      if (bHasOrder) return 1;
+
+      return 0;
+    });
   } catch (error) {
     logger.error("Referanslar içeriği alınamadı", { error });
 
