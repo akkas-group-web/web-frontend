@@ -125,7 +125,7 @@ export function Footer() {
             </Link>
 
             <Link
-              href="https://akkasgroup.com/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/kisisel-verileri-koruma-kanunu"
+              href="/kisisel-verilerin-korunmasi-kanunu"
               className="break-words text-white/45 transition-colors hover:text-white"
             >
               Kişisel Verileri Koruma Kanunu
