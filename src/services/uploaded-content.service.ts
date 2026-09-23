@@ -1,10 +1,15 @@
+import { GraphQLClient } from "graphql-request";
 import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
 import type { UploadedContent } from "@/types/uploaded-content";
-import { wpClient } from "../../wp/client";
 import { GET_UPLOADED_CONTENTS_QUERY } from "../../wp/queries/uploaded-content";
 
-
+const uploadedContentClient = new GraphQLClient(
+  process.env.WP_GRAPHQL_ENDPOINT!,
+  {
+    next: { revalidate: 0 },
+  },
+);
 
 interface WPUploadedContentsResponse {
   ploadedContents: {
@@ -24,13 +29,12 @@ export async function getUploadedContentBySlug(
   slug: string,
 ): Promise<UploadedContent | null> {
   try {
-    const data = await wpClient.request<WPUploadedContentsResponse>(
-      GET_UPLOADED_CONTENTS_QUERY,
-    );
+    const data =
+      await uploadedContentClient.request<WPUploadedContentsResponse>(
+        GET_UPLOADED_CONTENTS_QUERY,
+      );
 
-    const item = data.ploadedContents.nodes.find(
-      (node) => node.slug === slug,
-    );
+    const item = data.ploadedContents.nodes.find((node) => node.slug === slug);
 
     if (!item) {
       return null;

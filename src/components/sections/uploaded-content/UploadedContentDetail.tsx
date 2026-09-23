@@ -17,7 +17,6 @@ export function UploadedContentDetail({ content }: UploadedContentDetailProps) {
             max-w-none text-[14px] leading-7 text-[#596b70]
 
             [&_h2]:mb-3 [&_h2]:mt-8
-            [&_h2]:border-b [&_h2]:border-[#dce7e9] [&_h2]:pb-2
             [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:text-brand-dark
 
             [&_h3]:mb-2 [&_h3]:mt-6
