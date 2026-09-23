@@ -1,15 +1,10 @@
 import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
+import type { UploadedContent } from "@/types/uploaded-content";
 import { wpClient } from "../../wp/client";
 import { GET_UPLOADED_CONTENTS_QUERY } from "../../wp/queries/uploaded-content";
 
-export interface UploadedContent {
-  id: string;
-  title: string;
-  slug: string;
-  heading: string;
-  content: string;
-}
+
 
 interface WPUploadedContentsResponse {
   ploadedContents: {

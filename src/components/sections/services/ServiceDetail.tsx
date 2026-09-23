@@ -15,9 +15,7 @@ interface ServiceDetailProps {
 }
 
 function renderInlineBold(text: string) {
-  const parts = text
-    .split(/(<br\s*\/?>|\*\*.*?\*\*)/gi)
-    .filter(Boolean);
+  const parts = text.split(/(<br\s*\/?>|\*\*.*?\*\*)/gi).filter(Boolean);
 
   return parts.map((part, index) => {
     if (/^<br\s*\/?>$/i.test(part)) {
