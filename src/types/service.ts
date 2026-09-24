@@ -21,5 +21,5 @@ export interface ServiceDetail {
   description: string;
   contentTitle?: string;
   image?: MediaImage;
-  content: string[];
+  content: string[] | string;
 }
