@@ -14,7 +14,9 @@ export function UploadedContentDetail({ content }: UploadedContentDetailProps) {
 
         <div
           className="
-            max-w-none text-[14px] leading-7 text-[#596b70]
+            max-w-none break-words text-[14px] leading-7 text-[#596b70]
+            [&_p:empty]:hidden
+            [&_p:has(br:only-child)]:hidden
 
             [&_h2]:mb-3 [&_h2]:mt-8
             [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:text-brand-dark
