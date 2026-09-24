@@ -115,6 +115,12 @@ function hasGroupedTableHeader(headers: string[]) {
   );
 }
 
+function isHtmlContent(content: string) {
+  return /<(p|h[1-6]|ul|ol|li|table|blockquote|a|strong|em)\b[^>]*>/i.test(
+    content,
+  );
+}
+
 function renderContent(lines: string[]): ReactNode[] {
   const elements: ReactNode[] = [];
 
@@ -298,13 +304,59 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
               </h2>
             )}
 
-            {typeof service.content === "string" ? (
+            {typeof service.content === "string" &&
+            isHtmlContent(service.content) ? (
               <div
-                className="prose prose-sm max-w-none text-[13.5px] leading-6 text-[#58696e]"
+                className="
+    max-w-none text-[13.5px] leading-7 text-[#58696e]
+
+    [&_p]:mb-4
+
+    [&_h2]:mb-3
+    [&_h2]:mt-7
+    [&_h2]:text-lg
+    [&_h2]:font-semibold
+    [&_h2]:leading-snug
+    [&_h2]:text-[#0d4d5c]
+
+    [&_h3]:mb-3
+    [&_h3]:mt-6
+    [&_h3]:text-base
+    [&_h3]:font-semibold
+    [&_h3]:text-[#0d4d5c]
+
+    [&_ul]:my-4
+    [&_ul]:list-disc
+    [&_ul]:space-y-1
+    [&_ul]:pl-6
+
+    [&_ol]:my-4
+    [&_ol]:list-decimal
+    [&_ol]:space-y-1
+    [&_ol]:pl-6
+
+    [&_li]:pl-1
+
+    [&_strong]:font-semibold
+    [&_strong]:text-[#0d4d5c]
+
+    [&_a]:font-medium
+    [&_a]:text-[#0d4d5c]
+    [&_a]:underline
+    [&_a]:underline-offset-2
+    hover:[&_a]:text-[#1596a8]
+  "
                 dangerouslySetInnerHTML={{ __html: service.content }}
               />
             ) : (
-              renderContent(service.content)
+              renderContent(
+                typeof service.content === "string"
+                  ? service.content
+                      .split(/\r?\n/)
+                      .map((line) => line.trim())
+                      .filter(Boolean)
+                  : service.content,
+              )
             )}
           </div>
         </div>
