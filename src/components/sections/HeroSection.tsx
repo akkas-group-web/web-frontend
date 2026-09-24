@@ -82,7 +82,7 @@ export function HeroSection({ slides }: HeroSectionProps) {
       <div className="pointer-events-none absolute right-[15%] top-20 h-[380px] w-[380px] rounded-full bg-white/25 blur-[100px]" />
       <div className="pointer-events-none absolute -bottom-40 -left-24 h-[390px] w-[390px] rounded-full bg-brand-turquoise-300/30 blur-[100px]" />
 
-      <div className="relative z-[2] mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-6 pb-10 pt-28 md:px-12 md:pt-32 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:pt-47 lg:min-h-[560px]">
+      <div className="relative z-[2] mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-6 pb-10 pt-28 md:px-12 md:pt-32 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:pt-47 lg:min-h-[600px]">
         {/* Sol: Metin içeriği */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -172,7 +172,7 @@ export function HeroSection({ slides }: HeroSectionProps) {
                 </span>
               </div>
 
-              <div className="relative h-[300px] overflow-hidden rounded-[15px] bg-brand-turquoise-50">
+<div className="relative aspect-[16/10] overflow-hidden rounded-[15px] bg-brand-turquoise-50 lg:h-[300px] lg:aspect-auto">                {" "}
                 {activeSlide.image?.url ? (
                   <Image
                     src={activeSlide.image.url}
@@ -184,7 +184,7 @@ export function HeroSection({ slides }: HeroSectionProps) {
                     fill
                     priority={activeIndex === 0}
                     sizes="(max-width: 1024px) 100vw, 480px"
-                    className="object-cover"
+                    className="object-cover object-right"
                   />
                 ) : null}
               </div>
@@ -224,8 +224,7 @@ export function HeroSection({ slides }: HeroSectionProps) {
       </div>
 
       {/* Nokta navigasyon, sayaç ve ok butonları */}
-      <div className="relative z-[3] mx-auto grid max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-6 py-5 md:px-12">
-        <div className="flex gap-2">
+<div className="relative z-[3] mx-auto grid max-w-7xl grid-cols-[1fr_auto] items-center gap-3 px-6 py-4 md:grid-cols-[1fr_auto_1fr] md:gap-4 md:px-12 md:py-5">        <div className="flex gap-2">
           {/* {HERO_SLIDES.map((slide, index) => ( */}
           {slides.map((slide, index) => (
             <button
@@ -246,7 +245,7 @@ export function HeroSection({ slides }: HeroSectionProps) {
           ))}
         </div>
 
-        <div className="flex items-center gap-2.5 text-[11px] text-white">
+        <div className="hidden items-center gap-2.5 text-[11px] text-white md:flex">
           <span>{String(activeIndex + 1).padStart(2, "0")}</span>
           <span className="h-px w-9 bg-white/25" />
 

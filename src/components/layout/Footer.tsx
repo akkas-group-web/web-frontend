@@ -118,14 +118,14 @@ export function Footer() {
 
           <div className="mt-4 flex flex-col gap-2 text-sm">
             <Link
-              href="https://akkasgroup.com/cerezlere-iliskin-aydinlatma-metni"
+              href="/cerezlere-iliskin-aydinlatma-metni"
               className="break-words text-white/45 transition-colors hover:text-white"
             >
               Çerezlere İlişkin Aydınlatma Metni
             </Link>
 
             <Link
-              href="https://akkasgroup.com/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/kisisel-verileri-koruma-kanunu"
+              href="/kisisel-verilerin-korunmasi-kanunu"
               className="break-words text-white/45 transition-colors hover:text-white"
             >
               Kişisel Verileri Koruma Kanunu

@@ -6,19 +6,19 @@ export const GET_HERO_SLIDES_QUERY = gql`
       nodes {
         id
         heroSlideFields {
-  eyebrow
-  title_text
-  description
-  link
-  displayorder
+          eyebrow
+          title_text
+          description
+          link
+          displayorder
 
-  image {
-    node {
-      sourceUrl
-      altText
-    }
-  }
-}
+          image {
+            node {
+              sourceUrl
+              altText
+            }
+          }
+        }
       }
     }
   }
