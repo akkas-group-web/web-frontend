@@ -107,7 +107,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/company/akkasgroup",
+    href: "https://tr.linkedin.com/company/akka%C5%9F-group",
     icon: "linkedin",
   },
   { label: "Twitter", href: "https://twitter.com/akkasgroup", icon: "twitter" },
