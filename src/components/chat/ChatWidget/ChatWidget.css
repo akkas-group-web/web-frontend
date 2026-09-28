@@ -313,8 +313,7 @@
   }
 
   .cw-float-btn {
-    bottom: 16px;
-    right: 16px;
+     display:none;
   }
 
   .cw-float-sub {

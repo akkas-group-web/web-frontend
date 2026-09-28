@@ -51,22 +51,22 @@ function getDisplayOrder(
 
 function mapArticlesFromWP(data: WPArticlesResponse): ArticleItem[] {
   return [...data.articleItems.nodes]
-  .sort((a, b) => {
-  const orderA = getDisplayOrder(a.articleItemFields.displayorder);
-  const orderB = getDisplayOrder(b.articleItemFields.displayorder);
+    .sort((a, b) => {
+      const orderA = getDisplayOrder(a.articleItemFields.displayorder);
+      const orderB = getDisplayOrder(b.articleItemFields.displayorder);
 
-  // İkisinde de sıra yoksa en yeni tarih üstte
-  if (orderA === null && orderB === null) {
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
-  }
+      // İkisinde de sıra yoksa en yeni tarih üstte
+      if (orderA === null && orderB === null) {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      }
 
-  // Sırası boş olanlar en üstte
-  if (orderA === null) return -1;
-  if (orderB === null) return 1;
+      // Sırası boş olanlar en üstte
+      if (orderA === null) return -1;
+      if (orderB === null) return 1;
 
-  // İkisinde de sıra varsa büyük sayı üstte
-  return orderB - orderA;
-})
+      // İkisinde de sıra varsa büyük sayı üstte
+      return orderB - orderA;
+    })
     .map((node) => {
       const coverImageUrl = node.featuredImage?.node.sourceUrl ?? "";
       const authorName = node.articleItemFields.authorName;

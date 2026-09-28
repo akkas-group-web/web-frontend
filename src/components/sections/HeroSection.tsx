@@ -172,8 +172,7 @@ export function HeroSection({ slides }: HeroSectionProps) {
                 </span>
               </div>
 
-              <div className="relative aspect-[16/10] overflow-hidden rounded-[15px] bg-brand-turquoise-50 lg:h-[300px] lg:aspect-auto">
-                {" "}
+<div className="relative aspect-[16/10] overflow-hidden rounded-[15px] bg-brand-turquoise-50 lg:h-[300px] lg:aspect-auto">                {" "}
                 {activeSlide.image?.url ? (
                   <Image
                     src={activeSlide.image.url}
@@ -225,9 +224,7 @@ export function HeroSection({ slides }: HeroSectionProps) {
       </div>
 
       {/* Nokta navigasyon, sayaç ve ok butonları */}
-      <div className="relative z-[3] mx-auto grid max-w-7xl grid-cols-[1fr_auto] items-center gap-3 px-6 py-4 md:grid-cols-[1fr_auto_1fr] md:gap-4 md:px-12 md:py-5">
-        {" "}
-        <div className="flex gap-2">
+<div className="relative z-[3] mx-auto grid max-w-7xl grid-cols-[1fr_auto] items-center gap-3 px-6 py-4 md:grid-cols-[1fr_auto_1fr] md:gap-4 md:px-12 md:py-5">        <div className="flex gap-2">
           {/* {HERO_SLIDES.map((slide, index) => ( */}
           {slides.map((slide, index) => (
             <button
@@ -247,6 +244,7 @@ export function HeroSection({ slides }: HeroSectionProps) {
             </button>
           ))}
         </div>
+
         <div className="hidden items-center gap-2.5 text-[11px] text-white md:flex">
           <span>{String(activeIndex + 1).padStart(2, "0")}</span>
           <span className="h-px w-9 bg-white/25" />
@@ -256,6 +254,7 @@ export function HeroSection({ slides }: HeroSectionProps) {
             {String(slides.length).padStart(2, "0")}
           </small>
         </div>
+
         <div className="flex justify-end gap-2">
           <button
             type="button"
