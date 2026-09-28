@@ -13,7 +13,7 @@ export default async function ContactPage() {
 
       <ContactSection
         offices={content.offices}
-        services={content.services}
+        // services={content.services}
         formTitle={content.formTitle}
         formDescription={content.formDescription}
         formFields={content.formFields}

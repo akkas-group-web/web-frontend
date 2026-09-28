@@ -1,6 +1,7 @@
 services:
-  web-frontend-test:
-    container_name: akkasgroup-web-frontend-test
+  web-frontend-prod:
+    container_name: akkasgroup-web-frontend-prod
+
     build:
       context: .
       dockerfile: Dockerfile
@@ -12,10 +13,10 @@ services:
     restart: unless-stopped
 
     ports:
-      - "9070:3000"
+      - "9071:3000"
 
     env_file:
-      - .env.test
+      - .env.prod
 
     environment:
       NODE_ENV: production

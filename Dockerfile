@@ -1,6 +1,9 @@
 FROM node:22-alpine AS build
 ARG WP_GRAPHQL_ENDPOINT
+ARG NEXT_PUBLIC_CHAT_API_URL
+
 ENV WP_GRAPHQL_ENDPOINT=$WP_GRAPHQL_ENDPOINT
+ENV NEXT_PUBLIC_CHAT_API_URL=$NEXT_PUBLIC_CHAT_API_URL
 
 WORKDIR /app
 
@@ -30,5 +33,4 @@ COPY --from=build /app/next.config.ts ./next.config.ts
 EXPOSE 3000
 
 CMD ["npm", "start"]
-
 
