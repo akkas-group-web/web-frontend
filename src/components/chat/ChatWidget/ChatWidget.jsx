@@ -7,10 +7,10 @@ import ChatPanel from "./ChatPanel";
 import NewChatPanel from "./NewChatPanel";
 import AdminLogin from "./AdminLogin";
 import AdminPanel from "./AdminPanel";
-
+import { CHAT_API_URL } from "@/config/chat";
 import "./ChatWidget.css";
 
-const API_URL = "https://akkasgroup.com/chatbox";
+// const API_URL = "https://akkasgroup.com/chatbox";
 
 export default function ChatWidget() {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -57,7 +57,7 @@ export default function ChatWidget() {
 
   async function fetchHistory() {
     try {
-      const res = await fetch(`${API_URL}/api/chat/history`);
+      const res = await fetch(`${CHAT_API_URL}/api/chat/history`);
 
       const data = await res.json();
 
@@ -105,12 +105,7 @@ export default function ChatWidget() {
     setShowBubble(false);
   }
 
-  function openChat(
-    title,
-    firstMessage = null,
-    files = [],
-    fileContent = ""
-  ) {
+  function openChat(title, firstMessage = null, files = [], fileContent = "") {
     setPrevView(view);
 
     setChatTitle(title);
@@ -145,51 +140,34 @@ export default function ChatWidget() {
           },
         ]);
 
-        sendToBackend(
-          firstMessage,
-          null,
-          fileContent
-        ).finally(() => {
-          setChatMessages((prev) =>
-            prev.filter(
-              (m) => m.role !== "typing"
-            )
-          );
+        sendToBackend(firstMessage, null, fileContent).finally(() => {
+          setChatMessages((prev) => prev.filter((m) => m.role !== "typing"));
         });
       }, 300);
     }
   }
 
-  async function sendToBackend(
-    message,
-    currentSessionId,
-    fileContent = ""
-  ) {
+  async function sendToBackend(message, currentSessionId, fileContent = "") {
     try {
-      const res = await fetch(
-        `${API_URL}/api/chat`,
-        {
-          method: "POST",
+      const res = await fetch(`${CHAT_API_URL}/api/chat`, {
+        method: "POST",
 
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-          body: JSON.stringify({
-            message,
+        body: JSON.stringify({
+          message,
 
-            sessionId: currentSessionId,
+          sessionId: currentSessionId,
 
-            areaId: null,
+          areaId: null,
 
-            fileContent,
+          fileContent,
 
-            pageUrl:
-              window.location.href,
-          }),
-        }
-      );
+          pageUrl: window.location.href,
+        }),
+      });
 
       const data = await res.json();
 
@@ -217,48 +195,31 @@ export default function ChatWidget() {
           {
             id: Date.now(),
             role: "bot",
-            text:
-              "Bir hata oluştu, lütfen tekrar deneyin.",
+            text: "Bir hata oluştu, lütfen tekrar deneyin.",
           },
         ]);
       }
     } catch (err) {
-      console.error(
-        "Backend hatası:",
-        err
-      );
+      console.error("Backend hatası:", err);
 
       setChatMessages((prev) => [
         ...prev,
         {
           id: Date.now(),
           role: "bot",
-          text:
-            "Bağlantı hatası, backend çalışıyor mu?",
+          text: "Bağlantı hatası, backend çalışıyor mu?",
         },
       ]);
     }
   }
 
-  function handleNewChat(
-    firstMessage,
-    files = [],
-    fileContent = ""
-  ) {
+  function handleNewChat(firstMessage, files = [], fileContent = "") {
     const title =
       files.length > 0
-        ? files[0].name?.replace(
-            /\.[^/.]+$/,
-            ""
-          )
+        ? files[0].name?.replace(/\.[^/.]+$/, "")
         : "Yeni Sohbet";
 
-    openChat(
-      title,
-      firstMessage,
-      files,
-      fileContent
-    );
+    openChat(title, firstMessage, files, fileContent);
   }
 
   function goBack() {
@@ -282,7 +243,7 @@ export default function ChatWidget() {
 
     try {
       await fetch(
-        `${API_URL}/api/chat/history/${currentSessionId}`,
+        `${CHAT_API_URL}/api/chat/history/${currentSessionId}`,
         {
           method: "DELETE",
         }
@@ -312,7 +273,7 @@ export default function ChatWidget() {
   async function openHistoryItem(item) {
     try {
       const res = await fetch(
-        `${API_URL}/api/chat/history/${item.id}`
+        `${CHAT_API_URL}/api/chat/history/${item.id}`
       );
 
       const data = await res.json();
@@ -391,17 +352,11 @@ export default function ChatWidget() {
 
   const showTabs = view === "new";
 
-  const showHeader =
-    view !== "admin-login" &&
-    view !== "admin-panel";
+  const showHeader = view !== "admin-login" && view !== "admin-panel";
 
   return (
     <div className="cw-root">
-      <div
-        className={`cw-panel${
-          isOpen ? " open" : ""
-        }`}
-      >
+      <div className={`cw-panel${isOpen ? " open" : ""}`}>
         {showHeader && (
           <div className="cw-header">
             <div className="cw-header-top">
@@ -420,20 +375,14 @@ export default function ChatWidget() {
               </div>
 
               <div className="cw-header-info">
-                <p className="cw-name">
-                  Akkaş Robot
-                </p>
+                <p className="cw-name">Akkaş Robot</p>
 
-                <p className="cw-status">
-                  Çevrimiçi
-                </p>
+                <p className="cw-status">Çevrimiçi</p>
               </div>
 
               <button
                 className="cw-close"
-                onClick={() =>
-                  setIsOpen(false)
-                }
+                onClick={() => setIsOpen(false)}
                 aria-label="Kapat"
               >
                 <svg
@@ -445,19 +394,9 @@ export default function ChatWidget() {
                   strokeWidth="2.2"
                   strokeLinecap="round"
                 >
-                  <line
-                    x1="18"
-                    y1="6"
-                    x2="6"
-                    y2="18"
-                  />
+                  <line x1="18" y1="6" x2="6" y2="18" />
 
-                  <line
-                    x1="6"
-                    y1="6"
-                    x2="18"
-                    y2="18"
-                  />
+                  <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
               </button>
             </div>
@@ -465,14 +404,8 @@ export default function ChatWidget() {
             {showTabs && (
               <div className="cw-tabs">
                 <button
-                  className={`cw-tab${
-                    view === "new"
-                      ? " active"
-                      : ""
-                  }`}
-                  onClick={() =>
-                    setView("new")
-                  }
+                  className={`cw-tab${view === "new" ? " active" : ""}`}
+                  onClick={() => setView("new")}
                 >
                   Yeni Sohbet
                 </button>
@@ -503,12 +436,7 @@ export default function ChatWidget() {
               <button
                 className="cw-admin-bar"
                 onClick={
-                  isAdmin
-                    ? () =>
-                        setView(
-                          "admin-panel"
-                        )
-                    : openAdminLogin
+                  isAdmin ? () => setView("admin-panel") : openAdminLogin
                 }
               >
                 <svg
@@ -521,21 +449,13 @@ export default function ChatWidget() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <rect
-                    x="3"
-                    y="11"
-                    width="18"
-                    height="11"
-                    rx="2"
-                  />
+                  <rect x="3" y="11" width="18" height="11" rx="2" />
 
                   <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
 
                 <span>
-                  {isAdmin
-                    ? "Eğitim paneline git"
-                    : "Yönetici girişi"}
+                  {isAdmin ? "Eğitim paneline git" : "Yönetici girişi"}
                 </span>
 
                 <svg
@@ -555,11 +475,7 @@ export default function ChatWidget() {
         )}
 
         <div className="cw-body">
-          {view === "new" && (
-            <NewChatPanel
-              onSend={handleNewChat}
-            />
-          )}
+          {view === "new" && <NewChatPanel onSend={handleNewChat} />}
 
           {/*
           ========================================================
@@ -580,58 +496,34 @@ export default function ChatWidget() {
             <ChatPanel
               title={chatTitle}
               messages={chatMessages}
-              setMessages={
-                setChatMessages
-              }
+              setMessages={setChatMessages}
               files={chatFiles}
               setFiles={setChatFiles}
               sessionId={sessionId}
-              onSendMessage={
-                sendToBackend
-              }
+              onSendMessage={sendToBackend}
               onBack={goBack}
             />
           )}
 
-          {view ===
-            "admin-login" && (
+          {view === "admin-login" && (
             <AdminLogin
-              onBack={() =>
-                setView(prevView)
-              }
-              onSuccess={
-                handleAdminSuccess
-              }
+              onBack={() => setView(prevView)}
+              onSuccess={handleAdminSuccess}
             />
           )}
 
-          {view ===
-            "admin-panel" && (
-            <AdminPanel
-              onBack={
-                exitAdminPanel
-              }
-              onPreview={
-                enterPreview
-              }
-            />
+          {view === "admin-panel" && (
+            <AdminPanel onBack={exitAdminPanel} onPreview={enterPreview} />
           )}
         </div>
 
-        {view !== "admin-login" &&
-          view !== "admin-panel" && (
-            <div className="cw-powered">
-              Akkaş Robot · Verileriniz
-              güvende
-            </div>
-          )}
+        {view !== "admin-login" && view !== "admin-panel" && (
+          <div className="cw-powered">Akkaş Robot · Verileriniz güvende</div>
+        )}
       </div>
 
       {!isOpen && (
-        <div
-          className="cw-float-card"
-          onClick={toggleWidget}
-        >
+        <div className="cw-float-card" onClick={toggleWidget}>
           <div className="cw-float-av">
             <svg
               width="20"
@@ -650,13 +542,10 @@ export default function ChatWidget() {
           </div>
 
           <div className="cw-float-text">
-            <span className="cw-float-name">
-              Akkaş Robot
-            </span>
+            <span className="cw-float-name">Akkaş Robot</span>
 
             <span className="cw-float-sub">
-              Size nasıl yardımcı
-              olabilirim?
+              Size nasıl yardımcı olabilirim?
             </span>
           </div>
         </div>
@@ -677,19 +566,9 @@ export default function ChatWidget() {
             strokeWidth="2.5"
             strokeLinecap="round"
           >
-            <line
-              x1="18"
-              y1="6"
-              x2="6"
-              y2="18"
-            />
+            <line x1="18" y1="6" x2="6" y2="18" />
 
-            <line
-              x1="6"
-              y1="6"
-              x2="18"
-              y2="18"
-            />
+            <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
         </button>
       )}
