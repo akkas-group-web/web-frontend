@@ -345,6 +345,32 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
     [&_a]:underline
     [&_a]:underline-offset-2
     hover:[&_a]:text-[#1596a8]
+
+        [&_table]:my-6
+    [&_table]:w-full
+    [&_table]:border-collapse
+    [&_table]:text-left
+    [&_table]:text-[13px]
+
+    [&_th]:border
+    [&_th]:border-[#0d4d5c]/10
+    [&_th]:bg-[#f2f8f9]
+    [&_th]:px-4
+    [&_th]:py-3
+    [&_th]:font-semibold
+    [&_th]:text-[#0d4d5c]
+
+    [&_td]:border
+    [&_td]:border-[#0d4d5c]/10
+    [&_td]:px-4
+    [&_td]:py-3
+    [&_td]:align-top
+    [&_td]:leading-6
+    [&_td]:bg-white
+[&_td]:font-normal
+[&_td]:text-[#58696e]
+[&_td_strong]:font-semibold
+[&_td_strong]:text-[#58696e]
   "
                 dangerouslySetInnerHTML={{ __html: service.content }}
               />
