@@ -5,11 +5,11 @@ import { ContactForm } from "./ContactForm";
 
 interface ContactSectionProps {
   officeLabels: {
-  addressLabel: string;
-  otherOfficesTitle: string;
-};
+    addressLabel: string;
+    otherOfficesTitle: string;
+  };
   offices: ContactOffice[];
-  services: string[];
+  // services: string[];
   formEyebrow?: string;
   formTitle?: string;
   formDescription?: string;
@@ -33,7 +33,7 @@ interface ContactSectionProps {
 
 export function ContactSection({
   offices,
-  services,
+  // services,
   formEyebrow,
   formTitle,
   formDescription,
@@ -69,7 +69,7 @@ export function ContactSection({
               </p>
             )}
 
-            <ContactForm services={services} fields={formFields} />
+            <ContactForm fields={formFields} />
           </div>
 
           <div className="lg:border-l lg:border-brand-dark/10 lg:pl-12">
