@@ -6,7 +6,8 @@ services:
       dockerfile: Dockerfile
       network: host
       args:
-         WP_GRAPHQL_ENDPOINT: ${WP_GRAPHQL_BUILD_ENDPOINT}
+        WP_GRAPHQL_ENDPOINT: ${WP_GRAPHQL_BUILD_ENDPOINT}
+        NEXT_PUBLIC_CHAT_API_URL: ${NEXT_PUBLIC_CHAT_API_URL}
 
     restart: unless-stopped
 
