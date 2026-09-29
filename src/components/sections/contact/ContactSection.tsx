@@ -1,8 +1,8 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import type { ContactOffice } from "@/types";
 import { ContactForm } from "./ContactForm";
-
+import { WHATSAPP, getWhatsAppUrl } from "@/constants/whatsapp";
 interface ContactSectionProps {
   officeLabels: {
     addressLabel: string;
@@ -144,6 +144,29 @@ export function ContactSection({
                   </div>
                 </a>
               )}
+
+              <a
+                href={getWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex gap-3 py-4"
+              >
+                <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#25D366]" />
+
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                    WhatsApp
+                  </p>
+
+                  <p className="mt-1.5 text-sm font-medium text-brand-dark transition-colors group-hover:text-brand-primary">
+                    {WHATSAPP.displayPhone}
+                  </p>
+
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Mesaj yazmak için tıklayın
+                  </p>
+                </div>
+              </a>
             </div>
 
             <div className="mt-7">
