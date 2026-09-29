@@ -4,31 +4,139 @@ import { useState } from "react";
 import { ArrowRight, ExternalLink } from "lucide-react";
 
 interface ContactFormProps {
-  services: string[];
+  //services: string[];a
   fields: {
     nameLabel: string;
     namePlaceholder: string;
-    companyLabel: string;
-    companyPlaceholder: string;
+    // companyLabel: string;
+    // companyPlaceholder: string;
     emailLabel: string;
     emailPlaceholder: string;
     phoneLabel: string;
     phonePlaceholder: string;
-    serviceLabel: string;
-    serviceDefault: string;
+    // serviceLabel: string;
+    // serviceDefault: string;
     messageLabel: string;
     messagePlaceholder: string;
     submitButtonText: string;
   };
 }
 
-export function ContactForm({ services, fields }: ContactFormProps) {
+export function ContactForm({ fields }: ContactFormProps) {
   const [kvkkOpened, setKvkkOpened] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+
+    setIsSubmitting(true);
+    setStatusMessage("");
+    setErrorMessage("");
+
+    const formData = new FormData(form);
+
+    const body = {
+      name: String(formData.get("name") || "").trim(),
+      email: String(formData.get("email") || "").trim(),
+      phone: String(formData.get("phone") || "").trim(),
+      message: String(formData.get("message") || "").trim(),
+      kvkkAccepted: formData.get("kvkk") === "on",
+    };
+
+    const showError = (message: string) => {
+      setErrorMessage(message);
+
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 5000);
+    };
+
+    const name = body.name;
+    const email = body.email;
+    const phone = body.phone;
+    const message = body.message;
+
+    if (name.length < 2 || name.length > 150) {
+      showError("Ad Soyad 2-150 karakter arasında olmalıdır.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255) {
+      showError("Lütfen geçerli bir e-posta adresi giriniz.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    const phoneDigits = phone.replace(/\D/g, "");
+
+    if (phoneDigits.length !== 10 || !/^[0-9+\s()-]+$/.test(phone)) {
+      showError("Lütfen 10 haneli geçerli bir telefon numarası giriniz.");
+      setIsSubmitting(false);
+      return;
+    }
+    if (message.length < 5 || message.length > 5000) {
+      showError("Mesajınız 5-5000 karakter arasında olmalıdır.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!body.kvkkAccepted) {
+      showError(
+        "Devam etmek için KVKK Aydınlatma Metni'ni okuyup onaylamanız gerekmektedir.",
+      );
+      setIsSubmitting(false);
+      return;
+    }
+
+    console.log("Contact form body:", body);
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_CHAT_API_URL}/api/contact`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        },
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "İletişim talebiniz gönderilemedi.");
+      }
+
+      setStatusMessage(
+        "İletişim talebiniz başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz.",
+      );
+
+      setTimeout(() => {
+        setStatusMessage("");
+      }, 5000);
+
+      form.reset();
+      setKvkkOpened(false);
+    } catch (error) {
+      showError(
+        error instanceof Error
+          ? error.message
+          : "İletişim talebiniz gönderilirken bir hata oluştu.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
   return (
-    <form className="space-y-3.5">
+    <form className="space-y-3.5" onSubmit={handleSubmit} noValidate>
       {/* Ad Soyad / Firma */}
-      <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 sm:gap-4">
+      <div>
         <div>
           <label
             htmlFor="name"
@@ -42,12 +150,14 @@ export function ContactForm({ services, fields }: ContactFormProps) {
             name="name"
             type="text"
             required
+            minLength={2}
+            maxLength={150}
             placeholder={fields.namePlaceholder}
             className="h-12 w-full rounded-xl border border-brand-dark/10 bg-[#f8fafb] px-4 text-base outline-none transition placeholder:text-[#9ca6a9] focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-brand-light/15 sm:text-sm"
           />
         </div>
 
-        <div>
+        {/* <div>
           <label
             htmlFor="company"
             className="mb-1.5 block text-sm font-medium text-brand-dark"
@@ -62,11 +172,11 @@ export function ContactForm({ services, fields }: ContactFormProps) {
             placeholder={fields.companyPlaceholder}
             className="h-12 w-full rounded-xl border border-brand-dark/10 bg-[#f8fafb] px-4 text-base outline-none transition placeholder:text-[#9ca6a9] focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-brand-light/15 sm:text-sm"
           />
-        </div>
+        </div> */}
       </div>
 
       {/* E-posta / Telefon */}
-      <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 sm:gap-4">
+      <div>
         <div>
           <label
             htmlFor="email"
@@ -98,14 +208,16 @@ export function ContactForm({ services, fields }: ContactFormProps) {
             name="phone"
             type="tel"
             required
-            placeholder={fields.phonePlaceholder}
+            maxLength={10}
+            pattern="[0-9]+"
+            placeholder="555 555 55 55"
             className="h-12 w-full rounded-xl border border-brand-dark/10 bg-[#f8fafb] px-4 text-base outline-none transition placeholder:text-[#9ca6a9] focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-brand-light/15 sm:text-sm"
           />
         </div>
       </div>
 
       {/* Hizmet */}
-      <div>
+      {/* <div>
         <label
           htmlFor="service"
           className="mb-1.5 block text-sm font-medium text-brand-dark"
@@ -130,7 +242,7 @@ export function ContactForm({ services, fields }: ContactFormProps) {
             </option>
           ))}
         </select>
-      </div>
+      </div> */}
 
       {/* Mesaj */}
       <div>
@@ -146,7 +258,8 @@ export function ContactForm({ services, fields }: ContactFormProps) {
           name="message"
           rows={3}
           required
-          minLength={10}
+          minLength={5}
+          maxLength={5000}
           placeholder={fields.messagePlaceholder}
           className="min-h-[96px] w-full resize-none rounded-xl border border-brand-dark/10 bg-[#f8fafb] px-4 py-3 text-base outline-none transition placeholder:text-[#9ca6a9] focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-brand-light/15 sm:text-sm"
         />
@@ -158,7 +271,7 @@ export function ContactForm({ services, fields }: ContactFormProps) {
           <input
             type="checkbox"
             name="kvkk"
-            required
+            // required
             disabled={!kvkkOpened}
             className="mt-1 h-4 w-4 shrink-0 accent-[#1a7d8f] disabled:cursor-not-allowed disabled:opacity-40"
           />
@@ -189,12 +302,26 @@ export function ContactForm({ services, fields }: ContactFormProps) {
         )}
       </div>
 
+      {statusMessage && (
+        <p className="text-sm font-medium text-green-600">{statusMessage}</p>
+      )}
+
+      {errorMessage && (
+        <div
+          role="alert"
+          className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-600"
+        >
+          {errorMessage}
+        </div>
+      )}
+
       {/* Gönder */}
       <button
         type="submit"
+        disabled={isSubmitting}
         className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-brand-dark px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-brand-primary hover:shadow-lg sm:w-auto"
       >
-        {fields.submitButtonText}
+        {isSubmitting ? "Gönderiliyor..." : fields.submitButtonText}
 
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
       </button>
