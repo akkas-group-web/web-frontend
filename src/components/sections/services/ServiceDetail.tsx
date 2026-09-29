@@ -114,14 +114,24 @@ function hasGroupedTableHeader(headers: string[]) {
     !headers[5]
   );
 }
+function prepareHtmlContent(content: string) {
+  return content.replace(
+    /<table([^>]*)>([\s\S]*?)<\/table>/gi,
+    (_match, attributes, tableContent) => {
+      const cleanAttributes = attributes
+        .replace(/\sclass="[^"]*"/gi, "")
+        .replace(/\sstyle="[^"]*"/gi, "");
+
+      return `<div class="service-table-scroll"><table${cleanAttributes}>${tableContent}</table></div>`;
+    },
+  );
+}
 
 function isHtmlContent(content: string) {
   return /<(p|h[1-6]|ul|ol|li|table|blockquote|a|strong|em)\b[^>]*>/i.test(
     content,
   );
 }
-
-
 
 function renderContent(lines: string[]): ReactNode[] {
   const elements: ReactNode[] = [];
@@ -299,7 +309,7 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
             </div>
           )}
 
-          <div className="space-y-3">
+          <div className="min-w-0 space-y-3">
             {service.contentTitle && (
               <h2 className="text-lg font-bold text-[#0d4d5c] md:text-xl">
                 {service.contentTitle}
@@ -348,16 +358,28 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
     [&_a]:underline-offset-2
     hover:[&_a]:text-[#1596a8]
 
-    
 
-[&_table]:my-6
-[&_table]:w-full
-[&_table]:table-fixed
-[&_table]:border-collapse
-[&_table]:text-left
-[&_table]:text-[10px]
-sm:[&_table]:text-[11px]
-md:[&_table]:text-[13px]
+[&_.service-table-scroll]:w-full
+[&_.service-table-scroll]:max-w-full
+[&_.service-table-scroll]:overflow-x-auto
+[&_.service-table-scroll]:overscroll-x-contain
+[&_.service-table-scroll]:my-6
+
+[&_.service-table-scroll_table]:w-full
+[&_.service-table-scroll_table]:min-w-full
+
+max-md:[&_.service-table-scroll_table:has(tr>th:nth-child(4))]:w-[600px]
+max-md:[&_.service-table-scroll_table:has(tr>th:nth-child(4))]:min-w-[600px]
+[&_.service-table-scroll_table]:border-collapse
+[&_.service-table-scroll_table]:text-left
+[&_.service-table-scroll_table]:text-[10px]
+
+sm:[&_.service-table-scroll_table]:text-[11px]
+
+md:[&_.service-table-scroll]:overflow-x-visible
+md:[&_.service-table-scroll_table]:w-full
+md:[&_.service-table-scroll_table]:min-w-full
+md:[&_.service-table-scroll_table]:text-[13px]
 
     [&_th]:border
     [&_th]:border-[#0d4d5c]/10
@@ -390,7 +412,9 @@ md:[&_table]:text-[13px]
     [&_td_strong]:font-semibold
     [&_td_strong]:text-[#58696e]
   "
-                dangerouslySetInnerHTML={{ __html: service.content }}
+                dangerouslySetInnerHTML={{
+  __html: prepareHtmlContent(service.content),
+}}
               />
             ) : (
               renderContent(
