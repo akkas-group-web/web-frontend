@@ -1,13 +1,18 @@
-import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone, Printer } from "lucide-react";
 
 import type { ContactOffice } from "@/types";
 import { ContactForm } from "./ContactForm";
-import { WHATSAPP, getWhatsAppUrl } from "@/constants/whatsapp";
+// import { WHATSAPP, getWhatsAppUrl } from "@/constants/whatsapp";
+import { getWhatsAppUrl } from "@/constants/whatsapp";
+import { WhatsAppSettings } from "@/services/contact.service";
+// import type { WhatsAppSettings } from "@/components/sections/contact/ContactSection";
+
 interface ContactSectionProps {
   officeLabels: {
     addressLabel: string;
     otherOfficesTitle: string;
   };
+  whatsapp: WhatsAppSettings | null;
   offices: ContactOffice[];
   // services: string[];
   formEyebrow?: string;
@@ -32,6 +37,7 @@ interface ContactSectionProps {
 }
 
 export function ContactSection({
+  whatsapp,
   offices,
   // services,
   formEyebrow,
@@ -98,7 +104,7 @@ export function ContactSection({
                 </div>
               )}
 
-              {mainOffice.phone && (
+              {mainOffice.phones && mainOffice.phones.length > 0 && (
                 <div className="flex gap-3 py-4">
                   <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
 
@@ -108,19 +114,29 @@ export function ContactSection({
                     </p>
 
                     <div className="mt-1.5 flex flex-col gap-2">
-                      {mainOffice.phone
-                        .split(/\r?\n|(?=\+90)/)
-                        .map((phone) => phone.trim())
-                        .filter(Boolean)
-                        .map((phone, index) => (
+                      {mainOffice.phones.map((p, index) =>
+                        p.type === "fax" ? (
+                          <p
+                            key={`${p.number}-${index}`}
+                            className="flex items-center gap-2 text-sm font-medium text-brand-dark"
+                          >
+                            <Printer
+                              className="h-3.5 w-3.5 text-muted-foreground"
+                              aria-hidden="true"
+                            />
+                            <span className="sr-only">Faks:</span>
+                            {p.number}
+                          </p>
+                        ) : (
                           <a
-                            key={`${phone}-${index}`}
-                            href={`tel:${phone.replace(/[^\d+]/g, "")}`}
+                            key={`${p.number}-${index}`}
+                            href={`tel:${p.number.replace(/[^\d+]/g, "")}`}
                             className="text-sm font-medium text-brand-dark transition-colors hover:text-brand-primary"
                           >
-                            {phone}
+                            {p.number}
                           </a>
-                        ))}
+                        ),
+                      )}
                     </div>
                   </div>
                 </div>
@@ -145,28 +161,30 @@ export function ContactSection({
                 </a>
               )}
 
-              <a
-                href={getWhatsAppUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex gap-3 py-4"
-              >
-                <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#25D366]" />
+              {whatsapp && (
+                <a
+                  href={getWhatsAppUrl(whatsapp.number, whatsapp.message)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex gap-3 py-4"
+                >
+                  <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#25D366]" />
 
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                    WhatsApp
-                  </p>
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                      {whatsapp.label}
+                    </p>
 
-                  <p className="mt-1.5 text-sm font-medium text-brand-dark transition-colors group-hover:text-brand-primary">
-                    {WHATSAPP.displayPhone}
-                  </p>
+                    <p className="mt-1.5 text-sm font-medium text-brand-dark transition-colors group-hover:text-brand-primary">
+                      {whatsapp.displayNumber}
+                    </p>
 
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    Mesaj yazmak için tıklayın
-                  </p>
-                </div>
-              </a>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {whatsapp.hint}
+                    </p>
+                  </div>
+                </a>
+              )}
             </div>
 
             <div className="mt-7">

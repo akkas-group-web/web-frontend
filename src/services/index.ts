@@ -17,4 +17,4 @@ export { getSectors, getSectorBySlug } from "./sector.service";
 
 export { getClientReferences } from "./reference.service";
 
-export { getContactContent } from "./contact.service";
+export { getContactContent, getWhatsAppSettings } from "./contact.service";

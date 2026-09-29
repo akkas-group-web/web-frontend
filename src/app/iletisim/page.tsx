@@ -1,11 +1,13 @@
 import { ContactHero } from "@/components/sections/contact/ContactHero";
 import { LocationsSection } from "@/components/sections/contact/LocationsSection";
 import { ContactSection } from "@/components/sections/contact/ContactSection";
-import { getContactContent } from "@/services";
-
+import { getContactContent, getWhatsAppSettings } from "@/services";
 export default async function ContactPage() {
-  const content = await getContactContent();
-
+  // const content = await getContactContent();
+  const [content, whatsapp] = await Promise.all([
+    getContactContent(),
+    getWhatsAppSettings(),
+  ]);
   return (
     <>
       <ContactHero content={content.hero} />
@@ -18,6 +20,7 @@ export default async function ContactPage() {
         formDescription={content.formDescription}
         formFields={content.formFields}
         officeLabels={content.officeLabels}
+        whatsapp={whatsapp}
       />
     </>
   );

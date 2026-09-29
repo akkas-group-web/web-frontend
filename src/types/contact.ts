@@ -8,12 +8,18 @@ export interface ContactFormData {
   kvkkAccepted: boolean;
 }
 
+export interface ContactPhone {
+  number: string;
+  type: "phone" | "fax";
+}
+
 export interface ContactOffice {
   id: string;
   city: string;
   title: string;
   address?: string;
   phone?: string;
+  phones?: ContactPhone[];
   email?: string;
   latitude?: number;
   longitude?: number;
