@@ -5,7 +5,7 @@ import { SITE_CONFIG } from "@/constants/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import ChatWidget from "@/components/chat/ChatWidget/ChatWidget";
-
+import { WhatsAppButton } from "@/components/contact/WhatsAppButton";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -64,7 +64,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main className="flex-1">{children}</main>
 
         <Footer />
-
+        <WhatsAppButton />
         <ChatWidget />
       </body>
     </html>
