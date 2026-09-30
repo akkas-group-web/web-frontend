@@ -18,15 +18,12 @@ export function ReferencesLogoGrid({
   currentPage,
   totalPages,
   totalItems = 0,
-  pageSize = 60,
+  pageSize = 200,
 }: ReferencesLogoGridProps) {
-  const startItem =
-    totalItems > 0 ? (currentPage - 1) * pageSize + 1 : 0;
+  const startItem = totalItems > 0 ? (currentPage - 1) * pageSize + 1 : 0;
 
   const endItem =
-    totalItems > 0
-      ? Math.min(currentPage * pageSize, totalItems)
-      : 0;
+    totalItems > 0 ? Math.min(currentPage * pageSize, totalItems) : 0;
 
   const visiblePages = Array.from(
     { length: totalPages },
