@@ -85,6 +85,7 @@ export const SITE_CONFIG = {
   description:
     "A'dan Z'ye danışmanlık: yatırım, teşvik, KVKK ve kalite belgelendirme hizmetleri.",
   phone: "+90 216 450 60 07 (Pbx)",
+  phone2: "+541 520 55 40",
   email: "info@akkasgroup.com",
   address: "Uzunçayır Cad. Akkaş Plaza No:51 Hasanpaşa-Kadıköy-İSTANBUL",
 };

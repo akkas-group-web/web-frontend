@@ -41,28 +41,30 @@ export function Header() {
             ))}
           </ul>
         </nav>
-        {/* TELEFON */}{" "}
+
+        {/* TELEFON */}
         <a
           href="tel:+902164506007"
           aria-label={`Akkaş Group'u arayın: ${SITE_CONFIG.phone}`}
-          className="group hidden items-center gap-3 border-l border-[#0d4d5c]/15 pl-5 lg:flex"
+          className="group hidden items-start gap-3 border-l border-[#0d4d5c]/15 pl-5 lg:flex"
         >
-          {" "}
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0d4d5c] transition-all duration-200 group-hover:bg-[#1a7d8f] group-hover:shadow-md">
-            {" "}
-            <Phone className="h-4 w-4 text-white" strokeWidth={1.8} />{" "}
-          </span>{" "}
-          <span className="flex flex-col leading-none">
-            {" "}
+          <span className="mt-3 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0d4d5c] transition-all duration-200 group-hover:bg-[#1a7d8f] group-hover:shadow-md">
+            <Phone className="h-4 w-4 text-white" strokeWidth={1.8} />
+          </span>
+
+          <span className="flex flex-col gap-1 leading-none">
             <span className="mb-1 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#1a7d8f]">
-              {" "}
-              Bizi Arayın{" "}
-            </span>{" "}
+              Bizi Arayın
+            </span>
+
             <span className="whitespace-nowrap text-[13px] font-semibold tracking-wide text-[#0d4d5c] transition-colors group-hover:text-[#1a7d8f]">
-              {" "}
-              +90 216 450 60 07{" "}
-            </span>{" "}
-          </span>{" "}
+              +90 216 450 60 07
+            </span>
+
+            <span className="whitespace-nowrap text-[13px] font-semibold tracking-wide text-[#0d4d5c] transition-colors group-hover:text-[#1a7d8f]">
+              +541 520 55 40
+            </span>
+          </span>
         </a>
         {/* MOBILE MENU */}
         <MobileMenu />
