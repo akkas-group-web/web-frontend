@@ -18,3 +18,4 @@ export { getSectors, getSectorBySlug } from "./sector.service";
 export { getClientReferences } from "./reference.service";
 
 export { getContactContent } from "./contact.service";
+export { getNewsletterStatusContent } from "./newsletter-content.service";
