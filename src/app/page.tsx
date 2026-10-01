@@ -22,7 +22,7 @@ export default async function HomePage() {
       <ReferencesSection clients={content.clients} />
       <ArticlesSection articles={content.articles} />
       <AnnouncementsSection announcements={content.announcements} />
-      <HomePopup />
+      <HomePopup popup={content.popup} />
     </>
   );
 }

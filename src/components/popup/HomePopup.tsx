@@ -1,17 +1,33 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 
-export default function HomePopup() {
+interface HomePopupProps {
+  popup: {
+    id: string;
+    title: string;
+    active: boolean;
+    href: string;
+    newTab: boolean;
+    image: {
+      url: string;
+      alt: string;
+    };
+  } | null;
+}
+
+export default function HomePopup({ popup }: HomePopupProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    setIsOpen(true);
-  }, []);
+    if (popup?.active) {
+      setIsOpen(true);
+    }
+  }, [popup]);
 
-  if (!isOpen) return null;
+  if (!popup || !popup.active || !isOpen) {
+    return null;
+  }
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 px-4 py-6">
@@ -25,19 +41,18 @@ export default function HomePopup() {
           ×
         </button>
 
-        <Link
-          href="/haberler"
+        <a
+          href={popup.href}
+          target={popup.newTab ? "_blank" : "_self"}
+          rel={popup.newTab ? "noopener noreferrer" : undefined}
           className="block overflow-hidden rounded-2xl shadow-2xl"
         >
-          <Image
-            src="/popup/haber-popup.jpg"
-            alt="Güncel haberler"
-            width={1400}
-            height={850}
-            priority
+          <img
+            src={popup.image.url}
+            alt={popup.image.alt || popup.title}
             className="h-auto max-h-[85vh] w-full object-contain"
           />
-        </Link>
+        </a>
       </div>
     </div>
   );
