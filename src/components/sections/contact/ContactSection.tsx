@@ -1,15 +1,15 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import type { ContactOffice } from "@/types";
 import { ContactForm } from "./ContactForm";
-
+import { WHATSAPP, getWhatsAppUrl } from "@/constants/whatsapp";
 interface ContactSectionProps {
   officeLabels: {
-  addressLabel: string;
-  otherOfficesTitle: string;
-};
+    addressLabel: string;
+    otherOfficesTitle: string;
+  };
   offices: ContactOffice[];
-  services: string[];
+  // services: string[];
   formEyebrow?: string;
   formTitle?: string;
   formDescription?: string;
@@ -33,7 +33,7 @@ interface ContactSectionProps {
 
 export function ContactSection({
   offices,
-  services,
+  // services,
   formEyebrow,
   formTitle,
   formDescription,
@@ -69,7 +69,7 @@ export function ContactSection({
               </p>
             )}
 
-            <ContactForm services={services} fields={formFields} />
+            <ContactForm fields={formFields} />
           </div>
 
           <div className="lg:border-l lg:border-brand-dark/10 lg:pl-12">
@@ -144,6 +144,29 @@ export function ContactSection({
                   </div>
                 </a>
               )}
+
+              <a
+                href={getWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex gap-3 py-4"
+              >
+                <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#25D366]" />
+
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                    WhatsApp
+                  </p>
+
+                  <p className="mt-1.5 text-sm font-medium text-brand-dark transition-colors group-hover:text-brand-primary">
+                    {WHATSAPP.displayPhone}
+                  </p>
+
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Mesaj yazmak için tıklayın
+                  </p>
+                </div>
+              </a>
             </div>
 
             <div className="mt-7">

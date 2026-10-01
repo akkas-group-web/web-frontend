@@ -15,9 +15,7 @@ interface ServiceDetailProps {
 }
 
 function renderInlineBold(text: string) {
-  const parts = text
-    .split(/(<br\s*\/?>|\*\*.*?\*\*)/gi)
-    .filter(Boolean);
+  const parts = text.split(/(<br\s*\/?>|\*\*.*?\*\*)/gi).filter(Boolean);
 
   return parts.map((part, index) => {
     if (/^<br\s*\/?>$/i.test(part)) {
@@ -114,6 +112,24 @@ function hasGroupedTableHeader(headers: string[]) {
     Boolean(headers[3]) &&
     !headers[4] &&
     !headers[5]
+  );
+}
+function prepareHtmlContent(content: string) {
+  return content.replace(
+    /<table([^>]*)>([\s\S]*?)<\/table>/gi,
+    (_match, attributes, tableContent) => {
+      const cleanAttributes = attributes
+        .replace(/\sclass="[^"]*"/gi, "")
+        .replace(/\sstyle="[^"]*"/gi, "");
+
+      return `<div class="service-table-scroll"><table${cleanAttributes}>${tableContent}</table></div>`;
+    },
+  );
+}
+
+function isHtmlContent(content: string) {
+  return /<(p|h[1-6]|ul|ol|li|table|blockquote|a|strong|em)\b[^>]*>/i.test(
+    content,
   );
 }
 
@@ -293,20 +309,122 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
             </div>
           )}
 
-          <div className="space-y-3">
+          <div className="min-w-0 space-y-3">
             {service.contentTitle && (
               <h2 className="text-lg font-bold text-[#0d4d5c] md:text-xl">
                 {service.contentTitle}
               </h2>
             )}
 
-            {typeof service.content === "string" ? (
+            {typeof service.content === "string" &&
+            isHtmlContent(service.content) ? (
               <div
-                className="prose prose-sm max-w-none text-[13.5px] leading-6 text-[#58696e]"
-                dangerouslySetInnerHTML={{ __html: service.content }}
+                className="
+    max-w-none text-[13.5px] leading-7 text-[#58696e]
+
+    [&_p]:mb-4
+
+    [&_h2]:mb-3
+    [&_h2]:mt-7
+    [&_h2]:text-lg
+    [&_h2]:font-semibold
+    [&_h2]:leading-snug
+    [&_h2]:text-[#0d4d5c]
+
+    [&_h3]:mb-3
+    [&_h3]:mt-6
+    [&_h3]:text-base
+    [&_h3]:font-semibold
+    [&_h3]:text-[#0d4d5c]
+
+    [&_ul]:my-4
+    [&_ul]:list-disc
+    [&_ul]:space-y-1
+    [&_ul]:pl-6
+
+    [&_ol]:my-4
+    [&_ol]:list-decimal
+    [&_ol]:space-y-1
+    [&_ol]:pl-6
+
+    [&_li]:pl-1
+
+    [&_strong]:font-semibold
+    [&_strong]:text-[#0d4d5c]
+
+    [&_a]:font-medium
+    [&_a]:text-[#0d4d5c]
+    [&_a]:underline
+    [&_a]:underline-offset-2
+    hover:[&_a]:text-[#1596a8]
+
+
+[&_.service-table-scroll]:w-full
+[&_.service-table-scroll]:max-w-full
+[&_.service-table-scroll]:overflow-x-auto
+[&_.service-table-scroll]:overscroll-x-contain
+[&_.service-table-scroll]:my-6
+
+[&_.service-table-scroll_table]:w-full
+[&_.service-table-scroll_table]:min-w-full
+
+max-md:[&_.service-table-scroll_table:has(tr>th:nth-child(4))]:w-[600px]
+max-md:[&_.service-table-scroll_table:has(tr>th:nth-child(4))]:min-w-[600px]
+[&_.service-table-scroll_table]:border-collapse
+[&_.service-table-scroll_table]:text-left
+[&_.service-table-scroll_table]:text-[10px]
+
+sm:[&_.service-table-scroll_table]:text-[11px]
+
+md:[&_.service-table-scroll]:overflow-x-visible
+md:[&_.service-table-scroll_table]:w-full
+md:[&_.service-table-scroll_table]:min-w-full
+md:[&_.service-table-scroll_table]:text-[13px]
+
+    [&_th]:border
+    [&_th]:border-[#0d4d5c]/10
+    [&_th]:bg-[#f2f8f9]
+    [&_th]:px-2
+    [&_th]:py-2
+    [&_th]:font-semibold
+    [&_th]:leading-4
+    [&_th]:text-[#0d4d5c]
+    [&_th]:break-words
+    sm:[&_th]:px-3
+    md:[&_th]:px-4
+    md:[&_th]:py-3
+
+    [&_td]:border
+    [&_td]:border-[#0d4d5c]/10
+    [&_td]:bg-white
+    [&_td]:px-2
+    [&_td]:py-2
+    [&_td]:align-top
+    [&_td]:font-normal
+    [&_td]:leading-4
+    [&_td]:text-[#58696e]
+    [&_td]:break-words
+    sm:[&_td]:px-3
+    md:[&_td]:px-4
+    md:[&_td]:py-3
+    md:[&_td]:leading-6
+
+    [&_td_strong]:font-semibold
+    [&_td_strong]:text-[#58696e]
+  "
+                dangerouslySetInnerHTML={{
+  __html: prepareHtmlContent(service.content),
+}}
               />
             ) : (
-              renderContent(service.content)
+              renderContent(
+                typeof service.content === "string"
+                  ? service.content
+                      .split(/\r?\n/)
+                      .map((line) => line.trim())
+                      .filter(Boolean)
+                  : service.content,
+              )
             )}
           </div>
         </div>

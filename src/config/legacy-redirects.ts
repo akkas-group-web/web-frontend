@@ -232,8 +232,6 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
     "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/kisisel-veri-envanteri-hazirlanmasi",
   "/politikalarin-hazirlanmasi":
     "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/politikalarin-hazirlanmasi",
-  "/kisisel-verileri-koruma-kanunu":
-    "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/kisisel-verileri-koruma-kanunu",
   // "/kisisel-veri-sahibi-nin-haklari-ve-kanun-hukumlerinin-uygulanmayacagi-haller":
   //   "/hizmetlerimiz/kisisel-verileri-koruma-danismanligi/kisisel-veri-sahibi-nin-haklari-ve-kanun-hukumlerinin-uygulanmayacagi-haller",
   // "/kisisel-verilerin-ve-ozel-nitelikli-kisisel-verilerin-yurt-disina-aktarilma-sartlari":

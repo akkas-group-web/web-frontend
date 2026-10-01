@@ -49,25 +49,8 @@ export function BlogHero() {
             uzman görüşlerini, rehberleri ve güncel yazıları keşfedin.
           </p>
 
-          {/* Alt bilgi */}
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <div className="flex items-center gap-2 rounded-full bg-[#118B99] px-4 py-2 text-xs font-semibold text-white shadow-sm">
-              <BookOpen className="h-3.5 w-3.5" />
-              Güncel Yazılar
-            </div>
 
-            <div className="rounded-full border border-[#118B99]/15 bg-white/70 px-4 py-2 text-xs font-medium text-[#527278]">
-              Uzman Görüşleri
-            </div>
 
-            <div className="rounded-full border border-[#118B99]/15 bg-white/70 px-4 py-2 text-xs font-medium text-[#527278]">
-              Rehberler
-            </div>
-
-            <div className="rounded-full border border-[#118B99]/15 bg-white/70 px-4 py-2 text-xs font-medium text-[#527278]">
-              Sektörel Gelişmeler
-            </div>
-          </div>
         </div>
       </div>
     </section>

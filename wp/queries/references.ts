@@ -13,6 +13,7 @@ export const GET_REFERENCES_QUERY = gql`
           name
           sektor
           website
+          displayorder
           logo {
             node {
               sourceUrl

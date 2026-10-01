@@ -23,7 +23,7 @@ export default async function ReferanslarPage({
   const params = await searchParams;
 
   const currentPage = Math.max(1, Number(params.page) || 1);
-  const pageSize = 60;
+  const pageSize = 102;
 
   const clients = await getClientReferences();
   const stats = await getHomeContent();

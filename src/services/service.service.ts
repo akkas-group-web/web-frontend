@@ -139,9 +139,7 @@ function mapServiceDetailsFromWP(data: WPServicesResponse): ServiceDetail[] {
         title: childFields.childLabel,
         description: childFields.childDescription,
         contentTitle: childFields.contentTitle ?? "",
-        content: (childFields.childContent ?? "")
-          .split("\n")
-          .filter(Boolean),
+        content: childFields.childContent ?? "",
         image: rawImage
           ? {
               url: rawImage.sourceUrl,

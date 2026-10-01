@@ -2,6 +2,8 @@
 
 import './HistoryPanel.css'
 
+//
+
 export default function HistoryPanel({ history, onSelect, onDelete }) {
   return (
     <div className="hp-root">
