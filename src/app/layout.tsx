@@ -5,7 +5,7 @@ import { SITE_CONFIG } from "@/constants/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import ChatWidget from "@/components/chat/ChatWidget/ChatWidget";
-
+import { WhatsAppButton } from "@/components/contact/WhatsAppButton";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -30,7 +30,7 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: `${SITE_CONFIG.name} | Entegre Danışmanlık`,
+    default: `${SITE_CONFIG.name} | A'dan Z'ye Danışmanlık`,
     template: `%s | ${SITE_CONFIG.name}`,
   },
   description: SITE_CONFIG.description,
@@ -47,11 +47,12 @@ export const metadata: Metadata = {
     title: SITE_CONFIG.name,
     description: SITE_CONFIG.description,
   },
+  icons: {
+    icon: "/akkasgroupicon.png",
+  },
 };
 
-export default function RootLayout({
-  children,
-}: LayoutProps<"/">) {
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="tr"
@@ -60,12 +61,10 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col">
         <Header />
 
-        <main className="flex-1">
-          {children}
-        </main>
+        <main className="flex-1">{children}</main>
 
         <Footer />
-
+        <WhatsAppButton />
         <ChatWidget />
       </body>
     </html>
