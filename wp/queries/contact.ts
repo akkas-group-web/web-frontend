@@ -8,6 +8,9 @@ export const GET_CONTACT_OFFICES_QUERY = `
           city
           address
           phone
+          phone2
+          phoneType
+          phoneType2
           email
           latitude
           longitude
@@ -26,6 +29,12 @@ export const GET_CONTACT_PAGE_QUERY = `
         heroDescription
         locationsTitle
         locationsDescription
+          locationsThumbnail {
+    node {
+      sourceUrl
+      altText
+    }
+  }
         formTitle
         formDescription
         nameLabel
