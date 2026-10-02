@@ -30,8 +30,6 @@ interface WPAboutPageResponse {
         stat2Label: string;
         stat3Value: string;
         stat3Label: string;
-        stat4Value: string;
-        stat4Label: string;
         homeSummaryEyebrow: string;
         homeSummaryTitle: string;
         homeSummaryDescription: string;
@@ -131,8 +129,7 @@ function mapAboutPageFromWP(
       { id: "stat-1", value: fields.stat1Value, label: fields.stat1Label },
       { id: "stat-2", value: fields.stat2Value, label: fields.stat2Label },
       { id: "stat-3", value: fields.stat3Value, label: fields.stat3Label },
-      { id: "stat-4", value: fields.stat4Value, label: fields.stat4Label },
-    ].filter((stat) => stat.value && stat.label),
+      ],
   };
 }
 
