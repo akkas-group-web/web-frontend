@@ -2,7 +2,10 @@ import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
 import type { ServiceCategory, ServiceDetail } from "@/types/service";
 import { wpClient } from "../../wp/client";
-import { GET_SERVICES_QUERY } from "../../wp/queries/services";
+import {
+  GET_SERVICES_QUERY,
+  SERVICES_PAGE_QUERY,
+} from "../../wp/queries/services";
 import { ServiceIconKey } from "@/types";
 
 interface WPServicesResponse {
@@ -229,6 +232,42 @@ export async function getServicesAndCategories(): Promise<{
 
     throw new AppError(
       "Hizmetler yüklenemedi",
+      "CONTENT_FETCH_FAILED",
+      error,
+    );
+  }
+}
+export interface ServicesPageContent {
+  heroEyebrow: string;
+  heroBaslik: string;
+  heroAciklama: string;
+}
+
+interface WPServicesPageResponse {
+  servicesPages: {
+    nodes: {
+      servicesPageFields: ServicesPageContent;
+    }[];
+  };
+}
+
+export async function getServicesPageContent(): Promise<ServicesPageContent> {
+  try {
+    const data =
+      await wpClient.request<WPServicesPageResponse>(SERVICES_PAGE_QUERY);
+
+    const content = data.servicesPages.nodes[0]?.servicesPageFields;
+
+    if (!content) {
+      throw new Error("Hizmetler sayfası içeriği bulunamadı");
+    }
+
+    return content;
+  } catch (error) {
+    logger.error("Hizmetler sayfası içeriği alınamadı", { error });
+
+    throw new AppError(
+      "Hizmetler sayfası içeriği yüklenemedi",
       "CONTENT_FETCH_FAILED",
       error,
     );
