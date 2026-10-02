@@ -2,6 +2,7 @@ import { HeroSlide } from "@/services/hero.service";
 import type { ArticleItem } from "./article";
 import type { MediaImage } from "./media";
 import type { NewsItem } from "./news";
+import type { HomePopupData } from "@/services/popup.service";
 export * from "./contact";
 import type { ClientReference } from "@/types/reference";
 export * from "./media";
@@ -67,4 +68,5 @@ export interface HomeContent {
   clients: ClientReference[];
   heroSlides: HeroSlide[];
   homeSummary: HomeSummaryContent;
+  popup: HomePopupData | null;
 }
