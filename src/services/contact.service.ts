@@ -8,24 +8,6 @@ import {
   GET_CONTACT_PAGE_QUERY,
 } from "../../wp/queries/contact";
 
-const MOCK_CONTACT_OFFICES: ContactOffice[] = [
-  {
-    id: "istanbul-anadolu",
-    city: "İstanbul Asya",
-    title: "Merkez Ofis",
-    address: "Uzunçayır Cad. Akkaş Plaza No:51 Hasanpaşa-Kadıköy-İSTANBUL",
-    phone: "+90 216 450 60 07 (Pbx)",
-    email: "info@akkasgroup.com",
-  },
-  { id: "istanbul-avrupa", city: "İstanbul Avrupa", title: "İstanbul Avrupa" },
-  { id: "tekirdag", city: "Tekirdağ", title: "Tekirdağ" },
-  { id: "canakkale", city: "Çanakkale", title: "Çanakkale" },
-  { id: "denizli", city: "Denizli", title: "Denizli" },
-  { id: "antalya", city: "Antalya", title: "Antalya" },
-  { id: "kayseri", city: "Kayseri", title: "Kayseri" },
-  { id: "ankara", city: "Ankara", title: "Ankara" },
-  { id: "gaziantep", city: "Gaziantep", title: "Gaziantep" },
-];
 
 interface WPContactOfficesResponse {
   contactOffices: {
@@ -161,7 +143,7 @@ kvkkPdfUrl,
 
       services: categories.map((c) => c.label),
       offices: sortedOffices,
-      // offices,
+     
     };
   } catch (error) {
     logger.error("İletişim içeriği alınamadı", { error });

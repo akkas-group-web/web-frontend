@@ -51,9 +51,10 @@ export function AboutStatsStrip({ stats }: AboutStatsStripProps) {
           </span>
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4 md:gap-x-0">
+        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-3">
           {stats.map((stat, idx) => {
             const Icon = STAT_ICONS[stat.id] ?? Layers;
+
             return (
               <motion.div
                 key={stat.id}
@@ -61,8 +62,8 @@ export function AboutStatsStrip({ stats }: AboutStatsStripProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`group relative flex flex-col items-center px-4 text-center md:items-start md:text-left ${
-                  idx > 0 ? "md:border-l md:border-white/10" : ""
+                className={`group relative flex flex-col items-center px-4 text-center ${
+                  idx > 0 ? "sm:border-l sm:border-white/10" : ""
                 }`}
               >
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-[#7fc7d4] ring-1 ring-white/15 backdrop-blur-sm transition-colors duration-300 group-hover:bg-[#7fc7d4] group-hover:text-[#0d4d5c]">
@@ -72,6 +73,7 @@ export function AboutStatsStrip({ stats }: AboutStatsStripProps) {
                 <div className="font-heading mt-4 text-4xl font-bold text-white md:text-5xl">
                   <AnimatedNumber value={stat.value} />
                 </div>
+
                 <div className="mt-1.5 text-xs font-medium uppercase tracking-wide text-white/55">
                   {stat.label}
                 </div>

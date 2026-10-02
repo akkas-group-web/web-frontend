@@ -1,4 +1,3 @@
-import { STATS } from "@/constants/site";
 import { AboutStatItem } from "@/types/about";
 
 interface ReferencesHeroProps {
@@ -23,10 +22,9 @@ export function ReferencesHero({ stats }: ReferencesHeroProps) {
           tesislerine kadar 18.000&apos;den fazla firmaya danışmanlık verdik.
           Sektörünüze göre gerçek başarı hikayelerimizi keşfedin.
         </p>
-
-        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-6 sm:grid-cols-4">
+        <div className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-8 md:gap-14">
           {stats.map((stat) => (
-            <div key={stat.id}>
+            <div key={stat.id} className="min-w-[140px] text-center">
               <p className="font-heading text-2xl font-bold text-[#1a7d8f] md:text-3xl">
                 {stat.value}
               </p>
