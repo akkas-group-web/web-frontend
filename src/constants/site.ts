@@ -76,7 +76,7 @@ export const STATS = [
   { value: "25+", label: "Yıllık Tecrübe", sub: "1999'dan beri" },
   { value: "200+", label: "Uzman Danışman Kadrosu" },
   { value: "18.000+", label: "Hizmet Verilen Firma" },
-  { value: "8", label: "Grup Şirketi" },
+  
 ];
 
 export const SITE_CONFIG = {

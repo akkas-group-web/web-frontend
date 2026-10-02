@@ -16,20 +16,6 @@ import { getAboutContent, getHomeSummaryContent } from "./about.service";
 import { getSectors } from "./sector.service";
 import { getBrands } from "./brand.service";
 
-const MOCK_HOME_CONTENT: Omit<
-  HomeContent,
-  | "services"
-  | "clients"
-  | "heroSlides"
-  | "stats"
-  | "homeSummary"
-  | "sectors"
-  | "announcements"
-  | "articles"
-  | "brands"
-  | "popup"
-> = {};
-
 export async function getHomeContent(): Promise<HomeContent> {
   try {
     const [
@@ -57,8 +43,6 @@ export async function getHomeContent(): Promise<HomeContent> {
     ]);
 
     return {
-      ...MOCK_HOME_CONTENT,
-
       services: services.map((category) => ({
         id: category.id,
         title: category.label,
