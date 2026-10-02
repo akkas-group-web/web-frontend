@@ -1,6 +1,8 @@
 import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
 import type { HomeContent } from "@/types";
+import { getHomePopup } from "./popup.service";
+
 
 import { getBlogPosts } from "./blog.service";
 import { getHeroSlides } from "./hero.service";
@@ -26,6 +28,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       announcements,
       articles,
       brands,
+      popup,
     ] = await Promise.all([
       getServiceCategories(),
       getClientReferences(),
@@ -36,6 +39,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       getNews(),
       getBlogPosts(),
       getBrands(),
+      getHomePopup(),
     ]);
 
     return {
@@ -55,6 +59,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       announcements,
       articles,
       brands,
+      popup,
     };
   } catch (error) {
     logger.error("Ana sayfa içeriği alınamadı", { error });

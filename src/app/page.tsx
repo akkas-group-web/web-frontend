@@ -7,6 +7,7 @@ import { AnnouncementsSection } from "@/components/sections/AnnouncementsSection
 import { ReferencesSection } from "@/components/sections/ReferencesSection";
 import { ArticlesSection } from "@/components/sections/Articlessection";
 import { getHomeContent } from "@/services";
+import HomePopup from "@/components/popup/HomePopup";
 
 export default async function HomePage() {
   const content = await getHomeContent();
@@ -21,6 +22,7 @@ export default async function HomePage() {
       <ReferencesSection clients={content.clients} />
       <ArticlesSection articles={content.articles} />
       <AnnouncementsSection announcements={content.announcements} />
+      <HomePopup popup={content.popup} />
     </>
   );
 }
