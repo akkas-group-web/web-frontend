@@ -32,6 +32,28 @@ const INFO_ROW_STATS = [STATS[0], STATS[2]];
 // Poster çerçevesinin sol altına taşan vurgu kartı için ayrı istatistik.
 const FLOATING_STAT = STATS[1];
 
+/**
+ * WordPress'teki ACF "Link" alanından link özelliklerini hazırlar.
+ * - Link girilmemişse tıklanınca hiçbir yere gitmez (#).
+ * - WordPress'te "Yeni sekmede aç" işaretliyse yeni sekmede açılır.
+ */
+function getApplicationLinkProps(
+  link?: {
+    url: string;
+    title?: string;
+    target?: string;
+  } | null,
+) {
+  const href = link?.url?.trim();
+
+  if (!href) return { href: "#" };
+
+  return {
+    href,
+    target: link?.target || undefined,
+    rel: link?.target === "_blank" ? "noopener noreferrer" : undefined,
+  };
+}
 
 interface HeroApplicationsProps {
   open: boolean;
@@ -87,6 +109,29 @@ function HeroApplications({
     };
   }, [open, onOpenChange]);
 
+  // MOBİL: panel açıkken
+  // - sayfanın arkada kaymasını engelle,
+  // - sağ alttaki Akkaş Robot'u (.cw-root) gizle ki panelin üstüne binmesin.
+  // Panel kapanınca ikisi de eski haline döner.
+  useEffect(() => {
+    if (!open) return;
+    if (!window.matchMedia("(max-width: 767px)").matches) return;
+
+    const { body } = document;
+    const robot = document.querySelector<HTMLElement>(".cw-root");
+
+    const previousOverflow = body.style.overflow;
+    const previousRobotDisplay = robot?.style.display ?? "";
+
+    body.style.overflow = "hidden";
+    robot?.style.setProperty("display", "none", "important");
+
+    return () => {
+      body.style.overflow = previousOverflow;
+      if (robot) robot.style.display = previousRobotDisplay;
+    };
+  }, [open]);
+
   return (
     <>
     {/* MASAÜSTÜ / TABLET: sol kenardaki sekme ve kart */}
@@ -107,9 +152,10 @@ function HeroApplications({
           Uygulamalarımız
         </span>
 
-        {/* Renkli noktalar – yazının ALTINDA, üst üste binmez */}
+        {/* Renkli noktalar – yazının ALTINDA, üst üste binmez.
+            Uygulama sayısı artsa da sekme uzamasın diye en fazla 6 nokta. */}
         <span className="flex flex-col gap-1.5" aria-hidden={true}>
-          {applications.map((application) => (
+          {applications.slice(0, 6).map((application) => (
             <span
               key={application.id}
               className="h-2 w-2 rounded-full bg-brand-turquoise-400"
@@ -159,7 +205,8 @@ function HeroApplications({
                       transition={{ delay: 0.08 + index * 0.04 }}
                     >
                       <Link
-                        href="#"
+                        {...getApplicationLinkProps(application.link)}
+                        onClick={() => onOpenChange(false)}
                         className="group relative flex min-h-[54px] items-center gap-2 px-2.5 py-2 transition-colors hover:bg-brand-turquoise-50/70 focus-visible:bg-brand-turquoise-50 focus-visible:outline-none"
                       >
                         {/* Logo kutusu: logo içine tam sığar, kesilmez */}
@@ -200,7 +247,7 @@ function HeroApplications({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="pointer-events-auto fixed inset-0 z-[80] bg-brand-turquoise-950/45"
+              className="pointer-events-auto fixed inset-0 z-[1000] bg-brand-turquoise-950/45"
               aria-hidden={true}
             />
 
@@ -213,7 +260,7 @@ function HeroApplications({
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="pointer-events-auto fixed inset-x-0 bottom-0 z-[81] rounded-t-3xl bg-white px-5 pb-[max(20px,env(safe-area-inset-bottom))] pt-2.5 text-brand-turquoise-950 shadow-[0_-18px_50px_rgba(4,45,52,0.25)]"
+              className="pointer-events-auto fixed inset-x-0 bottom-0 z-[1001] rounded-t-3xl bg-white px-5 pb-[max(20px,env(safe-area-inset-bottom))] pt-2.5 text-brand-turquoise-950 shadow-[0_-18px_50px_rgba(4,45,52,0.25)]"
             >
               {/* Tutamaç */}
               <span className="mx-auto mb-2 block h-1 w-10 rounded-full bg-brand-turquoise-900/15" />
@@ -234,7 +281,7 @@ function HeroApplications({
                 </button>
               </div>
 
-              {/* 2x2 uygulama kutuları */}
+              {/* 2 sütunlu uygulama kutuları */}
               <ul className="grid grid-cols-2 gap-3">
                 {applications.map((application, index) => (
                   <motion.li
@@ -242,9 +289,12 @@ function HeroApplications({
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.12 + index * 0.05 }}
+                    // Uygulama sayısı tekse son kutu solda yalnız kalmasın, ortalansın
+                    className="[&:last-child:nth-child(odd)]:col-span-2 [&:last-child:nth-child(odd)]:mx-auto [&:last-child:nth-child(odd)]:w-[calc(50%-6px)]"
                   >
                     <Link
-                      href="#"
+                      {...getApplicationLinkProps(application.link)}
+                      onClick={() => onOpenChange(false)}
                       className="flex h-full flex-col items-center gap-2.5 rounded-2xl border border-brand-turquoise-900/[0.08] px-3 py-4 text-center transition-colors active:bg-brand-turquoise-50"
                     >
                       <span className="relative h-14 w-14 overflow-hidden rounded-xl border border-brand-turquoise-900/[0.08] bg-white p-1 shadow-[0_2px_6px_rgba(4,45,52,0.08)]">

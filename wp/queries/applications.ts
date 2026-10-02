@@ -11,6 +11,11 @@ export const APPLICATIONS_QUERY = /* GraphQL */ `
               altText
             }
           }
+          link {
+            url
+            title
+            target
+          }
         }
       }
     }

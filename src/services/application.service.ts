@@ -9,6 +9,11 @@ export interface Application {
   id: string;
   title: string;
   logo: MediaImage;
+  link?: {
+    url: string;
+    title?: string;
+    target?: string;
+  } | null;
 }
 
 interface WPApplicationsResponse {
@@ -23,6 +28,11 @@ interface WPApplicationsResponse {
             altText: string;
           };
         };
+        link?: {
+          url: string;
+          title?: string;
+          target?: string;
+        } | null;
       };
     }[];
   };
@@ -38,6 +48,7 @@ function mapApplicationsFromWP(
       url: node.uygulamaBilgileri.logo.node.sourceUrl,
       alt: node.uygulamaBilgileri.logo.node.altText || node.title,
     },
+    link: node.uygulamaBilgileri.link ?? null,
   }));
 }
 
