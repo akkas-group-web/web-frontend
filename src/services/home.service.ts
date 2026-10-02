@@ -2,12 +2,14 @@ import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
 import type { HomeContent } from "@/types";
 
+
 import { getBlogPosts } from "./blog.service";
 import { getHeroSlides } from "./hero.service";
 import { getNews } from "./news.service";
 
 import { getServiceCategories } from "./service.service";
 import { getClientReferences } from "./reference.service";
+import { getApplications } from "./application.service";
 
 import { getAboutContent, getHomeSummaryContent } from "./about.service";
 
@@ -25,21 +27,23 @@ const MOCK_HOME_CONTENT: Omit<
   | "announcements"
   | "articles"
   | "brands"
+  | "applications"
 > = {};
 
 export async function getHomeContent(): Promise<HomeContent> {
   try {
     const [
-      services,
-      clients,
-      heroSlides,
-      aboutContent,
-      homeSummary,
-      sectors,
-      announcements,
-      articles,
-      brands,
-    ] = await Promise.all([
+  services,
+  clients,
+  heroSlides,
+  aboutContent,
+  homeSummary,
+  sectors,
+  announcements,
+  articles,
+  brands,
+  applications,
+] = await Promise.all([
       getServiceCategories(),
       getClientReferences(),
       getHeroSlides(),
@@ -49,6 +53,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       getNews(),
       getBlogPosts(),
       getBrands(),
+      getApplications(),
     ]);
 
     return {
@@ -70,6 +75,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       announcements,
       articles,
       brands,
+      applications,
     };
   } catch (error) {
     logger.error("Ana sayfa içeriği alınamadı", { error });
