@@ -1,6 +1,16 @@
 import { Briefcase } from "lucide-react";
 
-export function ServicesHero() {
+interface ServicesHeroProps {
+  content: {
+    heroEyebrow: string;
+    heroBaslik: string;
+    heroAciklama: string;
+  };
+}
+
+export function ServicesHero({ content }: ServicesHeroProps) {
+  const [titleFirst, ...titleRest] = content.heroBaslik.split(",");
+
   return (
     <section className="relative overflow-hidden border-b border-[#0d4d5c]/10 bg-gradient-to-br from-[#eef7f6] via-[#f4faf9] to-white">
       {/* Dekoratif halkalar */}
@@ -12,20 +22,25 @@ export function ServicesHero() {
         {/* Pill etiket */}
         <span className="inline-flex items-center gap-2 rounded-full border border-[#0d4d5c]/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#16859a] shadow-sm">
           <Briefcase className="h-3.5 w-3.5" />
-          Hizmetlerimiz
+       {content.heroEyebrow}
         </span>
 
         {/* Başlık */}
         <h1 className="mt-5 text-4xl font-bold leading-[1.1] tracking-tight text-[#0d4d5c] md:text-6xl">
-          Uzmanlığımız,
-          <br />
-          <span className="text-[#16859a]">çözüm ortağınız.</span>
+          {titleFirst},
+          {titleRest.length > 0 && (
+            <>
+              <br />
+              <span className="text-[#16859a]">
+                {titleRest.join(",").trim()}
+              </span>
+            </>
+          )}
         </h1>
 
         {/* Açıklama */}
         <p className="mt-5 max-w-xl text-base leading-7 text-[#607176] md:text-lg">
-          İşletmenizin ihtiyaçlarına yönelik uzmanlık alanlarımızı ve
-          sunduğumuz danışmanlık hizmetlerini keşfedin.
+          {content.heroAciklama}
         </p>
       </div>
     </section>

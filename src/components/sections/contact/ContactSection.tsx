@@ -1,4 +1,4 @@
-import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone, Printer } from "lucide-react";
 
 import type { ContactOffice } from "@/types";
 import { ContactForm } from "./ContactForm";
@@ -91,7 +91,7 @@ export function ContactSection({
                       {officeLabels.addressLabel}
                     </p>
 
-                    <p className="mt-1.5 max-w-sm text-sm leading-6 text-brand-dark">
+                    <p className="mt-1.5 max-w-md text-sm leading-6 text-brand-dark">
                       {mainOffice.address}
                     </p>
                   </div>
@@ -122,6 +122,22 @@ export function ContactSection({
                           </a>
                         ))}
                     </div>
+                  </div>
+                </div>
+              )}
+
+              {mainOffice.phone2 && mainOffice.phoneType2 === "fax" && (
+                <div className="flex gap-3 py-4">
+                  <Printer className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
+
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                      FAX
+                    </p>
+
+                    <p className="mt-1.5 text-sm font-medium text-brand-dark">
+                      {mainOffice.phone2}
+                    </p>
                   </div>
                 </div>
               )}
