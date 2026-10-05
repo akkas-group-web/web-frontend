@@ -16,6 +16,7 @@ import { getAboutContent, getHomeSummaryContent } from "./about.service";
 import { getSectors } from "./sector.service";
 import { getBrands } from "./brand.service";
 
+
 export async function getHomeContent(): Promise<HomeContent> {
   try {
     const [
@@ -41,6 +42,8 @@ export async function getHomeContent(): Promise<HomeContent> {
       getBrands(),
       getHomePopup(),
     ]);
+
+    console.log("HOME POPUP:", popup);
 
     return {
       services: services.map((category) => ({

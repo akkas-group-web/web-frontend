@@ -46,3 +46,16 @@ export const GET_SERVICES_QUERY = gql`
     }
   }
 `;
+export const SERVICES_PAGE_QUERY = gql`
+  query ServicesPage {
+    servicesPages(first: 1) {
+      nodes {
+        servicesPageFields {
+          heroEyebrow
+          heroBaslik
+          heroAciklama
+        }
+      }
+    }
+  }
+`;
