@@ -1,4 +1,5 @@
 import { HeroSlide } from "@/services/hero.service";
+import type { Application } from "@/services/application.service";
 import type { ArticleItem } from "./article";
 import type { MediaImage } from "./media";
 import type { NewsItem } from "./news";
@@ -67,6 +68,7 @@ export interface HomeContent {
   articles: ArticleItem[];
   clients: ClientReference[];
   heroSlides: HeroSlide[];
+  applications: Application[];
   homeSummary: HomeSummaryContent;
   popup: HomePopupData | null;
 }
