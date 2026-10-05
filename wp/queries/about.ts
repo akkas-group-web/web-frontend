@@ -34,8 +34,6 @@ export const GET_ABOUT_PAGE_QUERY = gql`
           stat2Label
           stat3Value
           stat3Label
-          stat4Value
-          stat4Label
           homeSummaryEyebrow
           homeSummaryTitle
           homeSummaryDescription
