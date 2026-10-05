@@ -7,9 +7,9 @@ export const wpClient = new GraphQLClient(
   },
 );
 
-export const wpNoCacheClient = new GraphQLClient(
+export const wpPopupClient = new GraphQLClient(
   process.env.WP_GRAPHQL_ENDPOINT!,
   {
-    cache: "no-store",
+    next: { revalidate: 60 },
   },
 );
