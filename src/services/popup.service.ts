@@ -1,6 +1,6 @@
 import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
-import { wpClient } from "../../wp/client";
+import { wpNoCacheClient } from "../../wp/client";
 import { GET_HOME_POPUP_QUERY } from "../../wp/queries/popup";
 export interface HomePopupData {
   id: string;
@@ -71,8 +71,13 @@ function mapHomePopupFromWP(
 
 export async function getHomePopup(): Promise<HomePopupData | null> {
   try {
-    const data = await wpClient.request<WPHomePopupResponse>(
+    const data = await wpNoCacheClient.request<WPHomePopupResponse>(
       GET_HOME_POPUP_QUERY,
+    );
+
+    console.log(
+      "RAW POPUP GRAPHQL:",
+      JSON.stringify(data, null, 2),
     );
 
     return mapHomePopupFromWP(data);
