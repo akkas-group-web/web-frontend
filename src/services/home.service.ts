@@ -43,7 +43,6 @@ export async function getHomeContent(): Promise<HomeContent> {
       getHomePopup(),
     ]);
 
-    console.log("HOME POPUP:", popup);
 
     return {
       services: services.map((category) => ({
