@@ -129,7 +129,7 @@ function mapAboutPageFromWP(
       { id: "stat-1", value: fields.stat1Value, label: fields.stat1Label },
       { id: "stat-2", value: fields.stat2Value, label: fields.stat2Label },
       { id: "stat-3", value: fields.stat3Value, label: fields.stat3Label },
-      ],
+    ].filter((stat) => stat.value && stat.label),
   };
 }
 
