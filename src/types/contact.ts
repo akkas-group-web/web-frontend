@@ -14,6 +14,9 @@ export interface ContactOffice {
   title: string;
   address?: string;
   phone?: string;
+  phone2?: string;
+  phoneType?: string;
+  phoneType2?: string;
   email?: string;
   latitude?: number;
   longitude?: number;
