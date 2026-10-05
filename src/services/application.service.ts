@@ -14,6 +14,7 @@ export interface Application {
     title?: string;
     target?: string;
   } | null;
+  displayorder?: number | null;
 }
 
 interface WPApplicationsResponse {
@@ -33,6 +34,7 @@ interface WPApplicationsResponse {
           title?: string;
           target?: string;
         } | null;
+        displayorder?: number | null;
       };
     }[];
   };
@@ -49,6 +51,7 @@ function mapApplicationsFromWP(
       alt: node.uygulamaBilgileri.logo.node.altText || node.title,
     },
     link: node.uygulamaBilgileri.link ?? null,
+    displayorder: node.uygulamaBilgileri.displayorder ?? null,
   }));
 }
 
@@ -58,7 +61,22 @@ export async function getApplications(): Promise<Application[]> {
       APPLICATIONS_QUERY,
     );
 
-    return mapApplicationsFromWP(data);
+    return mapApplicationsFromWP(data).sort((a, b) => {
+      const aOrder = Number(a.displayorder);
+      const bOrder = Number(b.displayorder);
+
+      const aHasOrder = Number.isFinite(aOrder) && aOrder > 0;
+      const bHasOrder = Number.isFinite(bOrder) && bOrder > 0;
+
+      if (aHasOrder && bHasOrder) {
+        return aOrder - bOrder;
+      }
+
+      if (aHasOrder) return -1;
+      if (bHasOrder) return 1;
+
+      return 0;
+    });
   } catch (error) {
     logger.error("Uygulamalar alınamadı", { error });
 

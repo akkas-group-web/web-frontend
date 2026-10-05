@@ -16,6 +16,7 @@ export const APPLICATIONS_QUERY = /* GraphQL */ `
             title
             target
           }
+          displayorder
         }
       }
     }
