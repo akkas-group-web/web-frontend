@@ -3,6 +3,7 @@ import type { Application } from "@/services/application.service";
 import type { ArticleItem } from "./article";
 import type { MediaImage } from "./media";
 import type { NewsItem } from "./news";
+import type { HomePopupData } from "@/services/popup.service";
 export * from "./contact";
 import type { ClientReference } from "@/types/reference";
 export * from "./media";
@@ -69,4 +70,5 @@ export interface HomeContent {
   heroSlides: HeroSlide[];
   applications: Application[];
   homeSummary: HomeSummaryContent;
+  popup: HomePopupData | null;
 }

@@ -2,48 +2,32 @@ import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
 import type { HomeContent } from "@/types";
 
-
+import { getHomePopup } from "./popup.service";
 import { getBlogPosts } from "./blog.service";
 import { getHeroSlides } from "./hero.service";
 import { getNews } from "./news.service";
-
 import { getServiceCategories } from "./service.service";
 import { getClientReferences } from "./reference.service";
 import { getApplications } from "./application.service";
-
 import { getAboutContent, getHomeSummaryContent } from "./about.service";
-
 import { getSectors } from "./sector.service";
 import { getBrands } from "./brand.service";
-
-const MOCK_HOME_CONTENT: Omit<
-  HomeContent,
-  | "services"
-  | "clients"
-  | "heroSlides"
-  | "stats"
-  | "homeSummary"
-  | "sectors"
-  | "announcements"
-  | "articles"
-  | "brands"
-  | "applications"
-> = {};
 
 export async function getHomeContent(): Promise<HomeContent> {
   try {
     const [
-  services,
-  clients,
-  heroSlides,
-  aboutContent,
-  homeSummary,
-  sectors,
-  announcements,
-  articles,
-  brands,
-  applications,
-] = await Promise.all([
+      services,
+      clients,
+      heroSlides,
+      aboutContent,
+      homeSummary,
+      sectors,
+      announcements,
+      articles,
+      brands,
+      applications,
+      popup,
+    ] = await Promise.all([
       getServiceCategories(),
       getClientReferences(),
       getHeroSlides(),
@@ -54,11 +38,10 @@ export async function getHomeContent(): Promise<HomeContent> {
       getBlogPosts(),
       getBrands(),
       getApplications(),
+      getHomePopup(),
     ]);
 
     return {
-      ...MOCK_HOME_CONTENT,
-
       services: services.map((category) => ({
         id: category.id,
         title: category.label,
@@ -76,6 +59,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       articles,
       brands,
       applications,
+      popup,
     };
   } catch (error) {
     logger.error("Ana sayfa içeriği alınamadı", { error });

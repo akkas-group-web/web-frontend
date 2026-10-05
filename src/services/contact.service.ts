@@ -8,24 +8,6 @@ import {
   GET_CONTACT_PAGE_QUERY,
 } from "../../wp/queries/contact";
 
-const MOCK_CONTACT_OFFICES: ContactOffice[] = [
-  {
-    id: "istanbul-anadolu",
-    city: "İstanbul Asya",
-    title: "Merkez Ofis",
-    address: "Uzunçayır Cad. Akkaş Plaza No:51 Hasanpaşa-Kadıköy-İSTANBUL",
-    phone: "+90 216 450 60 07 (Pbx)",
-    email: "info@akkasgroup.com",
-  },
-  { id: "istanbul-avrupa", city: "İstanbul Avrupa", title: "İstanbul Avrupa" },
-  { id: "tekirdag", city: "Tekirdağ", title: "Tekirdağ" },
-  { id: "canakkale", city: "Çanakkale", title: "Çanakkale" },
-  { id: "denizli", city: "Denizli", title: "Denizli" },
-  { id: "antalya", city: "Antalya", title: "Antalya" },
-  { id: "kayseri", city: "Kayseri", title: "Kayseri" },
-  { id: "ankara", city: "Ankara", title: "Ankara" },
-  { id: "gaziantep", city: "Gaziantep", title: "Gaziantep" },
-];
 
 interface WPContactOfficesResponse {
   contactOffices: {
@@ -36,6 +18,9 @@ interface WPContactOfficesResponse {
         city: string;
         address: string | null;
         phone: string | null;
+        phone2: string | null;
+        phoneType: string[] | null;
+        phoneType2: string[] | null;
         email: string | null;
         latitude: number | null;
         longitude: number | null;
@@ -56,6 +41,12 @@ interface WPContactPageResponse {
       locationsEyebrow: string | null;
       locationsTitle: string | null;
       locationsDescription: string | null;
+      locationsThumbnail: {
+        node: {
+          sourceUrl: string;
+          altText: string | null;
+        };
+      } | null;
       nameLabel: string | null;
       namePlaceholder: string | null;
       companyLabel: string | null;
@@ -72,10 +63,10 @@ interface WPContactPageResponse {
       addressLabel: string | null;
       otherOfficesTitle: string | null;
       kvkkPdf: {
-  node: {
-    mediaItemUrl: string;
-  };
-} | null;
+        node: {
+          mediaItemUrl: string;
+        };
+      } | null;
     };
   } | null;
 }
@@ -89,6 +80,9 @@ function mapContactOfficesFromWP(
     title: node.title,
     address: node.contactOfficeFieldss.address ?? undefined,
     phone: node.contactOfficeFieldss.phone ?? undefined,
+    phone2: node.contactOfficeFieldss.phone2 ?? undefined,
+    phoneType: node.contactOfficeFieldss.phoneType?.[0] ?? undefined,
+    phoneType2: node.contactOfficeFieldss.phoneType2?.[0] ?? undefined,
     email: node.contactOfficeFieldss.email ?? undefined,
     latitude: node.contactOfficeFieldss.latitude ?? undefined,
     longitude: node.contactOfficeFieldss.longitude ?? undefined,
@@ -112,20 +106,20 @@ export async function getContactContent() {
 
     const offices = mapContactOfficesFromWP(officesData);
     const mainIndex = offices.findIndex((o) => o.isMainOffice);
-const sortedOffices =
-  mainIndex > 0
-    ? [
-        offices[mainIndex],
-        ...offices.slice(0, mainIndex),
-        ...offices.slice(mainIndex + 1),
-      ]
-    : offices;
+    const sortedOffices =
+      mainIndex > 0
+        ? [
+            offices[mainIndex],
+            ...offices.slice(0, mainIndex),
+            ...offices.slice(mainIndex + 1),
+          ]
+        : offices;
 
-const kvkkPdfUrl =
-  pageFields.kvkkPdf?.node.mediaItemUrl ??
-  "/documents/iletisimformuaydinlatmametni.pdf";
+    const kvkkPdfUrl =
+      pageFields.kvkkPdf?.node.mediaItemUrl ??
+      "/documents/iletisimformuaydinlatmametni.pdf";
 
-return {
+    return {
       hero: {
         eyebrow: pageFields.heroEyebrow ?? "",
         title: pageFields.heroTitle ?? "",
@@ -135,6 +129,12 @@ return {
         eyebrow: pageFields.locationsEyebrow ?? "",
         title: pageFields.locationsTitle ?? "",
         description: pageFields.locationsDescription ?? "",
+        thumbnail: pageFields.locationsThumbnail?.node
+          ? {
+              url: pageFields.locationsThumbnail.node.sourceUrl,
+              alt: pageFields.locationsThumbnail.node.altText ?? "",
+            }
+          : null,
       },
       formTitle: pageFields.formTitle ?? "",
       formDescription: pageFields.formDescription ?? "",
@@ -152,7 +152,7 @@ return {
         messageLabel: pageFields.messageLabel ?? "",
         messagePlaceholder: pageFields.messagePlaceholder ?? "",
         submitButtonText: pageFields.submitButtonText ?? "",
-kvkkPdfUrl,
+        kvkkPdfUrl,
       },
       officeLabels: {
         addressLabel: pageFields.addressLabel ?? "",
@@ -161,7 +161,7 @@ kvkkPdfUrl,
 
       services: categories.map((c) => c.label),
       offices: sortedOffices,
-      // offices,
+     
     };
   } catch (error) {
     logger.error("İletişim içeriği alınamadı", { error });

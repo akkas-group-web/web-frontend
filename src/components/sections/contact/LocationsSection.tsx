@@ -11,6 +11,10 @@ interface LocationsSectionProps {
     eyebrow: string;
     title: string;
     description: string;
+    thumbnail: {
+      url: string;
+      alt: string;
+    } | null;
   };
 }
 
@@ -66,15 +70,15 @@ export function LocationsSection({ content }: LocationsSectionProps) {
                 type="button"
                 onClick={() => setIsOpen(true)}
                 aria-label="Türkiye lokasyonlarını büyüt"
-                className="group absolute right-2 top-2 z-10 w-[140px] overflow-hidden rounded-lg border border-white/60 bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:right-5 sm:top-5 sm:w-[230px] sm:rounded-xl md:right-7 md:top-7 md:w-[320px]"
+                className="group absolute right-2 top-2 z-10 w-[140px] overflow-hidden rounded-lg border border-white/60 bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:right-5 sm:top-5 sm:w-[230px] sm:rounded-xl md:right-7 md:top-7 md:w-[300px]"
               >
                 <div className="relative aspect-[16/10] w-full">
                   <Image
-                    src="/office/locations-map.png"
+                    src={content.thumbnail?.url ?? "/office/locations-map.png"}
                     alt="Akkaş Group 9 farklı lokasyon"
                     fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 140px, (max-width: 768px) 230px, 320px"
+                    className="object-contain"
+                    sizes="(max-width: 640px) 140px, (max-width: 768px) 230px, 300px"
                   />
 
                   <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/5" />
@@ -113,7 +117,7 @@ export function LocationsSection({ content }: LocationsSectionProps) {
 
             <div className="relative aspect-[4/3] w-full sm:aspect-[16/10]">
               <Image
-                src="/office/locations-map.png"
+                src={content.thumbnail?.url ?? "/office/locations-map.png"}
                 alt="Akkaş Group Türkiye lokasyonları"
                 fill
                 className="object-contain"
