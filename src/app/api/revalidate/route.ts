@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 type ResolvePaths = (slug?: string, categorySlug?: string) => string[];
 
@@ -53,6 +53,10 @@ export async function POST(request: NextRequest) {
   if (!post_type) {
     return NextResponse.json({ message: "post_type zorunlu" }, { status: 400 });
   }
+
+  const triggerTag = revalidateTag as (tag: string) => void;
+  triggerTag("wp-content");
+  triggerTag(`wp-${post_type}`);
 
   const resolvePaths = CPT_PATH_MAP[post_type];
   if (!resolvePaths) {
