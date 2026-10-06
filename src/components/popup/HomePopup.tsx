@@ -31,12 +31,12 @@ export default function HomePopup({ popup }: HomePopupProps) {
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 px-4 py-6">
-      <div className="relative w-full max-w-4xl">
+      <div className="relative w-full max-w-lg">
         <button
           type="button"
           onClick={() => setIsOpen(false)}
           aria-label="Popup'ı kapat"
-          className="absolute -right-3 -top-3 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white text-2xl font-medium text-black shadow-xl transition hover:scale-105"
+          className="absolute -right-3 -top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-white text-xl font-medium text-black shadow-xl transition hover:scale-105"
         >
           ×
         </button>
@@ -50,7 +50,7 @@ export default function HomePopup({ popup }: HomePopupProps) {
           <img
             src={popup.image.url}
             alt={popup.image.alt || popup.title}
-            className="h-auto max-h-[85vh] w-full object-contain"
+            className="h-auto max-h-[60vh] w-full object-contain"
           />
         </a>
       </div>
