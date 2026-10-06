@@ -7,6 +7,8 @@ import { Footer } from "@/components/layout/Footer";
 import ChatWidget from "@/components/chat/ChatWidget/ChatWidget";
 import { WhatsAppButton } from "@/components/contact/WhatsAppButton";
 import "./globals.css";
+import { CookieConsent } from "@/components/consent/CookieConsent";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -66,6 +68,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Footer />
         <WhatsAppButton />
         <ChatWidget />
+        <CookieConsent />
+        <GoogleAnalytics />
       </body>
     </html>
   );
