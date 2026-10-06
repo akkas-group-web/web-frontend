@@ -1,18 +1,15 @@
 import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
 import type { HomeContent } from "@/types";
+
 import { getHomePopup } from "./popup.service";
-
-
 import { getBlogPosts } from "./blog.service";
 import { getHeroSlides } from "./hero.service";
 import { getNews } from "./news.service";
-
 import { getServiceCategories } from "./service.service";
 import { getClientReferences } from "./reference.service";
-
+import { getApplications } from "./application.service";
 import { getAboutContent, getHomeSummaryContent } from "./about.service";
-
 import { getSectors } from "./sector.service";
 import { getBrands } from "./brand.service";
 
@@ -29,6 +26,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       announcements,
       articles,
       brands,
+      applications,
       popup,
     ] = await Promise.all([
       getServiceCategories(),
@@ -40,6 +38,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       getNews(),
       getBlogPosts(),
       getBrands(),
+      getApplications(),
       getHomePopup(),
     ]);
 
@@ -61,6 +60,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       announcements,
       articles,
       brands,
+      applications,
       popup,
     };
   } catch (error) {
