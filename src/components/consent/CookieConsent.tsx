@@ -36,8 +36,8 @@ const CATEGORIES: CategoryDef[] = [
       {
         name: "akkas_cookie_consent",
         provider: "akkasgroup.com",
-        purpose: "Çerez tercihinizi saklar (tarayıcı yerel depolaması).",
-        duration: "Siz silene kadar",
+        purpose: "Çerez tercihlerinizi saklar.",
+        duration: "1 yıl",
       },
     ],
   },
