@@ -11,11 +11,11 @@ export type ConsentChoices = Record<ConsentCategory, boolean>;
 export interface StoredConsent {
   version: number;
   timestamp: string;
+  decided?: boolean; // false: ziyaretçi henüz karar vermedi
   choices: ConsentChoices;
 }
-
 const KEY = "akkas_cookie_consent";
-const VERSION = 1;
+const VERSION = 2;
 
 const CHANGE_EVENT = "cookie-consent-change";
 const OPEN_EVENT = "cookie-consent-open";
@@ -29,9 +29,11 @@ export const DEFAULT_CHOICES: ConsentChoices = {
 
 function subscribe(cb: () => void) {
   window.addEventListener(CHANGE_EVENT, cb);
+  window.addEventListener("focus", cb);
 
   return () => {
     window.removeEventListener(CHANGE_EVENT, cb);
+    window.removeEventListener("focus", cb);
   };
 }
 
@@ -67,29 +69,55 @@ function getRaw(): string | null {
  * Secure:
  * - HTTPS üzerinde gönderilir
  */
-export function saveConsent(choices: ConsentChoices) {
-  const data: StoredConsent = {
-    version: VERSION,
-    timestamp: new Date().toISOString(),
-    choices: {
-      ...choices,
-      necessary: true,
-    },
-  };
-
+function writeConsent(data: StoredConsent) {
   try {
     const encoded = encodeURIComponent(JSON.stringify(data));
+    // Secure yalnızca HTTPS'te (Safari'de http://localhost'ta Secure çerez yazılmaz)
+    const secure = location.protocol === "https:" ? "Secure" : "";
 
     document.cookie = [
       `${KEY}=${encoded}`,
       "Path=/",
       "Max-Age=31536000",
       "SameSite=Lax",
-      "Secure",
-    ].join("; ");
+      secure,
+    ]
+      .filter(Boolean)
+      .join("; ");
   } catch {
     // Cookie yazılamazsa sessizce devam et
   }
+}
+
+export function saveConsent(choices: ConsentChoices) {
+  writeConsent({
+    version: VERSION,
+    timestamp: new Date().toISOString(),
+    decided: true,
+    choices: { ...choices, necessary: true },
+  });
+
+  window.dispatchEvent(new Event(CHANGE_EVENT));
+}
+
+// İlk ziyarette "henüz karar verilmedi" kaydını yazar (zorunlu kayıt)
+export function ensureConsentRecord() {
+  try {
+    const raw = getRaw();
+    if (raw) {
+      const parsed = JSON.parse(raw) as StoredConsent;
+      if (parsed.version === VERSION) return; // güncel kayıt var
+    }
+  } catch {
+    // Kayıt bozuksa aşağıda yeniden yazılır
+  }
+
+  writeConsent({
+    version: VERSION,
+    timestamp: new Date().toISOString(),
+    decided: false,
+    choices: DEFAULT_CHOICES,
+  });
 
   window.dispatchEvent(new Event(CHANGE_EVENT));
 }
@@ -127,7 +155,7 @@ export function useCookieConsent() {
     try {
       const parsed = JSON.parse(raw) as StoredConsent;
 
-      if (parsed.version !== VERSION) {
+      if (parsed.version !== VERSION || parsed.decided === false) {
         return {
           ready: true,
           consent: null,

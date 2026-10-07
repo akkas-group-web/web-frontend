@@ -3,6 +3,7 @@
 import {
   COOKIE_OPEN_EVENT,
   DEFAULT_CHOICES,
+  ensureConsentRecord,
   saveConsent,
   useCookieConsent,
   type ConsentCategory,
@@ -68,27 +69,14 @@ const CATEGORIES: CategoryDef[] = [
     id: "functional",
     title: "İşlevsel Çerezler",
     description:
-      "Google Haritalar gibi harici içeriklerin sayfamızda görüntülenmesini sağlar. Bu çerezleri Google yerleştirir. Kapalıyken harita yüklenmez.",
-    cookies: [
-      // {
-      //   name: "__Secure-STRP",
-      //   provider: "google.com",
-      //   purpose: "Google hizmetinin güvenli ve doğru çalışması.",
-      //   duration: "Kısa süreli",
-      // },
-      // {
-      //   name: "SEARCH_SAMESITE",
-      //   provider: "google.com",
-      //   purpose: "Google'ın çapraz site isteklerini güvenli yönetmesi.",
-      //   duration: "Yaklaşık 6 ay",
-      // },
-    ],
+      "Sitenin ek özelliklerini ve tercihlerinizin hatırlanmasını sağlar. Sitemizde şu an bu amaçla çerez kullanılmamaktadır.",
+    cookies: [],
   },
   {
     id: "marketing",
     title: "Reklam / Pazarlama Çerezleri",
     description:
-      "İlgi alanlarınıza göre reklam ve içerik göstermek için kullanılır. Sitemizde şu an bu amaçla çerez kullanılmamaktadır.",
+      "Google Haritalar gibi harici içerikleri yükler. Bu hizmetler ilgi alanlarınıza göre reklam ve içerik kişiselleştirmesi için çerez kullanabilir. Kapalıyken harita yüklenmez.",
     cookies: [
       {
         name: "NID",
@@ -137,6 +125,10 @@ export function CookieConsent() {
   const { ready, consent } = useCookieConsent();
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState<ConsentChoices>(DEFAULT_CHOICES);
+
+  useEffect(() => {
+    if (ready && !consent) ensureConsentRecord();
+  }, [ready, consent]);
 
   // İlk ziyarette (kayıt yoksa) paneli otomatik aç
 
