@@ -8,82 +8,6 @@ interface BlogDetailProps {
   article: ArticleItem;
 }
 
-function renderInlineBold(text: string) {
-  const parts = text.split(/(\*\*.*?\*\*)/g);
-
-  return parts.map((part, index) => {
-    if (part.startsWith("**") && part.endsWith("**")) {
-      return (
-        <strong key={index} className="font-semibold text-[#31565C]">
-          {part.slice(2, -2)}
-        </strong>
-      );
-    }
-
-    return part;
-  });
-}
-
-function renderArticleContent(content: string) {
-  return content
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line, index) => {
-      if (/^##\s+/.test(line)) {
-        return (
-          <h2
-            key={index}
-            className="mt-11 text-[25px] font-semibold leading-tight tracking-[-0.025em] text-[#173F45]"
-          >
-            {renderInlineBold(line.replace(/^##\s+/, ""))}
-          </h2>
-        );
-      }
-
-      if (/^###\s+/.test(line)) {
-        return (
-          <h3
-            key={index}
-            className="mt-8 text-[20px] font-semibold leading-tight text-[#31565C]"
-          >
-            {renderInlineBold(line.replace(/^###\s+/, ""))}
-          </h3>
-        );
-      }
-
-      if (/^\*\*.+\*\*$/.test(line)) {
-        return (
-          <h3
-            key={index}
-            className="mt-8 text-[20px] font-semibold leading-tight text-[#31565C]"
-          >
-            {line.slice(2, -2)}
-          </h3>
-        );
-      }
-
-      if (line.startsWith("- ")) {
-        return (
-          <p
-            key={index}
-            className="mt-2 pl-4 text-[16px] leading-[1.8] text-[#526D72] sm:text-[17px]"
-          >
-            - {renderInlineBold(line.slice(2))}
-          </p>
-        );
-      }
-
-      return (
-        <p
-          key={index}
-          className="mt-4 text-[16px] leading-[1.85] text-[#526D72] sm:text-[17px]"
-        >
-          {renderInlineBold(line)}
-        </p>
-      );
-    });
-}
 export function BlogDetail({ article }: BlogDetailProps) {
   const formattedDate = new Date(article.date).toLocaleDateString("tr-TR", {
     day: "numeric",
@@ -227,7 +151,6 @@ export function BlogDetail({ article }: BlogDetailProps) {
                     </p>
                   </>
                 )}
-
               </div>
             </div>
           </aside>
@@ -243,9 +166,53 @@ export function BlogDetail({ article }: BlogDetailProps) {
             </div>
 
             {article.content && (
-              <div className="mt-8">
-                {renderArticleContent(article.content)}
-              </div>
+              <div
+                className="
+      mt-8
+      [&_p]:mt-4
+      [&_p]:text-[16px]
+      [&_p]:leading-[1.85]
+      [&_p]:text-[#526D72]
+      sm:[&_p]:text-[17px]
+
+      [&_h2]:mt-11
+      [&_h2]:text-[25px]
+      [&_h2]:font-semibold
+      [&_h2]:leading-tight
+      [&_h2]:tracking-[-0.025em]
+      [&_h2]:text-[#173F45]
+
+      [&_h3]:mt-8
+      [&_h3]:text-[20px]
+      [&_h3]:font-semibold
+      [&_h3]:leading-tight
+      [&_h3]:text-[#31565C]
+
+      [&_strong]:font-semibold
+      [&_strong]:text-[#31565C]
+
+      [&_ul]:mt-4
+      [&_ul]:list-disc
+      [&_ul]:space-y-2
+      [&_ul]:pl-6
+
+      [&_ol]:mt-4
+      [&_ol]:list-decimal
+      [&_ol]:space-y-2
+      [&_ol]:pl-6
+
+      [&_li]:text-[16px]
+      [&_li]:leading-[1.8]
+      [&_li]:text-[#526D72]
+      sm:[&_li]:text-[17px]
+
+      [&_a]:font-medium
+      [&_a]:text-[#118B99]
+      [&_a]:underline
+      [&_a]:underline-offset-2
+    "
+                dangerouslySetInnerHTML={{ __html: article.content }}
+              />
             )}
 
             <div className="mt-12 border-t border-[#118B99]/10 pt-8">
