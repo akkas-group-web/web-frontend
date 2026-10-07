@@ -52,9 +52,7 @@ export function OfficesSection() {
               İstanbul Asya
             </h3>
 
-            <p className="mt-2 text-sm text-muted-foreground">
-              Akkaş Plaza
-            </p>
+            <p className="mt-2 text-sm text-muted-foreground">Akkaş Plaza</p>
 
             <div className="mt-8 space-y-5">
               {mainOffice.address && (
