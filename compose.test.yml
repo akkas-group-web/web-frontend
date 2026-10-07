@@ -8,6 +8,7 @@ services:
       args:
         WP_GRAPHQL_ENDPOINT: ${WP_GRAPHQL_BUILD_ENDPOINT}
         NEXT_PUBLIC_CHAT_API_URL: ${NEXT_PUBLIC_CHAT_API_URL}
+        NEXT_PUBLIC_GA_ID: ${NEXT_PUBLIC_GA_ID}
 
     restart: unless-stopped
 
