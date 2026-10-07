@@ -3,6 +3,7 @@
 import {
   COOKIE_OPEN_EVENT,
   DEFAULT_CHOICES,
+  ensureConsentRecord,
   saveConsent,
   useCookieConsent,
   type ConsentCategory,
@@ -124,6 +125,10 @@ export function CookieConsent() {
   const { ready, consent } = useCookieConsent();
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState<ConsentChoices>(DEFAULT_CHOICES);
+
+  useEffect(() => {
+    if (ready && !consent) ensureConsentRecord();
+  }, [ready, consent]);
 
   // İlk ziyarette (kayıt yoksa) paneli otomatik aç
 
