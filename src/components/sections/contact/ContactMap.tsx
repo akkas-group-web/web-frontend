@@ -9,7 +9,7 @@ import {
 
 export function ContactMap() {
   const { consent } = useCookieConsent();
-  const mapAllowed = consent?.choices.functional === true;
+  const mapAllowed = consent?.choices.marketing === true;
 
   const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(
     SITE_CONFIG.address,
@@ -31,14 +31,15 @@ export function ContactMap() {
     <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-neutral-100 p-6 text-center">
       <p className="max-w-sm text-sm text-neutral-700">
         Harita Google tarafından sağlanır ve yüklendiğinde Google çerezleri
-        oluşabilir.
+        oluşabilir. &quot;Haritayı yükle&quot; seçeneği Reklam / Pazarlama
+        çerezleri tercihini açar.
       </p>
       <button
         type="button"
         onClick={() =>
           saveConsent({
             ...(consent?.choices ?? DEFAULT_CHOICES),
-            functional: true,
+            marketing: true,
           })
         }
         className="rounded-full bg-[#1a7d8f] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#0d4d5c]"
