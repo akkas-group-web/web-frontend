@@ -28,18 +28,18 @@ function clearGaCookies() {
 }
 
 export function GoogleAnalytics() {
-  const { consent } = useCookieConsent();
+  const { ready, consent } = useCookieConsent();
   const allowed = Boolean(GA_ID) && consent?.choices.analytics === true;
 
   useEffect(() => {
-    if (!GA_ID) return;
+    if (!GA_ID || !ready) return;
     // true olunca Google'ın kendi kapatma anahtarı devreye girer
     (window as unknown as Record<string, unknown>)[`ga-disable-${GA_ID}`] =
       !allowed;
     if (!allowed) clearGaCookies();
-  }, [allowed]);
+  }, [allowed, ready]);
 
-  if (!allowed) return null;
+  if (!ready || !allowed) return null;
 
   return (
     <>
