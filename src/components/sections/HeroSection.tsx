@@ -134,108 +134,108 @@ function HeroApplications({
 
   return (
     <>
-    {/* MASAÜSTÜ / TABLET: sol kenardaki sekme ve kart */}
-    {/* Menünün altından (73px) slider alt çubuğunun üstüne (77px) kadar uzanan
+      {/* MASAÜSTÜ / TABLET: sol kenardaki sekme ve kart */}
+      {/* Menünün altından (73px) slider alt çubuğunun üstüne (77px) kadar uzanan
         görünmez kap; sekme ve kart bu alanın TAM ORTASINA hizalanır. */}
-    <div className="pointer-events-none absolute bottom-[40px] left-0 top-[110px] z-[7] hidden items-center md:flex">
-      {/* Kapalıyken: sol kenardaki dikey sekme */}
-      <button
-        type="button"
-        onClick={() => onOpenChange(true)}
-        aria-expanded={open}
-        aria-controls="hero-applications-card"
-        className={`pointer-events-auto flex-col items-center gap-3 rounded-r-2xl bg-white px-2.5 py-5 text-brand-turquoise-700 shadow-[8px_12px_32px_rgba(4,45,52,0.25)] transition-all hover:pl-3.5 ${
-          open ? "hidden" : "flex"
-        }`}
-      >
-        <span className="whitespace-nowrap text-[11px] font-extrabold uppercase tracking-[0.2em] [writing-mode:vertical-rl] rotate-180">
-          Uygulamalarımız
-        </span>
+      <div className="pointer-events-none absolute bottom-[40px] left-0 top-[110px] z-[7] hidden items-center md:flex">
+        {/* Kapalıyken: sol kenardaki dikey sekme */}
+        <button
+          type="button"
+          onClick={() => onOpenChange(true)}
+          aria-expanded={open}
+          aria-controls="hero-applications-card"
+          className={`pointer-events-auto flex-col items-center gap-3 rounded-r-2xl bg-white px-2.5 py-5 text-brand-turquoise-700 shadow-[8px_12px_32px_rgba(4,45,52,0.25)] transition-all hover:pl-3.5 ${
+            open ? "hidden" : "flex"
+          }`}
+        >
+          <span className="whitespace-nowrap text-[11px] font-extrabold uppercase tracking-[0.2em] [writing-mode:vertical-rl] rotate-180">
+            Uygulamalarımız
+          </span>
 
-        {/* Renkli noktalar – yazının ALTINDA, üst üste binmez.
+          {/* Renkli noktalar – yazının ALTINDA, üst üste binmez.
             Uygulama sayısı artsa da sekme uzamasın diye en fazla 6 nokta. */}
-        <span className="flex flex-col gap-1.5" aria-hidden={true}>
-          {applications.slice(0, 6).map((application) => (
-            <span
-              key={application.id}
-              className="h-2 w-2 rounded-full bg-brand-turquoise-400"
-            />
-          ))}
-        </span>
-      </button>
+          <span className="flex flex-col gap-1.5" aria-hidden={true}>
+            {applications.slice(0, 6).map((application) => (
+              <span
+                key={application.id}
+                className="h-2 w-2 rounded-full bg-brand-turquoise-400"
+              />
+            ))}
+          </span>
+        </button>
 
-      {/* Açıkken: sekmenin yerinde açılan kart */}
-      <AnimatePresence>
-        {open && (
-          <div ref={cardRef} className="pointer-events-auto ml-2">
-            <motion.nav
-              key="hero-apps-card"
-              id="hero-applications-card"
-              aria-label="Uygulamalarımız"
-              initial={{ opacity: 0, x: -24 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -24 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="w-[176px] overflow-hidden rounded-2xl bg-white text-brand-turquoise-950 shadow-[0_24px_60px_rgba(4,45,52,0.35)] ring-1 ring-black/[0.04]"
-            >
-              {/* Başlık: ortada, altında ince çizgi; X sağ köşede */}
-              <div className="relative flex min-h-11 items-center justify-center border-b border-brand-turquoise-900/[0.08] px-7">
-                <span className="text-center text-[9px] font-extrabold uppercase tracking-[0.12em] text-brand-turquoise-700">
-                  Uygulamalarımız
-                </span>
+        {/* Açıkken: sekmenin yerinde açılan kart */}
+        <AnimatePresence>
+          {open && (
+            <div ref={cardRef} className="pointer-events-auto ml-2">
+              <motion.nav
+                key="hero-apps-card"
+                id="hero-applications-card"
+                aria-label="Uygulamalarımız"
+                initial={{ opacity: 0, x: -24 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -24 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="w-[176px] overflow-hidden rounded-2xl bg-white text-brand-turquoise-950 shadow-[0_24px_60px_rgba(4,45,52,0.35)] ring-1 ring-black/[0.04]"
+              >
+                {/* Başlık: ortada, altında ince çizgi; X sağ köşede */}
+                <div className="relative flex min-h-11 items-center justify-center border-b border-brand-turquoise-900/[0.08] px-7">
+                  <span className="text-center text-[9px] font-extrabold uppercase tracking-[0.12em] text-brand-turquoise-700">
+                    Uygulamalarımız
+                  </span>
 
-                <button
-                  type="button"
-                  onClick={() => onOpenChange(false)}
-                  aria-label="Kapat"
-                  className="absolute right-1 top-1/2 grid h-7 w-7 -translate-y-1/2 place-items-center rounded-full text-brand-turquoise-950/45 transition-colors hover:bg-brand-turquoise-50 hover:text-brand-turquoise-950"
-                >
-                  <X className="h-3.5 w-3.5" />
-                </button>
-              </div>
+                  <button
+                    type="button"
+                    onClick={() => onOpenChange(false)}
+                    aria-label="Kapat"
+                    className="absolute right-1 top-1/2 grid h-7 w-7 -translate-y-1/2 place-items-center rounded-full text-brand-turquoise-950/45 transition-colors hover:bg-brand-turquoise-50 hover:text-brand-turquoise-950"
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </button>
+                </div>
 
-              {/* Uygulamalar: satırlar ince çizgilerle ayrılır */}
-              <ul className="divide-y divide-brand-turquoise-900/[0.06]">
-                {applications.map((application, index) => {
-                  return (
-                    <motion.li
-                      key={application.id}
-                      initial={{ opacity: 0, x: -8 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.08 + index * 0.04 }}
-                    >
-                      <Link
-                        {...getApplicationLinkProps(application.link)}
-                        onClick={() => onOpenChange(false)}
-                        className="group relative flex min-h-[54px] items-center gap-2 px-2.5 py-2 transition-colors hover:bg-brand-turquoise-50/70 focus-visible:bg-brand-turquoise-50 focus-visible:outline-none"
+                {/* Uygulamalar: satırlar ince çizgilerle ayrılır */}
+                <ul className="divide-y divide-brand-turquoise-900/[0.06]">
+                  {applications.map((application, index) => {
+                    return (
+                      <motion.li
+                        key={application.id}
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.08 + index * 0.04 }}
                       >
-                        {/* Logo kutusu: logo içine tam sığar, kesilmez */}
-                        <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg border border-brand-turquoise-900/[0.08] bg-white p-0.5 shadow-[0_1px_2px_rgba(4,45,52,0.06)] transition-shadow group-hover:shadow-[0_4px_12px_rgba(4,45,52,0.12)]">
-                          <span className="relative block h-full w-full">
-                            <Image
-                              src={application.logo.url}
-                              alt={application.logo.alt || application.title}
-                              fill
-                              sizes="40px"
-                              className="object-contain"
-                            />
+                        <Link
+                          {...getApplicationLinkProps(application.link)}
+                          onClick={() => onOpenChange(false)}
+                          className="group relative flex min-h-[54px] items-center gap-2 px-2.5 py-2 transition-colors hover:bg-brand-turquoise-50/70 focus-visible:bg-brand-turquoise-50 focus-visible:outline-none"
+                        >
+                          {/* Logo kutusu: logo içine tam sığar, kesilmez */}
+                          <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg border border-brand-turquoise-900/[0.08] bg-white p-0.5 shadow-[0_1px_2px_rgba(4,45,52,0.06)] transition-shadow group-hover:shadow-[0_4px_12px_rgba(4,45,52,0.12)]">
+                            <span className="relative block h-full w-full">
+                              <Image
+                                src={application.logo.url}
+                                alt={application.logo.alt || application.title}
+                                fill
+                                sizes="40px"
+                                className="object-contain"
+                              />
+                            </span>
                           </span>
-                        </span>
 
-                        {/* Uygulama adı */}
-                        <span className="min-w-0 flex-1 truncate text-[12px] font-bold leading-tight">
-                          {application.title}
-                        </span>
-                      </Link>
-                    </motion.li>
-                  );
-                })}
-              </ul>
-            </motion.nav>
-          </div>
-        )}
-      </AnimatePresence>
-    </div>
+                          {/* Uygulama adı */}
+                          <span className="min-w-0 flex-1 truncate text-[12px] font-bold leading-tight">
+                            {application.title}
+                          </span>
+                        </Link>
+                      </motion.li>
+                    );
+                  })}
+                </ul>
+              </motion.nav>
+            </div>
+          )}
+        </AnimatePresence>
+      </div>
 
       {/* MOBİL: alttan açılan panel (bottom sheet). Masaüstünde gizli. */}
       <AnimatePresence>
@@ -295,9 +295,9 @@ function HeroApplications({
                     <Link
                       {...getApplicationLinkProps(application.link)}
                       onClick={() => onOpenChange(false)}
-                      className="flex h-full flex-col items-center gap-2.5 rounded-2xl border border-brand-turquoise-900/[0.08] px-3 py-4 text-center transition-colors active:bg-brand-turquoise-50"
+                      className="flex h-full flex-col items-center gap-3 rounded-2xl border border-brand-turquoise-900/[0.08] px-3 py-5 text-center transition-colors active:bg-brand-turquoise-50"
                     >
-                      <span className="relative h-14 w-14 overflow-hidden rounded-xl border border-brand-turquoise-900/[0.08] bg-white p-1 shadow-[0_2px_6px_rgba(4,45,52,0.08)]">
+                      <span className="relative h-16 w-16 overflow-hidden rounded-xl border border-brand-turquoise-900/[0.08] bg-white p-1 shadow-[0_2px_6px_rgba(4,45,52,0.08)]">
                         <span className="relative block h-full w-full">
                           <Image
                             src={application.logo.url}
@@ -309,7 +309,7 @@ function HeroApplications({
                         </span>
                       </span>
 
-                      <span className="text-[13px] font-bold leading-tight">
+                      <span className="text-[14px] font-bold leading-tight">
                         {application.title}
                       </span>
                     </Link>
@@ -397,9 +397,9 @@ export function HeroSection({ slides, applications }: HeroSectionProps) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.55, ease: "easeOut" }}
-           className={`text-center transition-transform duration-300 lg:text-left ${
-  applicationsOpen ? "lg:translate-x-[150px]" : "lg:translate-x-0"
-}`}
+            className={`text-center transition-transform duration-300 lg:text-left ${
+              applicationsOpen ? "lg:translate-x-[150px]" : "lg:translate-x-0"
+            }`}
           >
             <span className="mb-5 inline-flex items-center gap-2.5 text-[11px] font-extrabold uppercase tracking-widest text-brand-turquoise-100">
               <span className="h-0.5 w-7 bg-brand-turquoise-400" />
@@ -467,26 +467,26 @@ export function HeroSection({ slides, applications }: HeroSectionProps) {
                 onClick={() => setApplicationsOpen(true)}
                 aria-haspopup="dialog"
                 aria-expanded={applicationsOpen}
-                className="inline-flex min-h-[44px] items-center gap-3 rounded-full border border-white/20 bg-white/[0.1] py-1.5 pl-1.5 pr-4 text-[12px] font-bold text-white backdrop-blur-sm transition-colors active:bg-white/[0.18]"
+                className="inline-flex min-h-[56px] items-center gap-3 rounded-full border border-white/20 bg-white/[0.1] py-2 pl-2 pr-5 text-[15px] font-bold text-white backdrop-blur-sm transition-colors active:bg-white/[0.18]"
               >
                 <span className="flex -space-x-2" aria-hidden={true}>
                   {applications.slice(0, 4).map((application) => (
                     <span
                       key={application.id}
-                      className="relative h-7 w-7 overflow-hidden rounded-full border-2 border-white bg-white"
+                      className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-white bg-white"
                     >
                       <Image
                         src={application.logo.url}
                         alt=""
                         fill
-                        sizes="28px"
+                        sizes="40px"
                         className="object-contain p-0.5"
                       />
                     </span>
                   ))}
                 </span>
                 Uygulamalarımız
-                <ArrowRight className="h-3.5 w-3.5" />
+                <ArrowRight className="h-4 w-4" />
               </button>
             </div>
           </motion.div>
