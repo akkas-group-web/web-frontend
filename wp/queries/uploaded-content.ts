@@ -1,3 +1,4 @@
+
 import { gql } from "graphql-request";
 
 export const GET_UPLOADED_CONTENTS_QUERY = gql`
@@ -10,6 +11,10 @@ export const GET_UPLOADED_CONTENTS_QUERY = gql`
         yuklenenlerDetaylari {
           baslik
           icerik
+          footerdaGoster
+          goruntulemeSirasi
+          baglantiyiYeniSekmedeAc
+          pdfBaglantisi
         }
       }
     }

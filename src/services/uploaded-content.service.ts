@@ -20,6 +20,10 @@ interface WPUploadedContentsResponse {
       yuklenenlerDetaylari?: {
         baslik?: string | null;
         icerik?: string | null;
+        footerdaGoster?: boolean | null;
+        goruntulemeSirasi?: number | null;
+        baglantiyiYeniSekmedeAc?: boolean | null;
+        pdfBaglantisi?: string | null;
       } | null;
     }[];
   };
@@ -44,7 +48,7 @@ export async function getUploadedContentBySlug(
       id: item.id,
       title: item.title,
       slug: item.slug,
-      heading: item.yuklenenlerDetaylari?.baslik || item.title,
+      heading: item.yuklenenlerDetaylari?.baslik?.trim() ?? "",
       content: item.yuklenenlerDetaylari?.icerik || "",
     };
   } catch (error) {
@@ -55,5 +59,32 @@ export async function getUploadedContentBySlug(
       "CONTENT_FETCH_FAILED",
       error,
     );
+  }
+}
+
+export async function getFooterContents() {
+  try {
+    const data =
+      await uploadedContentClient.request<WPUploadedContentsResponse>(
+        GET_UPLOADED_CONTENTS_QUERY,
+      );
+
+    return data.ploadedContents.nodes
+      .filter((item) => item.yuklenenlerDetaylari?.footerdaGoster === true)
+
+      .map((item) => ({
+        id: item.id,
+        title: item.title,
+        slug: item.slug,
+        order: item.yuklenenlerDetaylari?.goruntulemeSirasi ?? 0,
+        openInNewTab:
+          item.yuklenenlerDetaylari?.baglantiyiYeniSekmedeAc ?? false,
+        pdfUrl: item.yuklenenlerDetaylari?.pdfBaglantisi?.trim() ?? "",
+      }))
+
+      .sort((a, b) => a.order - b.order);
+  } catch (error) {
+    logger.error("Footer içerikleri alınamadı", { error });
+    return [];
   }
 }

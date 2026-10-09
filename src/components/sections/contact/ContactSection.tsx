@@ -27,7 +27,6 @@ interface ContactSectionProps {
     messageLabel: string;
     messagePlaceholder: string;
     submitButtonText: string;
-    kvkkPdfUrl: string;
   };
 }
 

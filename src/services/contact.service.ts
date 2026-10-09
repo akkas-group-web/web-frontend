@@ -8,7 +8,6 @@ import {
   GET_CONTACT_PAGE_QUERY,
 } from "../../wp/queries/contact";
 
-
 interface WPContactOfficesResponse {
   contactOffices: {
     nodes: {
@@ -62,11 +61,6 @@ interface WPContactPageResponse {
       submitButtonText: string | null;
       addressLabel: string | null;
       otherOfficesTitle: string | null;
-      kvkkPdf: {
-        node: {
-          mediaItemUrl: string;
-        };
-      } | null;
     };
   } | null;
 }
@@ -115,9 +109,7 @@ export async function getContactContent() {
           ]
         : offices;
 
-    const kvkkPdfUrl =
-      pageFields.kvkkPdf?.node.mediaItemUrl ??
-      "/documents/iletisimformuaydinlatmametni.pdf";
+  
 
     return {
       hero: {
@@ -152,7 +144,6 @@ export async function getContactContent() {
         messageLabel: pageFields.messageLabel ?? "",
         messagePlaceholder: pageFields.messagePlaceholder ?? "",
         submitButtonText: pageFields.submitButtonText ?? "",
-        kvkkPdfUrl,
       },
       officeLabels: {
         addressLabel: pageFields.addressLabel ?? "",
@@ -161,7 +152,6 @@ export async function getContactContent() {
 
       services: categories.map((c) => c.label),
       offices: sortedOffices,
-     
     };
   } catch (error) {
     logger.error("İletişim içeriği alınamadı", { error });
