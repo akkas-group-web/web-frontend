@@ -4,8 +4,10 @@ import { Space_Grotesk, Inter, IBM_Plex_Mono } from "next/font/google";
 import { SITE_CONFIG } from "@/constants/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { getFooterContents } from "@/services/uploaded-content.service";
 import ChatWidget from "@/components/chat/ChatWidget/ChatWidget";
 import { WhatsAppButton } from "@/components/contact/WhatsAppButton";
+import { connection } from "next/server";
 import "./globals.css";
 import { CookieConsent } from "@/components/consent/CookieConsent";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
@@ -54,7 +56,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  await connection();
+
+  const footerContents = await getFooterContents();
+
+
   return (
     <html
       lang="tr"
@@ -65,7 +73,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
         <main className="flex-1">{children}</main>
 
-        <Footer />
+        <Footer contents={footerContents} />
         <WhatsAppButton />
         <ChatWidget />
         <CookieConsent />
