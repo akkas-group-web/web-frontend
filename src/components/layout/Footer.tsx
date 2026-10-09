@@ -20,7 +20,20 @@ const SOCIAL_ICON = {
   youtube: FaFacebookF, // youtube ikonu istersen react-icons/fa'dan FaYoutube import edip değiştir
 };
 
-export function Footer() {
+interface FooterContent {
+  id: string;
+  title: string;
+  slug: string;
+  order: number;
+  openInNewTab: boolean;
+  pdfUrl: string;
+}
+
+interface FooterProps {
+  contents: FooterContent[];
+}
+
+export function Footer({ contents }: FooterProps) {
   const [email, setEmail] = useState("");
   const [kvkkAccepted, setKvkkAccepted] = useState(false);
   const [bulletinAccepted, setBulletinAccepted] = useState(false);
@@ -86,25 +99,28 @@ export function Footer() {
 
         {/* Yazılar */}
 
+        {/* Bilgi Toplumu Hizmetleri */}
         <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-[#7fc7d4]">
             Bilgi Toplumu Hizmetleri
           </p>
 
           <div className="mt-4 flex flex-col gap-2 text-sm">
-            <Link
-              href="/cerezlere-iliskin-aydinlatma-metni"
-              className="break-words text-white/45 transition-colors hover:text-white"
-            >
-              Çerez Politikası
-            </Link>
-
-            <Link
-              href="/kisisel-verilerin-korunmasi-kanunu"
-              className="break-words text-white/45 transition-colors hover:text-white"
-            >
-              Kişisel Verileri Koruma Kanunu
-            </Link>
+            {contents.map((item) => (
+              <Link
+                key={item.id}
+                href={item.pdfUrl || `/${item.slug}`}
+                target={item.pdfUrl || item.openInNewTab ? "_blank" : "_self"}
+                rel={
+                  item.pdfUrl || item.openInNewTab
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+                className="break-words text-white/45 transition-colors hover:text-white"
+              >
+                {item.title}
+              </Link>
+            ))}
           </div>
         </div>
 
@@ -167,15 +183,15 @@ export function Footer() {
                   className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-[#7fc7d4]"
                 />
                 <span>
-                  <a
-                    href="/documents/iletisimformuaydinlatmametni.pdf"
+                  <Link
+                    href="/e-bulten-ileti-aydinlatma-metni"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="underline hover:text-white/70"
                   >
-                    KVKK Aydınlatma Metni
-                  </a>{" "}
-                  &apos;ni okudum ve kabul ediyorum.
+                    E-Bülten İleti Aydınlatma Metni
+                  </Link>{" "}
+                  &apos;ni okudum ve anladım.
                 </span>
               </label>
 

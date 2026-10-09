@@ -7,10 +7,12 @@ interface UploadedContentDetailProps {
 export function UploadedContentDetail({ content }: UploadedContentDetailProps) {
   return (
     <main className="bg-white">
-      <section className="mx-auto max-w-5xl px-6 pb-16 pt-20 md:pb-20 md:pt-24">
-        <h1 className="mb-10 text-3xl font-semibold text-brand-dark md:text-4xl">
-          {content.heading}
-        </h1>
+      <section className="mx-auto max-w-5xl px-6 pb-16 pt-24 md:pb-20 md:pt-30">
+        {content.heading?.trim() && (
+          <h1 className="mx-auto mb-8 max-w-3xl whitespace-pre-line text-center text-lg font-semibold leading-snug text-brand-dark md:text-xl">
+            {content.heading}
+          </h1>
+        )}
 
         <div
           className="

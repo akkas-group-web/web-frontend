@@ -278,13 +278,13 @@ export function ContactForm({ fields }: ContactFormProps) {
 
           <span className="text-xs leading-5 text-muted-foreground">
             <a
-              href="/documents/iletisimformuaydinlatmametni.pdf"
+              href="/iletisim-formu-aydinlatma-metni"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setKvkkOpened(true)}
               className="inline-flex items-center gap-1 font-semibold text-[#118B99] underline decoration-[#118B99]/30 underline-offset-2 transition hover:text-[#0D747E]"
             >
-              KVKK Aydınlatma Metni
+              İletişim Formu Aydınlatma Metni
               <ExternalLink className="h-3 w-3" />
             </a>{" "}
             &apos;ni okudum ve kişisel verilerimin iletişim talebimin
