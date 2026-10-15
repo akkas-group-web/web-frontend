@@ -12,14 +12,14 @@ interface AboutStorySectionProps {
 
 export function AboutStorySection({ content }: AboutStorySectionProps) {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-gradient-to-br from-[#eef8f8] via-[#f7fbfb] to-white py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-16 px-8 md:grid-cols-2 md:px-12">
         <motion.div
           initial={{ opacity: 0, x: -24 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7 }}
-          className="relative"
+          className="relative min-w-0 lg:w-[90%]"
         >
           <div className="relative overflow-hidden rounded-[2rem] shadow-xl shadow-[#0d4d5c]/10">
             {content.image?.url ? (

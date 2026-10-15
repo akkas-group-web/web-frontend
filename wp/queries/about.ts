@@ -34,6 +34,16 @@ export const GET_ABOUT_PAGE_QUERY = gql`
           stat2Label
           stat3Value
           stat3Label
+          activityLeftText
+          activityRightText
+          activityClosingText
+          activityEyebrow
+          activityTitle
+          activityButton {
+            title
+            url
+            target
+          }
           homeSummaryEyebrow
           homeSummaryTitle
           homeSummaryDescription
