@@ -34,6 +34,19 @@ export interface VisionMissionContent {
   mission: string;
 }
 
+export interface AboutActivityContent {
+  leftText: string;
+  rightText: string;
+  closingText: string;
+  eyebrow: string;
+  title: string;
+  button: {
+    title: string;
+    url: string;
+    target: string;
+  } | null;
+}
+
 export interface AboutStatItem {
   id: string;
   value: string;
@@ -43,6 +56,7 @@ export interface AboutStatItem {
 export interface AboutContent {
   hero: AboutHeroContent;
   story: AboutStoryContent;
+  activity: AboutActivityContent;
   timeline: TimelineMilestone[];
   visionMission: VisionMissionContent;
   values: ValueItem[];

@@ -30,6 +30,16 @@ interface WPAboutPageResponse {
         stat2Label: string;
         stat3Value: string;
         stat3Label: string;
+        activityLeftText: string | null;
+        activityRightText: string | null;
+        activityClosingText: string | null;
+        activityEyebrow: string | null;
+        activityTitle: string | null;
+        activityButton: {
+          title: string;
+          url: string;
+          target: string;
+        } | null;
         homeSummaryEyebrow: string;
         homeSummaryTitle: string;
         homeSummaryDescription: string;
@@ -97,10 +107,27 @@ function mapTimelineFromWP(data: WPTimelineResponse): TimelineMilestone[] {
 
 function mapAboutPageFromWP(
   data: WPAboutPageResponse,
-): Pick<AboutContent, "hero" | "story" | "visionMission" | "stats"> {
+): Pick<
+  AboutContent,
+  "hero" | "story" | "activity" | "visionMission" | "stats"
+> {
   const fields = data.aboutPages.nodes[0].aboutstorycontent;
 
   return {
+    activity: {
+      leftText: fields.activityLeftText ?? "",
+      rightText: fields.activityRightText ?? "",
+      closingText: fields.activityClosingText ?? "",
+      eyebrow: fields.activityEyebrow ?? "",
+      title: fields.activityTitle ?? "",
+      button: fields.activityButton
+        ? {
+            title: fields.activityButton.title,
+            url: fields.activityButton.url,
+            target: fields.activityButton.target ?? "",
+          }
+        : null,
+    },
     hero: {
       titleHighlight: fields.heroTitleHighlight,
       titleRest: fields.heroTitleRest,
