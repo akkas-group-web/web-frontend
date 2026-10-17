@@ -8,14 +8,10 @@ interface ContactFormProps {
   fields: {
     nameLabel: string;
     namePlaceholder: string;
-    // companyLabel: string;
-    // companyPlaceholder: string;
     emailLabel: string;
     emailPlaceholder: string;
     phoneLabel: string;
     phonePlaceholder: string;
-    // serviceLabel: string;
-    // serviceDefault: string;
     messageLabel: string;
     messagePlaceholder: string;
     submitButtonText: string;

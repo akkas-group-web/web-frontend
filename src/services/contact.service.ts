@@ -48,14 +48,10 @@ interface WPContactPageResponse {
       } | null;
       nameLabel: string | null;
       namePlaceholder: string | null;
-      companyLabel: string | null;
-      companyPlaceholder: string | null;
       emailLabel: string | null;
       emailPlaceholder: string | null;
       phoneLabel: string | null;
       phonePlaceholder: string | null;
-      serviceLabel: string | null;
-      serviceDefault: string | null;
       messageLabel: string | null;
       messagePlaceholder: string | null;
       submitButtonText: string | null;
@@ -109,8 +105,6 @@ export async function getContactContent() {
           ]
         : offices;
 
-  
-
     return {
       hero: {
         eyebrow: pageFields.heroEyebrow ?? "",
@@ -133,14 +127,10 @@ export async function getContactContent() {
       formFields: {
         nameLabel: pageFields.nameLabel ?? "",
         namePlaceholder: pageFields.namePlaceholder ?? "",
-        companyLabel: pageFields.companyLabel ?? "",
-        companyPlaceholder: pageFields.companyPlaceholder ?? "",
         emailLabel: pageFields.emailLabel ?? "",
         emailPlaceholder: pageFields.emailPlaceholder ?? "",
         phoneLabel: pageFields.phoneLabel ?? "",
         phonePlaceholder: pageFields.phonePlaceholder ?? "",
-        serviceLabel: pageFields.serviceLabel ?? "",
-        serviceDefault: pageFields.serviceDefault ?? "",
         messageLabel: pageFields.messageLabel ?? "",
         messagePlaceholder: pageFields.messagePlaceholder ?? "",
         submitButtonText: pageFields.submitButtonText ?? "",
