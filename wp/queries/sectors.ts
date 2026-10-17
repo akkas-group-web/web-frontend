@@ -20,13 +20,6 @@ export const GET_SECTORS_QUERY = gql`
 
           benefits
 
-          stat1Value
-          stat1Label
-          stat2Value
-          stat2Label
-          stat3Value
-          stat3Label
-
           servicesEyebrow
           servicesTitleLine1
           servicesTitleLine2
