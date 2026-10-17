@@ -15,12 +15,7 @@ interface WPSectorsResponse {
         heroDescription: string;
         sectorImage: { node: { sourceUrl: string; altText: string } };
         benefits: string;
-        stat1Value: string;
-        stat1Label: string;
-        stat2Value: string;
-        stat2Label: string;
-        stat3Value: string;
-        stat3Label: string;
+
         servicesEyebrow: string | null;
         servicesTitleLine1: string | null;
         servicesTitleLine2: string | null;
@@ -79,11 +74,6 @@ function mapSectorsFromWP(data: WPSectorsResponse): SectorContent[] {
         : null,
       services: relatedServices,
       benefits: fields.benefits.split("\n").filter(Boolean),
-      stats: [
-        { value: fields.stat1Value, label: fields.stat1Label },
-        { value: fields.stat2Value, label: fields.stat2Label },
-        { value: fields.stat3Value, label: fields.stat3Label },
-      ].filter((s) => s.value && s.label),
       servicesEyebrow: fields.servicesEyebrow ?? "",
       servicesTitleLine1: fields.servicesTitleLine1 ?? "",
       servicesTitleLine2: fields.servicesTitleLine2 ?? "",
