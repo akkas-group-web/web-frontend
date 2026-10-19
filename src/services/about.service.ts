@@ -1,9 +1,8 @@
 import { AppError } from "@/lib/errors/AppError";
 import { logger } from "@/lib/logger/logger";
-import type { AboutContent, TimelineMilestone, ValueItem } from "@/types/about";
+import type { AboutContent, ValueItem } from "@/types/about";
 import { wpClient } from "../../wp/client";
 import { GET_ABOUT_PAGE_QUERY } from "../../wp/queries/about";
-import { GET_TIMELINE_ITEMS_QUERY } from "../../wp/queries/timeline";
 import { GET_VALUE_ITEMS_QUERY } from "../../wp/queries/values";
 import { HomeSummaryContent } from "@/types";
 
@@ -63,19 +62,6 @@ function mapHomeSummaryFromWP(data: WPAboutPageResponse): HomeSummaryContent {
   };
 }
 
-interface WPTimelineResponse {
-  timelineItems: {
-    nodes: {
-      id: string;
-      timelineItemFields: {
-        year: string;
-        milestoneTitle: string;
-        description: string;
-      };
-    }[];
-  };
-}
-
 interface WPValueItemsResponse {
   valueItems: {
     nodes: {
@@ -93,15 +79,6 @@ function mapValuesFromWP(data: WPValueItemsResponse): ValueItem[] {
     id: node.id,
     title: node.valueItemFields.value_title,
     description: node.valueItemFields.description,
-  }));
-}
-
-function mapTimelineFromWP(data: WPTimelineResponse): TimelineMilestone[] {
-  return data.timelineItems.nodes.map((node) => ({
-    id: node.id,
-    year: node.timelineItemFields.year,
-    title: node.timelineItemFields.milestoneTitle,
-    description: node.timelineItemFields.description,
   }));
 }
 
@@ -162,19 +139,16 @@ function mapAboutPageFromWP(
 
 export async function getAboutContent(): Promise<AboutContent> {
   try {
-    const [data, timelineData, valuesData] = await Promise.all([
+    const [data, valuesData] = await Promise.all([
       wpClient.request<WPAboutPageResponse>(GET_ABOUT_PAGE_QUERY),
-      wpClient.request<WPTimelineResponse>(GET_TIMELINE_ITEMS_QUERY),
       wpClient.request<WPValueItemsResponse>(GET_VALUE_ITEMS_QUERY),
     ]);
 
     const wpContent = mapAboutPageFromWP(data);
-    const timeline = mapTimelineFromWP(timelineData);
     const values = mapValuesFromWP(valuesData);
 
     return {
       ...wpContent,
-      timeline,
       values,
     };
   } catch (error) {
