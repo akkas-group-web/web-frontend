@@ -1,11 +1,6 @@
 import type { MediaImage } from "./media";
 
-export interface TimelineMilestone {
-  id: string;
-  year: string;
-  title: string;
-  description: string;
-}
+
 
 export interface ValueItem {
   id: string;
@@ -57,7 +52,6 @@ export interface AboutContent {
   hero: AboutHeroContent;
   story: AboutStoryContent;
   activity: AboutActivityContent;
-  timeline: TimelineMilestone[];
   visionMission: VisionMissionContent;
   values: ValueItem[];
   stats: AboutStatItem[];
