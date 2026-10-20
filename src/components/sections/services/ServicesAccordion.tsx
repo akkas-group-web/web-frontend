@@ -16,7 +16,7 @@ export function ServicesAccordion({ categories }: ServicesAccordionProps) {
 
   return (
     <section className="bg-white">
-      <div className="mx-auto max-w-7xl px-6 py-10 md:px-8 md:py-14">
+      <div className="mx-auto max-w-7xl px-6 pb-10 pt-5 md:px-8 md:pb-14 md:pt-6">
         <div className="border-t border-[#0d4d5c]/15">
           {categories.map((service, serviceIndex) => {
             const serviceKey = `${service.label}-${serviceIndex}`;
