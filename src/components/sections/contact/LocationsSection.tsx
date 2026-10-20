@@ -40,7 +40,7 @@ export function LocationsSection({ content }: LocationsSectionProps) {
 
   return (
     <>
-      <section className="bg-brand-gray-light py-8 md:py-11">
+      <section className="bg-white pb-8 pt-4 md:pb-11 md:pt-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-12">
           {/* SECTION HEADER */}
         

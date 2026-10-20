@@ -14,7 +14,7 @@ interface NewsGridProps {
 
 export function NewsGrid({ news }: NewsGridProps) {
   return (
-    <section className="bg-[#FCFEFE] py-12 lg:py-16">
+    <section className="bg-[#FCFEFE] pb-12 pt-6 lg:pb-16 lg:pt-8">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_260px]">
           {/* SOL - HABER AKIŞI */}

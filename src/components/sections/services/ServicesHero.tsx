@@ -1,3 +1,4 @@
+
 import { Briefcase } from "lucide-react";
 
 interface ServicesHeroProps {
@@ -13,33 +14,42 @@ export function ServicesHero({ content }: ServicesHeroProps) {
   const titleSecond = titleRest.join(",").trim();
 
   return (
-    <section className="relative overflow-hidden border-b border-[#0d4d5c]/10 bg-gradient-to-br from-[#eef7f6] via-[#f4faf9] to-white">
-      {/* Dekoratif halkalar */}
-      <div aria-hidden="true" className="pointer-events-none absolute -right-16 top-1/2 h-[320px] w-[320px] -translate-y-1/2 rounded-full border border-[#16859a]/[0.10]" />
-      <div aria-hidden="true" className="pointer-events-none absolute -right-32 top-1/2 h-[440px] w-[440px] -translate-y-1/2 rounded-full border border-[#16859a]/[0.07]" />
-      <div aria-hidden="true" className="pointer-events-none absolute -right-48 top-1/2 h-[560px] w-[560px] -translate-y-1/2 rounded-full border border-[#16859a]/[0.05]" />
+    <section className="relative isolate overflow-hidden border-b border-[#e6eef0] bg-gradient-to-r from-white via-[#f4f8f9] to-[#e8f5f6]">
+      {/* Diğer sayfalarla aynı arka plan */}
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        aria-hidden="true"
+      >
+        <div className="absolute -right-24 -top-28 h-80 w-80 rounded-full border-[55px] border-[#168a9b]/[0.05]" />
+        <div className="absolute right-24 top-12 h-44 w-44 rounded-full bg-[#168a9b]/[0.035]" />
+      </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 pb-10 pt-24 md:px-8 md:pb-12 md:pt-24">
-        {/* Pill etiket */}
-        <span className="inline-flex items-center gap-2 rounded-full border border-[#0d4d5c]/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#16859a] shadow-sm">
-          <Briefcase className="h-3.5 w-3.5" />
-          {content.heroEyebrow}
-        </span>
+      <div className="relative mx-auto max-w-7xl px-6 pb-7 pt-20 md:px-10 md:pb-8 md:pt-24">
+        {/* Ortak ikonlu kapsül */}
+        <div className="inline-flex items-center gap-2.5 rounded-full border border-[#d8eaed] bg-white/90 px-4 py-2 shadow-sm">
+          <Briefcase
+            className="h-4 w-4 text-[#078fa0]"
+            strokeWidth={1.8}
+          />
+          <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#078fa0]">
+            AKKAŞ GROUP HİZMETLERİMİZ
+          </span>
+        </div>
 
-        {/* Başlık */}
-        <h1 className="mt-4 text-3xl font-bold leading-[1.15] tracking-tight text-[#0d4d5c] md:text-5xl">
+        {/* Mevcut başlık */}
+        <h1 className="mt-3 max-w-3xl font-heading text-2xl font-semibold leading-tight tracking-tight text-[#164d5b] md:text-3xl">
           {titleFirst}
           {titleSecond && (
             <>
               ,
               <br />
-              <span className="text-[#16859a]">{titleSecond}</span>
+              <span className="text-[#168a9b]">{titleSecond}</span>
             </>
           )}
         </h1>
 
-        {/* Açıklama */}
-        <p className="mt-4 max-w-xl text-base leading-7 text-[#607176]">
+        {/* WordPress'ten gelen açıklama */}
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-[#657981] md:text-base">
           {content.heroAciklama}
         </p>
       </div>

@@ -45,7 +45,7 @@ export function ReferencesLogoGrid({
   });
 
   return (
-    <section className="bg-white py-16">
+    <section className="bg-white pb-12 pt-8 md:pb-16 md:pt-10">
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {clients.map((client) => (
