@@ -1,8 +1,5 @@
 import Link from "next/link";
-import {
-  ArrowLeft,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import type { ArticleItem } from "@/types/article";
 
@@ -14,16 +11,13 @@ interface BlogGridProps {
   totalPages: number;
 }
 
-export function BlogGrid({
-  articles,
-  currentPage,
-  totalPages,
-}: BlogGridProps) {
+export function BlogGrid({ articles, currentPage, totalPages }: BlogGridProps) {
   return (
-    <section className="bg-white py-14 sm:py-16 lg:py-20">
+    <section className="bg-white pb-14 pt-6 sm:pb-16 sm:pt-8 lg:pb-20 lg:pt-8">
+      {" "}
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* BAŞLIK */}
-        <div className="mb-8 sm:mb-10">
+        <div className="mb-5 sm:mb-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#118B99]">
             Makaleler
           </p>
@@ -36,10 +30,7 @@ export function BlogGrid({
         {/* MAKALELER */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {articles.map((article) => (
-            <BlogCard
-              key={article.id}
-              article={article}
-            />
+            <BlogCard key={article.id} article={article} />
           ))}
         </div>
 
@@ -63,26 +54,23 @@ export function BlogGrid({
             )}
 
             {/* SAYFA NUMARALARI */}
-            {Array.from(
-              { length: totalPages },
-              (_, index) => {
-                const page = index + 1;
+            {Array.from({ length: totalPages }, (_, index) => {
+              const page = index + 1;
 
-                return (
-                  <Link
-                    key={page}
-                    href={`/blog?page=${page}`}
-                    className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold transition ${
-                      currentPage === page
-                        ? "bg-[#118B99] text-white"
-                        : "border border-[#118B99]/15 bg-white text-[#526F74] hover:border-[#118B99] hover:text-[#118B99]"
-                    }`}
-                  >
-                    {page}
-                  </Link>
-                );
-              },
-            )}
+              return (
+                <Link
+                  key={page}
+                  href={`/blog?page=${page}`}
+                  className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold transition ${
+                    currentPage === page
+                      ? "bg-[#118B99] text-white"
+                      : "border border-[#118B99]/15 bg-white text-[#526F74] hover:border-[#118B99] hover:text-[#118B99]"
+                  }`}
+                >
+                  {page}
+                </Link>
+              );
+            })}
 
             {/* SONRAKİ */}
             {currentPage < totalPages ? (

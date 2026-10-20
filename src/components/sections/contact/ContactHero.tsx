@@ -1,3 +1,6 @@
+
+import { Mail } from "lucide-react";
+
 interface ContactHeroProps {
   content: {
     eyebrow: string;
@@ -5,31 +8,39 @@ interface ContactHeroProps {
     description: string;
   };
 }
+
 export function ContactHero({ content }: ContactHeroProps) {
-  const eyebrow = content.eyebrow || "İletişim";
   return (
-    <section className="relative overflow-hidden border-b border-brand-dark/10 bg-white pt-16 md:pt-20">
-      {/* Güçlendirilmiş arka plan geçişi */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-[48%] bg-gradient-to-l from-brand-soft/70 via-brand-soft/25 to-transparent" />
-      <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-primary/[0.06] blur-3xl" />
+    <section className="relative isolate overflow-hidden border-b border-[#e6eef0] bg-gradient-to-r from-white via-[#f4f8f9] to-[#e8f5f6]">
+      {/* Diğer sayfalarla aynı arka plan dekorasyonu */}
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        aria-hidden="true"
+      >
+        <div className="absolute -right-24 -top-28 h-80 w-80 rounded-full border-[55px] border-[#168a9b]/[0.05]" />
+        <div className="absolute right-24 top-12 h-44 w-44 rounded-full bg-[#168a9b]/[0.035]" />
+      </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-6 pt-4 sm:px-6 md:px-12 md:pb-8 md:pt-5">
+      <div className="relative mx-auto max-w-7xl px-6 pb-7 pt-20 text-left md:px-10 md:pb-8 md:pt-24">
         <div className="max-w-3xl">
-          {/* Label */}
-          <div className="flex items-center gap-3">
-            <span className="h-px w-9 bg-brand-primary" />
+          {/* Ortak ikonlu kapsül */}
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-[#d8eaed] bg-white/90 px-4 py-2 shadow-sm">
+            <Mail
+              className="h-4 w-4 text-[#078fa0]"
+              strokeWidth={1.8}
+            />
 
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-brand-primary">
-              {eyebrow}
+            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#078fa0]">
+              AKKAŞ GROUP İLETİŞİM
             </span>
           </div>
-          {/* Heading */}
-          <h1 className="mt-3 font-heading text-2xl font-semibold leading-[1.15] tracking-[-0.035em] text-brand-dark sm:text-3xl md:text-4xl lg:text-[40px]">
-            {content.title}
+
+          {/* WordPress'ten gelen mevcut başlık */}
+<h1 className="mt-4 font-heading text-3xl font-semibold leading-tight tracking-tight text-[#164d5b] md:text-4xl">            {content.title}
           </h1>
 
-          {/* Description */}
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground md:text-[15px] md:leading-7">
+          {/* WordPress'ten gelen mevcut açıklama */}
+          <p className="mt-4 max-w-3xl text-sm leading-6 text-[#657981] md:text-base">
             {content.description}
           </p>
         </div>
