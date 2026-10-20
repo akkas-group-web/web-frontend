@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Minus, Plus } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 import type { ServiceCategory } from "@/types/service";
 
@@ -16,11 +16,12 @@ export function ServicesAccordion({ categories }: ServicesAccordionProps) {
 
   return (
     <section className="bg-white">
-      <div className="mx-auto max-w-7xl px-6 pb-10 pt-5 md:px-8 md:pb-14 md:pt-6">
+      <div className="mx-auto max-w-7xl px-8 py-7 md:px-10 md:py-8">
         <div className="border-t border-[#0d4d5c]/15">
           {categories.map((service, serviceIndex) => {
             const serviceKey = `${service.label}-${serviceIndex}`;
             const isOpen = openService === serviceKey;
+            const contentId = `service-content-${serviceIndex}`;
 
             return (
               <section
@@ -47,11 +48,11 @@ export function ServicesAccordion({ categories }: ServicesAccordionProps) {
                     }
                   }}
                   aria-expanded={isOpen}
-                  aria-controls={`service-content-${serviceIndex}`}
-                  className="group flex w-full items-center justify-between gap-5 px-2 py-3.5 text-left md:px-3 md:py-4"
+                  aria-controls={contentId}
+                  className="group flex min-h-[52px] w-full items-center gap-4 px-2 py-2 text-left md:min-h-[56px] md:w-1/2 md:px-3"
                 >
                   <h2
-                    className={`text-lg font-semibold transition-colors md:text-xl ${
+                    className={`min-w-0 text-sm font-semibold transition-colors md:text-base ${
                       isOpen
                         ? "text-[#16859a]"
                         : "text-[#26383d] group-hover:text-[#16859a]"
@@ -61,51 +62,52 @@ export function ServicesAccordion({ categories }: ServicesAccordionProps) {
                   </h2>
 
                   <span
-                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors ${
-                      isOpen
-                        ? "border-[#16859a] bg-[#16859a] text-white"
-                        : "border-[#0d4d5c]/20 text-[#0d4d5c] group-hover:border-[#16859a] group-hover:text-[#16859a]"
-                    }`}
+                    aria-hidden="true"
+                    className="ml-auto flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e8f5f6] text-[#16859a] transition-colors group-hover:bg-[#d9eef0]"
                   >
-                    {isOpen ? (
-                      <Minus className="h-3.5 w-3.5" />
-                    ) : (
-                      <Plus className="h-3.5 w-3.5" />
-                    )}
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform duration-200 ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                    />
                   </span>
                 </button>
 
-                {isOpen && service.children?.length ? (
-                  <div
-                    id={`service-content-${serviceIndex}`}
-                    className="border-t border-[#0d4d5c]/10 bg-[#f8fbfb] px-4 py-3 md:px-6 md:py-4"
-                  >
-                    <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
-                      {service.children.map((child, childIndex) => {
-                        const childKey = `${child.label}-${childIndex}`;
+                <div id={contentId} hidden={!isOpen}>
+                  {service.children?.length ? (
+                    <div className="border-t border-[#0d4d5c]/10 bg-[#f8fbfb] px-4 py-3 md:px-6">
+                      <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
+                        {service.children.map((child, childIndex) => {
+                          const childKey = `${child.label}-${childIndex}`;
 
-                        const childHref =
-                          child.href &&
-                          child.href !== "/hizmetlerimiz/null" &&
-                          !child.href.endsWith("/null")
-                            ? child.href
-                            : "/hizmetlerimiz";
+                          const childHref =
+                            child.href &&
+                            child.href !== "/hizmetlerimiz/null" &&
+                            !child.href.endsWith("/null")
+                              ? child.href
+                              : "/hizmetlerimiz";
 
-                        return (
-                          <Link
-                            key={childKey}
-                            href={childHref}
-                            className="group flex min-w-0 items-center justify-between gap-3 border-b border-[#0d4d5c]/10 py-2.5 text-[13px] leading-5 text-[#53666b] transition-colors hover:text-[#16859a] sm:text-sm"
-                          >
-                            <span className="min-w-0 flex-1 break-words">{child.label}</span>
+                          return (
+                            <Link
+                              key={childKey}
+                              href={childHref}
+                              className="group flex min-w-0 items-center justify-between gap-3 border-b border-[#0d4d5c]/10 py-2 text-[13px] leading-5 text-[#53666b] transition-colors hover:text-[#16859a]"
+                            >
+                              <span className="min-w-0 flex-1 break-words">
+                                {child.label}
+                              </span>
 
-                            <ArrowRight className="h-3.5 w-3.5 shrink-0 text-[#a1afb2] transition-all group-hover:translate-x-1 group-hover:text-[#16859a]" />
-                          </Link>
-                        );
-                      })}
+                              <ArrowRight
+                                aria-hidden="true"
+                                className="h-3.5 w-3.5 shrink-0 text-[#a1afb2] transition-all group-hover:translate-x-1 group-hover:text-[#16859a]"
+                              />
+                            </Link>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
-                ) : null}
+                  ) : null}
+                </div>
               </section>
             );
           })}
