@@ -102,7 +102,12 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: "invalid_path" }, { status: 400 });
   }
 
-  if (old_uri === new_uri) {
+  const normalizePath = (path: string): string => path.replace(/\/{2,}/g, "/");
+
+  const oldUri = normalizePath(old_uri);
+  const newUri = normalizePath(new_uri);
+
+  if (oldUri === newUri) {
     return NextResponse.json({
       ok: true,
       skipped: "no_change",
@@ -162,7 +167,21 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
            updated_at = CURRENT_TIMESTAMP
        WHERE wp_post_id = ?
          AND old_uri <> ?`,
-      [new_uri, postId, new_uri],
+      [newUri, postId, newUri],
+    );
+
+    /*
+     * Yeni canonical URL'nin kendisi başka bir yere yönleniyorsa
+     * (ör. A -> //A) döngü oluşur. DELETE yetkisi olmadığı için kaydı
+     * self-redirect'e çekiyoruz; proxy.ts (target !== pathname) bunu yok sayar.
+     */
+    await connection.execute(
+      `UPDATE redirects
+       SET new_uri = old_uri,
+           updated_at = CURRENT_TIMESTAMP
+       WHERE old_uri = ?
+         AND new_uri <> old_uri`,
+      [newUri],
     );
 
     await connection.execute(
@@ -172,7 +191,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
        updated_at = CURRENT_TIMESTAMP
    WHERE target_wp_post_id = ?
      AND old_uri <> ?`,
-      [new_uri, postId, new_uri],
+      [newUri, postId, newUri],
     );
 
     /*
@@ -192,21 +211,21 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
          status_code = 301,
          source = 'wp_webhook',
          updated_at = CURRENT_TIMESTAMP`,
-      [postId, old_uri, new_uri],
+      [postId, oldUri, newUri],
     );
 
     await connection.commit();
 
     console.log(
-      `[redirects/webhook] normalized post ${postId}: ${old_uri} -> ${new_uri}`,
+      `[redirects/webhook] normalized post ${postId}: ${oldUri} -> ${newUri}`,
     );
 
     return NextResponse.json({
       ok: true,
       normalized: true,
       wp_post_id: postId,
-      old_uri,
-      new_uri,
+      old_uri: oldUri,
+      new_uri: newUri,
     });
   } catch (err) {
     await connection.rollback();

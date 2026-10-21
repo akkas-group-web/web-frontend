@@ -62,50 +62,50 @@ function getDisplayOrder(value: number | string | null | undefined) {
 function mapServiceCategoriesFromWP(
   data: WPServicesResponse,
 ): ServiceCategory[] {
-return [...data.serviceCategories.nodes]
-  .sort(
-    (a, b) =>
-      getDisplayOrder(a.serviceCategoryFields.displayorder) -
-      getDisplayOrder(b.serviceCategoryFields.displayorder),
-  )
-  .map((categoryNode): ServiceCategory | null => {
-    const fields = categoryNode.serviceCategoryFields;
+  return [...data.serviceCategories.nodes]
+    .sort(
+      (a, b) =>
+        getDisplayOrder(a.serviceCategoryFields.displayorder) -
+        getDisplayOrder(b.serviceCategoryFields.displayorder),
+    )
+    .map((categoryNode): ServiceCategory | null => {
+      const fields = categoryNode.serviceCategoryFields;
 
-    if (!fields || !fields.categorySlug) {
-      logger.error("Kategori alanları eksik, atlanıyor", {
-        categoryId: categoryNode.id,
-        title: categoryNode.title,
-      });
-      return null;
-    }
+      if (!fields || !fields.categorySlug) {
+        logger.error("Kategori alanları eksik, atlanıyor", {
+          categoryId: categoryNode.id,
+          title: categoryNode.title,
+        });
+        return null;
+      }
 
-    const children = data.serviceChildren.nodes
-      .filter(
-        (childNode) =>
-          childNode.serviceChildId?.relatedCategory?.nodes?.[0]?.id ===
-          categoryNode.id,
-      )
-      .sort(
-        (a, b) =>
-          getDisplayOrder(a.serviceChildId.displayorder) -
-          getDisplayOrder(b.serviceChildId.displayorder),
-      )
-      .map((childNode) => ({
-        label: childNode.serviceChildId.childLabel,
-        href: `/hizmetlerimiz/${fields.categorySlug}/${childNode.serviceChildId.childSlug}`,
-      }));
+      const children = data.serviceChildren.nodes
+        .filter(
+          (childNode) =>
+            childNode.serviceChildId?.relatedCategory?.nodes?.[0]?.id ===
+            categoryNode.id,
+        )
+        .sort(
+          (a, b) =>
+            getDisplayOrder(a.serviceChildId.displayorder) -
+            getDisplayOrder(b.serviceChildId.displayorder),
+        )
+        .map((childNode) => ({
+          label: childNode.serviceChildId.childLabel,
+          href: `/hizmetlerimiz/${fields.categorySlug}/${childNode.serviceChildId.childSlug}`,
+        }));
 
       return {
-      id: fields.categorySlug,
-      label: categoryNode.title,
-      href: `/hizmetlerimiz/${fields.categorySlug}`,
-      description: fields.description,
-      icon: fields.icon as ServiceIconKey,
-      featured: fields.featured,
-      children,
-    };
-  })
-  .filter((category) => category !== null) as ServiceCategory[];
+        id: fields.categorySlug,
+        label: categoryNode.title,
+        href: `/hizmetlerimiz/${fields.categorySlug}`,
+        description: fields.description ?? "",
+        icon: fields.icon as ServiceIconKey,
+        featured: fields.featured,
+        children,
+      };
+    })
+    .filter((category) => category !== null) as ServiceCategory[];
 }
 function mapServiceDetailsFromWP(data: WPServicesResponse): ServiceDetail[] {
   return [...data.serviceChildren.nodes]
@@ -125,8 +125,7 @@ function mapServiceDetailsFromWP(data: WPServicesResponse): ServiceDetail[] {
         return null;
       }
 
-      const relatedCategoryId =
-        childFields.relatedCategory?.nodes?.[0]?.id;
+      const relatedCategoryId = childFields.relatedCategory?.nodes?.[0]?.id;
 
       const categoryNode = data.serviceCategories.nodes.find(
         (c) => c.id === relatedCategoryId,
@@ -140,7 +139,7 @@ function mapServiceDetailsFromWP(data: WPServicesResponse): ServiceDetail[] {
         categoryTitle: categoryNode?.title ?? "",
         slug: childFields.childSlug,
         title: childFields.childLabel,
-        description: childFields.childDescription,
+        description: childFields.childDescription ?? "",
         contentTitle: childFields.contentTitle ?? "",
         content: childFields.childContent ?? "",
         image: rawImage
@@ -154,12 +153,9 @@ function mapServiceDetailsFromWP(data: WPServicesResponse): ServiceDetail[] {
     .filter((service) => service !== null) as ServiceDetail[];
 }
 
-
 export async function getServices(): Promise<ServiceDetail[]> {
   try {
-    const data = await wpClient.request<WPServicesResponse>(
-      GET_SERVICES_QUERY,
-    );
+    const data = await wpClient.request<WPServicesResponse>(GET_SERVICES_QUERY);
 
     return mapServiceDetailsFromWP(data);
   } catch (error) {
@@ -175,9 +171,7 @@ export async function getServices(): Promise<ServiceDetail[]> {
 
 export async function getServiceCategories(): Promise<ServiceCategory[]> {
   try {
-    const data = await wpClient.request<WPServicesResponse>(
-      GET_SERVICES_QUERY,
-    );
+    const data = await wpClient.request<WPServicesResponse>(GET_SERVICES_QUERY);
 
     return mapServiceCategoriesFromWP(data);
   } catch (error) {
@@ -219,9 +213,7 @@ export async function getServicesAndCategories(): Promise<{
   services: ServiceDetail[];
 }> {
   try {
-    const data = await wpClient.request<WPServicesResponse>(
-      GET_SERVICES_QUERY,
-    );
+    const data = await wpClient.request<WPServicesResponse>(GET_SERVICES_QUERY);
 
     return {
       categories: mapServiceCategoriesFromWP(data),
@@ -230,11 +222,7 @@ export async function getServicesAndCategories(): Promise<{
   } catch (error) {
     logger.error("Hizmetler ve kategoriler alınamadı", { error });
 
-    throw new AppError(
-      "Hizmetler yüklenemedi",
-      "CONTENT_FETCH_FAILED",
-      error,
-    );
+    throw new AppError("Hizmetler yüklenemedi", "CONTENT_FETCH_FAILED", error);
   }
 }
 export interface ServicesPageContent {
