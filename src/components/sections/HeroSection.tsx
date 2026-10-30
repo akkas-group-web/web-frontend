@@ -195,41 +195,40 @@ function HeroApplications({
                 </div>
 
                 {/* Uygulamalar: satırlar ince çizgilerle ayrılır */}
-                <ul className="divide-y divide-brand-turquoise-900/[0.06]">
-                  {applications.map((application, index) => {
-                    return (
-                      <motion.li
-                        key={application.id}
-                        initial={{ opacity: 0, x: -8 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.08 + index * 0.04 }}
-                      >
-                        <Link
-                          {...getApplicationLinkProps(application.link)}
-                          onClick={() => onOpenChange(false)}
-                          className="group relative flex min-h-[54px] items-center gap-2 px-2.5 py-2 transition-colors hover:bg-brand-turquoise-50/70 focus-visible:bg-brand-turquoise-50 focus-visible:outline-none"
-                        >
-                          {/* Logo kutusu: logo içine tam sığar, kesilmez */}
-                          <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg border border-brand-turquoise-900/[0.08] bg-white p-0.5 shadow-[0_1px_2px_rgba(4,45,52,0.06)] transition-shadow group-hover:shadow-[0_4px_12px_rgba(4,45,52,0.12)]">
-                            <span className="relative block h-full w-full">
-                              <Image
-                                src={application.logo.url}
-                                alt={application.logo.alt || application.title}
-                                fill
-                                sizes="40px"
-                                className="object-contain"
-                              />
-                            </span>
-                          </span>
 
-                          {/* Uygulama adı */}
-                          <span className="min-w-0 flex-1 truncate text-[12px] font-bold leading-tight">
-                            {application.title}
+                <ul className="divide-y divide-brand-turquoise-900/[0.06]">
+                  {applications.map((application, index) => (
+                    <motion.li
+                      key={application.id}
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.08 + index * 0.04 }}
+                    >
+                      <Link
+                        {...getApplicationLinkProps(application.link)}
+                        onClick={() => onOpenChange(false)}
+                        className="group relative flex h-[56px] items-center gap-2 px-3 transition-colors hover:bg-brand-turquoise-50/70 focus-visible:bg-brand-turquoise-50 focus-visible:outline-none"
+                      >
+                        {/* Logo çerçevesi */}
+                        <span className="flex h-11 w-[58px] shrink-0 items-center justify-center overflow-hidden rounded-lg border border-brand-turquoise-900/[0.08] bg-white shadow-[0_1px_2px_rgba(4,45,52,0.06)]">
+                          <span className="relative block h-[42px] w-[42px]">
+                            <Image
+                              src={application.logo.url}
+                              alt={application.logo.alt || application.title}
+                              fill
+                              sizes="42px"
+                              className="object-contain"
+                            />
                           </span>
-                        </Link>
-                      </motion.li>
-                    );
-                  })}
+                        </span>
+
+                        {/* Uygulama adı */}
+                        <span className="min-w-0 flex-1 truncate text-[12px] font-bold leading-tight">
+                          {application.title}
+                        </span>
+                      </Link>
+                    </motion.li>
+                  ))}
                 </ul>
               </motion.nav>
             </div>
