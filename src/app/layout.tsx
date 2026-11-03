@@ -75,7 +75,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
 
         <Footer contents={footerContents} />
         <WhatsAppButton />
-        <ChatWidget />
+       { /** <ChatWidget /> */} 
         <CookieConsent />
         <GoogleAnalytics />
       </body>
