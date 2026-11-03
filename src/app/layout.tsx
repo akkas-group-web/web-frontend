@@ -5,7 +5,7 @@ import { SITE_CONFIG } from "@/constants/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { getFooterContents } from "@/services/uploaded-content.service";
-// import ChatWidget from "@/components/chat/ChatWidget/ChatWidget";
+import ChatWidget from "@/components/chat/ChatWidget/ChatWidget";
 import { WhatsAppButton } from "@/components/contact/WhatsAppButton";
 import { connection } from "next/server";
 import "./globals.css";
@@ -75,7 +75,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
 
         <Footer contents={footerContents} />
         <WhatsAppButton />
-    {/* <ChatWidget /> */}
+        <ChatWidget />
         <CookieConsent />
         <GoogleAnalytics />
       </body>
