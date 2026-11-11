@@ -211,15 +211,15 @@ function HeroApplications({
                       >
                         {/* Logo çerçevesi */}
                         <span className="flex h-11 w-[58px] shrink-0 items-center justify-center overflow-hidden rounded-lg border border-brand-turquoise-900/[0.08] bg-white shadow-[0_1px_2px_rgba(4,45,52,0.06)]">
-                          <span className="relative block h-[42px] w-[42px]">
-                            <Image
-                              src={application.logo.url}
-                              alt={application.logo.alt || application.title}
-                              fill
-                              sizes="42px"
-                              className="object-contain"
-                            />
-                          </span>
+                        <span className="relative block h-[42px] w-[54px]">
+  <Image
+    src={application.logo.url}
+    alt={application.logo.alt || application.title}
+    fill
+    sizes="54px"
+    className="object-contain"
+  />
+</span>
                         </span>
 
                         {/* Uygulama adı */}
