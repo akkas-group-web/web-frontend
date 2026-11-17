@@ -55,6 +55,25 @@ function getApplicationLinkProps(
   };
 }
 
+/**
+ * Logosu kendi renkli zeminiyle tasarlanmış uygulamalar.
+ * Bu uygulamaların logo çerçevesi beyaz yerine logonun zemin rengine boyanır,
+ * böylece logo beyaz bir kutunun içinde küçük bir dikdörtgen gibi durmaz.
+ * Anahtar: WordPress'teki uygulama başlığı. Listede olmayanlar beyaz kalır.
+ */
+// WordPress GraphQL ID'sine göre logo arka plan renkleri
+const LOGO_BACKGROUNDS: Record<string, string> = {
+  cG9zdDoyNjYz: "#013645", // Akkaş Kokpit
+};
+
+function logoFrameStyle(application: Application) {
+  const color = LOGO_BACKGROUNDS[application.id];
+
+  return color
+    ? { backgroundColor: color, borderColor: color }
+    : undefined;
+}
+
 interface HeroApplicationsProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -210,7 +229,10 @@ function HeroApplications({
                         className="group relative flex h-[56px] items-center gap-2 px-3 transition-colors hover:bg-brand-turquoise-50/70 focus-visible:bg-brand-turquoise-50 focus-visible:outline-none"
                       >
                         {/* Logo çerçevesi */}
-                        <span className="flex h-11 w-[58px] shrink-0 items-center justify-center overflow-hidden rounded-lg border border-brand-turquoise-900/[0.08] bg-white shadow-[0_1px_2px_rgba(4,45,52,0.06)]">
+                        <span
+                          className="flex h-11 w-[58px] shrink-0 items-center justify-center overflow-hidden rounded-lg border border-brand-turquoise-900/[0.08] bg-white shadow-[0_1px_2px_rgba(4,45,52,0.06)]"
+                          style={logoFrameStyle(application)}
+                        >
                         <span className="relative block h-[42px] w-[54px]">
   <Image
     src={application.logo.url}
@@ -296,7 +318,10 @@ function HeroApplications({
                       onClick={() => onOpenChange(false)}
                       className="flex h-full flex-col items-center gap-3 rounded-2xl border border-brand-turquoise-900/[0.08] px-3 py-5 text-center transition-colors active:bg-brand-turquoise-50"
                     >
-                      <span className="relative h-16 w-16 overflow-hidden rounded-xl border border-brand-turquoise-900/[0.08] bg-white p-1 shadow-[0_2px_6px_rgba(4,45,52,0.08)]">
+                      <span
+                        className="relative h-16 w-16 overflow-hidden rounded-xl border border-brand-turquoise-900/[0.08] bg-white p-1 shadow-[0_2px_6px_rgba(4,45,52,0.08)]"
+                        style={logoFrameStyle(application)}
+                      >
                         <span className="relative block h-full w-full">
                           <Image
                             src={application.logo.url}
@@ -473,6 +498,7 @@ export function HeroSection({ slides, applications }: HeroSectionProps) {
                     <span
                       key={application.id}
                       className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-white bg-white"
+                      style={{ backgroundColor: logoFrameStyle(application)?.backgroundColor }}
                     >
                       <Image
                         src={application.logo.url}
