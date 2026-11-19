@@ -62,7 +62,7 @@ export function Header() {
             </span>
 
             <span className="whitespace-nowrap text-[13px] font-semibold tracking-wide text-[#0d4d5c] transition-colors group-hover:text-[#1a7d8f]">
-              +541 520 55 40
+              +90 541 520 55 40
             </span>
           </span>
         </a>
